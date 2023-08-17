@@ -12,4 +12,7 @@ module.exports = {
     project: "./tsconfig.eslint.json",
     sourceType: "module",
   },
+  rules: {
+    "@typescript-eslint/naming-convention": "off"
+  }
 };
