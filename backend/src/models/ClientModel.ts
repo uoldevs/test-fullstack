@@ -19,9 +19,9 @@ export default class ClientModel {
 	}
 
 	async create(client: IClient): Promise<void> {
-		const sql = 'INSERT INTO client (name, email, cpf, cell, status) VALUES (?, ?, ?, ?, ?)';
-		const values = [client.name, client.email, client.cpf, client.cell, client.status];
-	
+		const sql = 'INSERT INTO client (name, email, cpf, phone, status) VALUES (?, ?, ?, ?, ?)';
+		const values = [client.name, client.email, client.cpf, client.phone, client.status];
+
 		return await new Promise<void>((resolve, reject) => {
 			this.dbInstance.run(sql, values, (err: Error | null) => {
 				if (err) {
@@ -33,8 +33,8 @@ export default class ClientModel {
 	}
 
 	async update(client: IClient, id: number): Promise<IClient | null> {
-		const sql = 'UPDATE client SET name = ?, email = ?, cpf = ?, cell = ?, status = ? WHERE id = ?';
-		const values = [client.name, client.email, client.cpf, client.cell, client.status, id];
+		const sql = 'UPDATE client SET name = ?, email = ?, cpf = ?, phone = ?, status = ? WHERE id = ?';
+		const values = [client.name, client.email, client.cpf, client.phone, client.status, id];
 	
 		return await new Promise<IClient | null>((resolve, reject) => {
 			this.dbInstance.run(sql, values, function(err: Error | null) {
@@ -45,7 +45,7 @@ export default class ClientModel {
 				if (this.changes > 0) {
 					return resolve(client);
 				} else {
-					return resolve(null); // Nenhum registro foi atualizado
+					return resolve(null);
 				}
 			});
 		});

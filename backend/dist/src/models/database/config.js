@@ -24,10 +24,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const sqlite3 = __importStar(require("sqlite3"));
-const db = new sqlite3.Database('./client.db', sqlite3.OPEN_READWRITE, (err) => {
+const db = new sqlite3.Database('src/models/database/client.db', sqlite3.OPEN_READWRITE, (err) => {
     if (err)
         return console.error(err);
 });
-const sql = 'CREATE TABLE client(ID INTEGER PRIMARY KEY, name TEXT, email TEXT, cpf TEXT, cell TEXT, status BOOLEAN)';
+const sql = 'CREATE TABLE IF NOT EXISTS client(id INTEGER PRIMARY KEY, name TEXT, email TEXT, cpf TEXT, phone TEXT, status BOOLEAN)';
 db.run(sql);
 exports.default = db;

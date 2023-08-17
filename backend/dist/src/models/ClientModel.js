@@ -23,9 +23,43 @@ class ClientModel {
             return yield new Promise((resolve, reject) => {
                 this.dbInstance.all(sql, [], (err, rows) => {
                     if (err) {
-                        return reject(err);
+                        return reject(err.message);
                     }
                     return resolve(rows);
+                });
+            });
+        });
+    }
+    create(client) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = 'INSERT INTO client (name, email, cpf, cell, status) VALUES (?, ?, ?, ?, ?)';
+            const values = [client.name, client.email, client.cpf, client.phone, client.status];
+            console.log('oi');
+            return yield new Promise((resolve, reject) => {
+                this.dbInstance.run(sql, values, (err) => {
+                    if (err) {
+                        return reject(err.message);
+                    }
+                    return resolve();
+                });
+            });
+        });
+    }
+    update(client, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const sql = 'UPDATE client SET name = ?, email = ?, cpf = ?, cell = ?, status = ? WHERE id = ?';
+            const values = [client.name, client.email, client.cpf, client.phone, client.status, id];
+            return yield new Promise((resolve, reject) => {
+                this.dbInstance.run(sql, values, function (err) {
+                    if (err) {
+                        return reject(err.message);
+                    }
+                    if (this.changes > 0) {
+                        return resolve(client);
+                    }
+                    else {
+                        return resolve(null); // Nenhum registro foi atualizado
+                    }
                 });
             });
         });

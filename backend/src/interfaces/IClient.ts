@@ -3,7 +3,7 @@ interface IClient{
   name: string;
   email: string;
   cpf: string;
-  cell: string;
+  phone: string;
   status: boolean;
 }
 

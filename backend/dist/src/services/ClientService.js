@@ -14,12 +14,20 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ClientModel_1 = __importDefault(require("../models/ClientModel"));
 class ClientService {
-    constructor(model = new ClientModel_1.default()) {
-        this.model = model;
-    }
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            return yield this.model.getAll();
+            return yield new ClientModel_1.default().getAll();
+        });
+    }
+    create(client) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log('thats');
+            return yield new ClientModel_1.default().create(client);
+        });
+    }
+    update(client, id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield new ClientModel_1.default().update(client, id);
         });
     }
 }

@@ -14,17 +14,39 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ClientService_1 = __importDefault(require("../services/ClientService"));
 class ClientController {
-    constructor(service = new ClientService_1.default()) {
-        this.service = service;
-    }
     getAll(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const clients = yield this.service.getAll();
+                const clients = yield new ClientService_1.default().getAll();
                 return res.status(200).json(clients);
             }
             catch (err) {
-                console.log('deu erro');
+                return;
+            }
+        });
+    }
+    create(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                console.log('hello 2');
+                yield new ClientService_1.default().create(req.body);
+                console.log('oiiiie');
+                res.status(201).json({ message: 'Client Created' });
+            }
+            catch (err) {
+                return;
+            }
+        });
+    }
+    update(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { id } = req.params;
+                yield new ClientService_1.default().update(req.body, Number(id));
+                res.status(200).json({ message: 'Client updated' });
+            }
+            catch (err) {
+                return;
             }
         });
     }
