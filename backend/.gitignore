@@ -2,6 +2,7 @@
 /dist
 /node_modules
 src/db/prisma/dev.db
+src/db/prisma/dev.db-journal
 
 # Logs
 logs
