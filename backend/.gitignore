@@ -37,3 +37,5 @@ lerna-debug.log*
 # Environment files
 .env
 .test.env
+
+usersDB
