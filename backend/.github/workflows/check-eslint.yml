@@ -1,7 +1,7 @@
 name: Rodando o eslint para encontrar erros
 
 on:
-  pull_request:
+  pull_request: {}
   push:
     branches:
       - master
