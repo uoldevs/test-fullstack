@@ -1,4 +1,4 @@
-import ClientStatus from 'src/constants/ClientStatus';
+import ClientStatus from '../constants/ClientStatus';
 
 interface IStatus {
   name: ClientStatus;

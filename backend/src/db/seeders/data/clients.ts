@@ -1,5 +1,5 @@
-import ClientStatus from 'src/constants/ClientStatus';
-import IClientStatus from 'src/interfaces/IClientStatus';
+import ClientStatus from '../../../constants/ClientStatus';
+import IClientStatus from '../../../interfaces/IClientStatus';
 
 const clients: IClientStatus[] = [
   {
