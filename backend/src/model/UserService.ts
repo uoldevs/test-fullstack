@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/return-await */
 import { PrismaClient } from "@prisma/client";
 import { User } from "types";
 
-class UserModel {
+export default class UserService {
   prisma: PrismaClient;
 
   constructor() {
@@ -33,4 +34,4 @@ class UserModel {
 
 }
 
-module.exports = UserModel;
+module.exports = UserService;
