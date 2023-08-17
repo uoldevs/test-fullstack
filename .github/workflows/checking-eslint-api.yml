@@ -1,15 +1,13 @@
-name: Rodando o eslint para encontrar erros
+name: Rodando o eslint para encontrar erros no backend
 
 on:
   pull_request:
-    branches:
-      - master
   push:
     branches:
       - master
 
 jobs:
-  checking-eslint:
+  checking-eslint-api:
     runs-on: ubuntu-20.04
     steps:
       - name: Verify Git Repository
