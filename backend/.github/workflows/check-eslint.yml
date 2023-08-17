@@ -1,0 +1,25 @@
+name: Rodando o eslint para encontrar erros
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  checking-eslint:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Verify Git Repository
+        uses: actions/checkout@v3
+
+      - name: Install node with the version 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Installing dependencies
+        run: npm install
+
+      - name: Running lint to check errors
+        run: npm run lint:check
