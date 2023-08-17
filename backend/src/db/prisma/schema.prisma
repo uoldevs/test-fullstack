@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Status {
+  id      String   @id @default(uuid())
+  name    String   @unique
+  clients Client[]
+}
+
+model Client {
+  id          String @default(uuid())
+  name        String
+  email       String @unique
+  cpf         String @unique
+  phoneNumber String @unique @map("phone_number")
+  statusId    String
+  status      Status @relation(fields: [statusId], references: [id])
+
+  @@map("client")
+}
