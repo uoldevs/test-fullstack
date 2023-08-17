@@ -8,4 +8,3 @@ async function bootstrap() {
 }
 
 bootstrap();
-
