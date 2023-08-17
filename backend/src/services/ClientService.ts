@@ -9,6 +9,10 @@ export default class ClientService {
 	async create(client: IClient) {
 		return await new ClientModel().create(client);
 	}
+
+	async update(client: IClient, id: number) {
+		return await new ClientModel().update(client, id);
+	}
 }
 
 

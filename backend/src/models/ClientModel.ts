@@ -31,6 +31,26 @@ export default class ClientModel {
 			});
 		});
 	}
+
+	async update(client: IClient, id: number): Promise<IClient | null> {
+		const sql = 'UPDATE client SET name = ?, email = ?, cpf = ?, cell = ?, status = ? WHERE id = ?';
+		const values = [client.name, client.email, client.cpf, client.cell, client.status, id];
+	
+		return await new Promise<IClient | null>((resolve, reject) => {
+			this.dbInstance.run(sql, values, function(err: Error | null) {
+				if (err) {
+					return reject(err.message);
+				}
+	
+				if (this.changes > 0) {
+					return resolve(client);
+				} else {
+					return resolve(null); // Nenhum registro foi atualizado
+				}
+			});
+		});
+	}
+	
 	
 }
 
