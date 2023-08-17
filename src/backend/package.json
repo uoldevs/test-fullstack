@@ -2,6 +2,9 @@
   "name": "client-management-api",
   "version": "1.0.0",
   "description": "RESTful API for client management",
+  "scripts": {
+    "dev": "tsnd src/index.ts"
+  },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
