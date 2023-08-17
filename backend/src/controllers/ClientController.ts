@@ -10,6 +10,15 @@ class ClientController {
 			return;
 		}
 	}
+
+	async create(req: Request, res: Response) {
+		try {
+			await new ClientService().create(req.body);
+			res.status(201).json({ message: 'Client Created'});
+		} catch (err) {
+			return;
+		}
+	}
 }
 
 export default ClientController;

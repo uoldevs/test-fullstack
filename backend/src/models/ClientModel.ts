@@ -17,5 +17,20 @@ export default class ClientModel {
 			});
 		});
 	}
+
+	async create(client: IClient): Promise<void> {
+		const sql = 'INSERT INTO client (name, email, cpf, cell, status) VALUES (?, ?, ?, ?, ?)';
+		const values = [client.name, client.email, client.cpf, client.cell, client.status];
+	
+		return await new Promise<void>((resolve, reject) => {
+			this.dbInstance.run(sql, values, (err: Error | null) => {
+				if (err) {
+					return reject(err.message);
+				}
+				return resolve();
+			});
+		});
+	}
+	
 }
 
