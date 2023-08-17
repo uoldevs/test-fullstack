@@ -29,4 +29,9 @@ export default class UserController {
     const results = await this.service.getAll();
     return this.res.status(201).json(results);
   }
+
+  async updateUser() {
+    const results = await this.service.updateUser(this.req.body);
+    return this.res.status(201).json(results);
+  }
 }

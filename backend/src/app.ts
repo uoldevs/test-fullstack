@@ -11,6 +11,7 @@ app.use(cors());
 
 app.post('/create', (req, res) => new UserController(req, res, new UserService()).createUser());
 app.get('/users', (req, res) => new UserController(req, res, new UserService()).getAll());
+app.put('/update', (req, res) => new UserController(req, res, new UserService()).updateUser());
 
 app.use(errorMiddleware);
 
