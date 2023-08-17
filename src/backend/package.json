@@ -1,0 +1,25 @@
+{
+  "name": "client-management-api",
+  "version": "1.0.0",
+  "description": "RESTful API for client management",
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "homepage": "https://github.com/Jonathan-R-Andrade/client-manager#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jonathan-R-Andrade/client-manager.git"
+  },
+  "author": "Jonathan R. Andrade",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.5.0",
+    "prisma": "^5.1.1",
+    "ts-node": "^10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.1.1"
+  }
+}

@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  cpf      String @unique
+  phone    String
+  statusId Int
+  status   Status @relation(fields: [statusId], references: [id], onUpdate: Cascade, onDelete: Restrict)
+
+  @@map("users")
+}
+
+model Status {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[]
+
+  @@map("status")
+}
