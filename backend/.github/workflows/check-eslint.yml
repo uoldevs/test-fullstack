@@ -3,10 +3,10 @@ name: Rodando o eslint para encontrar erros
 on:
   pull_request:
     branches:
-      - main
+      - master
   push:
     branches:
-      - main
+      - master
 
 jobs:
   checking-eslint:
