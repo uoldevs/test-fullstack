@@ -1,4 +1,4 @@
 node_modules
 dist
-prisma/dev.db
+prisma/database
 .env
