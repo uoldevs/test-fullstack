@@ -1,8 +1,7 @@
 import { Module } from '@nestjs/common';
+import { ClientModule } from './shared/client/client.module';
 
 @Module({
-  imports: [],
-  controllers: [],
-  providers: [],
+  imports: [ClientModule],
 })
 export class AppModule {}
