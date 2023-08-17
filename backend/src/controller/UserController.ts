@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UserService from '../model/UserService';
+import UserService from '../service/UserService';
 import { User, UserZodSchema } from '../types';
 
 export default class UserController {
@@ -22,6 +22,11 @@ export default class UserController {
     }
 
     const results = await this.service.createUser(this.req.body);
+    return this.res.status(201).json(results);
+  }
+
+  async getAll() {
+    const results = await this.service.getAll();
     return this.res.status(201).json(results);
   }
 }

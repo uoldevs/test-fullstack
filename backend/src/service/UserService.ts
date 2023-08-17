@@ -32,6 +32,10 @@ export default class UserService {
     });
   }
 
+  async getAll() {
+    return await this.prisma.user.findMany();
+  }
+
 }
 
 module.exports = UserService;
