@@ -4,16 +4,16 @@ function ColorDot({ status }: { status: string }) {
     let backgroundColor;
 
     switch (status) {
-        case 'activated':
+        case 'Ativo':
             backgroundColor = 'green';
             break;
-        case 'deactivated':
+        case 'Desativado':
             backgroundColor = 'gray';
             break;
-        case 'pending':
+        case 'Aguardando ativação':
             backgroundColor = 'yellow';
             break;
-        case 'inactive':
+        case 'Inativo':
         default:
             backgroundColor = 'red';
             break;
