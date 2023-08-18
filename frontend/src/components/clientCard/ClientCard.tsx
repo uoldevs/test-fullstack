@@ -1,8 +1,9 @@
-import './ClientCard.css'
+import './clientCard.css'
 
 type ClientProps = {
   client: {
     name: string;
+    cpf: string;
     phone: string;
     status: string;
   }
@@ -10,9 +11,13 @@ type ClientProps = {
 
 function ClientCard({client}: ClientProps) {
   return(
-    <div className="container">
+    <div className="card-container">
       <p>{client.name}</p>
-      <p>{client.phone}</p>
+      <div cpf-phone>
+        <p>{client.cpf}</p>
+        <p>{client.phone}</p>
+      </div>
+
       <p>{client.status}</p>
       <button>Editar</button>
     </div>

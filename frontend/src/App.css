@@ -1,7 +1,4 @@
 .container {
-  box-sizing: border-box;
-  flex: 1;
-  margin-top: .8rem;
-  padding: 0 10%;
-  width: 100vw;
+  display: flex;
+  justify-content: center;
 }

@@ -1,4 +1,4 @@
-import './Header.css'
+import './header.css'
 import logo from '../../assets/logo.png'
 
 function Header() {

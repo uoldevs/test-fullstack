@@ -1,4 +1,4 @@
-import './ClientForm.css'
+import './clientForm.css'
 
 type FormProps = {
   create: boolean;

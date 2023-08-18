@@ -1,0 +1,14 @@
+.card-container {
+  display: grid;
+  border: 1px solid ;
+  box-sizing: border-box;
+  margin: .5rem 0;
+  grid-template-columns: repeat(4, 1fr);
+  padding: .5rem;
+  align-items: center;
+}
+
+.cpf-phone p {
+  display: flex;
+  flex-direction: column;
+}

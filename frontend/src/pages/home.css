@@ -1,0 +1,7 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1.8rem;
+  color: var(--primary-color);
+  width: 80%;
+}

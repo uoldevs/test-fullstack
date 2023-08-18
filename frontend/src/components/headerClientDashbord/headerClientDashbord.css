@@ -1,0 +1,11 @@
+.dashbord-container {
+  display: flex;
+  border-bottom: solid .8px rgb(170, 168, 168);
+  flex-direction: row;
+  color: var(--primary-color);
+}
+
+.dashbord-span, .dashbord-p {
+  padding: .4rem;
+  font-size: 2rem;
+}
