@@ -14,7 +14,7 @@ model Status {
 }
 
 model Client {
-  id          String @default(uuid())
+  id          String @id @default(uuid())
   name        String
   email       String @unique
   cpf         String @unique
