@@ -35,7 +35,7 @@ describe('ClientController', () => {
 
       const result = await clientController.findAllClientsAndStatus();
 
-      expect(result).toEqual(dataMock.allClientsMock);
+      expect(result).toStrictEqual(dataMock.allClientsMock);
       expect(clientService.findAllClientsAndStatus).toHaveBeenCalled();
       expect(clientService.findAllClientsAndStatus).toHaveBeenCalledWith();
     });
@@ -54,7 +54,7 @@ describe('ClientController', () => {
       const client = new CreateClientDto(dataMock.clientToCreate);
       const result = await clientController.create(client);
 
-      expect(result).toEqual(dataMock.clientCreated);
+      expect(result).toStrictEqual(dataMock.clientCreated);
       expect(clientService.create).toHaveBeenCalled();
       expect(clientService.create).toHaveBeenCalledWith(client);
     });
@@ -91,7 +91,7 @@ describe('ClientController', () => {
       const client = new UpdateClientDto(dataMock.clientToUpdate);
       const result = await clientController.update(client, { clientId });
 
-      expect(result).toEqual(dataMock.clientUpdated);
+      expect(result).toStrictEqual(dataMock.clientUpdated);
       expect(clientService.update).toHaveBeenCalled();
       expect(clientService.update).toHaveBeenCalledWith(clientId, client);
     });
