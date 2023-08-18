@@ -11,6 +11,7 @@ import {
 import ClientService from './client.service';
 import { CreateClientDto } from './dto/CreateClient.dto';
 import ApiRoutes from '../../../constants/ApiRoutes';
+import { UpdateClientDto } from './dto/UpdateClient.dto';
 
 @Controller(ApiRoutes.CLIENTS)
 class ClientController {
@@ -25,7 +26,7 @@ class ClientController {
   @Patch()
   @HttpCode(HttpStatus.OK)
   async update(
-    @Body() data: CreateClientDto,
+    @Body() data: UpdateClientDto,
     @Query() querry: { clientId: string },
   ) {
     return await this.clientService.update(querry.clientId, data);

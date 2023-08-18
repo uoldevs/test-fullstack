@@ -44,7 +44,7 @@ export const clientCreated = {
   },
 };
 
-export const clientToCeate = {
+export const clientToCreate = {
   name: 'Pedro',
   email: 'jonh_doe_test@gmail.com',
   cpf: '40660379090',
@@ -52,4 +52,19 @@ export const clientToCeate = {
   status: {
     name: ClientStatus.INATIVO,
   },
+};
+
+export const clientUpdated = {
+  id: '6970e1a0-5a8d-4d7f-986f-600ced30e0ed',
+  cpf: '40660379090',
+  email: 'jonh_doe_new@gmail.com',
+  name: 'Jonh Doe',
+  phoneNumber: '21987676787',
+  status: {
+    name: ClientStatus.INATIVO,
+  },
+};
+
+export const clientToUpdate = {
+  email: 'jonh_doe_new@gmail.com',
 };
