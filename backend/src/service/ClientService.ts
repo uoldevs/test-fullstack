@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/return-await */
 import { PrismaClient } from "@prisma/client";
 import { Client } from "types";
+// import { Prisma } from "@prisma/client";
+import prisma from '../../prisma/prisma';
 
 export default class ClientService {
   prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = prisma;
   }
 
   async create(clientData: Client) {
