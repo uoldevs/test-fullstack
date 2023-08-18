@@ -15,5 +15,6 @@ model Client {
   name  String
   email String  @unique
   cpf   String  @unique
+  phone String
   status String
 }

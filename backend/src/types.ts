@@ -9,6 +9,7 @@ export const ClientZodSchema = z.object({
   cpf: z.string().refine((val) => cpf.isValid(val), {
     message: 'CPF inválido',
   }),
+  phone: z.string().min(10),
   status: z.enum([
     'Ativo',
     'Inativo',

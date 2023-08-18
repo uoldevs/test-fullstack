@@ -15,6 +15,7 @@ export default class ClientService {
         name: clientData.name,
         email: clientData.email,
         cpf: clientData.cpf,
+        phone: clientData.phone,
         status: clientData.status,
       },
     });
@@ -27,6 +28,7 @@ export default class ClientService {
         name: clientData.name,
         email: clientData.email,
         cpf: clientData.cpf,
+        phone: clientData.phone,
         status: clientData.status,
       },
     });
