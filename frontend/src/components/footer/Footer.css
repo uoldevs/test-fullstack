@@ -1,0 +1,13 @@
+.footer {
+  background-color: #333333;
+  width: 100vw;
+  display: flex;
+  margin-top: 1rem;
+  color: rgb(230, 227, 227);
+  justify-content: space-between;
+  padding: .6rem;
+}
+
+.footer span {
+  align-self: flex-end;
+}
