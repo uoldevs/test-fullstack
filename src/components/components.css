@@ -1,0 +1,38 @@
+.editButton {
+    font-size: 10px;
+    color: #e29933;
+    border-color: #e29933;
+    box-shadow: none;
+}
+
+.editButton:hover {
+    background-color: #c87a0d;
+    border-color: #e29933;
+    color: white;
+}
+
+.outterContainer {
+    padding: 20px;
+    border: 1px solid rgb(200, 200, 200);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.innerContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.innerText {
+    padding: 0px;
+    margin: 0px;
+    line-height: 1.5;
+}
+
+.innerTextSubtitle1 {
+    padding: 0px;
+    margin: 0px;
+    line-height: 1;
+    color: gray;
+}
