@@ -1,0 +1,10 @@
+.header {
+  background-color: #333333;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+}
+
+img {
+  max-width: 70px;
+}
