@@ -4,6 +4,7 @@ import ClientRepository from '../client.repository';
 import ClientService from '../client.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as dataMock from './dataMock/clients';
+import { CreateClientDto } from '../dto/CreateClient.dto';
 
 describe('ClientRepository', () => {
   let clientRepository: ClientRepository;
@@ -66,6 +67,43 @@ describe('ClientRepository', () => {
         where: {
           OR: [{ cpf }, { email }, { phoneNumber }],
         },
+      });
+    });
+  });
+
+  describe('create', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should return a created client', async () => {
+      jest
+        .spyOn(prismaService.client, 'create')
+        .mockResolvedValue(dataMock.clientCreated as any);
+
+      const client = new CreateClientDto(dataMock.clientToCreate);
+      const result = await clientRepository.create(client);
+
+      expect(result).toStrictEqual(dataMock.clientCreated);
+      expect(prismaService.client.create).toHaveBeenCalled();
+      expect(prismaService.client.create).toHaveBeenCalledWith({
+        data: {
+          cpf: client.cpf,
+          email: client.email,
+          name: client.name,
+          phoneNumber: client.phoneNumber,
+          status: {
+            connectOrCreate: {
+              create: {
+                name: client.status.name,
+              },
+              where: {
+                name: client.status.name,
+              },
+            },
+          },
+        },
+        ...dataMock.filterClientRepository,
       });
     });
   });
