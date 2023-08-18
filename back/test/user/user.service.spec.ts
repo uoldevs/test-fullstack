@@ -8,7 +8,8 @@ describe('UserService', () => {
     save: jest.fn(),
     find: jest.fn(),
     findOneBy: jest.fn(),
-    // findOne: jest.fn(),
+    findOne: jest.fn(),
+    softRemove: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -100,64 +101,60 @@ describe('UserService', () => {
       await expect(service.findOne(-1)).rejects.toThrow(expectedError);
     });
   });
+  describe('Update', () => {
+    it('Update user: success', async () => {
+      const existingUser = {
+        id: 1,
+        name: 'John Doe',
+        email: 'old_email@test.com',
+        phone: '(11)88888-8888',
+        status: 'Inactive',
+      };
 
-  // describe('Update', () => {
-  //   it('Update user: success', async () => {
-  //     const payload = {
-  //       name: 'John Doe',
-  //       email: 'john_doe@test.com',
-  //       cpf: '123.456.789-00',
-  //       phone: '(11)99999-9999',
-  //       status: 'Ativo',
-  //     };
-  //     mockUserRepository.save.mockReturnValueOnce(payload);
-  //     const user = await service.create(payload);
-  //     expect(user).toBe(payload);
-  //   });
+      const updateUserDto = {
+        email: 'new_email@test.com',
+        phone: '(11)99999-9999',
+        status: 'Ativo',
+      };
 
-  //   it('Update user: fail', async () => {
-  //     const payload = {
-  //       name: 'John Doe',
-  //       email: 'john_doe@test.com',
-  //       phone: '(11)99999-9999',
-  //       status: 'Ativo',
-  //     };
+      mockUserRepository.findOne.mockReturnValueOnce(existingUser);
+      mockUserRepository.save.mockReturnValueOnce({
+        ...existingUser,
+        ...updateUserDto,
+      });
 
-  //     const expectedError = new Error('CPF is required');
-  //     mockUserRepository.save.mockRejectedValueOnce(expectedError);
-  //     await expect(service.create(payload as any)).rejects.toThrow(
-  //       expectedError,
-  //     );
-  //   });
-  // });
+      const updatedUser = await service.update(1, updateUserDto);
+      expect(updatedUser.email).toBe(updateUserDto.email);
+      expect(updatedUser.phone).toBe(updateUserDto.phone);
+      expect(updatedUser.status).toBe(updateUserDto.status);
+    });
 
-  // describe('Delete', () => {
-  //   it('Delete user: success', async () => {
-  //     const payload = {
-  //       name: 'John Doe',
-  //       email: 'john_doe@test.com',
-  //       cpf: '123.456.789-00',
-  //       phone: '(11)99999-9999',
-  //       status: 'Ativo',
-  //     };
-  //     mockUserRepository.save.mockReturnValueOnce(payload);
-  //     const user = await service.create(payload);
-  //     expect(user).toBe(payload);
-  //   });
+    it('Update user: fail - user not found', async () => {
+      mockUserRepository.findOne.mockReturnValueOnce(null);
+      await expect(service.update(-1, {} as any)).rejects.toThrow(Error);
+    });
+  });
 
-  //   it('Delete user: fail', async () => {
-  //     const payload = {
-  //       name: 'John Doe',
-  //       email: 'john_doe@test.com',
-  //       phone: '(11)99999-9999',
-  //       status: 'Ativo',
-  //     };
+  describe('Delete', () => {
+    it('Delete user: success', async () => {
+      const existingUser = {
+        id: 1,
+        name: 'John Doe',
+        email: 'john_doe@test.com',
+        phone: '(11)99999-9999',
+        status: 'Ativo',
+      };
 
-  //     const expectedError = new Error('CPF is required');
-  //     mockUserRepository.save.mockRejectedValueOnce(expectedError);
-  //     await expect(service.create(payload as any)).rejects.toThrow(
-  //       expectedError,
-  //     );
-  //   });
-  // });
+      mockUserRepository.findOne.mockReturnValueOnce(existingUser);
+      mockUserRepository.softRemove.mockReturnValueOnce(undefined); // Assuming softRemove just returns undefined upon successful deletion.
+
+      await service.remove(1);
+      expect(mockUserRepository.softRemove).toHaveBeenCalledWith(existingUser);
+    });
+
+    it('Delete user: fail - user not found', async () => {
+      mockUserRepository.findOne.mockReturnValueOnce(null);
+      await expect(service.remove(-1)).rejects.toThrow(Error);
+    });
+  });
 });
