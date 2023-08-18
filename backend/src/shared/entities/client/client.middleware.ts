@@ -5,7 +5,7 @@ import {
 } from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { createClient } from './validations/createClient.validations';
-import cpfValidator from 'src/shared/utils/cpfValidator';
+import cpfValidator from '../../../shared/utils/cpfValidator';
 import { updateClient } from './validations/updateClient.validations';
 
 @Injectable()

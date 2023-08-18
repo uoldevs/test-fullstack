@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import ClientService from './client.service';
 import { CreateClientDto } from './dto/CreateClient.dto';
-import ApiRoutes from 'src/constants/ApiRoutes';
+import ApiRoutes from '../../../constants/ApiRoutes';
 
 @Controller(ApiRoutes.CLIENTS)
 class ClientController {
