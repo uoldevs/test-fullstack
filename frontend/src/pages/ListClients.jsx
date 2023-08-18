@@ -1,6 +1,11 @@
+import Header from '../components/Header';
+
 function ListClients () {
   return (
-    <h1>Cliente 1</h1>
+    <div>
+      <Header />
+      <h1>Hello2</h1>
+    </div>
   )
 }
 
