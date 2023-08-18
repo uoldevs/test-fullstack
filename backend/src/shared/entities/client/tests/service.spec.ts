@@ -82,6 +82,10 @@ describe('ClientService', () => {
   });
 
   describe('update', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
     it('should return object with updated client infos', async () => {
       jest
         .spyOn(clientRepository, 'update')
@@ -121,6 +125,10 @@ describe('ClientService', () => {
   });
 
   describe('checkConflicts', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
     it('should return void if no have conflict', async () => {
       jest
         .spyOn(clientRepository, 'findByCpfEmailAndPhoneNumber')

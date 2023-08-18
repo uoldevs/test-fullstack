@@ -68,3 +68,25 @@ export const clientUpdated = {
 export const clientToUpdate = {
   email: 'jonh_doe_new@gmail.com',
 };
+
+export const filterClientRepository = {
+  select: {
+    id: true,
+    name: true,
+    email: true,
+    cpf: true,
+    phoneNumber: true,
+    status: {
+      select: { name: true },
+    },
+  },
+};
+
+export const client = {
+  id: '6970e1a0-5a8d-4d7f-986f-600ced30e0ed',
+  name: 'Jonh Doe',
+  email: 'jonh_doe@gmail.com',
+  cpf: '40660379090',
+  phoneNumber: '21987676787',
+  statusId: 'f82c0904-5b2c-44e7-9e5e-929dbbdb3c27',
+};
