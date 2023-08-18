@@ -11,7 +11,10 @@ export async function createClient(client: Client) {
   const clientParsed = clientSchema.safeParse(client);
   if (!clientParsed.success) throw clientParsed.error;
 
-  return clientModel.createClient(clientParsed.data as Client);
+  // try to create the client if it doesn't exist if not throw an error
+  return clientModel
+    .createClient(clientParsed.data as Client)
+    .catch(prismaAdaptError);
 }
 
 export async function updateClient(id: string, client: Client) {

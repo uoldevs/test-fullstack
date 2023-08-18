@@ -3,6 +3,7 @@ import HttpStatus from '../enums/HttpStatus';
 export enum ErrorTypes {
   InvalidId = 'InvalidId',
   RecordNotFound = 'RecordNotFound',
+  Conflict = 'Conflict',
 }
 
 export type ErrorResponseObject = {
@@ -22,6 +23,10 @@ const errorCatalog: ErrorCatalog = {
   RecordNotFound: {
     message: 'Record not found',
     httpStatus: HttpStatus.NOT_FOUND,
+  },
+  Conflict: {
+    message: 'Record already exists',
+    httpStatus: HttpStatus.CONFLICT,
   },
 };
 
