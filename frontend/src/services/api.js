@@ -41,3 +41,17 @@ export const createNewUser = async (userData) => {
     return axiosError.response?.data;
   }
 }
+
+export const updateUser = async (userData, id) => {
+  try {
+    const body = {
+      ...userData
+    }
+    const { data } = await api.put(`/users/${id}`, body);
+    return data;
+  } catch (error) {
+    console.log(error)
+    const axiosError = error
+    return axiosError.response?.data;
+  }
+}

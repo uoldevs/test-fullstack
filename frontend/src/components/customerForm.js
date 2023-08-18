@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { useParams } from 'next/navigation'
-import { createNewUser, getUsersById } from '@/services/api';
+import { createNewUser, getUsersById, updateUser } from '@/services/api';
 
 const CustomerForm = () => {
 
@@ -131,13 +131,19 @@ const CustomerForm = () => {
       status,
     };
 
-    await createNewUser(newCustomerData);
-    setName('');
-    setEmail('');
-    setCpf('');
-    setPhone('');
-    setStatus('');
-    alert('Cliente cadastrado com sucesso!');
+    if (params.id) {
+      await updateUser(newCustomerData, params.id)
+      alert('Cliente editado com sucesso!');
+      fetchUsersByIdAndSetOnForm(params.id)
+    } else {
+      await createNewUser(newCustomerData);
+      setName('');
+      setEmail('');
+      setCpf('');
+      setPhone('');
+      setStatus('');
+      alert('Cliente cadastrado com sucesso!');
+    }
   };
 
   const statusOptions = ['Ativo', 'Inativo', 'Aguardando ativação', 'Desativado'];
@@ -198,7 +204,7 @@ const CustomerForm = () => {
       </div>
       <div className="flex justify-around">
         <button className="bg-orange-400 text-white px-4 py-2 rounded mt-2 mx-2 w-1/3 text-center">
-          Criar
+          {params.id ? 'Editar' : 'Criar'}
         </button>
         <Link href="/" className="bg-orange-400 text-white px-4 py-2 rounded mt-2 mx-2 w-1/3 text-center">
           Voltar
