@@ -4,13 +4,18 @@ import React, { useState, useEffect } from 'react';
 import CustomerCard from '../components/cutomerCard';
 import Header from '@/components/header';
 import Link from 'next/link';
+import { getUsers } from '@/services/api';
 
 const CustomersPage = () => {
   const [customers, setCustomers] = useState([]);
 
+  async function fetchUsers () {
+    const response = await getUsers();
+    setCustomers(response);
+  }
+
   useEffect(() => {
-    setCustomers([]);
-    // logica para get de todos usuarios
+    fetchUsers();
   }, []);
 
   return (
