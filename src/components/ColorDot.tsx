@@ -5,17 +5,17 @@ function ColorDot({ status }: { status: string }) {
 
     switch (status) {
         case 'Ativo':
-            backgroundColor = 'green';
+            backgroundColor = '#4AAD5B';
             break;
         case 'Desativado':
-            backgroundColor = 'gray';
+            backgroundColor = '#D2D2D2';
             break;
         case 'Aguardando ativação':
-            backgroundColor = 'yellow';
+            backgroundColor = '#D4A710';
             break;
         case 'Inativo':
         default:
-            backgroundColor = 'red';
+            backgroundColor = '#D73240';
             break;
     }
 
