@@ -4,12 +4,16 @@ import {
   NestModule,
   RequestMethod,
 } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { ClientModule } from './shared/entities/client/client.module';
 import ClientMiddleware from './shared/entities/client/client.middleware';
 import ApiRoutes from './constants/ApiRoutes';
 
 @Module({
-  imports: [ClientModule],
+  imports: [
+    ClientModule,
+    ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
