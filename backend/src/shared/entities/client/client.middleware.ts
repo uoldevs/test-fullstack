@@ -6,15 +6,22 @@ import {
 import { Request, Response, NextFunction } from 'express';
 import { createClient } from './validations/createClient.validations';
 import cpfValidator from 'src/shared/utils/cpfValidator';
+import { updateClient } from './validations/updateClient.validations';
 
 @Injectable()
 export default class ClientMiddleware implements NestMiddleware {
   public use(req: Request, res: Response, next: NextFunction) {
     const middlewaresFunctions = {
-      POST: this.createClient(req),
+      POST: () => {
+        this.createClient(req);
+      },
+
+      PATCH: () => {
+        this.updateClient(req);
+      },
     };
 
-    middlewaresFunctions[req.method];
+    middlewaresFunctions[req.method]();
 
     return next();
   }
@@ -28,6 +35,20 @@ export default class ClientMiddleware implements NestMiddleware {
 
     if (!cpfValidator(req.body.cpf)) {
       throw new BadRequestException('Cpf inválido');
+    }
+  }
+
+  public updateClient(req: Request) {
+    const validation = updateClient.validate(req.body);
+
+    if (!!validation.error) {
+      throw new BadRequestException(validation.error.message);
+    }
+
+    if (!!req.body.cpf) {
+      if (!cpfValidator(req.body.cpf)) {
+        throw new BadRequestException('Cpf inválido');
+      }
     }
   }
 }

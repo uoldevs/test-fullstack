@@ -4,7 +4,9 @@ import {
   Get,
   HttpCode,
   HttpStatus,
+  Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 import ClientService from './client.service';
 import { CreateClientDto } from './dto/CreateClient.dto';
@@ -18,6 +20,15 @@ class ClientController {
   @HttpCode(HttpStatus.CREATED)
   async create(@Body() data: CreateClientDto) {
     return await this.clientService.create(data);
+  }
+
+  @Patch()
+  @HttpCode(HttpStatus.OK)
+  async update(
+    @Body() data: CreateClientDto,
+    @Query() querry: { clientId: string },
+  ) {
+    return await this.clientService.update(querry.clientId, data);
   }
 
   @Get()

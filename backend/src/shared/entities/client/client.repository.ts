@@ -1,9 +1,23 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../../../db/prisma.service';
 import { CreateClientDto } from './dto/CreateClient.dto';
+import { UpdateClientDto } from './dto/UpdateClient.dto';
 
 @Injectable()
 class ClientRepository {
+  private readonly selectClientReturn = {
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      cpf: true,
+      phoneNumber: true,
+      status: {
+        select: { name: true },
+      },
+    },
+  };
+
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(data: CreateClientDto) {
@@ -24,12 +38,13 @@ class ClientRepository {
           },
         },
       },
+      ...this.selectClientReturn,
     });
   }
 
   async findAllClientsAndStatus() {
     return this.prismaService.client.findMany({
-      include: { status: { select: { name: true } } },
+      ...this.selectClientReturn,
     });
   }
 
@@ -43,6 +58,31 @@ class ClientRepository {
         OR: [{ cpf }, { email }, { phoneNumber }],
       },
     });
+  }
+
+  async updateClientStatus(clientId: string, data: UpdateClientDto) {
+    const updatedClient = await this.prismaService.client.update({
+      where: { id: clientId },
+      data: {
+        cpf: data.cpf,
+        email: data.email,
+        name: data.name,
+        phoneNumber: data.phoneNumber,
+        status: {
+          connectOrCreate: {
+            create: {
+              name: data?.status?.name,
+            },
+            where: {
+              name: data?.status?.name,
+            },
+          },
+        },
+      },
+      ...this.selectClientReturn,
+    });
+
+    return updatedClient;
   }
 }
 
