@@ -1,5 +1,5 @@
 .header {
-  background-color: #333333;
+  background-color: var(--cor-primaria);
   width: 100vw;
   display: flex;
   justify-content: center;

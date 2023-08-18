@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  border: 1px solid ;
+  box-sizing: border-box;
+  flex: 1;
+  max-width: 80%;
+  justify-content: center;
+}
+
+.container p, button {
+  padding: 1rem;
+}
