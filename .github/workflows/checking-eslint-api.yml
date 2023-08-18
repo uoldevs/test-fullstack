@@ -10,16 +10,16 @@ jobs:
   checking-eslint-api:
     runs-on: ubuntu-20.04
     steps:
-      - name: Verify Git Repository
+      - name: Verifica o repositório do Git
         uses: actions/checkout@v3
 
-      - name: Install node with the version 16
+      - name: Instalando node na versão 16
         uses: actions/setup-node@v3
         with:
           node-version: '16'
 
-      - name: Installing dependencies
+      - name: Instalando as dependencias
         run: cd backend && npm install
 
-      - name: Running lint to check errors
+      - name: Rodando o eslint para buscar erros
         run: cd backend && npm run lint:check

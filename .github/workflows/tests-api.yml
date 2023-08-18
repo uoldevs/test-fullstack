@@ -1,0 +1,30 @@
+name: Rodando o eslint para encontrar erros no backend
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Verifica o repositório do Git
+        uses: actions/checkout@v3
+
+      - name: Entra no diretorio do backend
+        run: cd backend
+
+      - name: Cria a imagem
+        run: docker build . -t test-fullstack-api -f Dockerfile.test
+
+      - name: Sobe o container
+        run: docker run --name app-api-test test-fullstack-api
+
+      - name: Executa os testes
+        run: docker exec -t app-api-test npm run test
+
+      - name: Derruba o container
+        if: always()
+        run: docker rm --force app-api-test
