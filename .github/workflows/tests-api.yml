@@ -23,7 +23,7 @@ jobs:
         run: cd backend && docker exec -t app-api-test npm run test
 
       - name: Executa os testes e2e
-        run: cd backend && docker exec -t app-api-test npm run test
+        run: cd backend && docker exec -t app-api-test npm run test:e2e
 
       - name: Derruba o container
         if: always()
