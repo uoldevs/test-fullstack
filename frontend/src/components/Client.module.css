@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border: 1px solid #ddd; /* Borda cinza clara */
+  padding: 10px;
+}
+
+.container p {
+  width: 48%; /* Largura para dividir em duas colunas */ /* Borda cinza clara */
+  padding: 5px;
+  margin: 0;
+}
+
+.container p:nth-child(odd) {
+  margin-bottom: 10px; /* Espaço entre os parágrafos pares e ímpares */
+}
+
