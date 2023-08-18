@@ -2,43 +2,37 @@ import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import './components.css';
 import ColorDot from './ColorDot';
+import { ClientType } from '@/types.ts';
 
-const data = {
-    name: 'John Doe',
-    email: 'john_doe@test.com',
-    cpf: '123.456.789-00',
-    phone: '(11)99999-9999',
-    status: 'Ativo',
-    createdAt: '',
-    updatedAt: '',
-    deletedAt: '',
+type ClientRowProps = {
+    client: ClientType;
 };
 
-const ClientRow = () => {
+const ClientRow: React.FC<ClientRowProps> = ({ client }) => {
     return (
         <Box className="outterContainer">
             <Box className="innerContainer">
                 <Typography variant="h6" className="innerText">
-                    {data.name}
+                    {client.name}
                 </Typography>
                 <Typography variant="subtitle1" className="innerTextSubtitle1">
-                    {data.email}
+                    {client.email}
                 </Typography>
             </Box>
 
             <Box>
                 <Typography variant="subtitle1" className="innerText">
-                    {data.cpf}
+                    {client.cpf}
                 </Typography>
                 <Typography variant="subtitle1" className="innerTextSubtitle1">
-                    {data.phone}
+                    {client.phone}
                 </Typography>
             </Box>
 
             <Box className="innerContainer2">
-                <ColorDot status={data.status} />
+                <ColorDot status={client.status} />
                 <Typography variant="subtitle1" className="innerText">
-                    {data.status}
+                    {client.status}
                 </Typography>
             </Box>
 
