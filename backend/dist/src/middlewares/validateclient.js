@@ -20,7 +20,6 @@ const validateClient = (req, res, next) => {
     if (!(0, validatePhoneNumber_1.default)(phone)) {
         return res.status(401).json({ message: 'Invalid phone number' });
     }
-    console.log('hello');
     next();
 };
 exports.default = validateClient;

@@ -32,9 +32,8 @@ class ClientModel {
     }
     create(client) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = 'INSERT INTO client (name, email, cpf, cell, status) VALUES (?, ?, ?, ?, ?)';
+            const sql = 'INSERT INTO client (name, email, cpf, phone, status) VALUES (?, ?, ?, ?, ?)';
             const values = [client.name, client.email, client.cpf, client.phone, client.status];
-            console.log('oi');
             return yield new Promise((resolve, reject) => {
                 this.dbInstance.run(sql, values, (err) => {
                     if (err) {
@@ -47,7 +46,7 @@ class ClientModel {
     }
     update(client, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            const sql = 'UPDATE client SET name = ?, email = ?, cpf = ?, cell = ?, status = ? WHERE id = ?';
+            const sql = 'UPDATE client SET name = ?, email = ?, cpf = ?, phone = ?, status = ? WHERE id = ?';
             const values = [client.name, client.email, client.cpf, client.phone, client.status, id];
             return yield new Promise((resolve, reject) => {
                 this.dbInstance.run(sql, values, function (err) {
@@ -58,7 +57,7 @@ class ClientModel {
                         return resolve(client);
                     }
                     else {
-                        return resolve(null); // Nenhum registro foi atualizado
+                        return resolve(null);
                     }
                 });
             });

@@ -18,7 +18,6 @@ const validateClient = (req: Request, res: Response, next: NextFunction) => {
 	if (!validatePhoneNumber(phone)) {
 		return res.status(401).json({ message: 'Invalid phone number' });
 	}
-	console.log('hello');
 	next();
 };
 

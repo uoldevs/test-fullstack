@@ -28,9 +28,7 @@ class ClientController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log('hello 2');
                 yield new ClientService_1.default().create(req.body);
-                console.log('oiiiie');
                 res.status(201).json({ message: 'Client Created' });
             }
             catch (err) {

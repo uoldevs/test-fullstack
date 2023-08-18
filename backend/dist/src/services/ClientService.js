@@ -21,7 +21,6 @@ class ClientService {
     }
     create(client) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log('thats');
             return yield new ClientModel_1.default().create(client);
         });
     }
