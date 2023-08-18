@@ -13,18 +13,15 @@ jobs:
       - name: Verifica o repositório do Git
         uses: actions/checkout@v3
 
-      - name: Entra no diretorio do backend
-        run: cd backend
-
       - name: Cria a imagem
-        run: docker build . -t test-fullstack-api -f Dockerfile.test
+        run: cd backend && docker build . -t test-fullstack-api -f Dockerfile.test
 
       - name: Sobe o container
-        run: docker run --name app-api-test test-fullstack-api
+        run: cd backend && docker run --name app-api-test test-fullstack-api
 
       - name: Executa os testes
-        run: docker exec -t app-api-test npm run test
+        run: cd backend && docker exec -t app-api-test npm run test
 
       - name: Derruba o container
         if: always()
-        run: docker rm --force app-api-test
+        run: cd backend && docker rm --force app-api-test
