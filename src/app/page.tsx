@@ -6,6 +6,31 @@ import '@fontsource/roboto/300.css';
 import uolLogo from '../../public/logo-uol.png';
 import ClientRow from '@/components/ClientRow';
 
+const clients = [
+    {
+        id: 1,
+        name: 'John Doe',
+        email: 'john_doe@test.com',
+        cpf: '123.456.789-00',
+        phone: '(11)99999-9999',
+        status: 'Ativo',
+        createdAt: '',
+        updatedAt: '',
+        deletedAt: '',
+    },
+    {
+        id: 2,
+        name: 'John Doe',
+        email: 'john_doe@test.com',
+        cpf: '123.456.789-00',
+        phone: '(11)99999-9999',
+        status: 'Ativo',
+        createdAt: '',
+        updatedAt: '',
+        deletedAt: '',
+    },
+];
+
 export default function Home() {
     return (
         <Box>
@@ -31,7 +56,9 @@ export default function Home() {
                 </Box>
 
                 <Box>
-                    <ClientRow />
+                    {clients.map((client) => (
+                        <ClientRow key={client.id} client={client} />
+                    ))}
                 </Box>
             </Box>
         </Box>
