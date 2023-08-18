@@ -3,7 +3,13 @@ import ClientController from '../client.controller';
 import ClientRepository from '../client.repository';
 import ClientService from '../client.service';
 import { Test, TestingModule } from '@nestjs/testing';
-import { allClientsMock } from './dataMock/clients';
+import {
+  allClientsMock,
+  clientCreated,
+  clientToCeate,
+} from './dataMock/clients';
+import { CreateClientDto } from '../dto/CreateClient.dto';
+import { ConflictException } from '@nestjs/common';
 
 describe('ClientController', () => {
   let clientController: ClientController;
@@ -35,6 +41,38 @@ describe('ClientController', () => {
       expect(result).toEqual(allClientsMock);
       expect(clientService.findAllClientsAndStatus).toHaveBeenCalled();
       expect(clientService.findAllClientsAndStatus).toHaveBeenCalledWith();
+    });
+  });
+
+  describe('create', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should return object with client infos', async () => {
+      jest.spyOn(clientService, 'create').mockResolvedValue(clientCreated);
+
+      const client = new CreateClientDto(clientToCeate);
+      const result = await clientController.create(client);
+
+      expect(result).toEqual(clientCreated);
+      expect(clientService.create).toHaveBeenCalled();
+      expect(clientService.create).toHaveBeenCalledWith(client);
+    });
+
+    it('should return a error if service throw a conflict error', async () => {
+      const errorMessage = 'Dados de úsuario que já estão cadastrado';
+      jest
+        .spyOn(clientService, 'create')
+        .mockRejectedValue(new ConflictException(errorMessage));
+
+      const client = new CreateClientDto(allClientsMock[0]);
+
+      await expect(clientController.create(client)).rejects.toThrowError(
+        errorMessage,
+      );
+      expect(clientService.create).toHaveBeenCalled();
+      expect(clientService.create).toHaveBeenCalledWith(client);
     });
   });
 });
