@@ -15,6 +15,7 @@ export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(ClientMiddleware)
-      .forRoutes({ path: ApiRoutes.CLIENTS, method: RequestMethod.POST });
+      .exclude({ path: ApiRoutes.CLIENTS, method: RequestMethod.GET })
+      .forRoutes({ path: ApiRoutes.CLIENTS, method: RequestMethod.ALL });
   }
 }
