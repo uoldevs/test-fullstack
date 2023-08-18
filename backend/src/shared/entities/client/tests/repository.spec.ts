@@ -5,6 +5,7 @@ import ClientService from '../client.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as dataMock from './dataMock/clients';
 import { CreateClientDto } from '../dto/CreateClient.dto';
+import { UpdateClientDto } from '../dto/UpdateClient.dto';
 
 describe('ClientRepository', () => {
   let clientRepository: ClientRepository;
@@ -99,6 +100,45 @@ describe('ClientRepository', () => {
               },
               where: {
                 name: client.status.name,
+              },
+            },
+          },
+        },
+        ...dataMock.filterClientRepository,
+      });
+    });
+  });
+
+  describe('update', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should return a updated client', async () => {
+      jest
+        .spyOn(prismaService.client, 'update')
+        .mockResolvedValue(dataMock.clientUpdated as any);
+
+      const clientId = dataMock.allClientsMock[0].id;
+      const client = new UpdateClientDto(dataMock.clientToUpdate);
+      const result = await clientRepository.update(clientId, client);
+
+      expect(result).toStrictEqual(dataMock.clientUpdated);
+      expect(prismaService.client.update).toHaveBeenCalled();
+      expect(prismaService.client.update).toHaveBeenCalledWith({
+        where: { id: clientId },
+        data: {
+          cpf: undefined,
+          email: client.email,
+          name: undefined,
+          phoneNumber: undefined,
+          status: {
+            connectOrCreate: {
+              create: {
+                name: undefined,
+              },
+              where: {
+                name: undefined,
               },
             },
           },
