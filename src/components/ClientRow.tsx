@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import './components.css';
+import ColorDot from './ColorDot';
 
 const data = {
     name: 'John Doe',
@@ -34,7 +35,8 @@ const ClientRow = () => {
                 </Typography>
             </Box>
 
-            <Box>
+            <Box className="innerContainer2">
+                <ColorDot status={data.status} />
                 <Typography variant="subtitle1" className="innerText">
                     {data.status}
                 </Typography>
