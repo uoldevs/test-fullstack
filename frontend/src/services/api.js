@@ -16,3 +16,15 @@ export const getUsers = async () => {
     return axiosError.response?.data;
   }
 }
+
+export const getUsersById = async (id) => {
+  try {
+    const { data } = await api.get(`/users/${id}`);
+    return data;
+  } catch (error) {
+    console.log(error)
+    const axiosError = error
+    return axiosError.response?.data;
+  }
+}
+

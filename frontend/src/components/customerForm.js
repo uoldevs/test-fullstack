@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { useParams } from 'next/navigation'
+import { getUsersById } from '@/services/api';
 
 const CustomerForm = () => {
 
@@ -12,12 +13,20 @@ const CustomerForm = () => {
   const [phone, setPhone] = useState('');
   const [status, setStatus] = useState('');
 
-  const params = useParams()
+  const params = useParams();
+
+  async function fetchUsersByIdAndSetOnForm(id) {
+    const response = await getUsersById(id);
+    setName(response.name);
+    setEmail(response.email);
+    setCpf(response.cpf);
+    setPhone(response.phoneNumber);
+    setStatus(response.status);
+  }
 
   useEffect(() => {
     if (params.id) {
-      console.log(params)
-      // lógica de get by id e preenchimento dos dados nos campos
+      fetchUsersByIdAndSetOnForm(params.id)
     }
   }, [params.id])
 
@@ -114,12 +123,10 @@ const CustomerForm = () => {
       return;
     }
 
-    const numericCPF = removeNonNumeric(cpf);
-
     const newCustomerData = {
       name,
       email,
-      numericCPF,
+      cpf,
       phone,
       status,
     };
