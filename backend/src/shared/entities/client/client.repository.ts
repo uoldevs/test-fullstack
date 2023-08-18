@@ -33,17 +33,15 @@ class ClientRepository {
     });
   }
 
-  async findByCpf(cpf: string) {
-    return await this.prismaService.client.findUnique({ where: { cpf } });
-  }
-
-  async findByEmail(email: string) {
-    return await this.prismaService.client.findUnique({ where: { email } });
-  }
-
-  async findByPhone(phoneNumber: string) {
-    return await this.prismaService.client.findUnique({
-      where: { phoneNumber },
+  async findByCpfEmailAndPhoneNumber(
+    cpf: string,
+    email: string,
+    phoneNumber: string,
+  ) {
+    return await this.prismaService.client.findFirst({
+      where: {
+        OR: [{ cpf }, { email }, { phoneNumber }],
+      },
     });
   }
 }

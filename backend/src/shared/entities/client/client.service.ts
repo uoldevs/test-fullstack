@@ -17,24 +17,14 @@ class ClientService {
   }
 
   public async checkConflicts(data: CreateClientDto) {
-    const findClientCpf = await this.clientRepository.findByCpf(data.cpf);
-    const findClientEmail = await this.clientRepository.findByEmail(data.email);
-    const findClientPhone = await this.clientRepository.findByPhone(
+    const client = await this.clientRepository.findByCpfEmailAndPhoneNumber(
+      data.cpf,
+      data.email,
       data.phoneNumber,
     );
 
-    if (!!findClientCpf) {
-      throw new ConflictException('Cpf de úsuario já cadastrado');
-    }
-
-    if (!!findClientEmail) {
-      throw new ConflictException('Email de úsuario já cadastrado');
-    }
-
-    if (!!findClientPhone) {
-      throw new ConflictException(
-        'Número de telefone de úsuario já cadastrado',
-      );
+    if (!!client) {
+      throw new ConflictException('Úsuario já cadastrado');
     }
   }
 }
