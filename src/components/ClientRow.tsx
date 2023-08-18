@@ -20,7 +20,7 @@ const ClientRow: React.FC<ClientRowProps> = ({ client }) => {
                 </Typography>
             </Box>
 
-            <Box>
+            <Box className="innerContainer">
                 <Typography variant="subtitle1" className="innerText">
                     {client.cpf}
                 </Typography>
@@ -36,9 +36,11 @@ const ClientRow: React.FC<ClientRowProps> = ({ client }) => {
                 </Typography>
             </Box>
 
-            <Button variant="outlined" className="editButton s">
-                Editar
-            </Button>
+            <Box className="innerContainer3">
+                <Button variant="outlined" className="editButton s">
+                    Editar
+                </Button>
+            </Box>
         </Box>
     );
 };
