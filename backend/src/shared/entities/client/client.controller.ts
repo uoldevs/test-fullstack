@@ -6,16 +6,17 @@ import {
   HttpStatus,
   Post,
 } from '@nestjs/common';
-import IClientStatus from 'src/interfaces/IClientStatus';
 import ClientService from './client.service';
+import { CreateClientDto } from './dto/CreateClient.dto';
+import ApiRoutes from 'src/constants/ApiRoutes';
 
-@Controller('/clients')
+@Controller(ApiRoutes.CLIENTS)
 class ClientController {
   constructor(private readonly clientService: ClientService) {}
 
   @Post()
   @HttpCode(HttpStatus.CREATED)
-  async create(@Body() data: IClientStatus) {
+  async create(@Body() data: CreateClientDto) {
     return await this.clientService.create(data);
   }
 
