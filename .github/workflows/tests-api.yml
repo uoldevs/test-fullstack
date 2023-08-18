@@ -17,7 +17,7 @@ jobs:
         run: cd backend && docker build . -t test-fullstack-api -f Dockerfile.test
 
       - name: Sobe o container
-        run: cd backend && docker run --name app-api-test test-fullstack-api
+        run: cd backend && docker run -dit --name app-api-test test-fullstack-api
 
       - name: Executa os testes
         run: cd backend && docker exec -t app-api-test npm run test
