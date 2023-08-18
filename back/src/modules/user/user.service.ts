@@ -25,16 +25,14 @@ export class UserService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    // check if user exists
-
     const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) throw new Error('User not found');
     return await this.userRepository.save({ ...user, ...updateUserDto });
   }
 
   async remove(id: number) {
-    // check if user exists
-
     const user = await this.userRepository.findOne({ where: { id } });
+    if (!user) throw new Error('User not found');
     return await this.userRepository.softRemove(user);
   }
 }
