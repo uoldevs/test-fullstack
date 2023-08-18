@@ -1,7 +1,9 @@
+import Header from '../components/Header';
+
 function AddClient() {
   return (
     <div>
-      <h1>Hello</h1>
+      <Header />
     </div>
   )
 }

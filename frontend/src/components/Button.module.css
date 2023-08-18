@@ -1,0 +1,15 @@
+.button {
+  border-radius: 0.5rem;
+  background: rgba(85, 132, 122, 0.97);
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin: 0;
+  font-size: 14px;
+  padding: 1rem;
+  width: 50%;
+}
+
+button:disabled {
+  background-color: grey;
+}
