@@ -4,9 +4,11 @@ import HeaderClientDashbord from "../components/headerClientDashbord/HeaderClien
 import getClientsData from "../services/clientRequests";
 import { Client } from "../types";
 import './home.css'
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [clientData, setClientData] = useState<Client[] | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
@@ -23,7 +25,7 @@ function Home() {
         <p>Listagem de usuários</p>
         <p>Escolha um cliente para visualizar os detalhes</p>
         <div>
-          <button>Novo cliente</button>
+          <button onClick={() => navigate('/new-client')}>Novo cliente</button>
         </div>
       </div>
 

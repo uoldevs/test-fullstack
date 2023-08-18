@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
+import ClientRegistration from './pages/ClientRegistration';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <div className='container'>
         <Routes>
           <Route path={'/home'} element={<Home/>}/>
+          <Route path={'/new-client'} element={<ClientRegistration/>}/>
         </Routes>
       </div>
 
