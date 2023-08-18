@@ -1,0 +1,46 @@
+/* For AppBar */
+.appBar {
+    position: static;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: black;
+}
+
+.mainContainer {
+    width: 65%;
+    margin: auto;
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.clientPanelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-block: 10px;
+}
+
+.clientPanelIcon {
+    font-size: 40px;
+}
+
+/* For the user list header */
+.userListHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block: 10px;
+}
+
+.newClientButton {
+    font-size: 10px;
+    background-color: #e29933;
+    box-shadow: none;
+}
+
+.newClientButton:hover {
+    background-color: #c87a0d;
+}
