@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from "next/link";
 import { useParams } from 'next/navigation'
-import { getUsersById } from '@/services/api';
+import { createNewUser, getUsersById } from '@/services/api';
 
 const CustomerForm = () => {
 
@@ -110,7 +110,7 @@ const CustomerForm = () => {
     return true;
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
     if (!name || !email || !cpf || !phone || !status) {
@@ -127,12 +127,17 @@ const CustomerForm = () => {
       name,
       email,
       cpf,
-      phone,
+      phoneNumber: phone,
       status,
     };
 
-    console.log('Novo cliente:', newCustomerData);
-    // lógica de envio para a API
+    await createNewUser(newCustomerData);
+    setName('');
+    setEmail('');
+    setCpf('');
+    setPhone('');
+    setStatus('');
+    alert('Cliente cadastrado com sucesso!');
   };
 
   const statusOptions = ['Ativo', 'Inativo', 'Aguardando ativação', 'Desativado'];

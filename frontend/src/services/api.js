@@ -28,3 +28,16 @@ export const getUsersById = async (id) => {
   }
 }
 
+export const createNewUser = async (userData) => {
+  try {
+    const body = {
+      ...userData
+    }
+    const { data } = await api.post('/users', body);
+    return data;
+  } catch (error) {
+    console.log(error)
+    const axiosError = error
+    return axiosError.response?.data;
+  }
+}
