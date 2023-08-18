@@ -1,41 +1,34 @@
-# Teste Fullstack: Aplicativo de Gerenciamento de Clientes
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Descrição:
+## Getting Started
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+First, run the development server:
 
-## Requisitos do Frontend:
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-1. Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
-2. Permitir a criação de um novo cliente através de um formulário.
-3. Na tela de edição, fornecer alertas para o usuário em caso de dados inválidos.
-4. Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
-5. Comunicar-se com a API para obter os dados dos clientes cadastrados.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Requisitos do Backend:
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Criar uma API que ofereça endpoints para:
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-1. Obter a listagem de clientes cadastrados.
-2. Cadastrar um novo cliente com informações válidas.
-3. Atualizar informações de cliente existente.
-4. Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
+## Learn More
 
-## Requisitos de Qualidade de Código:
+To learn more about Next.js, take a look at the following resources:
 
-Escreva um código limpo, legível e bem organizado.
-Adote boas práticas de desenvolvimento e arquitetura.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Itens Desejáveis (opcional):
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-- Testes unitários
-- Bibliotecas ou frameworks adicionais
+## Deploy on Vercel
 
-## Telas:
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- [Tela Inicial](https://test-frontend-uolpp.web.app/assets/images/tela-inicial.jpg)
-- [Tela de Edição](https://test-frontend-uolpp.web.app/assets/images/tela-edicao.jpg)
-
-## Instruções Finais:
-
-Após concluir o desafio, crie um pull request neste repositório com duas pastas separadas: uma contendo o projeto frontend e outra com o projeto backend, para que possamos avaliar seu trabalho. Boa sorte!
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
