@@ -11,7 +11,7 @@ import { UserModule } from './modules/user/user.module';
       username: 'root',
       password: 'password',
       database: 'postgres',
-      entities: [`${__dirname}/typeorm/entities/*{.js,.ts}`],
+      entities: [__dirname + '/**/*.entity{.ts,.js}'],
       synchronize: true, // do not use in prod
     }),
     UserModule,
