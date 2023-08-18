@@ -60,7 +60,7 @@ class ClientRepository {
     });
   }
 
-  async updateClientStatus(clientId: string, data: UpdateClientDto) {
+  async update(clientId: string, data: UpdateClientDto) {
     const updatedClient = await this.prismaService.client.update({
       where: { id: clientId },
       data: {

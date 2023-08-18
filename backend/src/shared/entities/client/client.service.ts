@@ -16,7 +16,7 @@ class ClientService {
   public async update(clientId: string, data: UpdateClientDto) {
     await this.checkConflicts(data.cpf, data.email, data.phoneNumber);
 
-    return await this.clientRepository.updateClientStatus(clientId, data);
+    return await this.clientRepository.update(clientId, data);
   }
 
   public async findAllClientsAndStatus() {

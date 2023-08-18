@@ -6,6 +6,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import * as dataMock from './dataMock/clients';
 import { CreateClientDto } from '../dto/CreateClient.dto';
 import { ConflictException } from '@nestjs/common';
+import { UpdateClientDto } from '../dto/UpdateClient.dto';
 
 describe('ClientService', () => {
   let clientService: ClientService;
@@ -77,6 +78,45 @@ describe('ClientService', () => {
         errorMessage,
       );
       expect(clientRepository.create).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('update', () => {
+    it('should return object with updated client infos', async () => {
+      jest
+        .spyOn(clientRepository, 'update')
+        .mockResolvedValue(dataMock.clientUpdated);
+
+      jest.spyOn(clientService, 'checkConflicts').mockResolvedValue();
+
+      const clientId = dataMock.allClientsMock[0].id;
+
+      const client = new UpdateClientDto(dataMock.clientToUpdate);
+      const result = await clientService.update(clientId, client);
+
+      expect(result).toStrictEqual(dataMock.clientUpdated);
+      expect(clientRepository.update).toHaveBeenCalled();
+      expect(clientRepository.update).toHaveBeenCalledWith(clientId, client);
+    });
+
+    it('should return a error if service throw a conflict error', async () => {
+      const errorMessage = 'Dados de úsuario que já estão cadastrado';
+
+      jest
+        .spyOn(clientRepository, 'update')
+        .mockResolvedValue(dataMock.clientCreated);
+
+      jest
+        .spyOn(clientService, 'checkConflicts')
+        .mockRejectedValue(new ConflictException(errorMessage));
+
+      const client = new UpdateClientDto(dataMock.allClientsMock[1]);
+      const clientId = dataMock.allClientsMock[0].id;
+
+      await expect(clientService.update(clientId, client)).rejects.toThrowError(
+        errorMessage,
+      );
+      expect(clientRepository.update).not.toHaveBeenCalled();
     });
   });
 });
