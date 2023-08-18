@@ -25,12 +25,15 @@ export class UserService {
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {
-    let user = await this.userRepository.findOne({ where: { id } });
-    user = { ...user, ...updateUserDto };
-    return await this.userRepository.save(user);
+    // check if user exists
+
+    const user = await this.userRepository.findOne({ where: { id } });
+    return await this.userRepository.save({ ...user, ...updateUserDto });
   }
 
   async remove(id: number) {
+    // check if user exists
+
     const user = await this.userRepository.findOne({ where: { id } });
     return await this.userRepository.softRemove(user);
   }
