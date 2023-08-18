@@ -13,7 +13,7 @@ const errorMiddleware = (
     return res.status(400).json({ message: err.issues[0].message });
   }
   if (err instanceof Prisma.PrismaClientKnownRequestError) {
-    return res.status(400).json({ message: 'Usuário já existente' });
+    return res.status(400).json({ message: err.message });
   }
 
   const { status, message } = err as HttpException;
