@@ -119,4 +119,39 @@ describe('ClientService', () => {
       expect(clientRepository.update).not.toHaveBeenCalled();
     });
   });
+
+  describe('checkConflicts', () => {
+    it('should return void if no have conflict', async () => {
+      jest
+        .spyOn(clientRepository, 'findByCpfEmailAndPhoneNumber')
+        .mockResolvedValue(null);
+
+      const result = await clientService.checkConflicts(
+        dataMock.allClientsMock[0].cpf,
+        dataMock.allClientsMock[0].phoneNumber,
+        dataMock.allClientsMock[0].email,
+      );
+
+      expect(result).toBe(undefined);
+    });
+
+    it('should return void if have conflicts', async () => {
+      const errorMessage = 'Dados de úsuario que já estão cadastrado';
+
+      jest
+        .spyOn(clientRepository, 'findByCpfEmailAndPhoneNumber')
+        .mockResolvedValue({
+          ...dataMock.allClientsMock[0],
+          statusId: '853c3948-098d-4190-bc8c-984b2882db46',
+        });
+
+      await expect(
+        clientService.checkConflicts(
+          dataMock.allClientsMock[0].cpf,
+          dataMock.allClientsMock[0].phoneNumber,
+          dataMock.allClientsMock[0].email,
+        ),
+      ).rejects.toThrowError(errorMessage);
+    });
+  });
 });
