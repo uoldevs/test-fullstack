@@ -1,0 +1,15 @@
+.container {
+  width: 80%; /* Tamanho máximo em relação à página */
+  margin: 0 auto; /* Centraliza horizontalmente */
+  display: flex;
+  /* border: 2px solid red; */
+  flex-direction: column;
+  /* align-items: center; Centraliza verticalmente */
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1rem;
+}

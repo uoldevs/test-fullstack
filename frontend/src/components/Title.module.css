@@ -1,11 +1,30 @@
 .container {
   display: flex;
-  align-items: flex-start;
-  padding: 10px;
+  margin-top: 4rem;
+  flex-direction: column;
+  /* border: 1px solid red; */
+  /* align-items: center; */
+  /* text-align: center; */
 }
+
+.container > div {
+  display: flex;
+  /* justify-content: center;
+  align-items: center; */
+  margin-top: 10px;
+}
+
 
 .container h1 {
   padding-left: 1rem;
+  color: #333;
+}
+
+.container > hr {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #f5f5f5;
+  margin: 20px 0;
 }
 
 .icon {

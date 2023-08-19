@@ -4,6 +4,7 @@ import { clientApi } from '../services/ clientApi';
 import Client from '../components/Client';
 import Banner from '../components/Banner';
 import Title from '../components/Title';
+import styles from './ListClient.module.css';
 
 function ListClients () {
   const [clients, setClients] = useState([]);
@@ -24,8 +25,10 @@ function ListClients () {
   return (
     <div>
       <Header />
+      <div className={styles.container}>
       <Title />
-      <Banner />
+      <Banner button title="Listagem de usuários"
+      subtitle="Escolha um cliente para vizualizar os detalhes" />
       <ul>
         {loading ? <p>Loading...</p> :
           clients.map((data)=>(
@@ -33,6 +36,7 @@ function ListClients () {
           ))}
       </ul>
       <p>Exibindo {clients.length} clientes</p>
+      </div>
     </div>
   )
 }

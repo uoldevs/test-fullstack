@@ -2,16 +2,18 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import styles from './Banner.module.css';
 
-function Banner() {
+function Banner({ button, title, subtitle }) {
   const navigate = useNavigate();
 
   return (
     <div className={styles.container}>
       <div>
-        <h3>Listagem de usuários</h3>
-        <p>Escolha um cliente para visualizar os detalhes</p>
+        <h3>{title}</h3>
+        <p>{subtitle}</p>
       </div>
-      <Button onClick={()=> navigate('/client/add')}>Novo Cliente</Button>
+      {button 
+      && <Button onClick={()=> navigate('/client/add')} isOrange>Novo Cliente</Button>}
+      
     </div>
   )
 }

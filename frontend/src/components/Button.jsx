@@ -1,14 +1,14 @@
-import styles from './Button.module.css';
+import './Button.css';
 
 function Button(props) {
   const {
-    children, type = 'button', onClick, disabled = false, 
+    children, type = 'button', onClick, disabled = false, isOrange, isLarge
   } = props;
-
+  const buttonClass = `button${isOrange ? '-orange' : ''} ${isLarge ? 'large-button' : ''}`;
   return (
     <button
       onClick={ onClick }
-      className={ styles.button }
+      className={ buttonClass }
       type={ type}
       disabled={ disabled }
     >

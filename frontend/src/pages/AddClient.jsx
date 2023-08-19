@@ -7,6 +7,8 @@ import { useState } from 'react';
 import { addClient } from '../services/ clientApi';
 import { useNavigate } from 'react-router-dom';
 import Select from '../components/Select';
+import styles from './AddClient.module.css';
+import Banner from '../components/Banner';
 
 function AddClient() {
     const [client, setClient] = useState({
@@ -14,7 +16,7 @@ function AddClient() {
       email: '',
       cpf: '',
       phone: '',
-      status: 'Ativo',
+      status: '',
     });
     const navigate = useNavigate();
 
@@ -38,9 +40,12 @@ function AddClient() {
     }
 
   return (
-    <div className=''>
+    <div >
       <Header />
+      <div className={styles.container}>
       <Title />
+      <Banner title="Novo usuário"
+      subtitle="Informe os campos a seguir para criar um novo usuário:" />
       <Form onSubmit={handleSubmit}>
         <Input placeholder='Nome'
           type="text"
@@ -67,9 +72,12 @@ function AddClient() {
           required
           onChange={handleChange}/>
         <Select value={client.status} onChange={handleChange} />
-        <Button type="submit">Criar</Button>
-        <Button type="submit">Voltar</Button>
+        <div className={styles.buttons}>
+         <Button type="submit" isOrange isLarge>Criar</Button>
+         <Button type="submit" isLarge>Voltar</Button>
+        </div>
       </Form>
+      </div>
     </div>
   )
 }
