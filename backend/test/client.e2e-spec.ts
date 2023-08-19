@@ -157,7 +157,7 @@ describe('Testing route /clients', () => {
 
           expect(status).toBe(400);
           expect(body.message).toBeDefined();
-          expect(body.message).toBe('O nome deve ter no máximo 100 caractere');
+          expect(body.message).toBe('O nome deve ter no máximo 100 caracteres');
         });
       });
 
@@ -242,6 +242,68 @@ describe('Testing route /clients', () => {
           expect(status).toBe(400);
           expect(body.message).toBeDefined();
           expect(body.message).toBe('O email é inválido');
+        });
+      });
+
+      describe('Error in phoneNumber field', () => {
+        it('Phone Number is not send', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.removeKey('phoneNumber'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O número de telefone não pode ser vazio');
+        });
+
+        it('Phone Number is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('phoneNumber', ''));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O número de telefone não pode ser vazio');
+        });
+
+        it('Phone Number is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('phoneNumber', 1));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O número de telefone deve ser uma string');
+        });
+
+        it('Phone Number have length different of 11', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('phoneNumber', '81982'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O número de telefone deve ter 11 digítos');
+        });
+
+        it('Phone Number is invalid DDD which not exist', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('phoneNumber', '56967676767'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('Número de telefone é inválido');
+        });
+
+        it('Phone Number is invalid not have 9 before of number', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('phoneNumber', '81867676767'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('Número de telefone é inválido');
         });
       });
     });
