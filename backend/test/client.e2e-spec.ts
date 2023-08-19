@@ -293,7 +293,7 @@ describe('Testing route /clients', () => {
 
           expect(status).toBe(400);
           expect(body.message).toBeDefined();
-          expect(body.message).toBe('Número de telefone é inválido');
+          expect(body.message).toBe('Número de telefone inválido');
         });
 
         it('Phone Number is invalid not have 9 before of number', async () => {
@@ -303,7 +303,7 @@ describe('Testing route /clients', () => {
 
           expect(status).toBe(400);
           expect(body.message).toBeDefined();
-          expect(body.message).toBe('Número de telefone é inválido');
+          expect(body.message).toBe('Número de telefone inválido');
         });
       });
 
@@ -533,7 +533,59 @@ describe('Testing route /clients', () => {
           expect(body.message).toBe('O email é inválido');
         });
       });
-      describe('Error in phoneNumber field', () => {});
+
+      describe('Error in phoneNumber field', () => {
+        it('Phone Number is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ phoneNumber: '' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O número de telefone não pode ser vazio');
+        });
+
+        it("Phone Number ins't a string", async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ phoneNumber: 1 });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O número de telefone deve ser uma string');
+        });
+
+        it('Phone Number have a legth different of 11', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ phoneNumber: '1' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O número de telefone deve ter 11 digítos');
+        });
+
+        it('Phone Number invalid DDD', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ phoneNumber: '56987676767' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('Número de telefone inválido');
+        });
+
+        it("Phone Number dont't have a 9 befere number", async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ phoneNumber: '81887676767' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('Número de telefone inválido');
+        });
+      });
+
       describe('Error in status field', () => {});
     });
   });
