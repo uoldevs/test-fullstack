@@ -20,3 +20,4 @@ Aplicativo de Gerenciamento de Clientes
 -   Database Container: [Docker](https://docs.docker.com/compose/)
 -   Database ORM, Migrations and Seeding: [TypeOrm](https://typeorm.io/)
 -   Tests: [Jest](https://jestjs.io/pt-BR/)
+-   Documentation: [Swagger](https://docs.nestjs.com/openapi/introduction)
