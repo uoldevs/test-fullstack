@@ -1,3 +1,7 @@
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 .form-container {
   display: flex;
   flex-direction: column;
@@ -9,6 +13,11 @@
   border-radius: 0.3rem;
   border-color: rgb(165, 162, 162);
   max-width: 30%;
+}
+
+.form-container span {
+  margin-left: .5rem;
+  color: red;
 }
 
 .buttons-container {

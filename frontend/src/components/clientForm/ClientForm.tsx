@@ -18,22 +18,27 @@ function ClientForm( create: FormProps ) {
     phone: '',
     status: 'Ativo',
   });
+  const [errors, setErrors] = useState<Partial<Client>>({});
 
   const navigate = useNavigate();
 
-  function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
+  function onSubmit(e:  React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    saveData();
+    validateFormInput();
+  }
+
+  function resetForm() {
     setFormData({
       name: '',
       email: '',
       cpf: '',
       phone: '',
       status: 'Ativo',
-    })
+    });
+    setErrors({});
   }
 
-  function genericOnChangeHandler(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+  function genericOnChangeHandler(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement >) {
     const { name, value } = e.target;
     setFormData({
       ...formData,
@@ -42,7 +47,6 @@ function ClientForm( create: FormProps ) {
   }
 
   async function saveData() {
-
     const formatedData = {
       name: formData.name,
       email: formData.email,
@@ -54,38 +58,71 @@ function ClientForm( create: FormProps ) {
     await registerClient(formatedData);
   }
 
+  function validateFormInput() {
+    const newErrors: Partial<Client> = {};
+
+    if (formData.name.trim() === '') {
+      newErrors.name = 'Por favor, digite o nome.'
+    }
+    if (formData.email.trim() === '') {
+      newErrors.email = 'Por favor, digite o e-mail.'
+    }
+    if (formData.cpf.trim() === '' || formData.cpf.trim().length > 11) {
+      newErrors.cpf = 'CPF obrigatório e deve conter 11 dígitos'
+    }
+    if (formData.phone.trim() === ''
+      || (formData.phone.trim().length > 11 || formData.phone.trim().length < 10 )) {
+      newErrors.phone = 'Número de telefone com DDD obrigatório.'
+    }
+
+    if(Object.keys(newErrors).length === 0) {
+      saveData();
+      resetForm();
+    } else {
+      setErrors(newErrors);
+    }
+  }
+
   return(
-    <form className='form-container' onSubmit={handleFormSubmit}>
+    <form className='form-container' onSubmit={onSubmit}>
       <input
         name='name'
         placeholder='Nome'
         type='text'
         value={formData.name}
         onChange={genericOnChangeHandler}
+        autoComplete="name"
       />
+      {errors.name && <span>{errors.name}</span>}
       <input
         name='email'
         placeholder='E-mail'
         type='text'
         value={formData.email}
         onChange={genericOnChangeHandler}
+        autoComplete="email"
       />
+      {errors.email && <span>{errors.email}</span>}
       <input
         name='cpf'
         placeholder='CPF'
         type='number'
         value={formData.cpf}
         onChange={genericOnChangeHandler}
+        autoComplete="cpf"
         // mask='000.000.000-00'
       />
+      {errors.cpf && <span>{errors.cpf}</span>}
       <input
         name='phone'
         placeholder='Telefone'
         type='number'
         value={formData.phone}
         onChange={genericOnChangeHandler}
+        autoComplete="phone"
         // mask='(00) 00000-0000'
       />
+      {errors.phone && <span>{errors.phone}</span>}
       <select
         name='status'
         value={formData.status}
