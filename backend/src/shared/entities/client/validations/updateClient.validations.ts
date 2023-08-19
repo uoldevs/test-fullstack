@@ -17,7 +17,7 @@ export const updateClient = joi.object({
   email: joi.string().empty().email().messages({
     'string.empty': 'O email não pode ser vazio',
     'string.base': 'O email deve ser uma string',
-    'string.email': 'Email é inválido',
+    'string.email': 'O email é inválido',
   }),
 
   phoneNumber: joi

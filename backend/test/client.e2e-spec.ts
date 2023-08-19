@@ -202,6 +202,48 @@ describe('Testing route /clients', () => {
           expect(body.message).toBe('O CPF deve ser uma string');
         });
       });
+
+      describe('Error in email field', () => {
+        it('Email is not send', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.removeKey('email'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O email não pode ser vazio');
+        });
+
+        it('Email is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('email', ''));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O email não pode ser vazio');
+        });
+
+        it('Email is not a string', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('email', 1));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O email deve ser uma string');
+        });
+
+        it('Email is not a valid email', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('email', 'not_valid.com'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O email é inválido');
+        });
+      });
     });
   });
 
