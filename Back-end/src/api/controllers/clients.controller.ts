@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import ClientsService from '../services/clients.service';
 import Clients from '../../database/models/Clients';
 import ErrorHandler from '../ErrorHandler/handlerError';
@@ -8,8 +8,9 @@ export default class ClientController {
 
   public getAllClients = async (
     _req: Request,
-    res: Response
-  ): Promise<Response> => {
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | undefined> => {
     try {
       const clients: Clients[] = await this._clientService.getClients();
       if (clients.length === 0 ) {
@@ -17,7 +18,7 @@ export default class ClientController {
       }
       return res.status(200).json(clients);
     } catch (err) {
-      throw new ErrorHandler(500, `${err}`);
+      next(err)
     }
   };
 }
