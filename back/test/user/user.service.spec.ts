@@ -146,7 +146,7 @@ describe('UserService', () => {
       };
 
       mockUserRepository.findOne.mockReturnValueOnce(existingUser);
-      mockUserRepository.softRemove.mockReturnValueOnce(undefined); // Assuming softRemove just returns undefined upon successful deletion.
+      mockUserRepository.softRemove.mockReturnValueOnce(undefined);
 
       await service.remove(1);
       expect(mockUserRepository.softRemove).toHaveBeenCalledWith(existingUser);
