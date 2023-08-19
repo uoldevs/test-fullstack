@@ -61,6 +61,19 @@ class ClientRepository {
   }
 
   async update(clientId: string, data: UpdateClientDto) {
+    const status = data?.status?.name && {
+      status: {
+        connectOrCreate: {
+          create: {
+            name: data?.status?.name,
+          },
+          where: {
+            name: data?.status?.name,
+          },
+        },
+      },
+    };
+
     const updatedClient = await this.prismaService.client.update({
       where: { id: clientId },
       data: {
@@ -68,16 +81,7 @@ class ClientRepository {
         email: data.email,
         name: data.name,
         phoneNumber: data.phoneNumber,
-        status: {
-          connectOrCreate: {
-            create: {
-              name: data?.status?.name,
-            },
-            where: {
-              name: data?.status?.name,
-            },
-          },
-        },
+        status: status?.status,
       },
       ...this.selectClientReturn,
     });

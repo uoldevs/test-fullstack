@@ -6,7 +6,7 @@ export const createClient = joi.object({
     'string.empty': 'O nome não pode ser vazio',
     'string.base': 'O nome deve ser uma string',
     'string.min': 'O nome deve ter no mínimo 1 caractere',
-    'string.max': 'O nome deve ter no máximo 100 caractere',
+    'string.max': 'O nome deve ter no máximo 100 caracteres',
   }),
 
   cpf: joi.string().required().empty().length(11).messages({
@@ -16,11 +16,11 @@ export const createClient = joi.object({
     'string.length': 'O CPF deve ter 11 digítos',
   }),
 
-  email: joi.string().required().empty().email().messages({
+  email: joi.string().required().empty().email().max(150).messages({
     'any.required': 'O email não pode ser vazio',
     'string.empty': 'O email não pode ser vazio',
     'string.base': 'O email deve ser uma string',
-    'string.email': 'Email é inválido',
+    'string.email': 'O email é inválido',
   }),
 
   phoneNumber: joi
@@ -36,7 +36,7 @@ export const createClient = joi.object({
       'string.empty': 'O número de telefone não pode ser vazio',
       'string.base': 'O número de telefone deve ser uma string',
       'string.length': 'O número de telefone deve ter 11 digítos',
-      'string.pattern.base': 'Número de telefone é inválido',
+      'string.pattern.base': 'Número de telefone inválido',
     }),
 
   status: joi

@@ -1,0 +1,8 @@
+node_modules
+dist
+README.md
+.env
+src/db/prisma/dev.db
+src/db/prisma/dev-test.db
+src/db/prisma/dev.db-journal
+src/db/prisma/dev-test.db-journal
