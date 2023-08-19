@@ -1,7 +1,7 @@
 enum ClientStatus {
   ATIVO = 'Ativo',
   INATIVO = 'Inativo',
-  AGUARDANDO_ATIVACAO = 'Aguardando Ativação',
+  AGUARDANDO_ATIVACAO = 'Aguardando ativação',
   DESATIVADO = 'Desativado',
 }
 
