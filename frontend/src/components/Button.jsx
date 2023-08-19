@@ -2,8 +2,9 @@ import './Button.css';
 
 function Button(props) {
   const {
-    children, type = 'button', onClick, disabled = false, isOrange, isLarge
+    children, type = 'button', onClick, disabled, isOrange, isLarge
   } = props;
+  console.log(disabled);
   const buttonClass = `button${isOrange ? '-orange' : ''} ${isLarge ? 'large-button' : ''}`;
   return (
     <button

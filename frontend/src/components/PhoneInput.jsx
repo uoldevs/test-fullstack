@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
 import styles from './Input.module.css';
+import validatePhone from '../utils/validatePhone';
 
 const PhoneInput = () => {
-  const {phone, setPhone} = useContext(Context);
+  const {phone, setPhone, setIsPhoneValid} = useContext(Context);
 
   const formatPhoneNumber = (input) => {
     // Remove qualquer caractere que não seja um número
@@ -26,6 +27,12 @@ const PhoneInput = () => {
   const handlePhoneChange = (event) => {
     const input = event.target.value;
     setPhone(formatPhoneNumber(input));
+
+    if (validatePhone(input)) {
+      setIsPhoneValid(true);
+    } else {
+      setIsPhoneValid(false);
+    }
   };
 
   return (

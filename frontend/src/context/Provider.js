@@ -9,7 +9,9 @@ function Provider({children}){
     const [loading, setLoading] = useState(false);
     const [clients, setClients] = useState([]);
     const [phone, setPhone] = useState('');
+    const [isPhoneValid, setIsPhoneValid] = useState(true);
     const [cpf, setCpf] = useState('');
+    const [isCpfValid, setIsCpfValid] = useState(true);
     const [updatedClient, setUpdatedClient] = useState({});
     const navigate = useNavigate();
 
@@ -52,8 +54,13 @@ function Provider({children}){
             setCpf,
             updatedClient,
             setUpdatedClient,
-            updateClients
-    }), [clients, loading, phone, setPhone, cpf, setCpf, updatedClient, setUpdatedClient]);
+            updateClients,
+            isCpfValid,
+            setIsCpfValid,
+            isPhoneValid, setIsPhoneValid
+    }), [clients, loading, phone, setPhone, 
+      cpf, setCpf, updatedClient, setUpdatedClient, isCpfValid, 
+      setIsCpfValid, isPhoneValid, setIsPhoneValid]);
 
     return (
         <Context.Provider value={value}>

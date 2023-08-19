@@ -11,9 +11,13 @@ import Context from '../context/Context';
 import PhoneInput from '../components/PhoneInput';
 import CpfInput from '../components/CpfInput';
 import { useLocation } from 'react-router-dom';
+import validateEmail from '../utils/validateEmail';
+import validatePhone from '../utils/validatePhone';
+import {cpf as Cpf} from 'cpf-cnpj-validator';
 
 function AddClient() {
-  const {addNewClient, phone, cpf, setPhone, setCpf, updatedClient, updateClients} = useContext(Context);
+  const {addNewClient, phone, cpf, setPhone, setCpf, 
+    updatedClient, updateClients, isCpfValid, isPhoneValid} = useContext(Context);
   const location = useLocation();
   const isNewClient = location.pathname.includes('add');
     const [client, setClient] = useState({
@@ -46,6 +50,17 @@ function AddClient() {
       console.log(client);
     };
 
+    const isFormValid = () => {
+      return (
+        client.name !== '' &&
+        validateEmail(client.email) &&
+        Cpf.isValid(cpf) &&
+        validatePhone(phone) &&
+        client.status !== ''
+      );
+    };
+  
+
     const handleSubmit = (event)=>{
         event.preventDefault();
         if (isNewClient) {
@@ -74,11 +89,13 @@ function AddClient() {
           name="email"
           value={ client.email } 
           onChange={handleChange}/>
+        {!isCpfValid && <p>CPF inválido</p>}
         <CpfInput />
+        {!isPhoneValid && <p>Telefone inválido</p>}
         <PhoneInput />
         <Select value={client.status} onChange={handleChange} />
         <div className={styles.buttons}>
-         <Button type="submit" isOrange isLarge>{
+         <Button type="submit" disabled={!isFormValid()} isOrange isLarge>{
           isNewClient ? 'Criar' : 'Editar'
          }</Button>
          <Button type="submit" isLarge>Voltar</Button>

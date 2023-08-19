@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import Context from '../context/Context';
 import styles from './Input.module.css';
+import { cpf as Cpf } from 'cpf-cnpj-validator';
 
 const CpfInput = () => {
-  const {cpf, setCpf} = useContext(Context); 
+  const {cpf, setCpf, setIsCpfValid} = useContext(Context); 
 
   const formatCpf = (input) => {
     const cleaned = input.replace(/\D/g, ''); // Remove caracteres não numéricos
@@ -26,6 +27,12 @@ const CpfInput = () => {
     const input = event.target.value;
     const formattedCpf = formatCpf(input);
     setCpf(formattedCpf);
+
+    if (Cpf.isValid(input)) {
+      setIsCpfValid(true);
+    } else {
+      setIsCpfValid(false);
+    }
   };
 
   return (
