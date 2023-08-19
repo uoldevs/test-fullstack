@@ -7,6 +7,7 @@ import formatCpf from '../../utils/formatCpf';
 import formatPhoneNumber from '../../utils/formatPhoneNumber';
 import './style.css';
 import truncatedText from '../../utils/truncatedText';
+import WebRoutes from '../../constants/WebRoutes';
 
 interface ClientCardProps {
   client: IClientsStatus;
@@ -16,7 +17,7 @@ function ClientCard({ client }: ClientCardProps) {
   const navigate = useNavigate();
 
   const editRedirect = () => {
-    navigate(`/client/edit?clientId=${client.id}`);
+    navigate(`${WebRoutes.CLIENT_EDIT_QUERRY_CLIENT_ID}${client.id}`);
   };
 
   return (

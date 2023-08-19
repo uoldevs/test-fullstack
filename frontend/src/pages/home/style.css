@@ -18,16 +18,38 @@
 }
 
 .home-page-listing-view-header {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
-.home-page-listing-view-header h3 {
+.home-page-listing-view-header div h3 {
   font-weight: 400;
   color: #6B747D;
   margin-bottom: 8px;
 }
 
-.home-page-listing-view-header p {
+.home-page-listing-view-header div p {
   font-weight: 300;
   color: #ACACAC;
+}
+
+.home-page-listing-view-header-new-client-btn {
+  height: 40px;
+  padding: 10px;
+  border-radius: 3px;
+  background-color: #E29934;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 530px) {
+  .home-page-listing-view-header {
+    flex-direction: column;
+  }
+
+  .home-page-listing-view-header-new-client-btn {
+    margin-top: 10px;
+  }
 }
