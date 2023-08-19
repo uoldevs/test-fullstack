@@ -4,6 +4,7 @@ import { z } from 'zod';
 export type status = 'Ativo' | 'Inativo' | 'Aguardando ativação' | 'Desativado';
 
 export const ClientZodSchema = z.object({
+  id: z.number().optional(),
   name: z.string(),
   email: z.string().email(),
   cpf: z.string().refine((val) => cpf.isValid(val), {

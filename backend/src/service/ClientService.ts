@@ -25,7 +25,7 @@ export default class ClientService {
 
   async update(clientData: Client) {
     return await this.prisma.client.update({
-      where: { cpf: clientData.cpf },
+      where: { id: clientData.id },
       data: {
         name: clientData.name,
         email: clientData.email,
