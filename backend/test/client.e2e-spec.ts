@@ -470,7 +470,38 @@ describe('Testing route /clients', () => {
         });
       });
 
-      describe('Error in cpf field', () => {});
+      describe('Error in cpf field', () => {
+        it('CPF is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ cpf: '' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O CPF não pode ser vazio');
+        });
+
+        it('CPF is not a string', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ cpf: 1 });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O CPF deve ser uma string');
+        });
+
+        it('CPF have a legth different of 11', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ cpf: '1' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O CPF deve ter 11 digítos');
+        });
+      });
+
       describe('Error in email field', () => {});
       describe('Error in phoneNumber field', () => {});
       describe('Error in status field', () => {});
