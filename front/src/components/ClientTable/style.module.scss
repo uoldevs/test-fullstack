@@ -1,0 +1,22 @@
+.userListHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block: 10px;
+}
+
+.editButton {
+    font-size: 12px;
+    color: #e29933;
+    border-color: #e29933;
+    box-shadow: none;
+    width: fit-content;
+}
+
+.newClientButton {
+    background-color: #c87a0d;
+}
+
+.newClientButton:hover {
+    background-color: #c87a0d;
+}
