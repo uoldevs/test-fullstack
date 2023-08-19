@@ -132,16 +132,7 @@ describe('ClientRepository', () => {
           email: client.email,
           name: undefined,
           phoneNumber: undefined,
-          status: {
-            connectOrCreate: {
-              create: {
-                name: undefined,
-              },
-              where: {
-                name: undefined,
-              },
-            },
-          },
+          status: undefined,
         },
         ...dataMock.filterClientRepository,
       });
