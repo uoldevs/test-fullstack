@@ -306,6 +306,70 @@ describe('Testing route /clients', () => {
           expect(body.message).toBe('Número de telefone é inválido');
         });
       });
+
+      describe('Error in status field', () => {
+        it('Status is not send', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.removeKey('status'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O status não pode ser vazio');
+        });
+
+        it('Status is not a object', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('status', ''));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O status deve ser um objeto');
+        });
+
+        it("Status name ins't Ativo|Inativo|Desativado|Aguardando ativação", async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('status', { name: 'Ativado' }));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe(
+            'O nome do status deve ser Ativo|Inativo|Desativado|Aguardando ativação',
+          );
+        });
+
+        it('Status name is not send', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('status', { none: '' }));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome do status não pode ser vazio');
+        });
+
+        it('Status name is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('status', { name: '' }));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome do status não pode ser vazio');
+        });
+
+        it("Status name ins't a string", async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('status', { name: 1 }));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome do status deve ser uma string');
+        });
+      });
     });
   });
 
