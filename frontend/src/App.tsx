@@ -5,10 +5,12 @@ import { ClientProvider } from './context/ClientContext';
 import EditClient from './pages/editClient/EditClient';
 import WebRoutes from './constants/WebRoutes';
 import CreateClient from './pages/createClient/CreateClient';
+import PageHeader from './components/pageHeader/PageHeader';
 
 function App() {
   return (
     <>
+      <PageHeader />
       <ClientProvider>
         <Routes>
           <Route path={WebRoutes.HOME} element={<Home />} />

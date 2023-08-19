@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import PageHeader from '../../components/pageHeader/PageHeader';
 import ClientListingHeader from '../../components/clientListingHeader/ClientListingHeader';
 import './style.css';
 import { ClientContext } from '../../context/ClientContext';
@@ -23,7 +22,6 @@ function Home() {
 
   return (
     <main>
-      <PageHeader />
       <section className="home-page-container">
         <div className="home-page-listing-container">
           <ClientListingHeader className="home-page-listing-header" />
