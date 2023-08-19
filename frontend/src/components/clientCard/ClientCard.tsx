@@ -1,18 +1,23 @@
 import React from 'react';
 import { GoPencil } from 'react-icons/go';
+import { useNavigate } from 'react-router-dom';
 import IClientsStatus from '../../interfaces/IClientsStatus';
 import ClientStatusCard from '../clientStatus/ClientStatus';
 import formatCpf from '../../utils/formatCpf';
 import formatPhoneNumber from '../../utils/formatPhoneNumber';
 import './style.css';
+import truncatedText from '../../utils/truncatedText';
+import WebRoutes from '../../constants/WebRoutes';
 
 interface ClientCardProps {
   client: IClientsStatus;
 }
 
 function ClientCard({ client }: ClientCardProps) {
-  const truncatedText = (text: string, maxLength: number) => {
-    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+  const navigate = useNavigate();
+
+  const editRedirect = () => {
+    navigate(`${WebRoutes.CLIENT_EDIT_QUERRY_CLIENT_ID}${client.id}`);
   };
 
   return (
@@ -28,10 +33,12 @@ function ClientCard({ client }: ClientCardProps) {
         </span>
         <ClientStatusCard status={client.status.name} />
       </div>
-      <button className="client-card-edit-btn-pencil">
+      <button className="client-card-edit-btn-pencil" onClick={editRedirect} type="button">
         <GoPencil className="client-card-edit-btn-icon-pencil" />
       </button>
-      <button className="client-card-edit-btn">Editar</button>
+      <button className="client-card-edit-btn" type="button" onClick={editRedirect}>
+        Editar
+      </button>
     </div>
   );
 }
