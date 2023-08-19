@@ -10,6 +10,7 @@ Aplicativo de Gerenciamento de Clientes
 
 -   Framework: [Next.js](https://nextjs.org/)
 -   Styling: [SaSS](https://sass-lang.com/documentation/)
+-   React Components: [MaterialUI](https://mui.com/)
 -   HTTP client: [Axios](https://axios-http.com/ptbr/)
 
 ## Backend Features
