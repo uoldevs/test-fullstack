@@ -14,8 +14,8 @@ function ClientCard({client}: ClientProps) {
     <div className="card-container">
       <p>{client.name}</p>
       <div cpf-phone>
-        <p>{client.cpf}</p>
-        <p>{client.phone}</p>
+        <p>{client.cpf.toString()}</p>
+        <p>{client.phone.toString()}</p>
       </div>
 
       <p>{client.status}</p>

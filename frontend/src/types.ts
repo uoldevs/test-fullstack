@@ -1,7 +1,8 @@
-export type Status = 'Ativo' | 'Inativo' | 'Aguardando ativação' | 'Desativado';
+export type Status = 'Ativo' | 'Inativo' | 'Aguardando-ativação' | 'Desativado';
+export type dbStatus = 'Ativo' | 'Inativo' | 'Aguardando ativação' | 'Desativado';
 
 export type Client = {
-  id: number
+  id?: number
   name: string
   email: string
   cpf: string
@@ -9,3 +10,11 @@ export type Client = {
   status: Status
 }
 
+export type dbClient = {
+  id?: number
+  name: string
+  email: string
+  cpf: string
+  phone: string
+  status: dbStatus
+}

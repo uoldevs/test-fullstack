@@ -3,18 +3,18 @@
   flex-direction: column;
 }
 
-.form-container input {
+.form-container input, select {
   padding: .8rem;
   margin: .4rem;
   border-radius: 0.3rem;
   border-color: rgb(165, 162, 162);
-  max-width: 24%;
+  max-width: 30%;
 }
 
 .buttons-container {
   display: flex;
   margin: .5rem;
-  max-width: 24%;
+  max-width: 30%;
   justify-content:space-around;
 }
 

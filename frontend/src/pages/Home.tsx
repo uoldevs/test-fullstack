@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import ClientCard from "../components/clientCard/ClientCard";
 import HeaderClientDashbord from "../components/headerClientDashbord/HeaderClientDashbord";
-import getClientsData from "../services/clientRequests";
+import { getClientsData } from "../services/clientRequests";
 import { Client } from "../types";
 import './home.css'
 import { useNavigate } from "react-router-dom";
