@@ -1,4 +1,4 @@
-name: Rodando os testes automatizados
+name: Rodando os testes automatizados da api
 
 on:
   pull_request:
