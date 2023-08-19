@@ -7,6 +7,7 @@ function App() {
     <div>
        <Routes>
         <Route path='/client/add' element={ <AddClient /> }/>
+        <Route path='/client/:id' element={ <AddClient /> }/>
         <Route path='/' element={ <ListClients /> }/>
        </Routes>
     </div>

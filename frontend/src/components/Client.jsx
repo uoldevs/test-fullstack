@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Button from './Button';
 import { useNavigate } from 'react-router-dom';
 import styles from './Client.module.css';
 import Status from './Status';
+import Context from '../context/Context';
 
 export default function Client({ client }) {
     const navigate = useNavigate();
+    const {setUpdatedClient} = useContext(Context);
+
+    const handleClick = () => {
+      setUpdatedClient(client)
+      navigate(`/client/${client.id}`);
+    }
 
   return (
     <li className={styles.container}>
@@ -18,7 +25,7 @@ export default function Client({ client }) {
         <p>{ client.phone }</p>
       </div>
       <Status status={client.status} />
-      <Button onClick={()=> navigate('/client/add')} className={styles.button}>Editar</Button>
+      <Button onClick={handleClick} className={styles.button}>Editar</Button>
     </li>
   );
 }

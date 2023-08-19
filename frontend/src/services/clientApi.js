@@ -31,14 +31,20 @@ export async function addClient(client) {
 }
 
 export async function updateClient(client) {
-  // console.log(todo);
+  console.log(client.id);
   const response = await fetch(`${URL}/clients/${client.id}`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(client),
+    body: JSON.stringify({
+      name: client.name,
+      email: client.email,
+      cpf: client.cpf,
+      phone: client.phone,
+      status: client.status,
+    }),
   });
   return response.json();
 }

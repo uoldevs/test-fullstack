@@ -1,26 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import Header from '../components/Header';
-import { clientApi } from '../services/ clientApi';
 import Client from '../components/Client';
 import Banner from '../components/Banner';
 import Title from '../components/Title';
 import styles from './ListClient.module.css';
+import Context from '../context/Context';
 
 function ListClients () {
-  const [clients, setClients] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const {clients, getClients, loading} = useContext(Context);
 
   useEffect(() => {
-    const getTodos = async ()=> {
-      setLoading(true);
-      const result = await clientApi();
-      console.log(result);
-      setClients(result);
-      setLoading(false);
-  }
-  getTodos();
-  }, [])
-  
+    getClients();
+  }, []);
 
   return (
     <div>

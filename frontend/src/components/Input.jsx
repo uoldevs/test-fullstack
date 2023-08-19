@@ -3,7 +3,7 @@ import styles from './Input.module.css';
 
 function Input({
   placeholder, type = 'text', required = false, id = null,
-  value, onChange, name = '', checked,
+  value, onChange, name = '', checked, maxLength
 }) {
   return (
     <input
@@ -11,6 +11,7 @@ function Input({
       required={ required }
       placeholder={ placeholder }
       className={ styles.input }
+      maxLength={ maxLength }
       id={ id }
       value={ value }
       onChange={ onChange }
