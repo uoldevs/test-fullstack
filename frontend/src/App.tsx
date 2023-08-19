@@ -16,6 +16,7 @@ function App() {
           <Route path={'/'} element={<Home/>}/>
           <Route path={'/home'} element={<Home/>}/>
           <Route path={'/new-client'} element={<ClientRegistration/>}/>
+          <Route path={'/update-client/:id'} element={<ClientRegistration/>}/>
         </Routes>
       </div>
 

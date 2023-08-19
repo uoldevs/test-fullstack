@@ -35,4 +35,29 @@ async function registerClient(clientData: dbClient) {
   }
 }
 
-export { getClientsData, registerClient };
+async function updateClient(clientData: dbClient) {
+  console.log(JSON.stringify(clientData));
+
+  try {
+    const response = await fetch(`http://localhost:3001/update`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body:JSON.stringify(clientData)
+    });
+    if (!response.ok) {
+      const errorMessage = await response.text();
+      throw new Error(`API Error: ${errorMessage}`);
+    }
+  } catch(err) {
+
+    if (err instanceof Error) {
+      console.log(err);
+    } else {
+      console.log('Unexpected error', err);
+    }
+  }
+}
+
+export { getClientsData, registerClient, updateClient };

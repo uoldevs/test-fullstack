@@ -1,15 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+import { Client } from '../../types';
 import './clientCard.css'
 
 type ClientProps = {
-  client: {
-    name: string;
-    cpf: string;
-    phone: string;
-    status: string;
-  }
+  client: Client
 };
 
 function ClientCard({client}: ClientProps) {
+  const navigate = useNavigate();
+
   return(
     <div className="card-container">
       <p>{client.name}</p>
@@ -17,9 +16,8 @@ function ClientCard({client}: ClientProps) {
         <p>{client.cpf.toString()}</p>
         <p>{client.phone.toString()}</p>
       </div>
-
       <p>{client.status}</p>
-      <button>Editar</button>
+      <button onClick={() => navigate(`/update-client/${client.id}`)}>Editar</button>
     </div>
   )
 }
