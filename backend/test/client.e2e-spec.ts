@@ -118,13 +118,17 @@ describe('Testing route /clients', () => {
   });
 
   describe('/clients (PATCH)', () => {
-    it('Testing when update a client successfully', async () => {
+    let clientId: string;
+
+    beforeAll(async () => {
       const { body: newClient } = await request(app.getHttpServer()).get(
         ApiRoutes.CLIENTS,
       );
 
-      const clientId = newClient[newClient.length - 1].id;
+      clientId = newClient[newClient.length - 1].id;
+    });
 
+    it('Testing when update a client successfully', async () => {
       const { status, body } = await request(app.getHttpServer())
         .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
         .send(dataMock.clientToUpdated);
@@ -135,6 +139,46 @@ describe('Testing route /clients', () => {
       expect(body.cpf).toBe(dataMock.clientUpdated.cpf);
       expect(body.phoneNumber).toBe(dataMock.clientUpdated.phoneNumber);
       expect(body.status).toEqual(dataMock.clientUpdated.status);
+    });
+
+    describe('Testing when have a error in update', () => {
+      const dataConflictErrorMsg = 'Dados de úsuario que já estão cadastrado';
+      const repeatedEmail = dataMock.getClients[0].email;
+      const repeatedCpf = dataMock.getClients[0].cpf;
+      const repeatedPhoneNumber = dataMock.getClients[0].phoneNumber;
+
+      it('When create with a client email repeated', async () => {
+        const { status, body } = await request(app.getHttpServer())
+          .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+          .send({ email: repeatedEmail });
+
+        expect(status).toBe(409);
+        expect(body.message).toBe(dataConflictErrorMsg);
+        expect(body.error).toBe('Conflict');
+        expect(body.statusCode).toBe(409);
+      });
+
+      it('When create with a client cpf repeated', async () => {
+        const { status, body } = await request(app.getHttpServer())
+          .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+          .send({ cpf: repeatedCpf });
+
+        expect(status).toBe(409);
+        expect(body.message).toBe(dataConflictErrorMsg);
+        expect(body.error).toBe('Conflict');
+        expect(body.statusCode).toBe(409);
+      });
+
+      it('When create with a client phoneNumber repeated', async () => {
+        const { status, body } = await request(app.getHttpServer())
+          .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+          .send({ phoneNumber: repeatedPhoneNumber });
+
+        expect(status).toBe(409);
+        expect(body.message).toBe(dataConflictErrorMsg);
+        expect(body.error).toBe('Conflict');
+        expect(body.statusCode).toBe(409);
+      });
     });
   });
 });
