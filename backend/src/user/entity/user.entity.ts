@@ -26,14 +26,14 @@ export class UserEntity {
   email: string;
 
   @Column({
-    length: 11,
+    length: 14,
     unique: true,
   })
   cpf: string;
 
   @Column({
     name: 'phone_number',
-    length: 10,
+    length: 15,
   })
   phoneNumber: string;
 
