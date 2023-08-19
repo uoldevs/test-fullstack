@@ -2,7 +2,7 @@ import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import styles from './style.module.scss';
 import { ClientType } from '@/types';
-import ColorDot from '../ColorDot/ColorDot';
+import ColorDot from '../ColorDot';
 
 type ClientRowProps = {
     client: ClientType;
