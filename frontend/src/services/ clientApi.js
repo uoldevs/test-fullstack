@@ -12,7 +12,7 @@ export async function clientApi() {
   }
 }
 
-export async function addClient(todo) {
+export async function addClient(client) {
   const response = await fetch(`${URL}/clients`, {
     method: 'POST',
     headers: {
@@ -20,22 +20,25 @@ export async function addClient(todo) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      value: todo,
-      checked: false,
+      name: client.name,
+      email: client.email,
+      cpf: client.cpf,
+      phone: client.phone,
+      status: client.status,
     }),
   });
   return response.json();
 }
 
-export async function updateTodo(todo) {
+export async function updateClient(client) {
   // console.log(todo);
-  const response = await fetch(`${URL}/todos/${todo.id}`, {
+  const response = await fetch(`${URL}/clients/${client.id}`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify(todo),
+    body: JSON.stringify(client),
   });
   return response.json();
 }

@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.container h1 {
+  padding-left: 1rem;
+}
+
+.icon {
+  font-size: 2rem;
+  padding-top: 20px; /* Tamanho do ícone */
+}
