@@ -586,7 +586,49 @@ describe('Testing route /clients', () => {
         });
       });
 
-      describe('Error in status field', () => {});
+      describe('Error in status field', () => {
+        it("Status ins't a object", async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ status: 1 });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O status deve ser um objeto');
+        });
+
+        it('Status name is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ status: { name: '' } });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome do status não pode ser vazio');
+        });
+
+        it("Status name ins't a string", async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ status: { name: 1 } });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome do status deve ser uma string');
+        });
+
+        it("Status name ins't Ativo|Inativo|Desativado|Aguardando ativação", async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ status: { name: 'Ativado' } });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe(
+            'O nome do status deve ser Ativo|Inativo|Desativado|Aguardando ativação',
+          );
+        });
+      });
     });
   });
 });
