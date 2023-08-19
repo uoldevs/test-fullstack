@@ -1,4 +1,4 @@
-name: Rodando o eslint para encontrar erros no backend
+name: Rodando os testes automatizados
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - master
 
 jobs:
-  unit-tests:
+  tests-api:
     runs-on: ubuntu-20.04
     steps:
       - name: Verifica o repositório do Git
@@ -19,8 +19,11 @@ jobs:
       - name: Sobe o container
         run: cd backend && docker run -dit --name app-api-test test-fullstack-api
 
-      - name: Executa os testes
+      - name: Executa os testes unitários
         run: cd backend && docker exec -t app-api-test npm run test
+
+      - name: Executa os testes e2e
+        run: cd backend && docker exec -t app-api-test npm run test:e2e
 
       - name: Derruba o container
         if: always()
