@@ -132,11 +132,19 @@ const CustomerForm = () => {
     };
 
     if (params.id) {
-      await updateUser(newCustomerData, params.id)
+      const response = await updateUser(newCustomerData, params.id)
+      if (response.statusCode) {
+        alert(response.message);
+        return;
+      }
       alert('Cliente editado com sucesso!');
       fetchUsersByIdAndSetOnForm(params.id)
     } else {
-      await createNewUser(newCustomerData);
+      const response = await createNewUser(newCustomerData);
+      if (response.statusCode) {
+        alert(response.message);
+        return;
+      }
       setName('');
       setEmail('');
       setCpf('');
