@@ -1,10 +1,10 @@
-/* For AppBar */
+@import '../styles/mixins';
+
 .appBar {
     position: static;
     height: 60px;
     display: flex;
     align-items: center;
-    background-color: black;
 }
 
 .mainContainer {
@@ -25,22 +25,4 @@
 
 .clientPanelIcon {
     font-size: 40px;
-}
-
-/* For the user list header */
-.userListHeader {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-block: 10px;
-}
-
-.newClientButton {
-    font-size: 10px;
-    background-color: #e29933;
-    box-shadow: none;
-}
-
-.newClientButton:hover {
-    background-color: #c87a0d;
 }
