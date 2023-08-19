@@ -1,0 +1,30 @@
+name: Rodando os testes automatizados
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  tests-api:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Verifica o repositório do Git
+        uses: actions/checkout@v3
+
+      - name: Cria a imagem
+        run: cd backend && docker build . -t test-fullstack-api -f Dockerfile.test
+
+      - name: Sobe o container
+        run: cd backend && docker run -dit --name app-api-test test-fullstack-api
+
+      - name: Executa os testes unitários
+        run: cd backend && docker exec -t app-api-test npm run test
+
+      - name: Executa os testes e2e
+        run: cd backend && docker exec -t app-api-test npm run test:e2e
+
+      - name: Derruba o container
+        if: always()
+        run: cd backend && docker rm --force app-api-test
