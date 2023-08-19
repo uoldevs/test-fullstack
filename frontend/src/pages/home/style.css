@@ -1,0 +1,33 @@
+.home-page-container {
+  display: flex;
+  justify-content: center;
+}
+
+.home-page-listing-header {
+  margin-top: 80px;
+}
+
+.home-page-listing-container {
+  width: 80%;
+}
+
+.home-page-listing-view {
+  border-top: 1px #dfdfdf solid;
+  margin-top: 20px;
+  padding-top: 20px;
+}
+
+.home-page-listing-view-header {
+  margin-bottom: 20px;
+}
+
+.home-page-listing-view-header h3 {
+  font-weight: 400;
+  color: #6B747D;
+  margin-bottom: 8px;
+}
+
+.home-page-listing-view-header p {
+  font-weight: 300;
+  color: #ACACAC;
+}

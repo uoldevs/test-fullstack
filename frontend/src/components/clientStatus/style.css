@@ -1,0 +1,28 @@
+.status-active {
+  background-color: #4AAD5B;
+}
+
+.status-inactive {
+  background-color: #D63240;
+}
+
+.status-awaiting-activation {
+  background-color: #D3A710;
+}
+
+.status-disabled {
+  background-color: #D2D2D2;
+}
+
+.client-status-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  margin-right: 5px;
+}
+
+.client-card-status-container {
+  display: flex;
+  color: #9e9e9e;
+  align-items: center;
+}
