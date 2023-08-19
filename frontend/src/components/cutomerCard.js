@@ -18,21 +18,21 @@ const CustomerCard = ({ customer }) => {
   }
 
   return (
-    <div className="lg:p-4 border rounded shadow-md lg:m-2 my-2 w-full md:flex md:justify-between text-xs lg:text-base text-center md:text-start">
-      <div className="md:w-fit">
+    <div className="lg:p-4 border rounded shadow-md lg:m-2 my-2 w-full md:flex md:justify-between text-xs lg:text-sm text-center md:text-start">
+      <div className="md:w-1/4">
         <div className="m-2">
-          <strong className="">Nome:</strong> {customer.name}
+          {customer.name}
         </div>
         <div className="m-2">
-          <strong className="">Email:</strong> {customer.email}
+          {customer.email}
         </div>
       </div>
-      <div className="md:w-fit">
+      <div className="">
         <div className="m-2">
-          <strong className="">CPF:</strong> {customer.cpf}
+          {customer.cpf}
         </div>
-        <div>
-          <strong className="m-2">Telefone:</strong>{customer.phoneNumber}
+        <div className="m-2">
+          {customer.phoneNumber}
         </div>
       </div>
       <div className="flex justify-center items-center lg:m-2 md:w-1/5 md:justify-start">
