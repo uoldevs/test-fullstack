@@ -37,7 +37,7 @@ const ClientRow: React.FC<ClientRowProps> = ({ client }) => {
             </Box>
 
             <Box className={styles.innerContainer3}>
-                <Button variant="outlined" className={styles.editButton}>
+                <Button className={styles.editButton} variant="outlined">
                     Editar
                 </Button>
             </Box>

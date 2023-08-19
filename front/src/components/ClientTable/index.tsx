@@ -5,8 +5,8 @@ import { Box, Typography, Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import apiHandler from '@/utils/apiHandler';
 import { ClientType } from '@/types';
-import Loading from '../Loading';
 import ClientRow from '../ClientRow';
+import Loading from '../Loading';
 
 const clientsMock = [
     {
@@ -79,7 +79,7 @@ const ClientTable = () => {
                     <Typography variant="h5">Listagem de usuários</Typography>
                     <Typography variant="subtitle1">Escolha um cliente para visualizar os detalhes</Typography>
                 </Box>
-                <Button variant="contained" className={styles.newClientButton}>
+                <Button variant="contained" sx={{ backgroundColor: ' #c87a0d' }} className={styles.newClientButton}>
                     Novo cliente
                 </Button>
             </Box>

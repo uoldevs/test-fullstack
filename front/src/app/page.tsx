@@ -1,25 +1,19 @@
-import './page.style.scss';
-import Image from 'next/image';
-import { AppBar, Box, Divider, Typography } from '@mui/material';
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+'use client';
+import './globals.css';
+import styles from './style.module.scss';
+import { Box, Divider } from '@mui/material';
 import '@fontsource/roboto/300.css';
-import uolLogo from '../../public/logo-uol.png';
 import ClientTable from '@/components/ClientTable';
+import ClienHeader from '@/components/ClientHeader';
+import AppBarCustom from '@/components/AppBar';
 
 export default function Home() {
     return (
         <Box>
-            <AppBar className="appBar" sx={{ backgroundColor: 'black' }}>
-                <Image src={uolLogo} alt="Logo" height={50} />
-            </AppBar>
-            <Box className="mainContainer">
-                <Box className="clientPanelHeader">
-                    <PersonOutlineOutlinedIcon className="clientPanelIcon" />
-                    <Typography variant="h4">Painel de clientes</Typography>
-                </Box>
-
+            <AppBarCustom />
+            <Box sx={{ marginTop: '125px' }} className={styles.mainContainer}>
+                <ClienHeader />
                 <Divider />
-
                 <ClientTable />
             </Box>
         </Box>

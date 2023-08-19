@@ -1,15 +1,13 @@
 import React from 'react';
-
-import styles from './style.module.scss';
-import { Box } from '@mui/material';
+import './loading.css';
 
 const Loading = () => {
     return (
-        <Box className={styles.spinnerContainer}>
-            <Box className={styles.spinner}>
-                <Box className={styles.spinnerInner} />
-            </Box>
-        </Box>
+        <div className="spinner-container">
+            <div className="spinner">
+                <div className="spinner-inner" />
+            </div>
+        </div>
     );
 };
 
