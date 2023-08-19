@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import PageHeader from '../../components/pageHeader/PageHeader';
 import ClientListingHeader from '../../components/clientListingHeader/ClientListingHeader';
 import './style.css';
+import { ClientContext } from '../../context/ClientContext';
+import ClientList from '../../components/clientList/ClientList';
 
 function Home() {
+  const { fetchClientStatus, clientsStatus } = useContext(ClientContext);
+
+  useEffect(() => {
+    (async () => {
+      await fetchClientStatus();
+    })();
+  }, []);
+
   return (
     <main>
       <PageHeader />
@@ -15,6 +25,7 @@ function Home() {
               <h3>Listagem de usuários</h3>
               <p>Escolha um cliente para vizualizar os detalhes</p>
             </header>
+            <ClientList clients={clientsStatus} />
           </div>
         </div>
       </section>
