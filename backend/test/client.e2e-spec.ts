@@ -116,4 +116,25 @@ describe('Testing route /clients', () => {
       });
     });
   });
+
+  describe('/clients (PATCH)', () => {
+    it('Testing when update a client successfully', async () => {
+      const { body: newClient } = await request(app.getHttpServer()).get(
+        ApiRoutes.CLIENTS,
+      );
+
+      const clientId = newClient[newClient.length - 1].id;
+
+      const { status, body } = await request(app.getHttpServer())
+        .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+        .send(dataMock.clientToUpdated);
+
+      expect(status).toBe(200);
+      expect(body.name).toBe(dataMock.clientUpdated.name);
+      expect(body.email).toBe(dataMock.clientUpdated.email);
+      expect(body.cpf).toBe(dataMock.clientUpdated.cpf);
+      expect(body.phoneNumber).toBe(dataMock.clientUpdated.phoneNumber);
+      expect(body.status).toEqual(dataMock.clientUpdated.status);
+    });
+  });
 });

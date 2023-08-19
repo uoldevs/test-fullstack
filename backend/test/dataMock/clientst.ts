@@ -39,3 +39,17 @@ export const clientToCreate = {
     name: ClientStatus.ATIVO,
   },
 };
+
+export const clientToUpdated = {
+  email: 'jonh_doe_test_new@gmail.com',
+};
+
+export const clientUpdated = {
+  cpf: '34257345047',
+  email: 'jonh_doe_test_new@gmail.com',
+  name: 'Jonh Doe Test',
+  phoneNumber: '82987676787',
+  status: {
+    name: ClientStatus.ATIVO,
+  },
+};
