@@ -160,6 +160,48 @@ describe('Testing route /clients', () => {
           expect(body.message).toBe('O nome deve ter no máximo 100 caractere');
         });
       });
+
+      describe('Error in cpf field', () => {
+        it('Cpf is not send', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.removeKey('cpf'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O CPF não pode ser vazio');
+        });
+
+        it('Cpf is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('cpf', ''));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O CPF não pode ser vazio');
+        });
+
+        it('Cpf is not a string', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('cpf', 1));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O CPF deve ser uma string');
+        });
+
+        it('Cpf have a length different of 11', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('cpf', 1));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O CPF deve ser uma string');
+        });
+      });
     });
   });
 
