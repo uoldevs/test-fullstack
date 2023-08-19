@@ -1,4 +1,7 @@
 import express from 'express';
+import conn from './database/connection';
+console.log(conn);
+
 const app = express();
 app.use(express.json());
 
