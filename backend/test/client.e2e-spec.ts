@@ -49,4 +49,19 @@ describe('Testing route /clients', () => {
       expect(body).toHaveLength(3);
     });
   });
+
+  describe('/clients (POST)', () => {
+    it('Testing when create a client successfully', async () => {
+      const { status, body } = await request(app.getHttpServer())
+        .post(ApiRoutes.CLIENTS)
+        .send(dataMock.clientToCreate);
+
+      expect(status).toBe(201);
+      expect(body.name).toBe(dataMock.clientToCreate.name);
+      expect(body.email).toBe(dataMock.clientToCreate.email);
+      expect(body.cpf).toBe(dataMock.clientToCreate.cpf);
+      expect(body.phoneNumber).toBe(dataMock.clientToCreate.phoneNumber);
+      expect(body.status).toEqual(dataMock.clientToCreate.status);
+    });
+  });
 });

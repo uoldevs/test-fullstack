@@ -29,3 +29,13 @@ export const getClients = [
     },
   },
 ];
+
+export const clientToCreate = {
+  cpf: '34257345047',
+  email: 'jonh_doe_test@gmail.com',
+  name: 'Jonh Doe Test',
+  phoneNumber: '82987676787',
+  status: {
+    name: ClientStatus.ATIVO,
+  },
+};
