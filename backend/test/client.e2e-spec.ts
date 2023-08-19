@@ -502,7 +502,37 @@ describe('Testing route /clients', () => {
         });
       });
 
-      describe('Error in email field', () => {});
+      describe('Error in email field', () => {
+        it('Email is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ email: '' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O email não pode ser vazio');
+        });
+
+        it("Email ins't a string", async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ email: 1 });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O email deve ser uma string');
+        });
+
+        it('Email is invalid', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ email: 'invalid_email.com' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O email é inválido');
+        });
+      });
       describe('Error in phoneNumber field', () => {});
       describe('Error in status field', () => {});
     });
