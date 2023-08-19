@@ -1,0 +1,14 @@
+.client-listing-header-container {
+  display: flex;
+  width: fit-content;
+}
+
+.client-listing-header-content,
+.client-listing-header-user-icon {
+  font-size: 2em;
+  color: #474747;
+}
+
+.client-listing-header-user-icon {
+  margin-right: 15px;
+}
