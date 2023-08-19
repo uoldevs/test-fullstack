@@ -436,5 +436,44 @@ describe('Testing route /clients', () => {
         expect(body.statusCode).toBe(409);
       });
     });
+
+    describe('Testing when have a error in body', () => {
+      describe('Error in name field', () => {
+        it('Name is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ name: '' });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome não pode ser vazio');
+        });
+
+        it('Name is not a string', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ name: 1 });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome deve ser uma string');
+        });
+
+        it('Name have over than 100 char', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
+            .send({ name: 'Jonh Doe'.repeat(15) });
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome deve ter no máximo 100 caractere');
+        });
+      });
+
+      describe('Error in cpf field', () => {});
+      describe('Error in email field', () => {});
+      describe('Error in phoneNumber field', () => {});
+      describe('Error in status field', () => {});
+    });
   });
 });
