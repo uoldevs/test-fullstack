@@ -68,11 +68,11 @@ function ClientForm( create: FormProps ) {
       newErrors.email = 'Por favor, digite o e-mail.'
     }
     if (formData.cpf.trim() === '' || formData.cpf.trim().length > 11) {
-      newErrors.cpf = 'CPF obrigatório e deve conter 11 dígitos'
+      newErrors.cpf = 'Por favor, digite um CPF válido.'
     }
     if (formData.phone.trim() === ''
       || (formData.phone.trim().length > 11 || formData.phone.trim().length < 10 )) {
-      newErrors.phone = 'Número de telefone com DDD obrigatório.'
+      newErrors.phone = 'Por favor, digite telefone com DDD.'
     }
 
     if(Object.keys(newErrors).length === 0) {

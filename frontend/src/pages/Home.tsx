@@ -21,10 +21,12 @@ function Home() {
   return(
     <div className="home-container">
       <HeaderClientDashbord/>
-      <div>
-        <p>Listagem de usuários</p>
-        <p>Escolha um cliente para visualizar os detalhes</p>
-        <div>
+      <div className="info-container">
+        <div className="info">
+          <p className="info-title">Listagem de usuários</p>
+          <p className="info-p">Escolha um cliente para visualizar os detalhes</p>
+        </div>
+        <div className="info-button">
           <button onClick={() => navigate('/new-client')}>Novo cliente</button>
         </div>
       </div>

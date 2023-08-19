@@ -6,9 +6,11 @@ function ClientRegistration() {
   return(
     <div className="registration-container">
       <HeaderClientDashbord/>
-      <div>
-        <p>Novo usuário</p>
-        <p>Informe os campos a seguir para criar novo usuário</p>
+      <div className="info-container">
+        <div className="info">
+        <p className="info-title">Novo usuário</p>
+        <p className="info-p">Informe os campos a seguir para criar novo usuário</p>
+        </div>
       </div>
       <ClientForm create/>
     </div>
