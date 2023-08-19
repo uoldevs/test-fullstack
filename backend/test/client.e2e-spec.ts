@@ -115,6 +115,52 @@ describe('Testing route /clients', () => {
         expect(body.statusCode).toBe(409);
       });
     });
+
+    describe('Testing when have a error in body', () => {
+      const serializeBody = new SerializeBody(dataMock.clientToCreate);
+
+      describe('Error in name field', () => {
+        it('Name is not send', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.removeKey('name'));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome não pode ser vazio');
+        });
+
+        it('Name is empty', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('name', ''));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome não pode ser vazio');
+        });
+
+        it('Name is not a string', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.changeKeyValue('name', 1));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome deve ser uma string');
+        });
+
+        it('Name have over than 100 char', async () => {
+          const { status, body } = await request(app.getHttpServer())
+            .post(ApiRoutes.CLIENTS)
+            .send(serializeBody.repeatChar('name', 20));
+
+          expect(status).toBe(400);
+          expect(body.message).toBeDefined();
+          expect(body.message).toBe('O nome deve ter no máximo 100 caractere');
+        });
+      });
+    });
   });
 
   describe('/clients (PATCH)', () => {
