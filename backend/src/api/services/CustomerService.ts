@@ -10,4 +10,9 @@ export default class CustomerService implements ICustomerService {
     const response = await this.model.findAll();
     return response;
   }
+
+  async create(customer: ICustomer): Promise<ICustomer> {
+    const { id } = await this.model.create({ ...customer });
+    return { id, ...customer };
+  }
 }

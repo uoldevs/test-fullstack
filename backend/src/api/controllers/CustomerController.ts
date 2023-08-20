@@ -12,4 +12,10 @@ export default class CustomerController {
     const response = await this._service.getAll();
     return res.status(200).json(response);
   }
+
+  async create(req: Request, res: Response) {
+    const customer = req.body;
+    const response = await this._service.create(customer);
+    return res.status(201).json(response);
+  }
 }
