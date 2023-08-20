@@ -12,17 +12,36 @@ interface ClientFormProps {
     phoneNumber: string;
     status: string;
   };
+  clientValues: {
+    name: string;
+    email: string;
+    cpf: string;
+    phoneNumber: string;
+    status: string;
+  };
 }
 
-function ClientForm({ onChange, errorList }: ClientFormProps) {
+function ClientForm({ onChange, errorList, clientValues }: ClientFormProps) {
   return (
     <div className="client-form">
-      <InputLabel name="name" placeholder="Nome" onChange={onChange} error={errorList.name} />
-      <InputLabel name="email" placeholder="E-Mail" onChange={onChange} error={errorList.email} />
-      <InputLabel name="cpf" placeholder="Cpf" onChange={onChange} error={errorList.cpf} />
-      <InputLabel name="phoneNumber" placeholder="Telefone" onChange={onChange} error={errorList.phoneNumber} />
+      <InputLabel name="name" placeholder="Nome" onChange={onChange} error={errorList.name} value={clientValues.name} />
+      <InputLabel
+        name="email"
+        placeholder="E-Mail"
+        onChange={onChange}
+        error={errorList.email}
+        value={clientValues.email}
+      />
+      <InputLabel name="cpf" placeholder="Cpf" onChange={onChange} error={errorList.cpf} value={clientValues.cpf} />
+      <InputLabel
+        name="phoneNumber"
+        placeholder="Telefone"
+        onChange={onChange}
+        error={errorList.phoneNumber}
+        value={clientValues.phoneNumber}
+      />
       <div>
-        <select className="client-form-select-status" name="status" onChange={onChange}>
+        <select className="client-form-select-status" value={clientValues.status} name="status" onChange={onChange}>
           <option value={undefined} hidden>
             Status
           </option>

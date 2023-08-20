@@ -1,40 +1,42 @@
-.create-client-container {
+.edit-client-container {
   display: flex;
   justify-content: center;
   margin-top: 50px;
 }
 
-.create-client-form-header-container {
+.edit-client-form-header-container {
   width: 80%;
 }
 
-.create-client-listing-header {
+.edit-client-listing-header {
   margin-bottom: 20px;
 }
 
-.create-client-listing-infos-form-container div h3 {
+.edit-client-listing-infos-form-container div h3 {
   font-weight: 400;
   color: #6B747D;
   margin-bottom: 8px;
 }
 
-.create-client-listing-infos-form-container div > p {
+.edit-client-listing-infos-form-container div > p {
   font-weight: 300;
   color: #ACACAC;
 }
 
-.create-client-listing-infos-form-container {
+.edit-client-listing-infos-form-container {
   border-top: 1px #dfdfdf solid;
   margin-top: 20px;
   margin-bottom: 10px;
   padding-top: 20px;
 }
 
-.create-client-create-back-btn {
+.edit-client-btn-container {
   margin-top: 30px;
+  display: flex;
+  flex-direction: row;
 }
 
-.create-client-create-btn {
+.edit-client-edit-btn {
   padding: 10px 30px;
   border-radius: 3px;
   background-color: #E29934;
@@ -44,7 +46,7 @@
   margin-right: 20px;
 }
 
-.create-client-back-btn {
+.edit-client-back-btn {
   background-color: #fff;
   color: #E29934;
   padding: 10px 30px;
@@ -53,7 +55,8 @@
   border: 1px solid #E29934;
 }
 
-.create-client-back-btn:hover {
+.edit-client-back-btn:hover {
   background-color: #E29934;
   color: #fff;
 }
+

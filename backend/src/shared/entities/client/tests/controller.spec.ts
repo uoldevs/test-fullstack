@@ -33,11 +33,39 @@ describe('ClientController', () => {
         .spyOn(clientService, 'findAllClientsAndStatus')
         .mockResolvedValue(dataMock.allClientsMock);
 
-      const result = await clientController.findAllClientsAndStatus();
+      jest
+        .spyOn(clientService, 'findById')
+        .mockResolvedValue(dataMock.allClientsMock[0]);
+
+      const result = await clientController.findAllClientsAndStatus({
+        clientId: undefined,
+      });
 
       expect(result).toStrictEqual(dataMock.allClientsMock);
       expect(clientService.findAllClientsAndStatus).toHaveBeenCalled();
       expect(clientService.findAllClientsAndStatus).toHaveBeenCalledWith();
+      expect(clientService.findById).not.toHaveBeenCalled();
+    });
+
+    it('should return a client info with theirs status if pass clientId', async () => {
+      jest
+        .spyOn(clientService, 'findAllClientsAndStatus')
+        .mockResolvedValue(dataMock.allClientsMock);
+
+      jest
+        .spyOn(clientService, 'findById')
+        .mockResolvedValue(dataMock.allClientsMock[0]);
+
+      const result = await clientController.findAllClientsAndStatus({
+        clientId: '8215b4b9-b9ed-4f99-9aaa-0f1715f4139e',
+      });
+
+      expect(result).toStrictEqual(dataMock.allClientsMock[0]);
+      expect(clientService.findById).toHaveBeenCalled();
+      expect(clientService.findById).toHaveBeenCalledWith(
+        '8215b4b9-b9ed-4f99-9aaa-0f1715f4139e',
+      );
+      expect(clientService.findAllClientsAndStatus).not.toHaveBeenCalled();
     });
   });
 

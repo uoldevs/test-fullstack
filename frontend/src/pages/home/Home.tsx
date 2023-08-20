@@ -37,6 +37,7 @@ function Home() {
             </header>
             <ClientList clients={clientsStatus} />
           </div>
+          <p className="home-page-client-count">Exibindo {clientsStatus.length} número de clientes</p>
         </div>
       </section>
     </main>

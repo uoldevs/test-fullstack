@@ -12,8 +12,8 @@ import ErrorCard from '../../components/errorCard/ErrorCard';
 function CreateClient() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ name: '', email: '', cpf: '', phoneNumber: '', status: '' });
-  const [apiErrorMsg, setApiErrorMsg] = useState('');
   const [formDataErros, setFormDataErros] = useState({ name: '', email: '', cpf: '', phoneNumber: '', status: '' });
+  const [apiErrorMsg, setApiErrorMsg] = useState('');
   const errorRef = useRef(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -56,6 +56,8 @@ function CreateClient() {
 
       if (!errorRef.current) {
         await createClient(client);
+
+        setApiErrorMsg('');
       }
     } catch (error) {
       setApiErrorMsg(handleApiErrors(error));
@@ -73,7 +75,7 @@ function CreateClient() {
             <h3>Novo usuário</h3>
             <p>Informe os campos a seguir para criar novo usuário</p>
           </div>
-          <ClientForm onChange={handleChange} errorList={formDataErros} />
+          <ClientForm onChange={handleChange} errorList={formDataErros} clientValues={formData} />
         </div>
         <ErrorCard message={apiErrorMsg} />
         <div className="create-client-create-back-btn">

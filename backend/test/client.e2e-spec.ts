@@ -45,7 +45,6 @@ describe('Testing route /clients', () => {
       const { status, body } = await request(app.getHttpServer()).get(
         ApiRoutes.CLIENTS,
       );
-
       expect(status).toBe(200);
       body.map((e, i) => {
         expect(e.name).toBe(dataMock.getClients[i].name);
@@ -56,6 +55,42 @@ describe('Testing route /clients', () => {
       });
       expect(body).toBeInstanceOf(Array);
       expect(body).toHaveLength(3);
+    });
+  });
+
+  describe('/clients?clientId= (GET)', () => {
+    let clientId: string;
+    const invalidId = 'f96ba685-5786-4119-95c3-bd0a48c241dd';
+
+    beforeAll(async () => {
+      const { body: newClient } = await request(app.getHttpServer()).get(
+        ApiRoutes.CLIENTS,
+      );
+
+      clientId = newClient[0].id;
+    });
+
+    it('Testing when /clients?clientId= (GET) have sucess', async () => {
+      const { status, body } = await request(app.getHttpServer()).get(
+        `${ApiRoutes.CLIENTS}?clientId=${clientId}`,
+      );
+
+      expect(status).toBe(200);
+      expect(body.name).toBe(dataMock.getClients[0].name);
+      expect(body.email).toBe(dataMock.getClients[0].email);
+      expect(body.cpf).toBe(dataMock.getClients[0].cpf);
+      expect(body.phoneNumber).toBe(dataMock.getClients[0].phoneNumber);
+      expect(body.status).toEqual(dataMock.getClients[0].status);
+    });
+
+    it('Testing when /clients?clientId= (GET) not found client by id', async () => {
+      const { status, body } = await request(app.getHttpServer()).get(
+        `${ApiRoutes.CLIENTS}?clientId=${invalidId}`,
+      );
+
+      expect(status).toBe(404);
+      expect(body.message).toBeDefined();
+      expect(body.message).toBe('Usuário não encontrado');
     });
   });
 
@@ -375,6 +410,7 @@ describe('Testing route /clients', () => {
 
   describe('/clients (PATCH)', () => {
     let clientId: string;
+    const invalidId = 'f96ba685-5786-4119-95c3-bd0a48c241dd';
 
     beforeAll(async () => {
       const { body: newClient } = await request(app.getHttpServer()).get(
@@ -403,7 +439,17 @@ describe('Testing route /clients', () => {
       const repeatedCpf = dataMock.getClients[0].cpf;
       const repeatedPhoneNumber = dataMock.getClients[0].phoneNumber;
 
-      it('When create with a client email repeated', async () => {
+      it('When update not found client by id', async () => {
+        const { status, body } = await request(app.getHttpServer())
+          .patch(`${ApiRoutes.CLIENTS}?clientId=${invalidId}`)
+          .send(dataMock.clientToUpdated);
+
+        expect(status).toBe(404);
+        expect(body.message).toBeDefined();
+        expect(body.message).toBe('Usuário não encontrado');
+      });
+
+      it('When update with a client email repeated', async () => {
         const { status, body } = await request(app.getHttpServer())
           .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
           .send({ email: repeatedEmail });
@@ -414,7 +460,7 @@ describe('Testing route /clients', () => {
         expect(body.statusCode).toBe(409);
       });
 
-      it('When create with a client cpf repeated', async () => {
+      it('When update with a client cpf repeated', async () => {
         const { status, body } = await request(app.getHttpServer())
           .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
           .send({ cpf: repeatedCpf });
@@ -425,7 +471,7 @@ describe('Testing route /clients', () => {
         expect(body.statusCode).toBe(409);
       });
 
-      it('When create with a client phoneNumber repeated', async () => {
+      it('When update with a client phoneNumber repeated', async () => {
         const { status, body } = await request(app.getHttpServer())
           .patch(`${ApiRoutes.CLIENTS}?clientId=${clientId}`)
           .send({ phoneNumber: repeatedPhoneNumber });

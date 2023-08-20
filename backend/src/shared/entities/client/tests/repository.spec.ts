@@ -42,6 +42,28 @@ describe('ClientRepository', () => {
     });
   });
 
+  describe('findById', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should return a client with yours status', async () => {
+      const clientId = dataMock.allClientsMock[0].id;
+      jest
+        .spyOn(prismaService.client, 'findFirst')
+        .mockResolvedValue(dataMock.allClientsMock[0] as any);
+
+      const result = await clientRepository.findById(clientId);
+
+      expect(result).toStrictEqual(dataMock.allClientsMock[0]);
+      expect(prismaService.client.findFirst).toHaveBeenCalled();
+      expect(prismaService.client.findFirst).toHaveBeenCalledWith({
+        where: { id: clientId },
+        ...dataMock.filterClientRepository,
+      });
+    });
+  });
+
   describe('findByCpfEmailAndPhoneNumber', () => {
     afterEach(() => {
       jest.clearAllMocks();
@@ -50,7 +72,7 @@ describe('ClientRepository', () => {
     it('should return a client with based in filters', async () => {
       jest
         .spyOn(prismaService.client, 'findFirst')
-        .mockResolvedValue(dataMock.client);
+        .mockResolvedValue(dataMock.allClientsMock[0] as any);
 
       const cpf = dataMock.client.cpf;
       const email = dataMock.client.email;
@@ -62,9 +84,39 @@ describe('ClientRepository', () => {
         phoneNumber,
       );
 
-      expect(result).toStrictEqual(dataMock.client);
+      expect(result).toStrictEqual(dataMock.allClientsMock[0]);
       expect(prismaService.client.findFirst).toHaveBeenCalled();
       expect(prismaService.client.findFirst).toHaveBeenCalledWith({
+        where: {
+          OR: [{ cpf }, { email }, { phoneNumber }],
+        },
+      });
+    });
+  });
+
+  describe('findAllByCpfEmailAndPhoneNumber', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should return a client with based in filters', async () => {
+      jest
+        .spyOn(prismaService.client, 'findMany')
+        .mockResolvedValue([dataMock.allClientsMock[0]] as any);
+
+      const cpf = dataMock.client.cpf;
+      const email = dataMock.client.email;
+      const phoneNumber = dataMock.client.phoneNumber;
+
+      const result = await clientRepository.findAllByCpfEmailAndPhoneNumber(
+        cpf,
+        email,
+        phoneNumber,
+      );
+
+      expect(result).toStrictEqual([dataMock.allClientsMock[0]]);
+      expect(prismaService.client.findMany).toHaveBeenCalled();
+      expect(prismaService.client.findMany).toHaveBeenCalledWith({
         where: {
           OR: [{ cpf }, { email }, { phoneNumber }],
         },

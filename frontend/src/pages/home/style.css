@@ -1,6 +1,7 @@
 .home-page-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 60px;
 }
 
 .home-page-listing-header {
@@ -43,6 +44,10 @@
   border: none;
   cursor: pointer;
 }
+.home-page-client-count {
+  color: #ACACAC;
+}
+
 
 @media (max-width: 530px) {
   .home-page-listing-view-header {
