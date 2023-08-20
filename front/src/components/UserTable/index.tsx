@@ -23,7 +23,9 @@ const UserTable = () => {
             <Box className={styles.userListHeader}>
                 <Box sx={{}}>
                     <Typography variant="h5">Listagem de usuários</Typography>
-                    <Typography variant="subtitle1">Escolha um usere para visualizar os detalhes</Typography>
+                    <Typography variant="subtitle1" sx={{ color: 'gray' }}>
+                        Escolha um usere para visualizar os detalhes
+                    </Typography>
                 </Box>
                 <Button
                     href="/users/new"
@@ -42,6 +44,9 @@ const UserTable = () => {
                     ))}
                 </Box>
             )}
+            <Typography variant="subtitle1" sx={{ color: 'gray' }}>
+                Exibindo {users.length} clientes
+            </Typography>
         </Box>
     );
 };
