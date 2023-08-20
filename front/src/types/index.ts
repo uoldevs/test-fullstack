@@ -1,11 +1,11 @@
-export type ClientType = {
+export type UserType = {
     id?: number;
     name: string;
     email: string;
     cpf: string;
     phone: string;
     status: string;
-    createdAt?: string;
-    updatedAt?: string;
-    deletedAt?: string;
+    createdAt?: Date | string | null;
+    updatedAt?: Date | string | null;
+    deletedAt?: Date | string | null;
 };
