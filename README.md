@@ -1,41 +1,98 @@
-# Teste Fullstack: Aplicativo de Gerenciamento de Clientes
+# Aplicativo de Gerenciamento de Clientes
 
 ## Descrição:
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+Aplicativo fullstack que permita aos usuários visualizar e criar clientes.
 
-## Requisitos do Frontend:
+<h3><strong>Frontend</strong></h3>
 
-1. Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
-2. Permitir a criação de um novo cliente através de um formulário.
-3. Na tela de edição, fornecer alertas para o usuário em caso de dados inválidos.
-4. Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
-5. Comunicar-se com a API para obter os dados dos clientes cadastrados.
+- Exibi listagem de clientes.
+- Permitir a criação de um novo cliente.
+- Fornece alertas para o usuário em caso de dados inválidos.
 
-## Requisitos do Backend:
+<details>
+<summary><strong>Ferramentas:</strong></summary>
 
-Criar uma API que ofereça endpoints para:
+[Vite](https://vitejs.dev/)
+[React](https://react.dev/)
+[React Router](https://reactrouter.com/en/main)
+[React Icons](https://react-icons.github.io/react-icons/)
+[CSS](https://www.w3.org/Style/CSS/Overview.en.html)
+[TypeScript](https://www.typescriptlang.org/)
+</details>
+<br>
 
-1. Obter a listagem de clientes cadastrados.
-2. Cadastrar um novo cliente com informações válidas.
-3. Atualizar informações de cliente existente.
-4. Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
+<h3><strong>Backend</strong></h3>
 
-## Requisitos de Qualidade de Código:
+**Endpoits:**
+- Listar cliente - `/clients`
+- Cadastrar um novo cliente com informações válidas - `/create`
+- Atualizar informações de cliente existente - `/update`
 
-Escreva um código limpo, legível e bem organizado.
-Adote boas práticas de desenvolvimento e arquitetura.
+<details>
+<summary><strong>Ferramentas:</strong></summary>
 
-## Itens Desejáveis (opcional):
+Banco: [SQLite](https://www.sqlite.org/index.html), [Prisma](https://www.prisma.io/) <br>
+Linguagem: [Nodejs](https://nodejs.org/it), [TypeScript](https://www.typescriptlang.org/) <br>
+Framework web: [Express](https://expressjs.com/pt-br/) <br>
+Validação: [Zod](https://zod.dev/), [cpf-cnpj-validator](https://www.npmjs.com/package/cpf-cnpj-validator) <br>
+Tratamento erros assíncronos: [Express-async-errors](https://www.npmjs.com/package/express-async-errors)<br>
 
-- Testes unitários
-- Bibliotecas ou frameworks adicionais
+</details>
+<br>
 
-## Telas:
+<h2>Como rodar a aplicação ⚙️</h2>
 
-- [Tela Inicial](https://test-frontend-uolpp.web.app/assets/images/tela-inicial.jpg)
-- [Tela de Edição](https://test-frontend-uolpp.web.app/assets/images/tela-edicao.jpg)
+<details>
+<summary>Backend:</summary>
 
-## Instruções Finais:
+Entre na pasta backend:
+```
+cd backend
+```
+Instale as depenências:
+```
+npm install
+```
+Rode a aplicação:
+```
+npm run dev
+```
+URL base: `localhost:3001`
 
-Após concluir o desafio, crie um pull request neste repositório com duas pastas separadas: uma contendo o projeto frontend e outra com o projeto backend, para que possamos avaliar seu trabalho. Boa sorte!
+Body rotas POST e PUT:
+```
+{
+    "name": "Bell-mère",
+    "email": "bell@gmail.com",
+    "cpf": "21219458066",
+    "status": "Desativado"
+}
+```
+</details>
+
+<details>
+<summary>Frontend:</summary>
+
+Entre na pasta frontend:
+```
+cd frontend
+```
+Instale as depenências:
+```
+npm install
+```
+Rode a aplicação:
+```
+npm run dev
+```
+
+Vá para `http://localhost:5173/` no navegador.
+
+<br>
+</details>
+<br>
+
+## Próximos passos 👣
+- Testes backend
+- Testes frontend
