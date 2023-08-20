@@ -2,12 +2,13 @@ import PanelHeader from '../components/mini/PanelHeader';
 import SectionSpec from '../components/mini/SectionSpec';
 import Header from '../components/Header';
 import Input from '../components/mini/Input';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import DropdownSelect from '../components/mini/DropDownSelector';
 import Button from '../components/mini/Button';
 import { useNavigate } from 'react-router-dom';
 import MiniModal from '../components/mini/MiniModal';
 import { AlertCircle } from 'lucide-react';
+import axios from 'axios';
 
 function Register() {
 
@@ -45,12 +46,76 @@ function Register() {
         status: false,
     })
 
-    // useEffect(() => {
-    //     const cpfPattern = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-    //     if (clientInfo.cpf.length === 11 && !cpfPattern.test(clientInfo.cpf)) {
-    //         setInputAlert({ ...inputAlert, cpf: false });
-    //     }
-    //   }, [clientInfo.cpf]);
+    const handleStatus = (status) => {
+        if (status === 'Aguardando ativação') {
+            return 'Aguardando'
+        }
+
+        return status
+    }
+
+
+    const registerUser = () => {
+        console.log(clientInfo)
+        axios.post('https://uol-api.onrender.com/', {
+            name: clientInfo.name,
+            email: clientInfo.email,
+            cpf: clientInfo.cpf.replace(/\D/g, ''),
+            phone: clientInfo.phone.replace(/\D/g, ''),
+            status: handleStatus(clientInfo.status),
+        })
+            .then((response) => {
+                console.log(response.data)
+                setClientInfo({
+                    name: '',
+                    email: '',
+                    cpf: '',
+                    phone: '',
+                    status: '',
+                })
+            })
+    }
+
+    const CheckClientInfo = () => {
+
+        let inputStatus = {
+            name: false,
+            email: false,
+            cpf: false,
+            phone: false,
+            status: false,
+        }
+
+        if (clientInfo.name === '' || clientInfo.name.length < 3) {
+            inputStatus.name = true;
+        }
+
+        if (clientInfo.email === '' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientInfo.email) === false) {
+            inputStatus.email = true;
+        }
+
+        if (clientInfo.cpf === '' || /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(clientInfo.cpf) === false) {
+            inputStatus.cpf = true;
+        }
+
+        if (clientInfo.phone === '' || /^\(\d{2}\)\s\d{4,5}-\d{4}$/.test(clientInfo.phone) === false) {
+            inputStatus.phone = true;
+        }
+
+        if (clientInfo.status === '') {
+            inputStatus.status = true;
+        }
+
+        setInputAlert(inputStatus);
+    }
+
+    const handleClick = () => {
+        CheckClientInfo()
+        if (Object.values(inputAlert).includes(true)) {
+            return;
+        }
+        registerUser()
+    }
 
 
     return (
@@ -82,7 +147,7 @@ function Register() {
 
                 </div>
                 <div className='flex flex-row gap-4 justify-start mt-14'>
-                    <Button name="Criar" size="big" background="orange" active={() => alert('tchama')} />
+                    <Button name="Criar" size="big" background="orange" active={() => handleClick()} />
                     <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
                 </div>
 

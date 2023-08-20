@@ -23,19 +23,12 @@ const DropdownSelect = ({ props }) => {
   };
 
   return (
-    <div className="relative inline-block w-72 text-left">
+    <div className="relative inline-block w-62 text-left">
       <div>
         <button
           type="button"
           className="flex justify-between items-center px-4 w-72 border rounded-md border-[#9a9a9a]'} text-[#9a9a9a] text-lg px-5 rounded-md w-[250px] h-[50px] flex items-center relative focus:outline-none focus:ring ring-stone-400"
           onClick={toggleDropdown}
-          onBlur={() => {
-            if (!clientInfo.status !== '') {
-              setInputAlert({ ...inputAlert, status: true });
-            } else {
-              setInputAlert({ ...inputAlert, status: false });
-            }
-          }}
         >
           <span className='text-[#000000]'>{clientInfo.status || <span className='text-[#9a9a9a]'>Status</span>}</span>
           <span

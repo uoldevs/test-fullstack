@@ -24,7 +24,7 @@ const Input = ({ mode, props }) => {
                 setClientInfo({ ...clientInfo, name: event.target.value });
             };
             onBlur = () => {
-                if (clientInfo.name.length < 3 && clientInfo.name !== '') {
+                if (clientInfo.name.length < 3 || clientInfo.name === '') {
                     setInputAlert({ ...inputAlert, name: true });
                 } else {
                     setInputAlert({ ...inputAlert, name: false });
@@ -41,7 +41,7 @@ const Input = ({ mode, props }) => {
              onBlur = () => {
                 const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(clientInfo.email);
                 
-                if (!isValidEmail && clientInfo.email !== '') {
+                if (!isValidEmail || clientInfo.email === '') {
                   setInputAlert({ ...inputAlert, email: true });
                 } else {
                   setInputAlert({ ...inputAlert, email: false });
@@ -57,7 +57,7 @@ const Input = ({ mode, props }) => {
             }
             onBlur = () => {
                 const cpfPattern = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-                if (!cpfPattern.test(clientInfo.cpf) && clientInfo.cpf !== '' && clientInfo.cpf !== '___.___.___-__') {
+                if (!cpfPattern.test(clientInfo.cpf) || clientInfo.cpf === '' || clientInfo.cpf === '___.___.___-__') {
                     setInputAlert({ ...inputAlert, cpf: true });
                 } else {
                     setInputAlert({ ...inputAlert, cpf: false });
@@ -72,8 +72,8 @@ const Input = ({ mode, props }) => {
                 setClientInfo({ ...clientInfo, phone: event.target.value });
             };
             onBlur = () => {
-                const phonePattern = /^\(\d{2}\)\s\d{5}-\d{4}$/;
-                if (!phonePattern.test(clientInfo.phone) && clientInfo.phone !== '' && clientInfo.phone !== '(__) _____-____') {
+                const phonePattern = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
+                if (!phonePattern.test(clientInfo.phone) || clientInfo.phone === '' || clientInfo.phone === '(__) _____-____') {
                     return setInputAlert({ ...inputAlert, phone: true });
                 } else {
                     return setInputAlert({ ...inputAlert, phone: false });
