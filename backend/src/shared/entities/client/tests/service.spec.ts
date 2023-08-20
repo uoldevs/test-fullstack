@@ -82,7 +82,7 @@ describe('ClientService', () => {
         .spyOn(clientRepository, 'create')
         .mockResolvedValue(dataMock.clientCreated);
 
-      jest.spyOn(clientService, 'checkConflicts').mockResolvedValue();
+      jest.spyOn(clientService, 'checkCreateConflicts').mockResolvedValue();
 
       const client = new CreateClientDto(dataMock.clientToCreate);
       const result = await clientService.create(client);
@@ -100,7 +100,7 @@ describe('ClientService', () => {
         .mockResolvedValue(dataMock.clientCreated);
 
       jest
-        .spyOn(clientService, 'checkConflicts')
+        .spyOn(clientService, 'checkCreateConflicts')
         .mockRejectedValue(new ConflictException(errorMessage));
 
       const client = new CreateClientDto(dataMock.allClientsMock[0]);
@@ -126,7 +126,7 @@ describe('ClientService', () => {
         .spyOn(clientRepository, 'findById')
         .mockResolvedValue(dataMock.allClientsMock[0]);
 
-      jest.spyOn(clientService, 'checkConflicts').mockResolvedValue();
+      jest.spyOn(clientService, 'checkUpdateConflicts').mockResolvedValue();
 
       const clientId = dataMock.allClientsMock[0].id;
 
@@ -148,7 +148,7 @@ describe('ClientService', () => {
       jest.spyOn(clientRepository, 'update');
 
       jest
-        .spyOn(clientService, 'checkConflicts')
+        .spyOn(clientService, 'checkUpdateConflicts')
         .mockRejectedValue(new ConflictException(errorMessage));
 
       const client = new UpdateClientDto(dataMock.allClientsMock[1]);
@@ -169,7 +169,7 @@ describe('ClientService', () => {
 
       jest.spyOn(clientRepository, 'update');
 
-      jest.spyOn(clientService, 'checkConflicts');
+      jest.spyOn(clientService, 'checkUpdateConflicts');
 
       const client = new UpdateClientDto(dataMock.allClientsMock[1]);
       const clientId = 'a2a8f4bd-0881-40ef-a64c-2b8c6b48632d';
@@ -178,11 +178,11 @@ describe('ClientService', () => {
         errorMessage,
       );
       expect(clientRepository.update).not.toHaveBeenCalled();
-      expect(clientService.checkConflicts).not.toHaveBeenCalled();
+      expect(clientService.checkUpdateConflicts).not.toHaveBeenCalled();
     });
   });
 
-  describe('checkConflicts', () => {
+  describe('checkCreateConflicts', () => {
     afterEach(() => {
       jest.clearAllMocks();
     });
@@ -192,7 +192,7 @@ describe('ClientService', () => {
         .spyOn(clientRepository, 'findByCpfEmailAndPhoneNumber')
         .mockResolvedValue(null);
 
-      const result = await clientService.checkConflicts(
+      const result = await clientService.checkCreateConflicts(
         dataMock.allClientsMock[0].cpf,
         dataMock.allClientsMock[0].phoneNumber,
         dataMock.allClientsMock[0].email,
@@ -212,10 +212,90 @@ describe('ClientService', () => {
         });
 
       await expect(
-        clientService.checkConflicts(
+        clientService.checkCreateConflicts(
           dataMock.allClientsMock[0].cpf,
           dataMock.allClientsMock[0].phoneNumber,
           dataMock.allClientsMock[0].email,
+        ),
+      ).rejects.toThrowError(errorMessage);
+    });
+  });
+
+  describe('checkCreateConflicts', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should return void if no have conflict', async () => {
+      jest
+        .spyOn(clientRepository, 'findByCpfEmailAndPhoneNumber')
+        .mockResolvedValue(null);
+
+      const result = await clientService.checkCreateConflicts(
+        dataMock.allClientsMock[0].cpf,
+        dataMock.allClientsMock[0].phoneNumber,
+        dataMock.allClientsMock[0].email,
+      );
+
+      expect(result).toBe(undefined);
+    });
+
+    it('should return void if have conflicts', async () => {
+      const errorMessage = 'Dados de úsuario que já estão cadastrado';
+
+      jest
+        .spyOn(clientRepository, 'findByCpfEmailAndPhoneNumber')
+        .mockResolvedValue({
+          ...dataMock.allClientsMock[0],
+          statusId: '853c3948-098d-4190-bc8c-984b2882db46',
+        });
+
+      await expect(
+        clientService.checkCreateConflicts(
+          dataMock.allClientsMock[0].cpf,
+          dataMock.allClientsMock[0].phoneNumber,
+          dataMock.allClientsMock[0].email,
+        ),
+      ).rejects.toThrowError(errorMessage);
+    });
+  });
+
+  describe('checkUpdateConflicts', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should return void if no have conflict', async () => {
+      jest
+        .spyOn(clientRepository, 'findAllByCpfEmailAndPhoneNumber')
+        .mockResolvedValue([dataMock.allClientsMock[0]] as any);
+
+      const result = await clientService.checkUpdateConflicts(
+        dataMock.allClientsMock[0].cpf,
+        dataMock.allClientsMock[0].phoneNumber,
+        dataMock.allClientsMock[0].email,
+        dataMock.allClientsMock[0].id,
+      );
+
+      expect(result).toBe(undefined);
+    });
+
+    it('should return void if have conflicts', async () => {
+      const errorMessage = 'Dados de úsuario que já estão cadastrado';
+
+      jest
+        .spyOn(clientRepository, 'findAllByCpfEmailAndPhoneNumber')
+        .mockResolvedValue([
+          dataMock.allClientsMock[0],
+          dataMock.allClientsMock[1],
+        ] as any);
+
+      await expect(
+        clientService.checkUpdateConflicts(
+          dataMock.allClientsMock[0].cpf,
+          dataMock.allClientsMock[0].phoneNumber,
+          dataMock.allClientsMock[0].email,
+          dataMock.allClientsMock[0].id,
         ),
       ).rejects.toThrowError(errorMessage);
     });
