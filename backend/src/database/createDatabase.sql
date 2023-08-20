@@ -8,7 +8,7 @@ CREATE TABLE
     Clients (
         id INT NOT NULL auto_increment,
         name VARCHAR(30) NOT NULL,
-        email VARCHAR(30) NOT NULL,
+        email VARCHAR(50) NOT NULL,
         CPF VARCHAR(30) NOT NULL UNIQUE,
         phonenumber VARCHAR(30) NOT NULL,
         status VARCHAR(30) NOT NULL,
@@ -16,7 +16,7 @@ CREATE TABLE
     ) ENGINE = INNODB;
 
 INSERT INTO
-    ClientManager.client (
+    ClientManager.Clients (
         name,
         email,
         CPF,
@@ -27,24 +27,24 @@ VALUES (
         "John Doe",
         "john_doe@test.com",
         "12345678900",
-        "119988745",
+        "1199988745",
         "Ativo"
     ), (
         "John Doe",
         "john_doe@test.com",
         "12345678901",
-        "119988743",
+        "1199988743",
         "Inativo"
     ), (
         "John Doe",
         "john_doe@test.com",
         "12345678902",
-        "119988742",
+        "1199988742",
         "Aguardando ativação"
     ), (
         "John Doe",
         "john_doe@test.com",
         "12345678903",
-        "119988741",
+        "1199988741",
         "Desativado"
     );
