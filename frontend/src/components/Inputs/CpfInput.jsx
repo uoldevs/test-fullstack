@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
-import Context from '../context/Context';
+import Context from '../../context/Context';
 import styles from './Input.module.css';
 import { cpf as Cpf } from 'cpf-cnpj-validator';
+import Input from './Input';
 
 const CpfInput = () => {
   const {cpf, setCpf, setIsCpfValid} = useContext(Context); 
 
   const formatCpf = (input) => {
-    const cleaned = input.replace(/\D/g, ''); // Remove caracteres não numéricos
+    const cleaned = input.replace(/\D/g, '');
 
     let formatted = '';
     if (cleaned.length <= 3) {
@@ -36,15 +37,15 @@ const CpfInput = () => {
   };
 
   return (
-      <input
-        type="text"
-        id="cpfInput"
-        placeholder="CPF"
-        className={styles.input}
-        maxLength="14"
-        value={cpf}
-        onChange={handleCpfChange}
-      />
+    <Input
+      type="text"
+      id="cpfInput"
+      placeholder="CPF"
+      className={styles.input}
+      maxLength="14"
+      value={cpf}
+      onChange={handleCpfChange}
+     />
   );
 };
 

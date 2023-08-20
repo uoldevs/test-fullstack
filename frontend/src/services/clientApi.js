@@ -3,10 +3,8 @@ const URL = 'http://127.0.0.1:3005';
 export async function clientApi() {
   try {
     const response = await fetch(`${URL}/clients`);
-    console.log(response);
     return response.json();
   } catch (e) {
-    console.log(e.message);
     alert('Serviço indisponível');
     return [];
   }
@@ -31,7 +29,6 @@ export async function addClient(client) {
 }
 
 export async function updateClient(client) {
-  console.log(client.id);
   const response = await fetch(`${URL}/clients/${client.id}`, {
     method: 'PUT',
     headers: {

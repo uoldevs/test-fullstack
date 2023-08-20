@@ -1,11 +1,9 @@
 .container {
-  width: 80%; /* Tamanho máximo em relação à página */
+  width: 80%;
   margin: 0 auto;
-  margin-bottom: 2rem; /* Centraliza horizontalmente */
+  margin-bottom: 2rem;
   display: flex;
-  /* border: 2px solid red; */
   flex-direction: column;
-  /* align-items: center; Centraliza verticalmente */
 }
 
 .buttons {

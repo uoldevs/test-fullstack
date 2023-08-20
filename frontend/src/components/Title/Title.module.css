@@ -2,18 +2,12 @@
   display: flex;
   margin-top: 4rem;
   flex-direction: column;
-  /* border: 1px solid red; */
-  /* align-items: center; */
-  /* text-align: center; */
 }
 
 .container > div {
   display: flex;
-  /* justify-content: center;
-  align-items: center; */
   margin-top: 10px;
 }
-
 
 .container h1 {
   padding-left: 1rem;
@@ -29,5 +23,5 @@
 
 .icon {
   font-size: 2rem;
-  padding-top: 20px; /* Tamanho do ícone */
+  padding-top: 20px;
 }

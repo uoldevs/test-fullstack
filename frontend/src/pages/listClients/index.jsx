@@ -1,10 +1,10 @@
 import { useContext, useEffect } from 'react';
-import Header from '../components/Header';
-import Client from '../components/Client';
-import Banner from '../components/Banner';
-import Title from '../components/Title';
+import Header from '../../components/Header';
+import Client from '../../components/Client';
+import Title from '../../components/Title';
 import styles from './ListClient.module.css';
-import Context from '../context/Context';
+import Context from '../../context/Context';
+import SubtitleWithButton from '../../components/SubtitleWithButton';
 
 function ListClients () {
   const {clients, getClients, loading} = useContext(Context);
@@ -18,7 +18,7 @@ function ListClients () {
       <Header />
       <div className={styles.container}>
       <Title />
-      <Banner button title="Listagem de usuários"
+      <SubtitleWithButton button title="Listagem de usuários"
       subtitle="Escolha um cliente para vizualizar os detalhes" />
       <ul>
         {loading ? <p>Loading...</p> :

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BsCircleFill } from 'react-icons/bs';
-import styles from './Status.module.css'; // Importe os ícones que deseja usar
+import styles from './Status.module.css';
 
 const Status = ({ status }) => {
   const renderIcon = () => {

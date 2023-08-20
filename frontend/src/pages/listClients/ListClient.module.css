@@ -1,0 +1,22 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.container ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.container > p {
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 90%; 
+  }
+}

@@ -16,7 +16,6 @@ function Provider({children}){
     const navigate = useNavigate();
 
 
-    console.log(clients);
     const getClients = async ()=> {
         setLoading(true);
         const result = await clientApi();
@@ -40,9 +39,6 @@ function Provider({children}){
     navigate('/');
   };
 
-    //provider = quem dá os dados
-    //consumer = quem usa os dados
-
     const value = useMemo(()=>({  
             loading,
             clients,
@@ -57,10 +53,9 @@ function Provider({children}){
             updateClients,
             isCpfValid,
             setIsCpfValid,
-            isPhoneValid, setIsPhoneValid
-    }), [clients, loading, phone, setPhone, 
-      cpf, setCpf, updatedClient, setUpdatedClient, isCpfValid, 
-      setIsCpfValid, isPhoneValid, setIsPhoneValid]);
+            isPhoneValid, 
+            setIsPhoneValid
+    }), [clients, loading, phone, cpf, updatedClient, isCpfValid, isPhoneValid]);
 
     return (
         <Context.Provider value={value}>

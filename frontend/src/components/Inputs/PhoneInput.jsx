@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import Context from '../context/Context';
+import Context from '../../context/Context';
 import styles from './Input.module.css';
-import validatePhone from '../utils/validatePhone';
+import validatePhone from '../../utils/validatePhone';
+import Input from './Input';
 
 const PhoneInput = () => {
   const {phone, setPhone, setIsPhoneValid} = useContext(Context);
 
   const formatPhoneNumber = (input) => {
-    // Remove qualquer caractere que não seja um número
     const cleaned = input.replace(/\D/g, '');
 
     let formatted = '';
@@ -36,15 +36,15 @@ const PhoneInput = () => {
   };
 
   return (
-      <input
-        type="text"
-        className={styles.input}
-        id="phoneInput"
-        placeholder="Telefone"
-        maxLength="15"
-        value={phone}
-        onChange={handlePhoneChange}
-      />
+    <Input 
+      type="text"
+      className={styles.input}
+      id="phoneInput"
+      placeholder="Telefone"
+      maxLength="15"
+      value={phone}
+      onChange={handlePhoneChange}
+    />
   );
 };
 

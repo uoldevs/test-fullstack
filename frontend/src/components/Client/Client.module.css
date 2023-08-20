@@ -24,8 +24,6 @@
 }
 
 .icon {
-  /* font-size: 2rem;
-  padding-top: 20px; */
   color: #008000;
   background-color: #008000;
   border: #008000;
@@ -54,7 +52,6 @@
 
   .container p:nth-child(odd) {
     width: 100%;
-    /* border: 1px solid red; */
   }
   
   .divName {
