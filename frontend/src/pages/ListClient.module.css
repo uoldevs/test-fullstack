@@ -1,6 +1,7 @@
 .container {
   width: 80%; /* Tamanho máximo em relação à página */
-  margin: 0 auto; /* Centraliza horizontalmente */
+  margin: 0 auto;
+  margin-bottom: 2rem; /* Centraliza horizontalmente */
   display: flex;
   /* border: 2px solid red; */
   flex-direction: column;

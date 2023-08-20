@@ -17,7 +17,8 @@ import {cpf as Cpf} from 'cpf-cnpj-validator';
 
 function AddClient() {
   const {addNewClient, phone, cpf, setPhone, setCpf, 
-    updatedClient, updateClients, isCpfValid, isPhoneValid} = useContext(Context);
+    updatedClient, updateClients, isCpfValid, isPhoneValid, 
+    setIsCpfValid, setIsPhoneValid} = useContext(Context);
   const location = useLocation();
   const isNewClient = location.pathname.includes('add');
     const [client, setClient] = useState({
@@ -25,6 +26,7 @@ function AddClient() {
       email: '',
       status: '',
     });
+  const [isEmailValid, setIsEmailValid] = useState(true);
 
     useEffect(() => {
       if (!isNewClient) {
@@ -47,7 +49,12 @@ function AddClient() {
         ...client,
         [name]: value,
       });
-      console.log(client);
+      if (name === 'email' && !validateEmail(value)) {
+         setIsEmailValid(false);
+      }
+      if (name === 'email' && validateEmail(value)) {
+         setIsEmailValid(true);
+      }
     };
 
     const isFormValid = () => {
@@ -71,6 +78,11 @@ function AddClient() {
         }
     }
 
+    const handleClick = () => {
+      setIsCpfValid(true);
+      setIsPhoneValid(true);
+    }
+
   return (
     <div >
       <Header />
@@ -84,21 +96,22 @@ function AddClient() {
           name="name" 
           value={ client.name }
           onChange={handleChange}/>
+        {!isEmailValid && <p className={styles.error}>E-mail inválido</p>}
         <Input placeholder='E-mail'
           type="email"
           name="email"
           value={ client.email } 
           onChange={handleChange}/>
-        {!isCpfValid && <p>CPF inválido</p>}
+        {!isCpfValid && <p className={styles.error}>CPF inválido</p>}
         <CpfInput />
-        {!isPhoneValid && <p>Telefone inválido</p>}
+        {!isPhoneValid && <p className={styles.error}>Telefone inválido</p>}
         <PhoneInput />
         <Select value={client.status} onChange={handleChange} />
         <div className={styles.buttons}>
          <Button type="submit" disabled={!isFormValid()} isOrange isLarge>{
           isNewClient ? 'Criar' : 'Editar'
          }</Button>
-         <Button type="submit" isLarge>Voltar</Button>
+         <Button type="submit" onClick={handleClick} isLarge>Voltar</Button>
         </div>
       </Form>
       </div>
