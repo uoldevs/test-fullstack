@@ -1,6 +1,7 @@
 import * as yup from 'yup';
 
 export const schema = yup.object().shape({
+    id: yup.number().nullable().notRequired(),
     name: yup.string().required('Nome é obrigatório'),
     email: yup.string().email('Email inválido').required('Email é obrigatório'),
     cpf: yup
@@ -15,4 +16,7 @@ export const schema = yup.object().shape({
         )
         .required('Telefone é obrigatório'),
     status: yup.string().required('Status é obrigatório'),
+    createdAt: yup.string().nullable().notRequired(),
+    updatedAt: yup.string().nullable().notRequired(),
+    deletedAt: yup.string().nullable().notRequired(),
 });
