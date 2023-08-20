@@ -89,7 +89,7 @@ const UserForm: React.FC = () => {
                         type="submit"
                         variant="contained"
                         sx={{ backgroundColor: ' #c87a0d' }}
-                        className={styles.newUserButton}
+                        className={styles.newClientButton}
                     >
                         Criar
                     </Button>
