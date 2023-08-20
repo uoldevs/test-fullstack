@@ -25,9 +25,13 @@ export const ClientProvider = ({ children }: ICLientContextProps) => {
   const [clientsStatus, setClientsStatus] = useState(initialValue.clientsStatus);
 
   const fetchClientStatus = async () => {
-    const response = await getAllClientsAndStatus();
+    try {
+      const response = await getAllClientsAndStatus();
 
-    setClientsStatus(response);
+      setClientsStatus(response);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const context = {
