@@ -23,22 +23,22 @@ const ClientTable = () => {
             <Box className={styles.userListHeader}>
                 <Box sx={{}}>
                     <Typography variant="h5">Listagem de usuários</Typography>
-                    <Typography variant="subtitle1">Escolha um cliente para visualizar os detalhes</Typography>
+                    <Typography variant="subtitle1">Escolha um usere para visualizar os detalhes</Typography>
                 </Box>
                 <Button
-                    href="/clients/new"
+                    href="/users/new"
                     variant="contained"
                     sx={{ backgroundColor: ' #c87a0d' }}
                     className={styles.newClientButton}
                 >
-                    Novo cliente
+                    Novo user
                 </Button>
             </Box>
             {loading && <Loading />}
             {!loading && (
                 <Box>
-                    {users.map((client: any) => (
-                        <ClientRow key={client.id} client={client} />
+                    {users.map((user: any) => (
+                        <ClientRow key={user.id} user={user} />
                     ))}
                 </Box>
             )}
