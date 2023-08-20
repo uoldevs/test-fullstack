@@ -1,14 +1,14 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import apiHandler from '@/utils/apiHandler';
-import { ClientType } from '@/types';
+import { UserType } from '@/types';
 import { RootState } from '../store';
 
 // https://redux-toolkit.js.org/tutorials/typescript
 
 // ------- TYPES -------
 export type UserState = {
-    entities: ClientType[];
-    entity: ClientType;
+    entities: UserType[];
+    entity: UserType;
     loading: boolean;
     error: string | null | undefined;
 };
@@ -18,7 +18,7 @@ export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
     const { data } = await apiHandler('Get', 'user');
     return data;
 });
-export const createUser = createAsyncThunk('users/createUser', async (userData: ClientType) => {
+export const createUser = createAsyncThunk('users/createUser', async (userData: UserType) => {
     const { data } = await apiHandler('Post', 'user', userData);
     return data;
 });
@@ -26,15 +26,15 @@ export const getUserById = createAsyncThunk('users/fetchUser', async (userId) =>
     const { data } = await apiHandler('Get', `user/${userId}`);
     return data;
 });
-export const updateUser = createAsyncThunk('users/updateUser', async (userData: ClientType) => {
+export const updateUser = createAsyncThunk('users/updateUser', async (userData: UserType) => {
     const { data } = await apiHandler('Patch', `user/${userData.id}`, userData);
     return data;
 });
 
 // ------- INITIAL STATE -------
 const initialState: UserState = {
-    entities: [] as ClientType[],
-    entity: {} as ClientType,
+    entities: [] as UserType[],
+    entity: {} as UserType,
     loading: false,
     error: null,
 };
