@@ -39,6 +39,19 @@ class ClientController {
                 next(err);
             }
         });
+        this.updateClient = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const newClient = req.body;
+                const updatedRows = yield this._clientService.updateClient(newClient);
+                if (!updatedRows) {
+                    throw new handlerError_1.default(404, 'Cliente não existe');
+                }
+                return res.status(200).send();
+            }
+            catch (err) {
+                next(err);
+            }
+        });
     }
 }
 exports.default = ClientController;

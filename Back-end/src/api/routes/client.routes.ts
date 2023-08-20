@@ -8,5 +8,6 @@ const middlewareValidation = new MiddlewareValidation();
 
 router.get('/', clientController.getAllClients);
 router.post('/', middlewareValidation.creationValidator ,clientController.createClient);
+router.put('/', middlewareValidation.creationValidator, clientController.updateClient)
 
 export default router;

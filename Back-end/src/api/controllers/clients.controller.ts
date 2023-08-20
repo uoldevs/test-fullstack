@@ -36,4 +36,21 @@ export default class ClientController {
       next(err)
     }
   };
+
+  public updateClient = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | undefined> => {
+    try {
+     const newClient: IClient = req.body;
+     const updatedRows = await this._clientService.updateClient(newClient);
+     if (!updatedRows) {
+      throw new ErrorHandler(404, 'Cliente não existe');
+     }
+     return res.status(200).send();
+    } catch (err) {
+      next(err)
+    }
+  };
 }

@@ -11,7 +11,6 @@ class MiddlewareValidation {
         this.creationValidator = (req, _res, next) => {
             const client = req.body;
             const { error } = this.clientValidator.validateData(client);
-            console.log(error);
             if (error) {
                 throw new handlerError_1.default(400, `${error.details}`);
             }

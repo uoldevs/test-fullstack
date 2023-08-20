@@ -9,9 +9,9 @@ class MiddlewareValidation {
     public creationValidator = (req: Request, _res: Response, next: NextFunction) => {
         const client:IClient = req.body;
         const {error} = this.clientValidator.validateData(client);
-        console.log(error)
+        console.log(error?.details)
         if (error) {
-            throw new ErrorHandler(400, `${error.details}`);
+            throw new ErrorHandler(400, `Ínvalido: ${error.details[0].context?.label}`);
         }
         next();
     }
