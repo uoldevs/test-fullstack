@@ -21,7 +21,7 @@ export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
     const { data } = await apiHandler('Get', 'user');
     return data;
 });
-export const getUserById = createAsyncThunk('users/fetchUser', async (userId) => {
+export const getUserById = createAsyncThunk('users/fetchUser', async (userId: string | string[]) => {
     const { data } = await apiHandler('Get', `user/${userId}`);
     return data;
 });
