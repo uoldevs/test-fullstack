@@ -1,0 +1,43 @@
+@import '../../styles/mixins';
+@import '../../styles/colors';
+
+.userListHeader {
+    @include flexAlign(row, space-between);
+    margin-block: 10px;
+}
+
+.form {
+    @include flexAlign(column, flex-start, flex-start);
+    @include size(30%);
+    .error {
+        color: red;
+        font-size: 0.8rem;
+    }
+}
+
+.buttonContainer {
+    @include flexAlign(row, flex-start);
+    margin: 20px 0;
+    gap: 10px;
+}
+
+.newClientButton {
+    background-color: $--primary-color;
+}
+
+.newClientButton:hover {
+    background-color: $--primary-color-darker;
+}
+
+.cancelButton {
+    color: $--primary-color;
+    border-color: $--primary-color;
+    box-shadow: none;
+    width: fit-content;
+}
+
+.cancelButton:hover {
+    background-color: $--primary-color;
+    border-color: $--primary-color;
+    color: white;
+}

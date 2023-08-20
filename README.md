@@ -1,41 +1,78 @@
-# Teste Fullstack: Aplicativo de Gerenciamento de Clientes
+# Next.js & Nest.js Application
 
-## Descrição:
+Aplicativo de Gerenciamento de Clientes
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+Link do app hospedado na AWS: [Frontend](https://development.d31l4xqayb9ogl.amplifyapp.com/users)
 
-## Requisitos do Frontend:
+## Features
 
-1. Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
-2. Permitir a criação de um novo cliente através de um formulário.
-3. Na tela de edição, fornecer alertas para o usuário em caso de dados inválidos.
-4. Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
-5. Comunicar-se com a API para obter os dados dos clientes cadastrados.
+-   Language: [TypeScript](https://www.typescriptlang.org/)
 
-## Requisitos do Backend:
+## Frontend Features
 
-Criar uma API que ofereça endpoints para:
+-   Framework: [Next.js](https://nextjs.org/)
+-   Styling: [SaSS](https://sass-lang.com/documentation/)
+-   React Components: [MaterialUI](https://mui.com/)
+-   HTTP client: [Axios](https://axios-http.com/ptbr/)
+-   Validator: [React Hook Form](https://react-hook-form.com/) with [Yup](https://www.npmjs.com/package/yup)
+-   State Manager: [Redux Toolkits](https://redux-toolkit.js.org/usage/usage-with-typescript)
 
-1. Obter a listagem de clientes cadastrados.
-2. Cadastrar um novo cliente com informações válidas.
-3. Atualizar informações de cliente existente.
-4. Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
+## Backend Features
 
-## Requisitos de Qualidade de Código:
+-   Framework: [Nest.js](https://nestjs.com/)
+-   Database: [PostgreSQL](https://www.postgresql.org/)
+-   Database Container: [Docker](https://docs.docker.com/compose/)
+-   Database ORM, Migrations and Seeding: [TypeOrm](https://typeorm.io/)
+-   Tests: [Jest](https://jestjs.io/pt-BR/)
+-   Documentation: [Swagger](https://docs.nestjs.com/openapi/introduction)
 
-Escreva um código limpo, legível e bem organizado.
-Adote boas práticas de desenvolvimento e arquitetura.
+## AWS Cloud Features
 
-## Itens Desejáveis (opcional):
+-   Cloud Service: [Amazon Web Service](https://aws.amazon.com/pt/)
 
-- Testes unitários
-- Bibliotecas ou frameworks adicionais
+## CI/CD Features
 
-## Telas:
+-   CI/CD: [Github Actions](https://docs.github.com/pt/actions)
 
-- [Tela Inicial](https://test-frontend-uolpp.web.app/assets/images/tela-inicial.jpg)
-- [Tela de Edição](https://test-frontend-uolpp.web.app/assets/images/tela-edicao.jpg)
+## Architecture
 
-## Instruções Finais:
+![Architecture](./architecture.png)
 
-Após concluir o desafio, crie um pull request neste repositório com duas pastas separadas: uma contendo o projeto frontend e outra com o projeto backend, para que possamos avaliar seu trabalho. Boa sorte!
+## How to run
+
+### Frontend
+
+```bash
+$ cd frontend
+
+# install dependencies
+$ npm install
+
+# run app
+$ npm run dev
+```
+
+### Backend
+
+```bash
+$ cd backend
+
+# install dependencies
+$ npm install
+
+# run app
+$ npm run dev
+```
+
+### Docker
+
+```bash
+# run app
+$ docker-compose up
+```
+
+### Seeding
+
+```bash
+$ npm run seed
+```
