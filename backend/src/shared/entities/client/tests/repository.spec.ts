@@ -42,6 +42,28 @@ describe('ClientRepository', () => {
     });
   });
 
+  describe('findById', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should return a client with yours status', async () => {
+      const clientId = dataMock.allClientsMock[0].id;
+      jest
+        .spyOn(prismaService.client, 'findFirst')
+        .mockResolvedValue(dataMock.allClientsMock[0] as any);
+
+      const result = await clientRepository.findById(clientId);
+
+      expect(result).toStrictEqual(dataMock.allClientsMock[0]);
+      expect(prismaService.client.findFirst).toHaveBeenCalled();
+      expect(prismaService.client.findFirst).toHaveBeenCalledWith({
+        where: { id: clientId },
+        ...dataMock.filterClientRepository,
+      });
+    });
+  });
+
   describe('findByCpfEmailAndPhoneNumber', () => {
     afterEach(() => {
       jest.clearAllMocks();
