@@ -9,6 +9,7 @@ interface IInput {
   type?: HTMLInputTypeAttribute;
   error?: string;
   className?: string;
+  value: string;
 }
 
 export default IInput;
