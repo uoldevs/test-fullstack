@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .userListHeader {
     display: flex;
     align-items: center;
@@ -14,9 +16,9 @@
 }
 
 .newClientButton {
-    background-color: #c87a0d;
+    background-color: $--primary-color;
 }
 
 .newClientButton:hover {
-    background-color: #c87a0d;
+    background-color: $--primary-color-darker;
 }
