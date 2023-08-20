@@ -53,7 +53,7 @@ const updateUser = (req, res) => {
       res.status(500).json({ error: 'Usuário não encontrado!' });
       return;
     }
-    res.json({ message: 'Usuário atualizado com sucesso!' });
+    res.status(201).json({ message: 'Usuário atualizado com sucesso!' });
   });
 };
 
