@@ -60,6 +60,18 @@ class ClientRepository {
     });
   }
 
+  async findAllByCpfEmailAndPhoneNumber(
+    cpf: string,
+    email: string,
+    phoneNumber: string,
+  ) {
+    return await this.prismaService.client.findMany({
+      where: {
+        OR: [{ cpf }, { email }, { phoneNumber }],
+      },
+    });
+  }
+
   async update(clientId: string, data: UpdateClientDto) {
     const status = data?.status?.name && {
       status: {
