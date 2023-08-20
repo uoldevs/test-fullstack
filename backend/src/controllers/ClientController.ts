@@ -54,3 +54,21 @@ export const updateClient = async (
     next(error);
   }
 };
+
+export const findClient = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { id } = req.params;
+
+    const clientService = new ClientService();
+    const client = await clientService.findById(Number(id));
+
+    return res.status(200).json(client);
+  } catch (error) {
+    console.error('Error on find client', error);
+    next(error);
+  }
+};

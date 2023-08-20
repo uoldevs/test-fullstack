@@ -36,4 +36,13 @@ export default class ClientModel implements IModel<IClient> {
 
     return result[0];
   }
+
+  async findById(id: number): Promise<IClient | null> {
+    const [result] = (await this.connection.execute(
+      'SELECT * FROM ClientManager.Clients WHERE id = ?',
+      [id]
+    )) as RowDataPacket[];
+
+    return result[0];
+  }
 }

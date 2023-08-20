@@ -21,4 +21,8 @@ export default abstract class Service<T> {
   async findByCPF(cpf: string): Promise<T | null> {
     return await this.model.findByCPF(cpf);
   }
+
+  async findById(id: number): Promise<T | null> {
+    return await this.model.findById(id);
+  }
 }
