@@ -21,4 +21,10 @@ export default class CustomerService implements ICustomerService {
     if (!response) throw new Error('There is no customer with such id!');
     await this.model.update(data, { where: { id } });
   }
+
+  async delete(id: number): Promise<void> {
+    const response = await this.model.findOne({ where: { id } });
+    if (!response) throw new Error('There is no customer with such id!');
+    await this.model.destroy({ where: { id } });
+  }
 }

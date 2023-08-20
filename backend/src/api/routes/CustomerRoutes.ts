@@ -16,4 +16,7 @@ customerRouter.post('/customers', validateCustomer, (req: Request, res: Response
 customerRouter.put('/customers/:id', validateCustomer, (req: Request, res: Response) =>
   customerController.update(req, res));
 
+customerRouter.delete('/customers/:id', (req: Request, res: Response) =>
+  customerController.delete(req, res));
+
 export default customerRouter;

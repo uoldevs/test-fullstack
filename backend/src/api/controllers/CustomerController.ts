@@ -28,4 +28,14 @@ export default class CustomerController {
       return res.status(400).json({ message: (error as Error).message });
     }
   }
+
+  async delete(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      await this._service.delete(Number(id));
+      return res.status(200).json({ message: 'Customer deleted successfully' });
+    } catch (error) {
+      return res.status(400).json({ message: (error as Error).message });
+    }
+  }
 }
