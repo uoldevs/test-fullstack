@@ -24,6 +24,7 @@
       "mocha"
     ],
     "rules": {
+      "import/no-import-module-exports": "off",
       "no-underscore-dangle": "off",
       "no-console": "off",
       "camelcase": "warn",
@@ -69,14 +70,6 @@
       "max-lines": [
         "error",
         250
-      ],
-      "max-lines-per-function": [
-        "error",
-        {
-          "max": 20,
-          "skipBlankLines": true,
-          "skipComments": true
-        }
       ],
       "max-len": [
         "error",
