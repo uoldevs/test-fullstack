@@ -7,7 +7,7 @@ import uolLogo from '../../../public/logo-uol.png';
 const AppBarCustom = () => {
     return (
         <AppBar sx={{ backgroundColor: 'black' }} className={styles.appBar}>
-            <img src="../../../public/logo-uol.png" alt="Logo" height={50} />
+            <Image src={uolLogo} alt="Logo" height={50} />
         </AppBar>
     );
 };
