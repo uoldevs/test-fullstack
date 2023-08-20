@@ -1,0 +1,35 @@
+.alert-container {
+  position: absolute;
+  left: 0;
+  transform: translateX(-100%);
+  animation-duration: 5s;
+  animation-timing-function: ease-out;
+  width: 100px;
+  height: 100px;
+  background-color: #72f87d;
+  min-width: 250px;
+  display: flex;
+  flex-direction: row;
+  border-radius: 3px;
+  align-items: center;
+  padding: 30px 10px;
+}
+
+.show-alert {
+  animation-name: slideInOut;
+}
+
+@keyframes slideInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+}
