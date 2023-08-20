@@ -7,9 +7,11 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { createUser } from '@/app/redux/slice/userSlice';
+import { useRouter } from 'next/router';
 
 const ClientForm = () => {
     const dispatch = useDispatch();
+    const router = useRouter();
 
     const {
         register,
@@ -23,7 +25,10 @@ const ClientForm = () => {
     const onSubmit = (data: any) => {
         console.log(data);
         console.log(errors);
-        dispatch(createUser(data));
+        dispatch(createUser(data)).then(() => {
+            // Navigate to /clients after a successful update
+            router.push('/clients');
+        });
     };
 
     return (
