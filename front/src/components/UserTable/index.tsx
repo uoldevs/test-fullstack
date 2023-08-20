@@ -24,7 +24,7 @@ const UserTable = () => {
                 <Box sx={{}}>
                     <Typography variant="h5">Listagem de usuários</Typography>
                     <Typography variant="subtitle1" sx={{ color: 'gray' }}>
-                        Escolha um usere para visualizar os detalhes
+                        Escolha um usuário para visualizar os detalhes
                     </Typography>
                 </Box>
                 <Button
