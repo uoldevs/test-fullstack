@@ -8,6 +8,8 @@ import updateClient from '../../api/routes/clients/editClient';
 import handleApiErrors from '../../utils/handleApiErrors';
 import ErrorCard from '../../components/errorCard/ErrorCard';
 import { ClientDto } from '../../utils/dtos/Client.dto';
+import Alert from '../../components/alert/Alert';
+import useAnimatedElement from '../../hooks/useToggleAlert';
 
 function EditClient() {
   const [clientInfo, setClientInfo] = useState({ name: 'Pedro', email: '', cpf: '', phoneNumber: '', status: '' });
@@ -16,6 +18,7 @@ function EditClient() {
   const queryParams = new URLSearchParams(location.search);
   const clientId = queryParams.get('clientId');
   const errorRef = useRef(false);
+  const { animationActive, startAnimation } = useAnimatedElement(4000);
 
   useEffect(() => {
     (async () => {
@@ -49,6 +52,7 @@ function EditClient() {
         await updateClient(client, clientId);
 
         setApiErrorMsg('');
+        startAnimation();
       }
     } catch (error) {
       setApiErrorMsg(handleApiErrors(error));
@@ -60,6 +64,7 @@ function EditClient() {
   return (
     <div>
       <main className="edit-client-container">
+        {animationActive && <Alert className={`${animationActive ? 'show-alert' : ''}`} />}
         <section className="edit-client-form-header-container">
           <ClientListingHeader className="edit-client-listing-header" />
           <div className="edit-client-listing-infos-form-container">

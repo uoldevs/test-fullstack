@@ -6,10 +6,13 @@ import createClient from '../../api/routes/clients/createClient';
 import handleApiErrors from '../../utils/handleApiErrors';
 import ErrorCard from '../../components/errorCard/ErrorCard';
 import { ClientDto } from '../../utils/dtos/Client.dto';
+import Alert from '../../components/alert/Alert';
+import useAnimatedElement from '../../hooks/useToggleAlert';
 
 function CreateClient() {
   const [formData, setFormData] = useState({ name: '', email: '', cpf: '', phoneNumber: '', status: '' });
   const [apiErrorMsg, setApiErrorMsg] = useState('');
+  const { animationActive, startAnimation } = useAnimatedElement(4000);
   const errorRef = useRef(false);
 
   const handleChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -30,6 +33,7 @@ function CreateClient() {
         await createClient(client);
 
         setApiErrorMsg('');
+        startAnimation();
       }
     } catch (error) {
       setApiErrorMsg(handleApiErrors(error));
@@ -40,6 +44,7 @@ function CreateClient() {
 
   return (
     <main className="create-client-container">
+      {animationActive && <Alert className={`${animationActive ? 'show-alert' : ''}`} />}
       <section className="create-client-form-header-container">
         <ClientListingHeader className="create-client-listing-header" />
         <div className="create-client-listing-infos-form-container">
