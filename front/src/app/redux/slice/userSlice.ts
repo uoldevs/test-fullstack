@@ -1,7 +1,8 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import apiHandler from '@/utils/apiHandler';
+import { ClientType } from '@/types';
 
-// https://redux-toolkit.js.org/usage/usage-with-typescript#type-safety-with-extrareducers
+// https://redux-toolkit.js.org/tutorials/typescript
 
 // ------- FUNCTIONS -------
 export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
@@ -9,14 +10,14 @@ export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
     return response.data;
 });
 
-export const createUser = createAsyncThunk('users/createUser', async (userData) => {
+export const createUser = createAsyncThunk('users/createUser', async (userData: ClientType) => {
     const response = await apiHandler('Post', 'user', userData);
     return response.data;
 });
 
 // ------- INITIAL STATE -------
 const initialState = {
-    entities: [],
+    entities: [] as ClientType[],
     loading: false,
     error: null as any,
 };
@@ -27,6 +28,7 @@ export const usersSlice = createSlice({
     initialState,
     reducers: {},
 
+    // https://redux-toolkit.js.org/usage/usage-with-typescript#type-safety-with-extrareducers
     extraReducers: (builder) => {
         builder
             .addCase(fetchUsers.pending, (state) => {
