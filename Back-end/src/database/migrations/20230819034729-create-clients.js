@@ -33,6 +33,7 @@ module.exports = {
       },
       status: {
         type: Sequelize.ENUM('ativação_pendente', 'ativo', 'inativo', 'desativado'),
+        allowNull: false,
       },
     });
   },

@@ -17,6 +17,7 @@ class ClientsService {
     constructor(clientsModel = Clients_1.default) {
         this.clientsModel = clientsModel;
         this.getClients = () => __awaiter(this, void 0, void 0, function* () { return yield this.clientsModel.findAll(); });
+        this.createClient = (client) => __awaiter(this, void 0, void 0, function* () { return yield this.clientsModel.create(Object.assign({}, client)); });
     }
 }
 exports.default = ClientsService;

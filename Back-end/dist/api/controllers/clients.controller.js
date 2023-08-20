@@ -17,14 +17,26 @@ const handlerError_1 = __importDefault(require("../ErrorHandler/handlerError"));
 class ClientController {
     constructor(_clientService = new clients_service_1.default()) {
         this._clientService = _clientService;
-        this.getAllClients = (_req, res) => __awaiter(this, void 0, void 0, function* () {
+        this.getAllClients = (_req, res, next) => __awaiter(this, void 0, void 0, function* () {
             try {
                 const clients = yield this._clientService.getClients();
-                throw new Error('error');
-                return res.status(201).json(clients);
+                if (clients.length === 0) {
+                    throw new handlerError_1.default(404, 'Nenhum cliente foi achado.');
+                }
+                return res.status(200).json(clients);
             }
             catch (err) {
-                throw new handlerError_1.default(500, `${err}`);
+                next(err);
+            }
+        });
+        this.createClient = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const newClient = req.body;
+                yield this._clientService.createClient(newClient);
+                return res.status(201).send();
+            }
+            catch (err) {
+                next(err);
             }
         });
     }

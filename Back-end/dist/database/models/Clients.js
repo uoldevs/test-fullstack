@@ -14,12 +14,12 @@ Clients.init({
         primaryKey: true,
         allowNull: false,
     },
-    firstname: {
+    firstName: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         field: 'first_name'
     },
-    lastname: {
+    lastName: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
         field: 'last_name'
@@ -40,7 +40,7 @@ Clients.init({
     },
     status: {
         type: sequelize_1.DataTypes.ENUM('ativação_pendente', 'ativo', 'inativo', 'desativado'),
-        defaultValue: 'ativação_pendente',
+        allowNull: false,
     },
 }, {
     underscored: true,
