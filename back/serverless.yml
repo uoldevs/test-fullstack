@@ -59,7 +59,7 @@ package:
 
 functions:
   main:
-    timeout: 10 # optional, in seconds, default is 6
+    timeout: 30 # optional, in seconds, default is 6
     handler: lambda.handler
     events:
       - http:
