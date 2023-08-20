@@ -12,6 +12,8 @@ Aplicativo de Gerenciamento de Clientes
 -   Styling: [SaSS](https://sass-lang.com/documentation/)
 -   React Components: [MaterialUI](https://mui.com/)
 -   HTTP client: [Axios](https://axios-http.com/ptbr/)
+-   Validator: [React Hook Form](https://react-hook-form.com/) with [Yup](https://www.npmjs.com/package/yup)
+-   State Manager: [Redux Toolkits](https://redux-toolkit.js.org/usage/usage-with-typescript)
 
 ## Backend Features
 
