@@ -1,5 +1,3 @@
 {
-  "eslint.workingDirectories": [
-    "src/backend"
-  ]
+  "eslint.workingDirectories": ["backend"]
 }
