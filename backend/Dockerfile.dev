@@ -11,6 +11,8 @@ COPY . .
 ENV DATABASE_URL=file:./dev.db
 ENV API_PORT=3001
 
+EXPOSE 3001
+
 RUN npx prisma generate --schema src/db/prisma/schema.prisma
 
 RUN npx prisma migrate dev
