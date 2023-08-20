@@ -1,30 +1,40 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import apiHandler from '@/utils/apiHandler';
 import { ClientType } from '@/types';
+import { RootState } from '../store';
 
 // https://redux-toolkit.js.org/tutorials/typescript
 
 // ------- TYPES -------
 export type UserState = {
     entities: ClientType[];
+    entity: ClientType;
     loading: boolean;
     error: string | null | undefined;
 };
 
 // ------- FUNCTIONS -------
 export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
-    const response = await apiHandler('Get', 'user');
-    return response.data;
+    const { data } = await apiHandler('Get', 'user');
+    return data;
 });
-
 export const createUser = createAsyncThunk('users/createUser', async (userData: ClientType) => {
-    const response = await apiHandler('Post', 'user', userData);
-    return response.data;
+    const { data } = await apiHandler('Post', 'user', userData);
+    return data;
+});
+export const getUserById = createAsyncThunk('users/fetchUser', async (userId) => {
+    const { data } = await apiHandler('Get', `user/${userId}`);
+    return data;
+});
+export const updateUser = createAsyncThunk('users/updateUser', async (userData: ClientType) => {
+    const { data } = await apiHandler('Patch', `user/${userData.id}`, userData);
+    return data;
 });
 
 // ------- INITIAL STATE -------
 const initialState: UserState = {
     entities: [] as ClientType[],
+    entity: {} as ClientType,
     loading: false,
     error: null,
 };
@@ -57,6 +67,28 @@ export const usersSlice = createSlice({
                 state.entities.unshift(action.payload); // unsift() adds to the beginning of the array
             })
             .addCase(createUser.rejected, (state, action) => {
+                state.loading = true;
+                state.error = action.error.message;
+            })
+            .addCase(getUserById.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(getUserById.fulfilled, (state, action) => {
+                state.loading = false;
+                state.entity = action.payload;
+            })
+            .addCase(getUserById.rejected, (state, action) => {
+                state.loading = true;
+                state.error = action.error.message;
+            })
+            .addCase(updateUser.pending, (state) => {
+                state.loading = true;
+            })
+            .addCase(updateUser.fulfilled, (state, action) => {
+                state.loading = false;
+                state.entity = action.payload;
+            })
+            .addCase(updateUser.rejected, (state, action) => {
                 state.loading = true;
                 state.error = action.error.message;
             });
