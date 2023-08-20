@@ -6,20 +6,20 @@ function ClientCard(props) {
 
 
     const status = {
-        active: {
+        Ativo: {
             color: '#4BAF5C',
             text: 'Ativo'
         },
 
-        inactive: {
+        Inativo: {
             color: '#D73343',
             text: 'Inativo'
         },
-        waiting: {
+        Aguardando: {
             color: '#D0A311',
             text: 'Aguardando ativação'
         },
-        disabled: {
+        Desativado: {
             color: '#D1D1D1',
             text: 'Desativado'
         }

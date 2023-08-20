@@ -2,6 +2,8 @@ import PanelHeader from '../components/mini/PanelHeader';
 import SectionSpec from '../components/mini/SectionSpec';
 import ClientCard from '../components/mini/ClientCard';
 import Header from '../components/Header';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 
 function Home() {
@@ -12,40 +14,20 @@ function Home() {
         button: true,
     }
 
-    const userList = [
-        {
-            id: 1,
-            name: 'John Doe1',
-            email: 'john_doe@test.com',
-            cpf: '12345678900',
-            phone: '1199988745',
-            status: 'inactive',
-        },
-        {
-            id: 2,
-            name: 'John Doe2',
-            email: 'johndoe2@test.com',
-            cpf: '12345678900',
-            phone: '1199988745',
-            status: 'active',
-        },
-        {
-            id: 3,
-            name: 'John Doe3',
-            email: 'fefdsfs@gmail.com',
-            cpf: '12345678900',
-            phone: '1199988745',
-            status: 'waiting',
-        },
-        {
-            id: 4,
-            name: 'John Doe4',
-            email: 'fefd53453sfs@gmail.com',
-            cpf: '12345678900',
-            phone: '1199988745',
-            status: 'disabled',
-        }
-    ]
+    const [userList, setUserList] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:3001/')
+            .then((response) => {
+                setUserList(response.data)
+            })
+    }
+        , [])
+
+
+
+
+
 
     return (
         <>
@@ -58,7 +40,7 @@ function Home() {
                     {
                         userList.map((user) => {
                             return (
-                                <ClientCard key={user.id} id={user.id} name={user.name} email={user.email} cpf={user.cpf} phone={user.phone} status={user.status} />
+                                <ClientCard key={user.id} id={user.id} name={user.name} email={user.email} cpf={user.cpf} phone={user.phone} status={user.status.name} />
                             )
                         }
                         )
