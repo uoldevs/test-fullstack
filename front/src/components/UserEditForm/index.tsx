@@ -12,7 +12,6 @@ import { useRouter } from 'next/router';
 import { UserType } from '@/types';
 import { AppDispatch } from '@/app/redux/store';
 import DeleteIcon from '@mui/icons-material/Delete';
-import apiHandler from '@/utils/apiHandler';
 
 interface UserEditFormProps {
     user: UserType;
