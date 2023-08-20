@@ -15,4 +15,10 @@ export default class CustomerService implements ICustomerService {
     const { id } = await this.model.create({ ...customer });
     return { id, ...customer };
   }
+
+  async update(id: number, data: Partial<ICustomer>): Promise<void> {
+    const response = await this.model.findOne({ where: { id } });
+    if (!response) throw new Error('There is no customer with such id!');
+    await this.model.update(data, { where: { id } });
+  }
 }

@@ -13,4 +13,7 @@ customerRouter.get('/customers', (req: Request, res: Response) =>
 customerRouter.post('/customers', validateCustomer, (req: Request, res: Response) =>
   customerController.create(req, res));
 
+customerRouter.put('/customers/:id', validateCustomer, (req: Request, res: Response) =>
+  customerController.update(req, res));
+
 export default customerRouter;
