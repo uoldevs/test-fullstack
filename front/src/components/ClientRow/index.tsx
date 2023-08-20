@@ -1,43 +1,43 @@
 import { Box, Button, Typography } from '@mui/material';
 import React from 'react';
 import styles from './style.module.scss';
-import { ClientType } from '@/types';
 import ColorDot from '../ColorDot';
+import { UserType } from '@/types';
 
-type ClientRowProps = {
-    client: ClientType;
+type UserRowProps = {
+    user: UserType;
 };
 
-const ClientRow: React.FC<ClientRowProps> = ({ client }) => {
+const UserRow: React.FC<UserRowProps> = ({ user }) => {
     return (
         <Box className={styles.outterContainer}>
             <Box className={styles.innerContainer}>
                 <Typography variant="h6" className={styles.innerText}>
-                    {client.name}
+                    {user.name}
                 </Typography>
                 <Typography variant="subtitle1" className={styles.innerTextSubtitle1}>
-                    {client.email}
+                    {user.email}
                 </Typography>
             </Box>
 
             <Box className={styles.innerContainer}>
                 <Typography variant="subtitle1" className={styles.innerText}>
-                    {client.cpf}
+                    {user.cpf}
                 </Typography>
                 <Typography variant="subtitle1" className={styles.innerTextSubtitle1}>
-                    {client.phone}
+                    {user.phone}
                 </Typography>
             </Box>
 
             <Box className={styles.innerContainer2}>
-                <ColorDot status={client.status} />
+                <ColorDot status={user.status} />
                 <Typography variant="subtitle1" className={styles.innerText}>
-                    {client.status}
+                    {user.status}
                 </Typography>
             </Box>
 
             <Box className={styles.innerContainer3}>
-                <Button className={styles.editButton} variant="outlined">
+                <Button href={`/users/${user.id}/edit`} className={styles.editButton} variant="outlined">
                     Editar
                 </Button>
             </Box>
@@ -45,4 +45,4 @@ const ClientRow: React.FC<ClientRowProps> = ({ client }) => {
     );
 };
 
-export default ClientRow;
+export default UserRow;
