@@ -1,0 +1,8 @@
+.error-message-container {
+  margin: 5px 0;
+}
+
+.error-message-text {
+  font-size: 0.95em;
+  color: #ff1d1d;
+}
