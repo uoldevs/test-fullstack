@@ -10,7 +10,7 @@ export type Client = {
   status: Status
 }
 
-export type dbClient = {
+export type DbClient = {
   id?: number
   name: string
   email: string

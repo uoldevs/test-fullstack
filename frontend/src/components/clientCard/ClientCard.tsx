@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom';
-import { Client } from '../../types';
+import { DbClient } from '../../types';
 import './clientCard.css'
+import { VscCircleLargeFilled } from 'react-icons/vsc';
+import { IconContext } from "react-icons";
 
 type ClientProps = {
-  client: Client
+  client: DbClient
 };
 
 function formataCPF(cpf: string){
@@ -17,7 +19,14 @@ function formataPhone(phone: string){
 function ClientCard({client}: ClientProps) {
   const navigate = useNavigate();
   const cpf = formataCPF(client.cpf)
-   const phone = formataPhone(client.phone)
+  const phone = formataPhone(client.phone)
+
+  const mapping = {
+    'Inativo': 'red',
+    'Ativo' : 'green',
+    'Desativado': '#d3d3d3',
+    'Aguardando ativação':'#D3A710'
+  }
 
   return(
     <div className="card-container">
@@ -25,11 +34,15 @@ function ClientCard({client}: ClientProps) {
         <p className='name'>{client.name}</p>
         <p>{client.email}</p>
       </div>
-      <div cpf-phone>
+      <div className='cpf-phone'>
         <p className='cpf'>{cpf}</p>
         <p>{phone}</p>
       </div>
-      <p>{client.status}</p>
+      <IconContext.Provider value={{ color: mapping[client.status], className: "global-class-name" }}>
+        <div className='status'>
+          <VscCircleLargeFilled/><p>{client.status}</p>
+        </div>
+      </IconContext.Provider>
       <button onClick={() => navigate(`/update-client/${client.id}`)}>Editar</button>
     </div>
   )

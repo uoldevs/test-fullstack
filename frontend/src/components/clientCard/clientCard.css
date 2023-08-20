@@ -32,3 +32,11 @@
 .name, .cpf {
   font-weight: 600;
 }
+
+.status {
+  display: flex;
+}
+
+.status p {
+  margin-left: 0.3rem;
+}

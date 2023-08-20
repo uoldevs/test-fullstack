@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import ClientCard from "../components/clientCard/ClientCard";
 import HeaderClientDashbord from "../components/headerClientDashbord/HeaderClientDashbord";
 import { getClientsData } from "../services/clientRequests";
-import { Client } from "../types";
+import { DbClient } from "../types";
 import './home.css'
 import { useNavigate } from "react-router-dom";
 
 function Home() {
-  const [clientData, setClientData] = useState<Client[] | null>(null);
+  const [clientData, setClientData] = useState<DbClient[] | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
