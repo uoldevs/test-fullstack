@@ -1,7 +1,12 @@
-function Header () {
+import icon from '../icons/uol.png';
+import './Header.css';
+
+function Header() {
   return (
-    <h2>Painel de Clientes</h2>
-  )
+    <div className="header">
+      <img src={icon} alt="icone Uol" className="icon" />
+    </div>
+  );
 }
 
 export default Header;

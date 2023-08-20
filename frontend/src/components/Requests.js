@@ -28,4 +28,17 @@ const put = async (data, id) => {
   }
 };
 
-export { post, put };
+const del = async (id) => {
+  try {
+    await fetch(`${url}${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { post, put, del };

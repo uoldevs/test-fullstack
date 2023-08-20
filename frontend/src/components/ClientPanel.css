@@ -1,0 +1,17 @@
+.clientpanel {
+  align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid gainsboro;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.painel-nome {
+  font-weight: 400;
+  margin-left: 20px;
+}
+
+.usericon {
+  height: 1.8em;
+}

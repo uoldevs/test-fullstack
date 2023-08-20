@@ -1,0 +1,14 @@
+.create-container {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.create {
+  height: 100vh;
+  width: 80vw;
+}
+
+.banner-create {
+  margin-bottom: 30px;
+}

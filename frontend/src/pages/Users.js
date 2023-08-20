@@ -1,22 +1,23 @@
 import { useNavigate } from 'react-router-dom';
-import Header from '../components/Header';
 import ListUsers from '../components/ListUsers';
+import ClientPanel from '../components/ClientPanel';
+import './Users.css';
 
 function Users() {
   const navigate = useNavigate();
   return (
-    <div>
-      <Header />
-      <div>
-        <div>
-          <p>
-            <strong>Listagem de usuários</strong>
-          </p>
-          <p>Escolha um cliente para visualizar os detalhes</p>
+    <div className="container-users">
+      <div className="users">
+        <ClientPanel />
+        <div className="banner-users">
+          <div>
+            <h3 className="font-bold">Listagem de usuários</h3>
+            <p className="font-light">Escolha um cliente para visualizar os detalhes</p>
+          </div>
+          <input type="submit" value="Novo cliente" className="button-new" onClick={() => navigate('/create')} />
         </div>
-        <input type="submit" value="Novo cliente" onClick={() => navigate('/create')} />
+        <ListUsers />
       </div>
-      <ListUsers />
     </div>
   );
 }

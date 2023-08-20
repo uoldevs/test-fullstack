@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './ListUsers.css';
 
 const url = 'http://localhost:3001/';
 
@@ -22,17 +23,19 @@ function ListUsers() {
   return (
     <div>
       {users.map((user) => (
-        <div key={user.id}>
-          <div>
-            <p>{user.nome}</p>
-            <p>{user.email}</p>
+        <div key={user.id} className="list">
+          <div className="list-content">
+            <p className="font-medium">{user.nome}</p>
+            <p className="font-light">{user.email}</p>
           </div>
-          <div>
-            <p>{user.cpf}</p>
-            <p>{user.telefone}</p>
+          <div className="list-content">
+            <p className="font-medium">{user.cpf}</p>
+            <p className="font-light">{user.telefone}</p>
           </div>
-          <p>{user.status}</p>
-          <input type="submit" value="Editar" onClick={() => navigate(`/edit/${user.id}`)} />
+          <div className="list-content">
+            <p className="font-light">{user.status}</p>
+          </div>
+          <input type="submit" value="Editar" className="button-edit" onClick={() => navigate(`/edit/${user.id}`)} />
         </div>
       ))}
       <footer>

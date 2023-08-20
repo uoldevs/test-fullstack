@@ -1,0 +1,39 @@
+.container-users {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.users {
+  height: 100vh;
+  width: 80vw;
+}
+
+.banner-users {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.button-new {
+  background-color: #e5aa11;
+  border: none;
+  border-radius: 5px;
+  color: whitesmoke;
+  font-weight: 700;
+  font-size: 15px;
+  height: 40px;
+  width: 130px;
+}
+
+.button-new:hover {
+  background-color: white;
+  border: 1px solid #e5aa11;
+  border-radius: 5px;
+  color: #e5aa11;
+  font-weight: 700;
+  font-size: 15px;
+  height: 40px;
+  width: 130px;
+}
