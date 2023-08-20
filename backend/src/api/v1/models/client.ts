@@ -20,7 +20,16 @@ export async function updateClient(id: number, client: Client) {
 }
 
 export async function listClients() {
-  const clients = await prisma.client.findMany();
+  const clients = await prisma.client.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      cpf: true,
+      phoneNumber: true,
+      status: true,
+    },
+  });
   await prisma.$disconnect();
   return clients;
 }
