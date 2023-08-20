@@ -1,10 +1,10 @@
 import './index.css'
 import './App.css'
 import { Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
+import Home from './pages/home/Home';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import ClientRegistration from './pages/ClientRegistration';
+import ClientRegistration from './pages/clientRegistration/ClientRegistration';
 
 function App() {
 

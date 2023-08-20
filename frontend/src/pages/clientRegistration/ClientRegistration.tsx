@@ -1,5 +1,5 @@
-import ClientForm from "../components/clientForm/ClientForm";
-import HeaderClientDashbord from "../components/headerClientDashbord/HeaderClientDashbord";
+import ClientForm from "../../components/clientForm/ClientForm";
+import HeaderClientDashbord from "../../components/headerClientDashbord/HeaderClientDashbord";
 import './clientRegistration.css'
 
 function ClientRegistration() {

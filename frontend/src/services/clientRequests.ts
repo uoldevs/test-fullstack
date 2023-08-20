@@ -1,4 +1,4 @@
-import { dbClient } from "../types";
+import { DbClient } from "../types";
 
 async function getClientsData() {
   const response = await fetch(`http://localhost:3001/clients`);
@@ -10,9 +10,7 @@ async function getClientsData() {
   return data;
 }
 
-async function registerClient(clientData: dbClient) {
-  console.log(JSON.stringify(clientData));
-
+async function registerClient(clientData: DbClient) {
   try {
     const response = await fetch(`http://localhost:3001/create`, {
       method: 'POST',
@@ -26,7 +24,6 @@ async function registerClient(clientData: dbClient) {
       throw new Error(`API Error: ${errorMessage}`);
     }
   } catch(err) {
-
     if (err instanceof Error) {
       console.log(err);
     } else {
@@ -35,9 +32,7 @@ async function registerClient(clientData: dbClient) {
   }
 }
 
-async function updateClient(clientData: dbClient) {
-  console.log(JSON.stringify(clientData));
-
+async function updateClient(clientData: DbClient) {
   try {
     const response = await fetch(`http://localhost:3001/update`, {
       method: 'PUT',

@@ -1,26 +1,28 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { registerClient } from '../../services/clientRequests';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { registerClient, updateClient } from '../../services/clientRequests';
 import { Client, dbStatus } from '../../types';
 import './clientForm.css'
 // import InputMask from 'react-input-mask';
 
-type FormProps = {
-  create: boolean;
-};
+function ClientForm( ) {
+  const { pathname } = useLocation()
+  const create = pathname.includes('new') ? true : false
 
-function ClientForm( create: FormProps ) {
   const [formData, setFormData] = useState<Client>({
-    name: '',
-    email: '',
-    cpf: '',
-    phone: '',
-    status: 'Ativo',
-  });
+      name: '',
+      email: '',
+      cpf: '',
+      phone: '',
+      status: 'Ativo',
+    });
   const [errors, setErrors] = useState<Partial<Client>>({});
 
+  const params = useParams();
+
   const navigate = useNavigate();
+
 
   function onSubmit(e:  React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -55,7 +57,12 @@ function ClientForm( create: FormProps ) {
       status: (formData.status === 'Aguardando-ativação' ? 'Aguardando ativação' : formData.status) as dbStatus,
     }
 
-    await registerClient(formatedData);
+    create
+    ? await registerClient(formatedData)
+    : await updateClient({
+        id: Number(params.id),
+        ...formatedData
+      });
   }
 
   function validateFormInput() {
@@ -78,6 +85,8 @@ function ClientForm( create: FormProps ) {
     if(Object.keys(newErrors).length === 0) {
       saveData();
       resetForm();
+      create ? alert('Dados inseridos com sucesso') : alert('Dados alterados com sucesso');
+      navigate('/')
     } else {
       setErrors(newErrors);
     }
