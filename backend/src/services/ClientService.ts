@@ -23,7 +23,13 @@ export default class ClientService extends Service<IClient> {
   }
 
   async update(id: number, obj: IClient): Promise<void> {
-    return await super.update(id, obj);
+    const client = await super.findByCPF(obj.CPF);
+    if (client) {
+      throw new BadRequest('CPF already registered');
+    }
+    await this.findById(id);
+
+    await super.update(id, obj);
   }
 
   async findById(id: number): Promise<IClient | null> {
