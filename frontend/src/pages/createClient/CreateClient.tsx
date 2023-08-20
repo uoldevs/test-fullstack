@@ -44,7 +44,7 @@ function CreateClient() {
 
   return (
     <main className="create-client-container">
-      {animationActive && <Alert className={`${animationActive ? 'show-alert' : ''}`} />}
+      {animationActive && <Alert message="Cliente criado com sucesso" animationActive={animationActive} />}
       <section className="create-client-form-header-container">
         <ClientListingHeader className="create-client-listing-header" />
         <div className="create-client-listing-infos-form-container">

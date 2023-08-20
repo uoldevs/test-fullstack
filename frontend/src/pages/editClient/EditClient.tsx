@@ -64,7 +64,7 @@ function EditClient() {
   return (
     <div>
       <main className="edit-client-container">
-        {animationActive && <Alert className={`${animationActive ? 'show-alert' : ''}`} />}
+        {animationActive && <Alert message="Cliente editado com sucesso" animationActive={animationActive} />}
         <section className="edit-client-form-header-container">
           <ClientListingHeader className="edit-client-listing-header" />
           <div className="edit-client-listing-infos-form-container">

@@ -2,12 +2,17 @@ import React from 'react';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
 import './style.css';
 
-function Alert({ className }: { className: string }) {
+interface AlertProps {
+  animationActive: boolean;
+  message: string;
+}
+
+function Alert({ animationActive, message }: AlertProps) {
   return (
-    <div className={`alert-container ${className}`}>
+    <div className={`alert-container ${animationActive ? 'show-alert' : ''}`}>
       <HiOutlineCheckCircle fontSize={50} />
       <div>
-        <header className="alert-header">Cliente criado com sucesso</header>
+        <header className="alert-header">{message}</header>
       </div>
     </div>
   );
