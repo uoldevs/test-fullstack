@@ -21,7 +21,7 @@ export default class ClientService extends Service<IClient> {
     return await super.list();
   }
 
-  async update(id: number, obj: IClient): Promise<IClient> {
+  async update(id: number, obj: IClient): Promise<void> {
     return await super.update(id, obj);
   }
 }

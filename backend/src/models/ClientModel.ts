@@ -21,13 +21,11 @@ export default class ClientModel implements IModel<IClient> {
     return result as IClient[];
   }
 
-  async update(id: number, obj: IClient): Promise<IClient> {
-    const [result] = (await this.connection.execute(
+  async update(id: number, obj: IClient): Promise<void> {
+    await this.connection.execute(
       'UPDATE ClientManager.Clients SET name=?, email=?, CPF=?, phonenumber=?, status=? WHERE id = ?',
       [obj.name, obj.email, obj.CPF, obj.phonenumber, obj.status, id]
-    )) as RowDataPacket[];
-
-    return result[0];
+    );
   }
 
   async findByCPF(cpf: string): Promise<IClient | null> {
