@@ -4,6 +4,13 @@ import { ClientType } from '@/types';
 
 // https://redux-toolkit.js.org/tutorials/typescript
 
+// ------- TYPES -------
+export type UserState = {
+    entities: ClientType[];
+    loading: boolean;
+    error: string | null | undefined;
+};
+
 // ------- FUNCTIONS -------
 export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
     const response = await apiHandler('Get', 'user');
@@ -16,10 +23,10 @@ export const createUser = createAsyncThunk('users/createUser', async (userData: 
 });
 
 // ------- INITIAL STATE -------
-const initialState = {
+const initialState: UserState = {
     entities: [] as ClientType[],
     loading: false,
-    error: null as any,
+    error: null,
 };
 
 // ------- SLICE -------
