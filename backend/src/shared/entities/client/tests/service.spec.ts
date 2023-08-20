@@ -5,7 +5,7 @@ import ClientService from '../client.service';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as dataMock from './dataMock/clients';
 import { CreateClientDto } from '../dto/CreateClient.dto';
-import { ConflictException } from '@nestjs/common';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import { UpdateClientDto } from '../dto/UpdateClient.dto';
 
 describe('ClientService', () => {
@@ -38,6 +38,37 @@ describe('ClientService', () => {
       expect(result).toStrictEqual(dataMock.allClientsMock);
       expect(clientRepository.findAllClientsAndStatus).toHaveBeenCalled();
       expect(clientRepository.findAllClientsAndStatus).toHaveBeenCalledWith();
+    });
+  });
+
+  describe('findById', () => {
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
+    it('shoud return a client and your status', async () => {
+      jest
+        .spyOn(clientRepository, 'findById')
+        .mockResolvedValue(dataMock.allClientsMock[0]);
+
+      const clientId = dataMock.allClientsMock[0].id;
+      const result = await clientService.findById(clientId);
+
+      expect(result).toStrictEqual(dataMock.allClientsMock[0]);
+      expect(clientRepository.findById).toHaveBeenCalled();
+      expect(clientRepository.findById).toHaveBeenCalledWith(clientId);
+    });
+
+    it('should return a error if service throw a not found error', async () => {
+      const errorMessage = 'Usuário não encontrado';
+
+      jest.spyOn(clientRepository, 'findById').mockResolvedValue(null);
+
+      const invalidId = '0a3b2646-88f7-40e5-9289-dfa50ebb750a';
+
+      await expect(clientService.findById(invalidId)).rejects.toThrowError(
+        errorMessage,
+      );
     });
   });
 
@@ -91,6 +122,10 @@ describe('ClientService', () => {
         .spyOn(clientRepository, 'update')
         .mockResolvedValue(dataMock.clientUpdated);
 
+      jest
+        .spyOn(clientRepository, 'findById')
+        .mockResolvedValue(dataMock.allClientsMock[0]);
+
       jest.spyOn(clientService, 'checkConflicts').mockResolvedValue();
 
       const clientId = dataMock.allClientsMock[0].id;
@@ -107,8 +142,10 @@ describe('ClientService', () => {
       const errorMessage = 'Dados de úsuario que já estão cadastrado';
 
       jest
-        .spyOn(clientRepository, 'update')
-        .mockResolvedValue(dataMock.clientCreated);
+        .spyOn(clientService, 'findById')
+        .mockResolvedValue(dataMock.allClientsMock[0]);
+
+      jest.spyOn(clientRepository, 'update');
 
       jest
         .spyOn(clientService, 'checkConflicts')
@@ -121,6 +158,27 @@ describe('ClientService', () => {
         errorMessage,
       );
       expect(clientRepository.update).not.toHaveBeenCalled();
+    });
+
+    it('should return a error if service throw a not found error', async () => {
+      const errorMessage = 'Usuário não encontrado';
+
+      jest
+        .spyOn(clientService, 'findById')
+        .mockRejectedValue(new NotFoundException(errorMessage));
+
+      jest.spyOn(clientRepository, 'update');
+
+      jest.spyOn(clientService, 'checkConflicts');
+
+      const client = new UpdateClientDto(dataMock.allClientsMock[1]);
+      const clientId = 'a2a8f4bd-0881-40ef-a64c-2b8c6b48632d';
+
+      await expect(clientService.update(clientId, client)).rejects.toThrowError(
+        errorMessage,
+      );
+      expect(clientRepository.update).not.toHaveBeenCalled();
+      expect(clientService.checkConflicts).not.toHaveBeenCalled();
     });
   });
 
