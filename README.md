@@ -2,6 +2,8 @@
 
 Aplicativo de Gerenciamento de Clientes
 
+Link do app hospedado na AWS: [Frontend](https://development.d31l4xqayb9ogl.amplifyapp.com/users)
+
 ## Features
 
 -   Language: [TypeScript](https://www.typescriptlang.org/)
@@ -27,8 +29,50 @@ Aplicativo de Gerenciamento de Clientes
 ## AWS Cloud Features
 
 -   Cloud Service: [Amazon Web Service](https://aws.amazon.com/pt/)
--   Delployed Link: [Frontend](https://development.d31l4xqayb9ogl.amplifyapp.com/users)
 
 ## CI/CD Features
 
 -   CI/CD: [Github Actions](https://docs.github.com/pt/actions)
+
+## Architecture
+
+![Architecture](./architecture.png)
+
+## How to run
+
+### Frontend
+
+```bash
+$ cd frontend
+
+# install dependencies
+$ npm install
+
+# run app
+$ npm run dev
+```
+
+### Backend
+
+```bash
+$ cd backend
+
+# install dependencies
+$ npm install
+
+# run app
+$ npm run dev
+```
+
+### Docker
+
+```bash
+# run app
+$ docker-compose up
+```
+
+### Seeding
+
+```bash
+$ npm run seed
+```
