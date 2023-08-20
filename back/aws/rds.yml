@@ -1,0 +1,33 @@
+Resources:
+  RDSProxyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: Sls_RDSProxyRole_${self:service}_${opt:stage}
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: 'sts:AssumeRole'
+            Principal:
+              Service: 'rds.amazonaws.com'
+      Policies:
+        - PolicyName: Sls_RDSProxyRole_${self:service}_${opt:stage}
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: 'Allow'
+                Action: '*'
+                Resource: '*'
+
+  RDSInstance:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      Engine: postgres
+      EngineVersion: '13.7'
+      DBInstanceIdentifier: db-${self:service}-${opt:stage} # A name for the DB instance
+      DBName: db_${self:service}_${opt:stage}
+      MasterUsername: ${env:DB_USERNAME}
+      MasterUserPassword: ${env:DB_PASSWORD}
+      DBInstanceClass: ${env:DB_SIZE}
+      AllocatedStorage: ${env:DB_STORAGE}
+      PubliclyAccessible: true
