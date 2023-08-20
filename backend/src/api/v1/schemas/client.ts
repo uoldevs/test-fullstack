@@ -10,14 +10,14 @@ const clientSchema = z.object({
   cpf: z.string().length(11)
     .refine((value) => validate(value), { message: 'Invalid CPF' }),
 
-  phone: z.string().min(10).max(11)
+  phoneNumber: z.string().min(10).max(11)
     .refine((value) => {
       const parsedPhone = parsePhoneNumber(value, 'BR');
       return parsedPhone?.isValid();
     }, { message: 'Invalid phone number' })
     .transform((value) => {
       const parsedPhone = parsePhoneNumber(value, 'BR');
-      return parsedPhone?.nationalNumber;
+      return parsedPhone?.nationalNumber as string;
     }),
 });
 
