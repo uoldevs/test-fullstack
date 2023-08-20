@@ -1,11 +1,11 @@
 import React from 'react';
-import './loading.css';
+import styles from './style.module.scss';
 
 const Loading = () => {
     return (
-        <div className="spinner-container">
-            <div className="spinner">
-                <div className="spinner-inner" />
+        <div className={styles.spinnerContainer}>
+            <div className={styles.spinner}>
+                <div className={styles.spinnerInner} />
             </div>
         </div>
     );
