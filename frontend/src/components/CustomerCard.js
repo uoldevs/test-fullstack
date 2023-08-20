@@ -45,7 +45,7 @@ const CustomerCard = ({ customer }) => {
           objectFit="contain"
           objectPosition="center"
           priority
-          alt="redIcon" />
+          alt="status icon" />
         {customer.status}
       </div>
       <div className="flex items-center justify-center m-2">

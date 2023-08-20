@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import CustomerCard from '../components/cutomerCard';
-import Header from '@/components/header';
+import CustomerCard from '../components/CustomerCard';
+import Header from '@/components/Header';
 import Link from 'next/link';
 import { getUsers } from '@/services/api';
 

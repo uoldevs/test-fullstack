@@ -25,10 +25,10 @@ const CustomerForm = () => {
   }
 
   useEffect(() => {
-    if (params.id) {
+    if (params?.id) {
       fetchUsersByIdAndSetOnForm(params.id)
     }
-  }, [params.id])
+  }, [])
 
   const formatCPF = (value) => {
     value = value.replace(/\D/g, '');
@@ -131,9 +131,9 @@ const CustomerForm = () => {
       status,
     };
 
-    if (params.id) {
+    if (params?.id) {
       const response = await updateUser(newCustomerData, params.id)
-      if (response.statusCode) {
+      if (response?.statusCode) {
         alert(response.message);
         return;
       }
@@ -198,6 +198,7 @@ const CustomerForm = () => {
       </div>
       <div className="mb-4">
         <select
+          data-testid="status-select"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
           className={`${status === '' ? 'text-gray-400 ' : 'text-gray-950'} border rounded w-full py-2 bg-white `}
@@ -212,7 +213,7 @@ const CustomerForm = () => {
       </div>
       <div className="flex justify-around">
         <button className="bg-orange-400 text-white px-4 py-2 rounded mt-2 mx-2 w-1/3 text-center">
-          {params.id ? 'Editar' : 'Criar'}
+          {params?.id ? 'Editar' : 'Criar'}
         </button>
         <Link href="/" className="bg-orange-400 text-white px-4 py-2 rounded mt-2 mx-2 w-1/3 text-center">
           Voltar

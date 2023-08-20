@@ -1,5 +1,5 @@
-import Header from '@/components/header';
-import CustomerForm from '../../../components/customerForm';
+import Header from '@/components/Header';
+import CustomerForm from '../../../components/CustomerForm';
 
 const EditCustomerPage = () => {
   return (
