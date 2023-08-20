@@ -2,8 +2,9 @@
   "name": "edsonuol",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.ts",
   "scripts": {
+    "start" : "node ./src/server.ts",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only ./src/server.ts",
     "migration:generate": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:generate ./src/database/migrations/default",
     "migration:run": "typeorm-ts-node-commonjs -d ./src/database/data-source.ts migration:run",
