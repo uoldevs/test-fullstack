@@ -23,3 +23,12 @@ Aplicativo de Gerenciamento de Clientes
 -   Database ORM, Migrations and Seeding: [TypeOrm](https://typeorm.io/)
 -   Tests: [Jest](https://jestjs.io/pt-BR/)
 -   Documentation: [Swagger](https://docs.nestjs.com/openapi/introduction)
+
+## AWS Cloud Features
+
+-   Cloud Service: [Amazon Web Service](https://aws.amazon.com/pt/)
+-   Delployed Link: [Frontend](https://development.d31l4xqayb9ogl.amplifyapp.com/users)
+
+## CI/CD Features
+
+-   CI/CD: [Github Actions](https://docs.github.com/pt/actions)

@@ -30,8 +30,7 @@ const UserTable = () => {
                 <Button
                     href="/users/new"
                     variant="contained"
-                    sx={{ backgroundColor: ' #c87a0d' }}
-                    className={styles.newClientButton}
+                    sx={{ backgroundColor: '#e29933', ':hover': { backgroundColor: '#c7862b' } }}
                 >
                     Novo user
                 </Button>

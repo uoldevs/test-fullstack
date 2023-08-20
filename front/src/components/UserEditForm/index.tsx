@@ -129,7 +129,16 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                     >
                         Salvar
                     </Button>
-                    <Button href="/users" variant="outlined" className={styles.cancelButton}>
+                    <Button
+                        href="/users"
+                        variant="outlined"
+                        sx={{
+                            border: '1px solid #e29933',
+                            backgroundColor: 'white',
+                            color: '#e29933',
+                            ':hover': { backgroundColor: '#e29933', color: 'white', border: '1px solid #e29933' },
+                        }}
+                    >
                         Voltar
                     </Button>
                     <IconButton onClick={onDelete}>

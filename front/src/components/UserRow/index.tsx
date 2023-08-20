@@ -37,7 +37,16 @@ const UserRow: React.FC<UserRowProps> = ({ user }) => {
             </Box>
 
             <Box className={styles.innerContainer3}>
-                <Button href={`/users/${user.id}/edit`} className={styles.editButton} variant="outlined">
+                <Button
+                    href={`/users/${user.id}/edit`}
+                    sx={{
+                        border: '1px solid #e29933',
+                        backgroundColor: 'white',
+                        color: '#e29933',
+                        ':hover': { backgroundColor: '#e29933', color: 'white', border: '1px solid #e29933' },
+                    }}
+                    variant="outlined"
+                >
                     Editar
                 </Button>
             </Box>

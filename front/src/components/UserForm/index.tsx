@@ -88,12 +88,21 @@ const UserForm: React.FC = () => {
                     <Button
                         type="submit"
                         variant="contained"
-                        sx={{ backgroundColor: ' #c87a0d' }}
+                        sx={{ backgroundColor: ' #c87a0d', ':hover': { backgroundColor: '#c7862b' } }}
                         className={styles.newClientButton}
                     >
                         Criar
                     </Button>
-                    <Button href="/users" variant="outlined" className={styles.cancelButton}>
+                    <Button
+                        href="/users"
+                        variant="outlined"
+                        sx={{
+                            border: '1px solid #e29933',
+                            backgroundColor: 'white',
+                            color: '#e29933',
+                            ':hover': { backgroundColor: '#e29933', color: 'white', border: '1px solid #e29933' },
+                        }}
+                    >
                         Voltar
                     </Button>
                 </Box>
