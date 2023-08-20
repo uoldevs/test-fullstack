@@ -13,12 +13,12 @@ export type UserState = {
 };
 
 // ------- FUNCTIONS -------
-export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
-    const { data } = await apiHandler('Get', 'user');
-    return data;
-});
 export const createUser = createAsyncThunk('users/createUser', async (userData: UserType) => {
     const { data } = await apiHandler('Post', 'user', userData);
+    return data;
+});
+export const fetchUsers = createAsyncThunk('users/fetchAll', async () => {
+    const { data } = await apiHandler('Get', 'user');
     return data;
 });
 export const getUserById = createAsyncThunk('users/fetchUser', async (userId) => {
@@ -27,6 +27,10 @@ export const getUserById = createAsyncThunk('users/fetchUser', async (userId) =>
 });
 export const updateUser = createAsyncThunk('users/updateUser', async (userData: UserType) => {
     const { data } = await apiHandler('Patch', `user/${userData.id}`, userData);
+    return data;
+});
+export const deleteUser = createAsyncThunk('users/deleteUser', async (userData: UserType) => {
+    const { data } = await apiHandler('Delete', `user/${userData.id}`);
     return data;
 });
 

@@ -1,16 +1,18 @@
 'use client';
 
 import styles from './style.module.scss';
-import { Box, Button, MenuItem, TextField, Typography } from '@mui/material';
+import { Box, Button, IconButton, MenuItem, TextField, Typography } from '@mui/material';
 import { Resolver, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
-import { updateUser } from '@/app/redux/slice/userSlice';
+import { deleteUser, updateUser } from '@/app/redux/slice/userSlice';
 import { schema } from '../UserForm/Validation';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { UserType } from '@/types';
 import { AppDispatch } from '@/app/redux/store';
+import DeleteIcon from '@mui/icons-material/Delete';
+import apiHandler from '@/utils/apiHandler';
 
 interface UserEditFormProps {
     user: UserType;
@@ -49,6 +51,15 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
             router.push('/users');
         });
     };
+
+    const onDelete = async () => {
+        const userConfirmed = window.confirm('Deletar?');
+        if (!userConfirmed) return;
+        dispatch(deleteUser(user)).then(() => {
+            router.push('/users');
+        });
+    };
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Box>
@@ -122,6 +133,9 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                     <Button href="/users" variant="outlined" className={styles.cancelButton}>
                         Voltar
                     </Button>
+                    <IconButton onClick={onDelete}>
+                        <DeleteIcon />
+                    </IconButton>
                 </Box>
             </Box>
         </form>
