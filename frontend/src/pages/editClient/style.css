@@ -29,34 +29,3 @@
   margin-bottom: 10px;
   padding-top: 20px;
 }
-
-.edit-client-btn-container {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: row;
-}
-
-.edit-client-edit-btn {
-  padding: 10px 30px;
-  border-radius: 3px;
-  background-color: #E29934;
-  color: #fff;
-  cursor: pointer;
-  border: 1px solid #E29934;
-  margin-right: 20px;
-}
-
-.edit-client-back-btn {
-  background-color: #fff;
-  color: #E29934;
-  padding: 10px 30px;
-  cursor: pointer;
-  border-radius: 3px;
-  border: 1px solid #E29934;
-}
-
-.edit-client-back-btn:hover {
-  background-color: #E29934;
-  color: #fff;
-}
-

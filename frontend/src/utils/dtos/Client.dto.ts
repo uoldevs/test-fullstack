@@ -1,6 +1,6 @@
 import TypeClientStatus from '../../interfaces/TypeClientStatus';
 
-export class CreateClientDto {
+export class ClientDto {
   public name: string;
   public cpf: string;
   public email: string;
