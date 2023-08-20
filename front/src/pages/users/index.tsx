@@ -1,10 +1,10 @@
 import styles from './style.module.scss';
 import AppBarCustom from '@/components/AppBar';
-import ClienHeader from '@/components/ClientHeader';
-import ClientTable from '@/components/ClientTable';
+import ClienHeader from '@/components/UserHeader';
+import UserTable from '@/components/UserTable';
 import { Box, Divider } from '@mui/material';
 
-export default function Clients() {
+export default function Users() {
     return (
         <Box>
             <AppBarCustom />
@@ -13,7 +13,7 @@ export default function Clients() {
 
                 <Divider />
 
-                <ClientTable />
+                <UserTable />
             </Box>
         </Box>
     );

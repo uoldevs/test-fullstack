@@ -5,11 +5,11 @@ import { Box, Typography, Button } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import Loading from '../Loading';
 import { useDispatch, useSelector } from 'react-redux';
-import ClientRow from '../ClientRow';
+import UserRow from '../UserRow';
 import { fetchUsers } from '@/app/redux/slice/userSlice';
 import { AppDispatch, RootState } from '@/app/redux/store';
 
-const ClientTable = () => {
+const UserTable = () => {
     const dispatch = useDispatch<AppDispatch>();
     const users = useSelector((state: RootState) => state.users.entities);
     const loading = useSelector((state: RootState) => state.users.loading);
@@ -38,7 +38,7 @@ const ClientTable = () => {
             {!loading && (
                 <Box>
                     {users.map((user: any) => (
-                        <ClientRow key={user.id} user={user} />
+                        <UserRow key={user.id} user={user} />
                     ))}
                 </Box>
             )}
@@ -46,4 +46,4 @@ const ClientTable = () => {
     );
 };
 
-export default ClientTable;
+export default UserTable;

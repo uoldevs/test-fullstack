@@ -1,7 +1,6 @@
 import apiHandler from '@/utils/apiHandler';
-import { SetStateAction } from 'react';
 
-export const getClients = async () => {
+export const getUsers = async () => {
     try {
         const response = await apiHandler('GET', `user`);
         return response;

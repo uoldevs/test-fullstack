@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import apiHandler from '@/utils/apiHandler';
 import { UserType } from '@/types';
-import { RootState } from '../store';
 
 // https://redux-toolkit.js.org/tutorials/typescript
 

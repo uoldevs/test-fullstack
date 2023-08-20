@@ -1,12 +1,12 @@
-import ClientForm from '@/components/ClientForm';
+import UserForm from '@/components/UserForm';
 import React from 'react';
 import styles from './style.module.scss';
 import { Box, Divider } from '@mui/material';
 import AppBarCustom from '@/components/AppBar';
-import ClienHeader from '@/components/ClientHeader';
+import ClienHeader from '@/components/UserHeader';
 // import store from '@/store';
 
-const NewClient = () => {
+const NewUser = () => {
     return (
         <div>
             <Box>
@@ -16,11 +16,11 @@ const NewClient = () => {
 
                     <Divider />
 
-                    <ClientForm />
+                    <UserForm />
                 </Box>
             </Box>
         </div>
     );
 };
 
-export default NewClient;
+export default NewUser;

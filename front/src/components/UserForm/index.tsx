@@ -2,21 +2,16 @@
 
 import styles from './style.module.scss';
 import { Box, Button, MenuItem, TextField, Typography } from '@mui/material';
-import { useForm } from 'react-hook-form';
+import { schema } from './Validation';
+import { Resolver, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
-import { updateUser } from '@/app/redux/slice/userSlice';
-import { schema } from '../ClientForm/Validation';
-import { useEffect } from 'react';
+import { createUser } from '@/app/redux/slice/userSlice';
 import { useRouter } from 'next/router';
 import { UserType } from '@/types';
 import { AppDispatch } from '@/app/redux/store';
 
-interface UserEditFormProps {
-    user: UserType;
-}
-
-const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
+const UserForm: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
     const router = useRouter();
 
@@ -24,44 +19,32 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
         register,
         handleSubmit,
         formState: { errors },
-        setValue,
-    } = useForm({
-        defaultValues: user,
-        resolver: yupResolver(schema) as any,
+    } = useForm<UserType>({
+        resolver: yupResolver(schema) as Resolver<UserType>,
         mode: 'onChange',
     });
-
-    useEffect(() => {
-        if (user) {
-            setValue('id', user.id);
-            setValue('name', user.name);
-            setValue('email', user.email);
-            setValue('cpf', user.cpf);
-            setValue('phone', user.phone);
-            setValue('status', user.status);
-        }
-    }, [user, setValue]);
 
     const onSubmit = (data: UserType) => {
         console.log(data);
         console.log(errors);
-        dispatch(updateUser(data)).then(() => {
-            router.push('/clients');
+        dispatch(createUser(data)).then(() => {
+            // Navigate to /users after a successful update
+            router.push('/users');
         });
     };
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Box>
                 <Box className={styles.userListHeader}>
                     <Box sx={{}}>
-                        <Typography variant="h5">Editar usuário</Typography>
-                        <Typography variant="subtitle1">Informe os campos a seguir para editar usuário</Typography>
+                        <Typography variant="h5">Novo usuário</Typography>
+                        <Typography variant="subtitle1">Informe os campos a seguir para criar novo usuário</Typography>
                     </Box>
                 </Box>
                 <Box className={styles.form}>
                     <TextField
                         margin="normal"
-                        InputLabelProps={{ shrink: true }}
                         label="Nome"
                         {...register('name')}
                         fullWidth
@@ -69,7 +52,6 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                     />
                     {errors.name && <span className={styles.error}>{errors.name.message}</span>}
                     <TextField
-                        InputLabelProps={{ shrink: true }}
                         margin="normal"
                         error={Boolean(errors.email)}
                         label="E-mail"
@@ -77,14 +59,7 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         fullWidth
                     />
                     {errors.email && <span className={styles.error}>{errors.email.message}</span>}
-                    <TextField
-                        InputLabelProps={{ shrink: true }}
-                        label="CPF"
-                        margin="normal"
-                        {...register('cpf')}
-                        fullWidth
-                        error={Boolean(errors.cpf)}
-                    />
+                    <TextField label="CPF" margin="normal" {...register('cpf')} fullWidth error={Boolean(errors.cpf)} />
                     {errors.cpf && <span className={styles.error}>{errors.cpf.message}</span>}
                     <TextField
                         label="Telefone"
@@ -92,7 +67,6 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         {...register('phone')}
                         fullWidth
                         error={Boolean(errors.phone)}
-                        InputLabelProps={{ shrink: true }}
                     />
                     {errors.phone && <span className={styles.error}>{errors.phone.message}</span>}
                     <TextField
@@ -115,11 +89,11 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         type="submit"
                         variant="contained"
                         sx={{ backgroundColor: ' #c87a0d' }}
-                        className={styles.newClientButton}
+                        className={styles.newUserButton}
                     >
-                        Salvar
+                        Criar
                     </Button>
-                    <Button href="/clients" variant="outlined" className={styles.cancelButton}>
+                    <Button href="/users" variant="outlined" className={styles.cancelButton}>
                         Voltar
                     </Button>
                 </Box>
@@ -128,4 +102,4 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
     );
 };
 
-export default UserEditForm;
+export default UserForm;

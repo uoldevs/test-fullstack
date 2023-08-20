@@ -8,7 +8,7 @@ async function bootstrap() {
 
   const config = new DocumentBuilder()
     .setTitle('Teste Fullstack - Filipe Braga')
-    .setDescription('Aplicativo de Gerenciamento de Clientes')
+    .setDescription('Aplicativo de Gerenciamento de Usuários')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, config);
