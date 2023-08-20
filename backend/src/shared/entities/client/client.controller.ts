@@ -33,7 +33,11 @@ class ClientController {
   }
 
   @Get()
-  async findAllClientsAndStatus() {
+  async findAllClientsAndStatus(@Query() querry: { clientId?: string }) {
+    if (querry.clientId) {
+      return this.clientService.findById(querry.clientId);
+    }
+
     return this.clientService.findAllClientsAndStatus();
   }
 }

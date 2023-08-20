@@ -1,4 +1,8 @@
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import ClientRepository from './client.repository';
 import { CreateClientDto } from './dto/CreateClient.dto';
 import { UpdateClientDto } from './dto/UpdateClient.dto';
@@ -14,6 +18,8 @@ class ClientService {
   }
 
   public async update(clientId: string, data: UpdateClientDto) {
+    await this.findById(clientId);
+
     await this.checkConflicts(data.cpf, data.email, data.phoneNumber);
 
     return await this.clientRepository.update(clientId, data);
@@ -33,6 +39,16 @@ class ClientService {
     if (!!client) {
       throw new ConflictException('Dados de úsuario que já estão cadastrado');
     }
+  }
+
+  async findById(clientId: string) {
+    const client = await this.clientRepository.findById(clientId);
+
+    if (client === null) {
+      throw new NotFoundException('Usuário não encontrado');
+    }
+
+    return client;
   }
 }
 

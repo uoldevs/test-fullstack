@@ -88,6 +88,13 @@ class ClientRepository {
 
     return updatedClient;
   }
+
+  async findById(clientId: string) {
+    return await this.prismaService.client.findFirst({
+      where: { id: clientId },
+      ...this.selectClientReturn,
+    });
+  }
 }
 
 export default ClientRepository;
