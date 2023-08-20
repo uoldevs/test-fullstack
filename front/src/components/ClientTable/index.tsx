@@ -7,11 +7,12 @@ import Loading from '../Loading';
 import { useDispatch, useSelector } from 'react-redux';
 import ClientRow from '../ClientRow';
 import { fetchUsers } from '@/app/redux/slice/userSlice';
+import { AppDispatch, RootState } from '@/app/redux/store';
 
 const ClientTable = () => {
-    const dispatch = useDispatch();
-    const users = useSelector((state) => state.users.entities);
-    const loading = useSelector((state) => state.users.loading);
+    const dispatch = useDispatch<AppDispatch>();
+    const users = useSelector((state: RootState) => state.users.entities);
+    const loading = useSelector((state: RootState) => state.users.loading);
 
     useEffect(() => {
         dispatch(fetchUsers());
