@@ -5,7 +5,7 @@ CREATE DATABASE ClientManager;
 USE ClientManager;
 
 CREATE TABLE
-    client (
+    Clients (
         id INT NOT NULL auto_increment,
         name VARCHAR(30) NOT NULL,
         email VARCHAR(30) NOT NULL,
