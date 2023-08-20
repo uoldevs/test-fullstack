@@ -17,4 +17,8 @@ export default abstract class Service<T> {
   async update(id: number, obj: T): Promise<T> {
     return await this.model.update(id, obj);
   }
+
+  async findByCPF(cpf: string): Promise<T | null> {
+    return await this.model.findByCPF(cpf);
+  }
 }

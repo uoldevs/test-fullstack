@@ -29,4 +29,13 @@ export default class ClientModel implements IModel<IClient> {
 
     return result[0];
   }
+
+  async findByCPF(cpf: string): Promise<IClient | null> {
+    const [result] = (await this.connection.execute(
+      'SELECT * FROM ClientManager.Clients WHERE CPF = ?',
+      [cpf]
+    )) as RowDataPacket[];
+
+    return result[0];
+  }
 }

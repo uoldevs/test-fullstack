@@ -1,3 +1,4 @@
+import BadRequest from '../Errors/BadRequest';
 import IClient from '../interfaces/IClient';
 import ClientModel from '../models/ClientModel';
 import Service from './Service';
@@ -8,6 +9,11 @@ export default class ClientService extends Service<IClient> {
   }
 
   async create(obj: IClient): Promise<void> {
+    const client = await super.findByCPF(obj.CPF);
+    if (client) {
+      throw new BadRequest('CPF already registered');
+    }
+
     await super.create(obj);
   }
 
