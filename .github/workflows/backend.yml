@@ -14,11 +14,8 @@ jobs:
         with:
           node-version: "16.20"
 
-      - name: Move to backend directory
-        run: cd backend
-
       - name: Install dependencies
-        run: npm ci
+        run: cd backend && npm ci
 
       - name: Run eslint
-        run: npm run lint
+        run: cd backend && npm run lint
