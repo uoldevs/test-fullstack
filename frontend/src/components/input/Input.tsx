@@ -5,10 +5,10 @@ import './style.css';
 
 function Input({ id, name, onChange, type = 'text', placeholder, error }: IInput) {
   return (
-    <>
+    <div className="input-container">
       <input className="input-field" type={type} name={name} placeholder={placeholder} id={id} onChange={onChange} />
       <ErrorCard message={error || ''} />
-    </>
+    </div>
   );
 }
 

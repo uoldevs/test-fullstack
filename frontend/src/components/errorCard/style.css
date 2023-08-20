@@ -1,5 +1,6 @@
 .error-message-container {
-  margin: 5px 0;
+  height: fit-content;
+  display: block;
 }
 
 .error-message-text {
