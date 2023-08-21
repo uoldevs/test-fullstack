@@ -30,7 +30,7 @@ git clone git@github.com:uoldevs/test-fullstack.git
 ### Navegue até o diretório do projeto clonado
 
 ```bash
-cd test-fullstack
+cd test-fullstack/backend
 ```
 
 ### Instale as dependências do projeto
