@@ -8,7 +8,7 @@ Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos
 ### Como Executar:
 
 ```terminal
-Caso queira instanciar um container docker com a aplicacao server e web
+Caso queira instanciar um container docker com a aplicação server e web
 $ npm run compose:up
 
 Instale todas as dependências:
@@ -23,8 +23,7 @@ inicie o projeto web:
 $ npm run start:dev
 ```
 
-## Frontend
-### Requisitos:
+## Frontend Requisitos:
 
 - [x] Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
 - [x] Permitir a criação de um novo cliente através de um formulário.
@@ -32,17 +31,7 @@ $ npm run start:dev
 - [x] Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
 - [x] Comunicar-se com a API para obter os dados dos clientes cadastrados.
 
-### Bibliotecas utilizadas:
-
-- [NextJS](https://nextjs.org/)
-- [Tailwind](https://tailwindcss.com/)
-- [React-Query](https://tanstack.com/query/v3/)
-- [Formik](https://formik.org/)
-- [Zod](https://zod.dev/)
-
-
-## Backend
-### Requisitos:
+## Backend Requisitos:
 
 Criar uma API que ofereça endpoints para:
 
@@ -51,17 +40,14 @@ Criar uma API que ofereça endpoints para:
 - [x] Atualizar informações de cliente existente.
 - [x] Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
 
-### Bibliotecas utilizadas:
-
-- [NestJS](https://nestjs.com/)
-- [Prisma](https://www.prisma.io/)
-- [SQLite](https://www.sqlite.org/index.html)
-- [Class Validator](https://github.com/typestack/class-validator)
-
 ### Itens Desejáveis (opcional):
 
-- [x] Testes unitários
+- [x] Testes unitários (backend e frontend)
 - [x] Bibliotecas ou frameworks adicionais
+- [x] Testes de integração (frontend)
+- [x] Teste e2e frontend
+- [x] workflow
+- [x] container docker com web e server
 
 ### Telas:
 
