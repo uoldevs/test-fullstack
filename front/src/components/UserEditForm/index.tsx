@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { deleteUser, updateUser } from '@/app/redux/slice/userSlice';
 import { schema } from '../UserForm/Validation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UserType } from '@/types';
 import { AppDispatch } from '@/app/redux/store';
@@ -40,6 +40,7 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
             setValue('cpf', user.cpf);
             setValue('phone', user.phone);
             setValue('status', user.status);
+            setSelect(user.status);
         }
     }, [user, setValue]);
 
@@ -57,6 +58,11 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
         dispatch(deleteUser(user)).then(() => {
             router.push('/users');
         });
+    };
+
+    const [select, setSelect] = useState('');
+    const handleChange = (event) => {
+        setSelect(event.target.value);
     };
 
     return (
@@ -112,6 +118,8 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         label="Status"
                         {...register('status')}
                         fullWidth
+                        value={select}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Ativo">Ativo</MenuItem>
                         <MenuItem value="Desativado">Desativado</MenuItem>
