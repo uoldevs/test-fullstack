@@ -21,5 +21,4 @@ jobs:
         run: npm ci
 
       - name: Lint
-        run: npm run lint
-        working-directory: ./web
+        run: cd ./web && npm run lint
