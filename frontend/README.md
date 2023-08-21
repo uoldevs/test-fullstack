@@ -21,7 +21,7 @@
 
 ## 🌱 Pré-requisitos
 * Instale a última versão do [Node](https://nodejs.org/en/);
-* O gerenciador de pacotes utilizado no projeto é o [pnpm](https://pnpm.io/pt/) mas fique a vontade para usar o npm se desejar;
+* O gerenciador de pacotes utilizado no projeto é o [pnpm](https://pnpm.io/pt/) mas fique a vontade para usar `npm` ou `yarn` se desejar;
 * Para garantir o funcionamento de todas as funcionalidades da aplicação é recomendado o uso do [Google Chrome](https://www.google.com/intl/pt-BR/chrome/);
 * Para clonar o repositório instale e configure o [git](https://git-scm.com/).
 
@@ -44,6 +44,9 @@ pnpm install
 
 # npm
 npm install
+
+# yarn
+yarn
 ```
 #### 4º Inicie o processo de build do projeto e aguarde até estar finalizado
 ```bash
@@ -52,6 +55,9 @@ pnpm build
 
 # npm
 npm run build
+
+# yarn
+yarn build
 ```
 #### Você verá algo parecido com isso no terminal
 <img src="./assets/build-terminal.png" alt="build">
@@ -63,6 +69,9 @@ pnpm start
 
 # npm
 npm start
+
+# yarn
+yarn start
 ```
 #### Você verá algo parecido com isso no terminal
 <img src="./assets/start-terminal.png" alt="npm start">
@@ -78,6 +87,8 @@ pnpm test
 # npm
 npm test
 
+# yarn
+yarn test
 ```
 #### Você verá algo parecido com isso no terminal
 <img src="./assets/test-terminal.png" alt="tests">
