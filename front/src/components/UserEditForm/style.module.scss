@@ -10,6 +10,8 @@
 .form {
     @include flexAlign(column, flex-start, flex-start);
     @include size(30%);
+    color: #474747;
+    min-width: 250px;
     .error {
         color: red;
         font-size: 0.8rem;
