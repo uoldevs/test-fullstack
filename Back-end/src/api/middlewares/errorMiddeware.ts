@@ -8,7 +8,6 @@ class ErrorHandlerMiddleware {
     res: Response,
     _next: NextFunction
   ) {
-    console.log(err.fields);
     if (err.status) {
       return res.status(err.status).json({ message: err.message });
     } else if (err.name === 'SequelizeUniqueConstraintError') {

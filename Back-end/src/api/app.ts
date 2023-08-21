@@ -7,12 +7,10 @@ import ErrorHandlerMiddleware from './middlewares/errorMiddeware';
 export default class App {
   private app: express.Express;
   private port: number;
-  // private errorHandlerMiddleware: ErrorHandlerMiddleware;
   constructor(port: number) {
     this.app = express();
     this.port = port;
     this.config();
-    // this.errorHandlerMiddleware = new ErrorHandlerMiddleware();
   }
 
   private config(): void {
