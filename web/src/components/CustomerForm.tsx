@@ -90,7 +90,11 @@ function CustomerForm({ id }: CustomerFormProps) {
   }, [customer, setValues, id])
 
   return (
-    <form className="flex flex-col my-24 max-w-[224px]" onSubmit={handleSubmit}>
+    <form
+      data-testid="customer-form"
+      className="flex flex-col my-24 max-w-[224px]"
+      onSubmit={handleSubmit}
+    >
       <Input
         id="name"
         name="name"
