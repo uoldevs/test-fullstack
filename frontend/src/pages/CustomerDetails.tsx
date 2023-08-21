@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import InputMask from 'react-input-mask';
+
 import ICustomer from '../interfaces/ICustomer';
 import { requestData, updateCustomer } from '../services/requests';
-
 
 const CustomerDetails = () => {
   const { id } = useParams();
@@ -20,16 +21,15 @@ const CustomerDetails = () => {
       cpf,
       email,
       phone,
-      status
-    }
+      status,
+    };
     const endpoint = `/customers/${id}`;
     const response = await updateCustomer(endpoint, costumer);
 
     if (response) {
       navigate('/');
     }
-  }
-
+  };
 
   useEffect(() => {
     const endpoint = `/customers/${id}`;
@@ -65,8 +65,9 @@ const CustomerDetails = () => {
           </label>
           <label htmlFor="input-cpf">
             CPF:
-            <input
-              type="text"
+            <InputMask
+              mask="999.999.999-99"
+              maskChar=" "
               name="cpf"
               value={cpf}
               id="input-cpf"
@@ -85,8 +86,9 @@ const CustomerDetails = () => {
           </label>
           <label htmlFor="input-phone">
             Telefone:
-            <input
-              type="text"
+            <InputMask
+              mask="(99) 9999-9999"
+              maskChar=" "
               name="phone"
               value={phone}
               id="input-phone"
@@ -107,7 +109,9 @@ const CustomerDetails = () => {
               <option value="Desativado">Desativado</option>
             </select>
           </label>
-          <button type='button' onClick={() => saveCustomer()}>Salvar</button>
+          <button type="button" onClick={() => saveCustomer()}>
+            Salvar
+          </button>
         </form>
       )}
     </div>

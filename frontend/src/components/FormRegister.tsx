@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InputMask from 'react-input-mask';
 import { createCustomer } from '../services/requests';
 
 const FormRegister = () => {
@@ -7,7 +8,8 @@ const FormRegister = () => {
   const [cpf, setCpf] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
-  const [status, setStatus] = useState('Ativo');
+  const [status, setStatus] = useState('');
+  const [btn, setBtn] = useState(true);
   const navigate = useNavigate();
 
   const registerCustomer = async () => {
@@ -16,23 +18,28 @@ const FormRegister = () => {
       cpf,
       email,
       phone,
-      status
-    }
+      status,
+    };
     const endpoint = '/customers';
     const response = await createCustomer(endpoint, costumer);
 
     if (response) {
       navigate('/');
     }
+  };
 
-  }
+  useEffect(() => {
+    if (status.trim() !== '') {
+      setBtn(false);
+    }
+  }, [status]);
 
   return (
     <form action="">
       <label htmlFor="input-name">
-        Nome:
         <input
           type="text"
+          placeholder="Nome"
           name="name"
           value={name}
           id="input-name"
@@ -40,9 +47,10 @@ const FormRegister = () => {
         />
       </label>
       <label htmlFor="input-cpf">
-        CPF:
-        <input
-          type="text"
+        <InputMask
+          mask="999.999.999-99"
+          maskChar=" "
+          placeholder="CPF"
           name="cpf"
           value={cpf}
           id="input-cpf"
@@ -50,9 +58,9 @@ const FormRegister = () => {
         />
       </label>
       <label htmlFor="input-email">
-        Email:
         <input
           type="email"
+          placeholder="Email"
           name="email"
           value={email}
           id="input-email"
@@ -60,9 +68,10 @@ const FormRegister = () => {
         />
       </label>
       <label htmlFor="input-phone">
-        Telefone:
-        <input
-          type="text"
+        <InputMask
+          mask="(99) 9999-9999"
+          placeholder="Telefone"
+          maskChar=" "
           name="phone"
           value={phone}
           id="input-phone"
@@ -70,21 +79,26 @@ const FormRegister = () => {
         />
       </label>
       <label htmlFor="select-status">
-        Status:
         <select
           name="status"
           id="select-status"
           value={status}
           onChange={(e) => setStatus(e.target.value)}
         >
+          <option value="" disabled selected>
+            Status
+          </option>
           <option value="Ativo">Ativo</option>
           <option value="Aguardando ativação">Aguardando ativação</option>
           <option value="Inativo">Inativo</option>
           <option value="Desativado">Desativado</option>
         </select>
       </label>
-      <button type="button" onClick={() => registerCustomer()}>
-        Salvar
+      <button type="button" disabled={btn} onClick={() => registerCustomer()}>
+        Criar
+      </button>
+      <button type="button" onClick={() => navigate('/')}>
+        Voltar
       </button>
     </form>
   );
