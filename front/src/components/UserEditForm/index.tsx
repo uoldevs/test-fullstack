@@ -7,11 +7,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { deleteUser, updateUser } from '@/app/redux/slice/userSlice';
 import { schema } from '../UserForm/Validation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { UserType } from '@/types';
 import { AppDispatch } from '@/app/redux/store';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { applyMask } from '@/utils/maskHandler';
 
 interface UserEditFormProps {
     user: UserType;
@@ -40,6 +41,7 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
             setValue('cpf', user.cpf);
             setValue('phone', user.phone);
             setValue('status', user.status);
+            setSelect(user.status);
         }
     }, [user, setValue]);
 
@@ -57,6 +59,26 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
         dispatch(deleteUser(user)).then(() => {
             router.push('/users');
         });
+    };
+
+    const [select, setSelect] = useState('');
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSelect(event.target.value);
+    };
+
+    const handleMasking = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        let maskedValue;
+
+        if (name === 'cpf') {
+            maskedValue = applyMask(value, '999.999.999-99');
+        } else if (name === 'phone') {
+            maskedValue = applyMask(value, '(99) 9 9999-9999');
+        } else {
+            maskedValue = value;
+        }
+
+        setValue(name as keyof UserType, maskedValue);
     };
 
     return (
@@ -94,6 +116,7 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         {...register('cpf')}
                         fullWidth
                         error={Boolean(errors.cpf)}
+                        onChange={handleMasking}
                     />
                     {errors.cpf && <span className={styles.error}>{errors.cpf.message}</span>}
                     <TextField
@@ -103,6 +126,7 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         fullWidth
                         error={Boolean(errors.phone)}
                         InputLabelProps={{ shrink: true }}
+                        onChange={handleMasking}
                     />
                     {errors.phone && <span className={styles.error}>{errors.phone.message}</span>}
                     <TextField
@@ -112,6 +136,8 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         label="Status"
                         {...register('status')}
                         fullWidth
+                        value={select}
+                        onChange={handleChange}
                     >
                         <MenuItem value="Ativo">Ativo</MenuItem>
                         <MenuItem value="Desativado">Desativado</MenuItem>
