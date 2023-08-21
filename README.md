@@ -1,41 +1,101 @@
 # Teste Fullstack: Aplicativo de Gerenciamento de Clientes
 
-## Descrição:
+Um aplicativo de gerenciamento de clientes, que permite ao usuário criar, editar e listar os clientes salvos em um banco de dados.
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+## Executando a Aplicação
 
-## Requisitos do Frontend:
+1. Entre na pasta raiz do projeto
 
-1. Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
-2. Permitir a criação de um novo cliente através de um formulário.
-3. Na tela de edição, fornecer alertas para o usuário em caso de dados inválidos.
-4. Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
-5. Comunicar-se com a API para obter os dados dos clientes cadastrados.
+```bash
+  cd test-fullstack
+```
 
-## Requisitos do Backend:
+2. Instale as dependências da Aplicação
 
-Criar uma API que ofereça endpoints para:
+```bash
+  npm install
+```
 
-1. Obter a listagem de clientes cadastrados.
-2. Cadastrar um novo cliente com informações válidas.
-3. Atualizar informações de cliente existente.
-4. Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
+3. Inicie a aplicação
 
-## Requisitos de Qualidade de Código:
+```bash
+  npm start
+```
 
-Escreva um código limpo, legível e bem organizado.
-Adote boas práticas de desenvolvimento e arquitetura.
+## Stack utilizada
 
-## Itens Desejáveis (opcional):
+**Front-end:** React, React Router Dom
 
-- Testes unitários
-- Bibliotecas ou frameworks adicionais
+**Back-end:** Node, Express, Sqlite, Mocha, Chai, Sinon
 
-## Telas:
+## FrontEnd
 
-- [Tela Inicial](https://test-frontend-uolpp.web.app/assets/images/tela-inicial.jpg)
-- [Tela de Edição](https://test-frontend-uolpp.web.app/assets/images/tela-edicao.jpg)
+O FrontEnd é executado em http://localhost:3000
 
-## Instruções Finais:
+- Página onde ocorre a listagem dos clientes
+  ![Lista clientes](frontend/screen/lista_clientes.png)
 
-Após concluir o desafio, crie um pull request neste repositório com duas pastas separadas: uma contendo o projeto frontend e outra com o projeto backend, para que possamos avaliar seu trabalho. Boa sorte!
+- Tela onde são criados novos clientes
+  ![Novo cliente](frontend/screen/novo_cliente.png)
+
+- Tela de edição dos clientes
+  ![Edicao clientes](frontend/screen/editar_clientes.png)
+
+## Documentação da API (BackEnd)
+
+A API é executada em http://localhost:3001
+
+### Tabela do Banco de Dados (Sqlite)
+
+| Parâmetro  | Tipo     | Descrição                                                |
+| :--------- | :------- | :------------------------------------------------------- |
+| `id`       | `string` | **Primary Key**.                                         |
+| `nome`     | `text`   | **Obrigatório**. Nome do cliente                         |
+| `email`    | `string` | **Obrigatório**. Email do cliente                        |
+| `cpf`      | `string` | **Obrigatório**. cpf do cliente                          |
+| `telefone` | `string` | **Obrigatório**. Telefone do cliente                     |
+| `status`   | `string` | **Obrigatório**. Ativo, inativo, aguardando e desativado |
+
+#### Retorna todos os clientes
+
+```http
+  GET /
+```
+
+#### Retorna um cliente com base em seu :id
+
+```http
+  GET /${id}
+```
+
+#### Cria um novo cliente
+
+```http
+  POST /
+```
+
+#### Atualiza os dados de um cliente existente
+
+```http
+  PUT /${id}
+```
+
+#### Deleta um cliente
+
+```http
+  DELETE /${id}
+```
+
+### Rodando os Testes do BackEnd
+
+1. Entre no diretório backend
+
+```bash
+  cd backend
+```
+
+2. Execute o comando
+
+```bash
+  npm test
+```
