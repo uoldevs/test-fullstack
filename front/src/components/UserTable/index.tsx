@@ -32,7 +32,7 @@ const UserTable = () => {
                     variant="contained"
                     sx={{ backgroundColor: '#e29933', ':hover': { backgroundColor: '#c7862b' } }}
                 >
-                    Novo user
+                    Novo cliente
                 </Button>
             </Box>
             {loading && <Loading />}
