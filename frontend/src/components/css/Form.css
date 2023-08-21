@@ -1,0 +1,47 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+}
+
+.inputs {
+  border: 1px solid grey;
+  border-radius: 5px;
+  height: 3em;
+  margin-bottom: 1.5em;
+}
+
+.button-create,
+.button-return:hover {
+  background-color: #e5aa11;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  height: 50px;
+  width: 130px;
+}
+
+.button-return,
+.button-create:hover {
+  background-color: white;
+  border: 1px solid #e5aa11;
+  border-radius: 5px;
+  color: #e5aa11;
+  font-weight: 700;
+  font-size: 15px;
+  height: 50px;
+  width: 130px;
+}
+
+.create-buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.warning-create {
+  color: red;
+  font-weight: 300;
+  font-size: 1.1em;
+}

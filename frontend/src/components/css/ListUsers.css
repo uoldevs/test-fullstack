@@ -1,0 +1,39 @@
+.list {
+  border: 1px solid gainsboro;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 6em;
+  margin: 20px 0;
+  padding: 0 30px;
+}
+
+.list-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 15em;
+}
+
+.button-edit {
+  background-color: white;
+  border: 1px solid #e5aa11;
+  border-radius: 5px;
+  color: #e5aa11;
+  font-weight: 700;
+  font-size: 15px;
+  height: 50px;
+  width: 130px;
+}
+
+.button-edit:hover {
+  background-color: #e5aa11;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+  height: 50px;
+  width: 130px;
+}
