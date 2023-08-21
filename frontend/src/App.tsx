@@ -1,9 +1,20 @@
 import React from 'react';
-import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Header from './components/Header';
+import Page404 from './pages/Page404';
+import CustomerDetails from './pages/CustomerDetails';
 
 function App() {
   return (
-    <h1>Hello, world!</h1>
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" Component={Home} />
+        <Route path="/customer/:id" Component={CustomerDetails} />
+        <Route path="*" Component={Page404} />
+      </Routes>
+    </>
   );
 }
 
