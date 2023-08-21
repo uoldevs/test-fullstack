@@ -17,7 +17,7 @@ public class Customer {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(unique = true, nullable = true)
     private String socialSecurityNumber;
 
     @Column(nullable = false)

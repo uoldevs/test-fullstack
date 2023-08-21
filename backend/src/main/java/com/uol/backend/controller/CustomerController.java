@@ -3,11 +3,12 @@ package com.uol.backend.controller;
 import com.uol.backend.controller.payload.CustomerPayload;
 import com.uol.backend.model.Customer;
 import com.uol.backend.repository.CustomerRepository;
+import com.uol.backend.service.CustomerService;
+import com.uol.backend.service.exceptions.CustomerAlreadyExistsException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,11 +21,21 @@ public class CustomerController {
     @Autowired
     private CustomerRepository customerRepository;
 
+    @Autowired
+    private CustomerService customerService;
+
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void createCustomer(@Valid @RequestBody CustomerPayload customer) {
-        Customer c = customer.toCustomer();
-        customerRepository.save(c);
+    public ResponseEntity createCustomer(@Valid @RequestBody CustomerPayload customerPayload) {
+        try {
+
+            customerService.createCostumer(customerPayload);
+            return new ResponseEntity(HttpStatus.CREATED);
+
+        } catch(CustomerAlreadyExistsException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
+        }
     }
 
     @GetMapping
