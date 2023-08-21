@@ -1,0 +1,29 @@
+### Listar Clientes
+GET http://localhost:3000/clients
+
+### Listar Clientes com paginação
+GET http://localhost:3000/clients/1
+
+### Criar um Cliente
+POST http://localhost:3000/clients
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "jofhgfgggn@example.com",
+  "phone": "123456789",
+  "cpf": "123.456.789-00",
+  "status": "ativo"
+}
+
+### Atualizar um Cliente
+PUT http://localhost:3000/clients/1
+Content-Type: application/json
+
+{
+  "name": "Jane Smith",
+  "email": "jane@example.com",
+  "phone": "987654321",
+  "cpf": "987.654.321-00",
+  "status": "inativo"
+}
