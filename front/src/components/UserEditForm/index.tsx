@@ -61,7 +61,7 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
     };
 
     const [select, setSelect] = useState('');
-    const handleChange = (event) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelect(event.target.value);
     };
 
