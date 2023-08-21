@@ -4,7 +4,9 @@ import com.uol.backend.controller.payload.CustomerPayload;
 import com.uol.backend.model.Customer;
 import com.uol.backend.repository.CustomerRepository;
 import com.uol.backend.service.CustomerService;
-import com.uol.backend.service.exceptions.CustomerAlreadyExistsException;
+import com.uol.backend.service.exceptions.InvalidCustomerStatusException;
+import jakarta.persistence.EntityExistsException;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,11 +29,11 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity createCustomer(@Valid @RequestBody CustomerPayload customerPayload) {
         try {
-
             customerService.createCostumer(customerPayload);
+
             return new ResponseEntity(HttpStatus.CREATED);
 
-        } catch(CustomerAlreadyExistsException e) {
+        } catch(EntityExistsException | InvalidCustomerStatusException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
@@ -39,28 +41,48 @@ public class CustomerController {
     }
 
     @GetMapping
-    @ResponseStatus(HttpStatus.OK)
-    public List<Customer> findAllCustomers() {
-        return customerRepository.findAll();
+    public ResponseEntity findAllCustomers() {
+        try {
+            List<Customer> customers = customerService.findAllCustomers();
+
+            return ResponseEntity.status(HttpStatus.OK).body(customers);
+
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
     }
 
     @GetMapping(value = "{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public Optional<Customer> findCustomerById(@PathVariable Long id) {
-        return customerRepository.findById(id);
+    public ResponseEntity findCustomerById(@PathVariable Long id) {
+        try {
+            Customer customer = customerService.findCustomerById(id);
+
+            return ResponseEntity.status(HttpStatus.OK).body(customer);
+
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        }
     }
 
     @PutMapping(value = "{id}")
-    public ResponseEntity<HttpStatus> updateCustomer(@Valid @RequestBody CustomerPayload customer, @PathVariable Long id) {
-        Optional<Customer> c = customerRepository.findById(id);
+    public ResponseEntity updateCustomer(@Valid @RequestBody CustomerPayload customerPayload, @PathVariable Long id) {
+        try {
+            customerService.updateCustomer(customerPayload, id);
 
-        if (c.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity
+                    .status(HttpStatus.NOT_FOUND)
+                    .body(e.getMessage());
+        } catch (EntityExistsException e) {
+            return ResponseEntity
+                    .status(HttpStatus.BAD_REQUEST)
+                    .body(e.getMessage());
         }
-        var cus = c.get();
-        cus.setFullName(customer.getFullName());
-
-        customerRepository.save(cus);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }

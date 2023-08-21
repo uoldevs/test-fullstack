@@ -24,12 +24,12 @@ public class CustomerPayload {
     private String phone;
 
     @NotNull(message = "The status definition is required.")
-    @NotEmpty(message = "The status definition is required.")
+    @NotEmpty(message = "The status definition cannot be empty.")
     private String status;
 
     public Customer toCustomer() {
         Customer customer = new Customer();
-        customer.setFullName(this.fullName);
+        customer.setFullName(fullName);
         customer.setEmail(email);
         customer.setSocialSecurityNumber(socialSecurityNumber);
         customer.setPhone(phone);
