@@ -8,7 +8,7 @@ module.exports = {
           first_name: 'John',
           last_name: 'Doe',
           email: 'john@example.com',
-          cpf: '123.456.78-90',
+          cpf: '123.456.788-90',
           cellphone: '(12)3456-7890',
           status: 'ativo',
         },

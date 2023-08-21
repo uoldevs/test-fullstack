@@ -24,25 +24,76 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Clients_1 = __importDefault(require("../../database/models/Clients"));
+const handlerError_1 = __importDefault(require("../ErrorHandler/handlerError"));
 const sequelize_1 = require("sequelize");
 class ClientsService {
     constructor(clientsModel = Clients_1.default) {
         this.clientsModel = clientsModel;
+        this.clientExists = ({ id, cpf, email, cellphone }, queryName = 'create') => __awaiter(this, void 0, void 0, function* () {
+            let query = {
+                where: {
+                    [sequelize_1.Op.or]: [{ cpf }, { email }, { cellphone }],
+                },
+            };
+            const queryToUpdate = {
+                where: {
+                    [sequelize_1.Op.and]: [
+                        {
+                            id: {
+                                [sequelize_1.Op.ne]: id,
+                            },
+                        },
+                        {
+                            [sequelize_1.Op.or]: [{ cpf }, { email }, { cellphone }],
+                        },
+                    ],
+                },
+            };
+            if (queryName === 'update') {
+                query = queryToUpdate;
+            }
+            const clients = yield this.clientsModel.findAll(query);
+            if (clients.length === 0) {
+                return clients;
+            }
+            return null;
+        });
         this.getClients = () => __awaiter(this, void 0, void 0, function* () { return yield this.clientsModel.findAll(); });
-        this.createClient = (client) => __awaiter(this, void 0, void 0, function* () { return yield this.clientsModel.create(Object.assign({}, client)); });
+        this.createClient = (client) => __awaiter(this, void 0, void 0, function* () {
+            const clientsConflict = yield this.clientExists(client);
+            if (!clientsConflict) {
+                throw new handlerError_1.default(409, 'conflito de dados.');
+            }
+            return yield this.clientsModel.create(Object.assign({}, client));
+        });
         this.updateClient = (_a) => __awaiter(this, void 0, void 0, function* () {
             var { id } = _a, client = __rest(_a, ["id"]);
+            const clientsConflict = yield this.clientExists(client, 'update');
+            if (!clientsConflict) {
+                throw new handlerError_1.default(409, 'conflito de dados.');
+            }
             const [updatedRows] = yield this.clientsModel.update(client, {
                 where: {
                     id: {
-                        [sequelize_1.Op.eq]: id
-                    }
-                }
+                        [sequelize_1.Op.eq]: id,
+                    },
+                },
             });
             if (updatedRows === 0) {
                 return null;
             }
             return updatedRows;
+        });
+        this.deleteClient = (id) => __awaiter(this, void 0, void 0, function* () {
+            const deletedRows = yield this.clientsModel.destroy({
+                where: {
+                    id,
+                },
+            });
+            if (deletedRows === 0) {
+                return null;
+            }
+            return deletedRows;
         });
     }
 }

@@ -12,4 +12,5 @@ const middlewareValidation = new dataValidations_1.default();
 router.get('/', clientController.getAllClients);
 router.post('/', middlewareValidation.creationValidator, clientController.createClient);
 router.put('/', middlewareValidation.creationValidator, clientController.updateClient);
+router.delete('/', middlewareValidation.validateDelete, clientController.deleteClient);
 exports.default = router;

@@ -52,6 +52,19 @@ class ClientController {
                 next(err);
             }
         });
+        this.deleteClient = (req, res, next) => __awaiter(this, void 0, void 0, function* () {
+            try {
+                const id = req.body.id;
+                const deletedRows = yield this._clientService.deleteClient(id);
+                if (!deletedRows) {
+                    throw new handlerError_1.default(404, 'Cliente não existe');
+                }
+                return res.status(200).send();
+            }
+            catch (err) {
+                next(err);
+            }
+        });
     }
 }
 exports.default = ClientController;

@@ -17,12 +17,12 @@ Clients.init({
     firstName: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
-        field: 'first_name'
+        field: 'first_name',
     },
     lastName: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
-        field: 'last_name'
+        field: 'last_name',
     },
     email: {
         type: sequelize_1.DataTypes.STRING,
@@ -37,6 +37,7 @@ Clients.init({
     cellphone: {
         type: sequelize_1.DataTypes.STRING,
         allowNull: false,
+        unique: true,
     },
     status: {
         type: sequelize_1.DataTypes.ENUM('ativação_pendente', 'ativo', 'inativo', 'desativado'),

@@ -14,12 +14,12 @@ export default class ClientController {
   ): Promise<Response | undefined> => {
     try {
       const clients: Clients[] = await this._clientService.getClients();
-      if (clients.length === 0 ) {
+      if (clients.length === 0) {
         throw new ErrorHandler(404, 'Nenhum cliente foi achado.');
       }
       return res.status(200).json(clients);
     } catch (err) {
-      next(err)
+      next(err);
     }
   };
 
@@ -29,11 +29,11 @@ export default class ClientController {
     next: NextFunction
   ): Promise<Response | undefined> => {
     try {
-     const newClient: IClient = req.body;
-     await this._clientService.createClient(newClient);
-     return res.status(201).send();
+      const newClient: IClient = req.body;
+      await this._clientService.createClient(newClient);
+      return res.status(201).send();
     } catch (err) {
-      next(err)
+      next(err);
     }
   };
 
@@ -43,14 +43,31 @@ export default class ClientController {
     next: NextFunction
   ): Promise<Response | undefined> => {
     try {
-     const newClient: IClient = req.body;
-     const updatedRows = await this._clientService.updateClient(newClient);
-     if (!updatedRows) {
-      throw new ErrorHandler(404, 'Cliente não existe');
-     }
-     return res.status(200).send();
+      const newClient: IClient = req.body;
+      const updatedRows = await this._clientService.updateClient(newClient);
+      if (!updatedRows) {
+        throw new ErrorHandler(404, 'Cliente não existe');
+      }
+      return res.status(200).send();
     } catch (err) {
-      next(err)
+      next(err);
+    }
+  };
+
+  public deleteClient = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<Response | undefined> => {
+    try {
+      const id: number = req.body.id;
+      const deletedRows = await this._clientService.deleteClient(id);
+      if (!deletedRows) {
+        throw new ErrorHandler(404, 'Cliente não existe');
+      }
+      return res.status(200).send();
+    } catch (err) {
+      next(err);
     }
   };
 }

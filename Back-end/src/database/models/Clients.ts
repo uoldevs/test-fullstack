@@ -22,12 +22,12 @@ Clients.init(
     firstName: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'first_name'
+      field: 'first_name',
     },
     lastName: {
       type: DataTypes.STRING,
       allowNull: false,
-      field: 'last_name'
+      field: 'last_name',
     },
     email: {
       type: DataTypes.STRING,
@@ -42,9 +42,15 @@ Clients.init(
     cellphone: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     status: {
-      type: DataTypes.ENUM('ativação_pendente', 'ativo', 'inativo', 'desativado'),
+      type: DataTypes.ENUM(
+        'ativação_pendente',
+        'ativo',
+        'inativo',
+        'desativado'
+      ),
       allowNull: false,
     },
   },

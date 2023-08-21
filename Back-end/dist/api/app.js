@@ -8,10 +8,12 @@ require("express-async-errors");
 const routes_1 = __importDefault(require("./routes"));
 const errorMiddeware_1 = __importDefault(require("./middlewares/errorMiddeware"));
 class App {
+    // private errorHandlerMiddleware: ErrorHandlerMiddleware;
     constructor(port) {
         this.app = (0, express_1.default)();
         this.port = port;
         this.config();
+        // this.errorHandlerMiddleware = new ErrorHandlerMiddleware();
     }
     config() {
         const accessControl = (_req, res, next) => {
