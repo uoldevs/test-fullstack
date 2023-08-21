@@ -24,7 +24,7 @@ Docker-compose para buildar e subir a aplicação em qualquer máquina.
 
 #### Tela inicial "/" -  Na página inicial, há a possibilidade de visualizar todos os clientes, cadastrar um novo cliente ou editar um cliente cadastrado.
 
-![Web 1](https://github.com/DanielHott/imagens/blob/master/uol_inicial.png)
+![Web 1](https://github.com/DanielHott/imagens/blob/master/uol_inicial2.png)
 
 #### Tela de cadastro "/cadastrate"-  Na página de criar usuário, há a possibilidade de criar um novo cadastro de cliente ou editá-lo caso na tela inicial tenha clicado em "editar".
 
@@ -40,6 +40,13 @@ Docker-compose para buildar e subir a aplicação em qualquer máquina.
 #### (POST) Na rota "/create-user" permite ao usuário cadastrar um novo usuário no banco de dados.
 
 #### (PUT) Na rota "/update-user" permite ao usuário atualizar qualquer informação do usuário por seu id.
+
+
+## Coverage: 
+
+#### Nos testes no backend utilizei o Jest, supertest e babel. 
+
+![Web 1](https://github.com/DanielHott/imagens/blob/master/uol_test2.png)
 
 ### Para rodar a aplicação, deve ter o docker instalado na máquina.
 
