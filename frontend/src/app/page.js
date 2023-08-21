@@ -5,11 +5,12 @@ import CustomerCard from '../components/CustomerCard';
 import Header from '@/components/Header';
 import Link from 'next/link';
 import { getUsers } from '@/services/api';
+import Footer from '@/components/Footer';
 
 const CustomersPage = () => {
   const [customers, setCustomers] = useState([]);
 
-  async function fetchUsers () {
+  async function fetchUsers() {
     const response = await getUsers();
     setCustomers(response);
   }
@@ -40,6 +41,7 @@ const CustomersPage = () => {
           ))}
         </div>
       </div>
+      <Footer numberOfCustomers={customers.length} />
     </div>
   );
 };
