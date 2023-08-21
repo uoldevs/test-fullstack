@@ -12,6 +12,7 @@ import { useRouter } from 'next/router';
 import { UserType } from '@/types';
 import { AppDispatch } from '@/app/redux/store';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { applyMask } from '@/utils/maskHandler';
 
 interface UserEditFormProps {
     user: UserType;
@@ -65,6 +66,21 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
         setSelect(event.target.value);
     };
 
+    const handleMasking = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        let maskedValue;
+
+        if (name === 'cpf') {
+            maskedValue = applyMask(value, '999.999.999-99');
+        } else if (name === 'phone') {
+            maskedValue = applyMask(value, '(99) 9 9999-9999');
+        } else {
+            maskedValue = value;
+        }
+
+        setValue(name as keyof UserType, maskedValue);
+    };
+
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Box>
@@ -100,6 +116,7 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         {...register('cpf')}
                         fullWidth
                         error={Boolean(errors.cpf)}
+                        onChange={handleMasking}
                     />
                     {errors.cpf && <span className={styles.error}>{errors.cpf.message}</span>}
                     <TextField
@@ -109,6 +126,7 @@ const UserEditForm: React.FC<UserEditFormProps> = ({ user }) => {
                         fullWidth
                         error={Boolean(errors.phone)}
                         InputLabelProps={{ shrink: true }}
+                        onChange={handleMasking}
                     />
                     {errors.phone && <span className={styles.error}>{errors.phone.message}</span>}
                     <TextField
