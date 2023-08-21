@@ -18,7 +18,7 @@ export default class UserController {
   public updateById: RequestHandler = async (req, res) => {
     const updatedUser = await this.userService.updateById(req.body)
 
-    return res.status(204).json(updatedUser)
+    return res.status(200).json(updatedUser)
   }
 
   public create: RequestHandler = async (req, res) => {

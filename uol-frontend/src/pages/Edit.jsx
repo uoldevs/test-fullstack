@@ -10,6 +10,7 @@ import { AlertCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 
 
@@ -59,25 +60,39 @@ function Edit() {
     }
 
     const registerUser = async () => {
-        try {
 
             console.log(clientInfo)
             console.log(JSON.stringify(clientInfo))
 
+            // const response = await fetch('https://uol-api.onrender.com/', {
+            //   method: 'PUT',
+            //   headers: {
+            //     'Content-Type': 'application/json',
+            //   },
+            //   body: JSON.stringify({
+            //     id: window.location.pathname.split('/')[2],
+            //     name: clientInfo.name,
+            //     email: clientInfo.email,
+            //     cpf: clientInfo.cpf.replace(/\D/g, ''),
+            //     phone: clientInfo.phone.replace(/\D/g, ''),
+            //     status: handleStatus(clientInfo.status),
+            //   }),
+            // });
+
             const response = await fetch('https://uol-api.onrender.com/', {
-              method: 'PUT',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                id: window.location.pathname.split('/')[2],
-                name: clientInfo.name,
-                email: clientInfo.email,
-                cpf: clientInfo.cpf.replace(/\D/g, ''),
-                phone: clientInfo.phone.replace(/\D/g, ''),
-                status: handleStatus(clientInfo.status),
-              }),
-            });
+                method: 'PUT',
+                body: JSON.stringify(
+                    {
+                        id: "15",
+                        name: "ertert",
+                        email: "ttre34ter@gmail.com",
+                        cpf: "99999998765",
+                        phone: "43423424244",
+                        status: "Aguardando",
+                    }
+                ),
+                headers: { 'Content-Type': 'application/json' },
+              });
       
           const data = await response.json();
           console.log(data)
@@ -113,11 +128,6 @@ function Edit() {
             setInputAlert({ ...inputAlert, email: true });
             setClientInfo({ ...clientInfo, email: '' });
           }
-      
-
-        } catch (error) {
-            console.log(error, "este é o erro");
-        }
       };
 
     const CheckClientInfo = () => {
