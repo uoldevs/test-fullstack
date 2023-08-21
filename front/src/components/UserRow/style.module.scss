@@ -20,7 +20,7 @@
     margin-block: 20px;
     padding: 20px;
     border: 1px solid rgb(200, 200, 200);
-
+    color: #474747;
     .innerContainer {
         @include flexAlign(column, flex-start, flex-start);
         flex: 1;

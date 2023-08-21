@@ -4,11 +4,14 @@
 .userListHeader {
     @include flexAlign(row, space-between);
     margin-block: 10px;
+    color: #474747;
 }
 
 .form {
     @include flexAlign(column, flex-start, flex-start);
     @include size(30%);
+    color: #474747;
+
     .error {
         color: red;
         font-size: 0.8rem;

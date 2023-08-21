@@ -4,6 +4,7 @@
 .userListHeader {
     @include flexAlign(row, space-between);
     margin-block: 10px;
+    color: #474747;
 }
 
 .form {

@@ -4,6 +4,10 @@ Aplicativo de Gerenciamento de Clientes
 
 Link do app hospedado na AWS: [Frontend](https://development.d31l4xqayb9ogl.amplifyapp.com/users)
 
+## Architecture
+
+![Architecture](./architecture.png)
+
 ## Features
 
 -   Language: [TypeScript](https://www.typescriptlang.org/)
@@ -23,8 +27,10 @@ Link do app hospedado na AWS: [Frontend](https://development.d31l4xqayb9ogl.ampl
 -   Database: [PostgreSQL](https://www.postgresql.org/)
 -   Database Container: [Docker](https://docs.docker.com/compose/)
 -   Database ORM, Migrations and Seeding: [TypeOrm](https://typeorm.io/)
--   Tests: [Jest](https://jestjs.io/pt-BR/)
 -   Documentation: [Swagger](https://docs.nestjs.com/openapi/introduction)
+-   Tests: [Jest](https://jestjs.io/pt-BR/)
+-   100 % Coverage on Service and Controller
+    ![Tests](./codeCov.png)
 
 ## AWS Cloud Features
 
@@ -32,11 +38,8 @@ Link do app hospedado na AWS: [Frontend](https://development.d31l4xqayb9ogl.ampl
 
 ## CI/CD Features
 
+-   IaC: [ServerlessFramework](https://www.serverless.com/framework/docs/getting-started)
 -   CI/CD: [Github Actions](https://docs.github.com/pt/actions)
-
-## Architecture
-
-![Architecture](./architecture.png)
 
 ## How to run
 
