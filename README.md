@@ -83,8 +83,8 @@ Observação: Certifique-se de que o projeto esteja rodando para que os testes f
 <img src="./cypress02.png" alt="Descrição da Imagem" width="65%"/>
 
 
-## Resultados do Lightroom
+## Resultados do Lighthouse
 
-No Lightroom, o projeto apresentou métricas positivas, porém não atingiu 100 pontos em acessibilidade devido ao esquema de cores dos botões do layout.
+No Lighthouse, o projeto apresentou métricas positivas, porém não atingiu 100 pontos em acessibilidade devido ao esquema de cores dos botões do layout.
 
-![Resultados do Lightroom](lightroom.png)
+![Resultados do Lighthouse](lightroom.png)
