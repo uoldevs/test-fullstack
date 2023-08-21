@@ -4,7 +4,7 @@ import Dashboard from '@/app/dashboard/page'
 import { returnCustomersSuccess } from '@/__tests__/store/sagas/customer.saga.spec'
 
 describe('Dashboard Component', () => {
-  it('renders without crashing', () => {
+  it('renders FindingMain and ListCostumers', () => {
     const { getByTestId } = renderWithrovider(<Dashboard />, {
       ...returnCustomersSuccess.data,
     })
