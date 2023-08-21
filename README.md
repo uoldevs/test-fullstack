@@ -87,4 +87,4 @@ Observação: Certifique-se de que o projeto esteja rodando para que os testes f
 
 No Lighthouse, o projeto apresentou métricas positivas, porém não atingiu 100 pontos em acessibilidade devido ao esquema de cores dos botões do layout.
 
-![Resultados do Lighthouse](lightroom.png)
+![Resultados do Lighthouse](lighthouse.png)
