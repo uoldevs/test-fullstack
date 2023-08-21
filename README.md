@@ -1,41 +1,59 @@
-# Teste Fullstack: Aplicativo de Gerenciamento de Clientes
+# Aplicativo de Gerenciamento de Clientes
 
-## Descrição:
+![GIF de aprensentação da página](./assets/presentation.gif)
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+## Tecnologias Usadas
 
-## Requisitos do Frontend:
+Testes:
+> Jest
 
-1. Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
-2. Permitir a criação de um novo cliente através de um formulário.
-3. Na tela de edição, fornecer alertas para o usuário em caso de dados inválidos.
-4. Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
-5. Comunicar-se com a API para obter os dados dos clientes cadastrados.
+DevOps:
+> Docker
 
-## Requisitos do Backend:
+DataBase:
+> SqLite
 
-Criar uma API que ofereça endpoints para:
+### Back-End:
 
-1. Obter a listagem de clientes cadastrados.
-2. Cadastrar um novo cliente com informações válidas.
-3. Atualizar informações de cliente existente.
-4. Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
+> NodeJS, Nest.Js, Prisma ORM, Typescript
 
-## Requisitos de Qualidade de Código:
+### Front-End:
 
-Escreva um código limpo, legível e bem organizado.
-Adote boas práticas de desenvolvimento e arquitetura.
+> React, Typescript, Context
 
-## Itens Desejáveis (opcional):
+## Executando a Aplicação
 
-- Testes unitários
-- Bibliotecas ou frameworks adicionais
+A execução local pode ser dada das seguintes formas: Docker 
 
-## Telas:
+<details>
+  <summary><b>Iniciando o projeto com docker 🐳</b></summary>
 
-- [Tela Inicial](https://test-frontend-uolpp.web.app/assets/images/tela-inicial.jpg)
-- [Tela de Edição](https://test-frontend-uolpp.web.app/assets/images/tela-edicao.jpg)
+  ***⚠️ Para garantir um bom funcionamento é necessário que tenha instalado o docker e o docker-compose nas versões 24.0.5 e 1.29 ou superior respectivamente⚠️***
 
-## Instruções Finais:
+  1. Clone o projeto
 
-Após concluir o desafio, crie um pull request neste repositório com duas pastas separadas: uma contendo o projeto frontend e outra com o projeto backend, para que possamos avaliar seu trabalho. Boa sorte!
+  2. Entre no diretório do projeto
+
+  3. No diretório principal suba os containers
+
+  ```bash
+docker-compose -f docker-compose.dev.yml up --build -d
+  ```
+
+  5. Quando o processo dos containers estiver acabado acesse a aplicação usando o seguinte endereço
+
+  ```bash
+http://localhost:3000
+  ```
+
+  6. Para derrubar os containers
+
+  ```bash
+docker-compose -f docker-compose.dev.yml down --rmi all --volumes --remove-orphans
+  ```
+
+</details>
+
+<br />
+
+Para executar as aplicações com node entre nas pasta do projeto (backend e frontend) para mais informações
