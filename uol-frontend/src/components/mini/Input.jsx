@@ -56,8 +56,8 @@ const Input = ({ mode, props }) => {
                 setClientInfo({ ...clientInfo, cpf: event.target.value });
             }
             onBlur = () => {
-                const cpfPattern = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-                if (!cpfPattern.test(clientInfo.cpf) || clientInfo.cpf === '' || clientInfo.cpf === '___.___.___-__') {
+                const isValidCPF = /^\d{11}$/;
+                if (!isValidCPF.test(clientInfo.cpf.replace(/\D/g, '')) || clientInfo.cpf === '' || clientInfo.cpf === '___.___.___-__') {
                     setInputAlert({ ...inputAlert, cpf: true });
                 } else {
                     setInputAlert({ ...inputAlert, cpf: false });
@@ -72,8 +72,8 @@ const Input = ({ mode, props }) => {
                 setClientInfo({ ...clientInfo, phone: event.target.value });
             };
             onBlur = () => {
-                const phonePattern = /^\(\d{2}\)\s\d{4,5}-\d{4}$/;
-                if (!phonePattern.test(clientInfo.phone) || clientInfo.phone === '' || clientInfo.phone === '(__) _____-____') {
+                const isValidPhoneNumber = /^\d{10,11}$/;
+                if (!isValidPhoneNumber.test(clientInfo.phone.replace(/\D/g, '')) || clientInfo.phone === '' || clientInfo.phone === '(__) _____-____') {
                     return setInputAlert({ ...inputAlert, phone: true });
                 } else {
                     return setInputAlert({ ...inputAlert, phone: false });

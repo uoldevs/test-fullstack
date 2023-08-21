@@ -4,7 +4,7 @@ const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const UserSchemaUpdate = z
   .object({
-    id: z.number(),
+    id: z.string().transform((value) => Number(value)),
     name: z.string().min(1),
     email: z.string().regex(isValidEmail),
     cpf: z.string().refine(value => value.length === 11 && /^\d+$/.test(value), {

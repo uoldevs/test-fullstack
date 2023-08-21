@@ -60,7 +60,7 @@ function Register() {
         document.title = 'Novo usuário'
     }
     )
-    
+
 
 
     const registerUser = async () => {
@@ -138,7 +138,6 @@ function Register() {
             phone: false,
             status: false,
         }
-
         if (clientInfo.name === '' || clientInfo.name.length < 3) {
             inputStatus.name = true;
         }
@@ -147,11 +146,11 @@ function Register() {
             inputStatus.email = true;
         }
 
-        if (clientInfo.cpf === '' || /^\d{3}\.\d{3}\.\d{3}-\d{2}$/.test(clientInfo.cpf) === false) {
+        if (clientInfo.cpf === '' || /^\d{11}$/.test(clientInfo.cpf.replace(/\D/g, '')) === false) {
             inputStatus.cpf = true;
         }
 
-        if (clientInfo.phone === '' || /^\(\d{2}\)\s\d{4,5}-\d{4}$/.test(clientInfo.phone) === false) {
+        if (clientInfo.phone === '' || /^\d{10,11}$/.test(clientInfo.phone.replace(/\D/g, '')) === false) {
             inputStatus.phone = true;
         }
 
@@ -160,17 +159,20 @@ function Register() {
         }
 
         setInputAlert(inputStatus);
+        return inputStatus;
     }
 
     const handleClick = (e) => {
         e.preventDefault()
 
-        CheckClientInfo()
-        if (Object.values(inputAlert).includes(true)) {
-            return;
-        }
+        const permitRegister = CheckClientInfo()
 
-        registerUser()
+        if (Object.values(permitRegister).includes(true)) {
+            console.log('There are invalid inputs');
+          } else {
+            console.log('All inputs are valid');
+            registerUser();
+          }
     }
 
 
@@ -178,6 +180,8 @@ function Register() {
         <>
             <Header />
             <section className="mt-20 w-7/12 h-auto flex justify-center self-center flex-col pb-52">
+                <PanelHeader />
+                <SectionSpec title={SectionSpecInfo.title} subtitle={SectionSpecInfo.subtitle} button={SectionSpecInfo.button} />
                 <ToastContainer
                     position="top-right"
                     autoClose={5000}
@@ -190,8 +194,6 @@ function Register() {
                     pauseOnHover
                     theme="colored"
                 />
-                <PanelHeader />
-                <SectionSpec title={SectionSpecInfo.title} subtitle={SectionSpecInfo.subtitle} button={SectionSpecInfo.button} />
                 <form className='flex flex-col gap-4'>
                     {
                         Object.keys(clientInfo).map((key, i) => {

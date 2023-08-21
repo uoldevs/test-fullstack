@@ -2,7 +2,6 @@ import PanelHeader from '../components/mini/PanelHeader';
 import SectionSpec from '../components/mini/SectionSpec';
 import ClientCard from '../components/mini/ClientCard';
 import Header from '../components/Header';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 
@@ -17,14 +16,16 @@ function Home() {
     const [userList, setUserList] = useState([]);
 
     useEffect(() => {
-        document.title = 'Listagem de usuários'
-        axios.get('https://uol-api.onrender.com/')
-            .then((response) => {
-                setUserList(response.data)
-            })
-    }
-        , [])
-
+        document.title = 'Listagem de usuários';
+        fetch('https://uol-api.onrender.com/')
+          .then((response) => response.json())
+          .then((data) => {
+            setUserList(data);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, []);
 
 
 
