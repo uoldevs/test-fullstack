@@ -17,13 +17,13 @@ describe('Home page', () => {
     cy.visit('/');
 
     cy.get('.home-page-listing-view-header-new-client-btn').click();
-    cy.url().should('eq', 'http://localhost:3000/client/create');
+    cy.url().should('contain', 'client/create');
   });
 
   it('Testing if edot client button redirect for the correct page', () => {
     cy.visit('/');
 
     cy.get('div.home-page-listing-view > section > div:nth-child(1) > button.client-card-edit-btn').click();
-    cy.url().should('contain', 'http://localhost:3000/client/edit?clientId=');
+    cy.url().should('contain', 'client/edit?clientId=');
   });
 });
