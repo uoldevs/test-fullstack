@@ -1,0 +1,20 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttons {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+  margin-top: -12px;
+}

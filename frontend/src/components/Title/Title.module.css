@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  margin-top: 4rem;
+  flex-direction: column;
+}
+
+.container > div {
+  display: flex;
+  margin-top: 10px;
+}
+
+.container h1 {
+  padding-left: 1rem;
+  color: #333;
+}
+
+.container > hr {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #f5f5f5;
+  margin: 20px 0;
+}
+
+.icon {
+  font-size: 2rem;
+  padding-top: 20px;
+}

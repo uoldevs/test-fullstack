@@ -1,0 +1,31 @@
+.button {
+  background-color: white;
+  color: orange;
+  border: 1px solid orange;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+.button-orange {
+  background-color: orange;
+  color: white;
+  border: 1px solid orange;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s, color 0.3s;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: orange;
+  color: white;
+}
+
+.large-button {
+  padding: 10px 35px;
+  font-size: 16px;
+}
