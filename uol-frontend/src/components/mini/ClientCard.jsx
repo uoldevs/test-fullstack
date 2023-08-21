@@ -1,7 +1,8 @@
-import { Dot } from 'lucide-react';
+import { Dot, Trash2 } from 'lucide-react';
 import Button from './Button';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 function ClientCard(props) {
 
@@ -28,6 +29,32 @@ function ClientCard(props) {
         }
     }
 
+    const deleteClient = async (clientId) => {
+        Swal.fire({
+            title: 'Você tem certeza?',
+            text: "Você não será capaz de reverter essa ação!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sim, deletar cliente.',
+            cancelButtonText: 'Cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://uol-api.onrender.com/${clientId}`, {
+                    method: 'DELETE',
+                  }).then(() => handleDelete())
+              Swal.fire(
+                'Cliente deletado!',
+              )
+            }
+          })
+      };
+
+      const handleDelete = () => {
+        props.loading(true)
+        props.apiCall()
+      }
 
 
 const formatCPF = (cpf) => {
@@ -46,7 +73,7 @@ const formatPhone = (phone) => {
                 <p className="text-lg text-gray-500 font-semibold overflow-auto">
                     {props.name}
                 </p>
-                <p className="text-gray-400 font-normal text-lg overflow-auto">
+                <p className="text-gray-400 font-normal text-lg break-words">
                     {props.email}
                 </p>
             </div>
@@ -64,8 +91,9 @@ const formatPhone = (phone) => {
                 <p className='absolute ml-14'>{status[props.status].text}</p>
             </div>
 
-            <div className='w-1/4 flex flex-row justify-end overflow-auto'>
+            <div className='w-1/4 h-auto flex flex-row justify-center overflow-auto content-center gap-8'>
             <Button name="Editar" size="big" background="white" active={() => navigate(`/edit/${props.id}`)} />
+            <div onClick={() => deleteClient(props.id)} className='self-center cursor-pointer'><Trash2 size={32} color="#000000" strokeWidth={1}/></div>
             </div>
         </div>
 
