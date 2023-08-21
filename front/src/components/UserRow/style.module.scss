@@ -16,23 +16,27 @@
 }
 
 .outterContainer {
+    min-width: fit-content;
     @include flexAlign(row, space-between);
     margin-block: 20px;
     padding: 20px;
     border: 1px solid rgb(200, 200, 200);
     color: #474747;
     .innerContainer {
+        margin: 10px;
         @include flexAlign(column, flex-start, flex-start);
         flex: 1;
     }
 
     .innerContainer2 {
+        margin: 10px;
         @include flexAlign(row, flex-start);
         gap: 10px;
         flex: 1;
     }
 
     .innerContainer3 {
+        margin: 10px;
         @include flexAlign;
         gap: 10px;
     }
