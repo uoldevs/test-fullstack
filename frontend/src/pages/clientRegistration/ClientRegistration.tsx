@@ -12,7 +12,7 @@ function ClientRegistration() {
         <p className="info-p">Informe os campos a seguir para criar novo usuário</p>
         </div>
       </div>
-      <ClientForm create/>
+      <ClientForm/>
     </div>
   )
 }

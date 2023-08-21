@@ -7,7 +7,8 @@ Aplicativo fullstack que permita aos usuários visualizar e criar clientes.
 <h3><strong>Frontend</strong></h3>
 
 - Exibi listagem de clientes.
-- Permitir a criação de um novo cliente.
+- Permite criação de um novo cliente.
+- Permite atualização dos dados de um cliente.
 - Fornece alertas para o usuário em caso de dados inválidos.
 
 <details>
@@ -96,3 +97,5 @@ Vá para `http://localhost:5173/` no navegador.
 ## Próximos passos 👣
 - Testes backend
 - Testes frontend
+- Máscara de CPF e telefone
+- Trazer dados do cliente no form na atualização

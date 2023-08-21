@@ -11,12 +11,12 @@ function ClientForm( ) {
   const create = pathname.includes('new') ? true : false
 
   const [formData, setFormData] = useState<Client>({
-      name: '',
-      email: '',
-      cpf: '',
-      phone: '',
-      status: 'Ativo',
-    });
+    name: '',
+    email: '',
+    cpf: '',
+    phone: '',
+    status: 'Ativo',
+  });
   const [errors, setErrors] = useState<Partial<Client>>({});
 
   const params = useParams();
