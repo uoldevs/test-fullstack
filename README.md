@@ -22,6 +22,7 @@ Aplicativo fullstack que permita aos usuários visualizar e criar clientes.
 [TypeScript](https://www.typescriptlang.org/) <br>
 </details>
 
+<br>
 <h3><strong>Backend</strong></h3>
 
 **Endpoits:**
@@ -37,7 +38,24 @@ Linguagem: [Nodejs](https://nodejs.org/it), [TypeScript](https://www.typescriptl
 Framework web: [Express](https://expressjs.com/pt-br/) <br>
 Validação: [Zod](https://zod.dev/), [cpf-cnpj-validator](https://www.npmjs.com/package/cpf-cnpj-validator) <br>
 Tratamento erros assíncronos: [Express-async-errors](https://www.npmjs.com/package/express-async-errors)<br>
+</details>
+<br>
 
+<h3><strong>Testes</strong></h3>
+
+**Backend**
+
+Entre na pasta backend: ```cd backend``` <br>
+Para rodar testes com cobertura: ```npm coverage```<br>
+Para rodar apenas os testes: ```npm run``` <br>
+
+<details>
+<summary><strong>Ferramentas:</strong></summary>
+
+[Mocha](https://mochajs.org/) <br>
+[Chai](https://www.chaijs.com/) <br>
+[Sinon](https://sinonjs.org/) <br>
+[nyc](https://www.npmjs.com/package/nyc) <br>
 </details>
 <br>
 
@@ -94,9 +112,9 @@ Vá para `http://localhost:5173/` no navegador.
 <br>
 
 ## Próximos passos 👣
-- Testes backend
 - Testes frontend
 - Máscara de CPF e telefone
 - Trazer dados do cliente no form na atualização
-- Melhorar tratamento de erros no front
+- Melhorar tratamento de erros
 - Dockerização
+- Melhorar testes backend
