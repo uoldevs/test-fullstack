@@ -1,7 +1,7 @@
 # Aplicativo de Gerenciamento de Clientes
 
 [Link para o site](https://client-management-front.onrender.com)
-
+(Obs: O site é hopedado em um serviço gratuito, fazendo com que em alguns casos demore cerca de 30-40 segundos para responder)
 ![GIF de aprensentação da página](./assets/presentation.gif)
 
 ## Tecnologias Usadas
