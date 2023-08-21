@@ -11,7 +11,7 @@ import { useAddContext } from "../../contexts/UserContext";
 import { useState } from "react";
 import { FiUser } from "react-icons/fi";
 import { Navigate } from "react-router-dom";
-import { Header } from "../header";
+import { Header } from "../../components/header";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { validateCPF, validatePhoneNumber, validateEmail } from "../../utils/validations";

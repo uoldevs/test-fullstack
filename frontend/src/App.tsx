@@ -1,8 +1,8 @@
 import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import { Main } from './components/main';
+import { Main } from './pages/main';
 import { UserContextProvider } from './contexts/UserContext';
-import { Cadastrate } from './components/cadastrate';
+import { Cadastrate } from './pages/cadastrate';
 
 function App() {
   return (

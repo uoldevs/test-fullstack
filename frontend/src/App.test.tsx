@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import { Main } from './components/main/index';
+import { Main } from './pages/main/index';
 
 test('Test informations in screen without backend', () => {
   render(<Main />);

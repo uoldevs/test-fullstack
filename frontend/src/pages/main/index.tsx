@@ -9,10 +9,10 @@ import {
 import { useAddContext } from "../../contexts/UserContext";
 import { useState } from "react";
 import { FiUser } from "react-icons/fi";
-import { Header } from "../header";
+import { Header } from "../../components/header";
 import { Navigate } from 'react-router-dom';
 import { ToastContainer } from "react-toastify";
-import { Cards } from "../cards";
+import { Cards } from "../../components/cards";
 
 export function Main() {
   const [redirect, setRedirect ] = useState(false);
