@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  frontend:
+    container_name: app_frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    platform: linux/x86_64
+    working_dir: /app-frontend
+    depends_on:
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 7s
+      retries: 7
+
+  api:
+    build: ./backend
+    container_name: backend_api
+    ports:
+      - 3001:3001
+    working_dir: /app-backend
+    environment:
+      - PORT=3001
+      - DB_USER=root
+      - DB_PASSWORD=1234
+      - DB_HOST=database
+      - DB_DATABSE=ClientManager
+      - DB_PORT=3306
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 7s
+      retries: 7
+
+  database:
+    image: mysql:8
+    container_name: backend_database
+    ports:
+      - 3306:3306
+    environment:
+       - MYSQL_ROOT_PASSWORD=1234
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      timeout: 7s
+      retries: 7
