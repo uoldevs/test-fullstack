@@ -33,7 +33,7 @@ const ListCustomers = () => {
   }, [dispatch, page])
 
   return (
-    <div className="my-12">
+    <div data-testid="list-costumers" className="my-12">
       {!isLoading && !customers?.length ? (
         <p>Nenhum cliente cadastrado!</p>
       ) : null}
