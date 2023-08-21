@@ -1,0 +1,76 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.content {
+  background-color: #fff;
+  border: 2px solid transparent;
+  height: 60px;
+  width: 100%;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+
+  svg {
+    color: #aaa8a8;
+  }
+}
+
+.label {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.input {
+  background: transparent;
+  height: 60px;
+  width: 100%;
+  border: none;
+  margin-left: 20px;
+  color: black;
+  font-size: 1rem;
+  letter-spacing: 1px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.focus {
+  border: 2px solid #f5f5f5 !important;
+
+  svg {
+    color: black;
+  }
+}
+
+.filled {
+  svg {
+    color: black;
+  }
+}
+
+.error {
+  display: flex;
+  font-size: 13px;
+  align-items: center;
+  margin-top: 7px;
+  color: #ff0000;
+
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.errorInput {
+  border: 2px solid #a02626 !important;
+
+  svg {
+    color: #a02626;
+  }
+}
