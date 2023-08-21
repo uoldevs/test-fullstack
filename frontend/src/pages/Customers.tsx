@@ -28,7 +28,17 @@ const Customers = () => {
 
   return (
     <>
-      <h3>Painel de clientes</h3>
+      <h2>Painel de clientes</h2>
+
+      <div>
+        <h3>Listagem de usuários</h3>
+        <p>Escolha um cliente para visualizar os detalhes</p>
+        <div>
+          <button type='button' onClick={() => navigate('/register')}>Novo Cliente</button>
+        </div>
+      </div>
+
+
 
       {customers.length !== 0 ? (
         customers.map(({ id, name, cpf, email, phone, status }) => (
