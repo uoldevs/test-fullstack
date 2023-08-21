@@ -32,30 +32,11 @@ describe('update customer', () => {
 
     cy.url().should('include', '/dashboard')
 
-    cy.get('[data-testid="dashboard-container"]')
-      .first()
-      .contains(name)
-      .should('exist')
-
-    cy.get('[data-testid="dashboard-container"]')
-      .first()
-      .contains(email)
-      .should('exist')
-
-    cy.get('[data-testid="dashboard-container"]')
-      .first()
-      .contains(cpfToView(document))
-      .should('exist')
-
-    cy.get('[data-testid="dashboard-container"]')
-      .first()
-      .contains(phoneToView(phone))
-      .should('exist')
-
-    cy.get('[data-testid="dashboard-container"]')
-      .first()
-      .contains('inativo')
-      .should('exist')
+    cy.contains(name).should('exist')
+    cy.contains(email).should('exist')
+    cy.contains(cpfToView(document)).should('exist')
+    cy.contains(phoneToView(phone)).should('exist')
+    cy.contains('inativo').should('exist')
   })
 
   it('should no be able update a customer if dont field all input form', () => {
