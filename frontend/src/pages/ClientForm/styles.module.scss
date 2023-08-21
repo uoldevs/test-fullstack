@@ -1,0 +1,31 @@
+.container {
+  margin: 0 5rem;
+}
+
+.subtext {
+  h3 {
+    margin-bottom: 0.6rem;
+    color: #393939;
+  }
+  p {
+    color: #919191
+  }
+}
+
+.form {
+  width: 26%;
+  padding-top: 2rem;
+}
+
+.selectForm {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+  background: transparent;
+  height: 45px;
+  width: 100%;
+  border: 1px solid #bbc0c8;
+  color: black;
+  font-size: 1rem;
+  padding: 0 20px;
+}

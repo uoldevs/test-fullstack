@@ -14,15 +14,16 @@ export const validationSchema = yup
       .email('Precisa ser um email válido'),
     cpf: yup
       .string()
-      .matches(/^\d+$/, 'Apenas dígitos são permitidos')
       .required('CPF é obrigatório')
       .test('test-invalid-cpf', 'CPF inválido', (cpf) => isValidCPF(cpf)),
     phonenumber: yup
       .string()
-      .matches(/^\d+$/, 'Apenas dígitos são permitidos')
       .required('Telefone é obrigatório')
-      .min(10, 'Número inválido')
-      .max(11, 'Número Inválido'),
-    status: yup.string().required(),
+      .min(14, 'Número inválido')
+      .max(15, 'Número Inválido'),
+    status: yup
+      .string()
+      .oneOf(['Ativo', 'Inativo', 'Aguardando ativação', 'Desativado'])
+      .required(),
   })
   .required();
