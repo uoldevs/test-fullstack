@@ -23,10 +23,8 @@ DataBase:
 
 ## Executando a Aplicação
 
-A execução local pode ser dada das seguintes formas: Docker 
-
 <details>
-  <summary><b>Iniciando o projeto com docker 🐳</b></summary>
+  <summary><b>Iniciando o projeto com docker-compose 🐳</b></summary>
 
   ***⚠️ Para garantir um bom funcionamento é necessário que tenha instalado o docker e o docker-compose nas versões 24.0.5 e 1.29 ou superior respectivamente⚠️***
 
