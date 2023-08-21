@@ -32,6 +32,12 @@
   margin-right: 20px;
 }
 
+.client-form-submit-btn:disabled {
+  cursor: wait;
+  background-color: #e29934b7;
+  border: 1px solid #e29934b7;
+}
+
 .client-form-back-btn {
   background-color: #fff;
   color: #E29934;
@@ -45,4 +51,3 @@
   background-color: #E29934;
   color: #fff;
 }
-

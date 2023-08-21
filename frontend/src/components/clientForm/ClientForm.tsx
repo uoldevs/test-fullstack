@@ -16,10 +16,19 @@ interface ClientFormProps {
     status: string;
   };
   submitFormBtnName: string;
-  submitForm: () => void;
+  submitForm: () => Promise<void>;
+  btnDisabled: boolean;
+  setBtnDisabled: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function ClientForm({ onChange, clientValues, submitFormBtnName, submitForm }: ClientFormProps) {
+function ClientForm({
+  onChange,
+  clientValues,
+  submitFormBtnName,
+  submitForm,
+  setBtnDisabled,
+  btnDisabled,
+}: ClientFormProps) {
   const [formDataErros, setFormDataErros] = useState({ name: '', email: '', cpf: '', phoneNumber: '', status: '' });
   const errorRef = useRef(false);
   const navigate = useNavigate();
@@ -47,6 +56,7 @@ function ClientForm({ onChange, clientValues, submitFormBtnName, submitForm }: C
   };
 
   const handleSubmit = () => {
+    setBtnDisabled(true);
     const client = new ClientDto(
       clientValues.name,
       clientValues.cpf,
@@ -57,9 +67,12 @@ function ClientForm({ onChange, clientValues, submitFormBtnName, submitForm }: C
 
     validateClientInfo(client);
 
-    if (!errorRef.current) {
-      submitForm();
+    if (errorRef.current) {
+      setBtnDisabled(false);
+      return;
     }
+
+    submitForm();
   };
 
   return (
@@ -99,7 +112,7 @@ function ClientForm({ onChange, clientValues, submitFormBtnName, submitForm }: C
         <ErrorCard message={formDataErros.status} />
       </div>
       <div className="client-form-btn-container">
-        <button className="client-form-submit-btn" onClick={handleSubmit}>
+        <button className="client-form-submit-btn" onClick={handleSubmit} disabled={btnDisabled}>
           {submitFormBtnName}
         </button>
         <button

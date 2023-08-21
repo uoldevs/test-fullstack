@@ -13,6 +13,8 @@ const handleApiErrors = (error: unknown) => {
   } else {
     return 'Opps!! Ocorreu inesperado, tente novamente';
   }
+
+  return 'Opps!! Ocorreu inesperado, tente novamente';
 };
 
 export default handleApiErrors;
