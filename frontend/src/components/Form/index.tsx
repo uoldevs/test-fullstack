@@ -9,6 +9,8 @@ import Input from "./components/Input";
 import Button from "./components/Button";
 import { clientStatusContext } from "@/contexts/clientStatus";
 import { createClient, updateClient } from "@/services/clients";
+import { validate } from "gerador-validador-cpf";
+import { parsePhoneNumber } from "libphonenumber-js/min";
 
 type FormProps = {
   client?: Client;
@@ -18,9 +20,24 @@ type FormProps = {
 const schema = z.object({
   name: z.string().min(3, "Nome Deve ter pelo menos 3 caractere"),
   email: z.string().email("Email inválido"),
-  cpf: z.string().min(11).max(11),
-  phoneNumber: z.string().min(10).max(11),
   status: z.string(),
+
+  cpf: z
+    .string()
+    .length(11, { message: "CPF deve ter 11 dígitos" })
+    .refine((value) => validate(value), { message: "CPF inválido" }),
+
+  phoneNumber: z
+    .string()
+    .min(10, { message: "Número de telefone deve ter pelo menos 10 dígitos" })
+    .max(11, { message: "Número de telefone deve ter no máximo 11 dígitos" })
+    .refine(
+      (value) => {
+        const parsedPhone = parsePhoneNumber(value, "BR");
+        return parsedPhone?.isValid();
+      },
+      { message: "Número de telefone inválido" }
+    ),
 });
 
 type FormValues = z.infer<typeof schema> & {
