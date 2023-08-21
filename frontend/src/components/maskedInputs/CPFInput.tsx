@@ -26,3 +26,6 @@ const CPFInput: React.FC<MaskedInputProps> = ({ value, onChange, name }) => {
 };
 
 export default CPFInput;
+
+// Reference:
+// https://codesandbox.io/s/brava-react-masked-input-8xe2p?file=/src/MaskedInput.js:103-126
