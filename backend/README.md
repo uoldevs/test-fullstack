@@ -12,7 +12,7 @@
 ## 🌱 Pré-requisitos
 
 - Instale a última versão do [Node](https://nodejs.org/en/);
-- O gerenciador de pacotes utilizado no projeto é o [pnpm](https://pnpm.io/pt/) mas fique a vontade para usar npm ou yarn se desejar;
+- O gerenciador de pacotes utilizado no projeto é o [pnpm](https://pnpm.io/pt/) mas fique a vontade para usar `npm` ou `yarn` se desejar;
 - Para clonar o repositório instale e configure o [git](https://git-scm.com/);
 - Para testar os endpoints use uma ferramenta de requisições como [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/);
 
