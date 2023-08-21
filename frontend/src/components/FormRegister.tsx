@@ -1,95 +1,81 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import InputMask from 'react-input-mask';
+import { useForm } from 'react-hook-form';
 
 import { createCustomer } from '../services/requests';
 import '../styles/components/formRegister.css';
 
 const FormRegister = () => {
-  const [name, setName] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [status, setStatus] = useState('');
-  const [btn, setBtn] = useState(true);
   const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const registerCustomer = async () => {
-    const costumer = {
-      name,
-      cpf,
-      email,
-      phone,
-      status,
-    };
+  const onSubmit = async (customer: any) => {
     const endpoint = '/customers';
-    const response = await createCustomer(endpoint, costumer);
+    const response = await createCustomer(endpoint, customer);
 
     if (response) {
       navigate('/');
     }
   };
 
-  useEffect(() => {
-    if (status.trim() !== '') {
-      setBtn(false);
-    }
-  }, [status]);
-
   return (
     <div className="form-container">
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="input-name">
           <input
             type="text"
             placeholder="Nome"
-            name="name"
-            value={name}
-            id="input-name"
-            onChange={(e) => setName(e.target.value)}
+            {...register('name', { required: 'Nome é obrigatório' })}
           />
         </label>
+        {errors.name && typeof errors.name.message === 'string' && (
+          <p className="error-message">{errors.name.message}</p>
+        )}
+
         <label htmlFor="input-cpf">
           <InputMask
-            className='input-cpf'
+            className="input-cpf"
             mask="999.999.999-99"
             maskChar=" "
             placeholder="CPF"
-            name="cpf"
-            value={cpf}
-            id="input-cpf"
-            onChange={(e) => setCpf(e.target.value)}
+            {...register('cpf', { required: 'CPF é obrigatório' })}
           />
         </label>
+        {errors.cpf && typeof errors.cpf.message === 'string' && (
+          <p className="error-message">{errors.cpf.message}</p>
+        )}
+
         <label htmlFor="input-email">
           <input
             type="email"
             placeholder="Email"
-            name="email"
-            value={email}
-            id="input-email"
-            onChange={(e) => setEmail(e.target.value)}
+            {...register('email', { required: 'Email é obrigatório' })}
           />
         </label>
+        {errors.email && typeof errors.email.message === 'string' && (
+          <p className="error-message">{errors.email.message}</p>
+        )}
+
         <label htmlFor="input-phone">
           <InputMask
-            className='input-phone'
+            className="input-phone"
             mask="(99) 9999-9999"
-            placeholder="Telefone"
             maskChar=" "
-            name="phone"
-            value={phone}
-            id="input-phone"
-            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Telefone"
+            {...register('phone', { required: 'Telefone é obrigatório' })}
           />
         </label>
+        {errors.phone && typeof errors.phone.message === 'string' && (
+          <p className="error-message">{errors.phone.message}</p>
+        )}
+
         <label htmlFor="select-status">
-          <select
-            name="status"
-            id="select-status"
-            value={status}
-            onChange={(e) => setStatus(e.target.value)}
-          >
+          <select {...register('status', { required: 'Status é obrigatório' })}>
             <option value="" disabled selected>
               Status
             </option>
@@ -99,16 +85,19 @@ const FormRegister = () => {
             <option value="Desativado">Desativado</option>
           </select>
         </label>
+        {errors.status && typeof errors.status.message === 'string' && (
+          <p className="error-message">{errors.status.message}</p>
+        )}
+
         <div>
-          <button
-            type="button"
-            disabled={btn}
-            onClick={() => registerCustomer()}
-            className='create-btn'
-          >
+          <button type="submit" className="create-btn">
             Criar
           </button>
-          <button className='back-btn' type="button" onClick={() => navigate('/')}>
+          <button
+            className="back-btn"
+            type="button"
+            onClick={() => navigate('/')}
+          >
             Voltar
           </button>
         </div>

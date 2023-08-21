@@ -34,7 +34,8 @@ select {
     cursor: pointer;
 }
 
-.create-btn, .back-btn {
+.create-btn,
+.back-btn {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -44,7 +45,8 @@ select {
     transition: background-color 0.3s ease;
 }
 
-.create-btn:hover, .back-btn:hover {
+.create-btn:hover,
+.back-btn:hover {
     background-color: #cc8a2f;
 }
 
@@ -57,4 +59,8 @@ label {
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+.error-message {
+    color: red;
 }

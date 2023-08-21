@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useNavigate, useParams } from 'react-router-dom';
 import InputMask from 'react-input-mask';
 
@@ -8,24 +9,20 @@ import { requestData, updateCustomer } from '../services/requests';
 const CustomerDetails = () => {
   const { id } = useParams();
   const [customer, setCustomer] = useState<ICustomer | null>(null);
-  const [name, setName] = useState('');
-  const [cpf, setCpf] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [status, setStatus] = useState('');
   const navigate = useNavigate();
 
-  const saveCustomer = async () => {
-    const costumer = {
-      name,
-      cpf,
-      email,
-      phone,
-      status,
-    };
-    const endpoint = `/customers/${id}`;
-    const response = await updateCustomer(endpoint, costumer);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    criteriaMode: 'all',
+    mode: 'onChange',
+  });
 
+  const onSubmit = async (data: any) => {
+    const endpoint = `/customers/${id}`;
+    const response = await updateCustomer(endpoint, data);
     if (response) {
       navigate('/');
     }
@@ -33,16 +30,10 @@ const CustomerDetails = () => {
 
   useEffect(() => {
     const endpoint = `/customers/${id}`;
-
     if (!customer) {
       requestData(endpoint)
         .then((response) => {
           setCustomer(response);
-          setName(response.name);
-          setCpf(response.cpf);
-          setEmail(response.email);
-          setPhone(response.phone);
-          setStatus(response.status);
         })
         .catch((error) => console.log(error));
     }
@@ -51,69 +42,84 @@ const CustomerDetails = () => {
   return (
     <div>
       {customer && (
-        <form action="">
+        <form onSubmit={handleSubmit(onSubmit)}>
           <label htmlFor="input-name">
             Nome:
             <input
               type="text"
-              name="name"
-              value={name}
+              defaultValue={customer.name}
               id="input-name"
-              onChange={(e) => setName(e.target.value)}
+              {...register('name', { required: 'Nome é obrigatório' })}
             />
+            {errors.name && typeof errors.name.message === 'string' && (
+              <p className="error-message">{errors.name.message}</p>
+            )}
           </label>
+
           <label htmlFor="input-cpf">
             CPF:
             <InputMask
               className="input-cpf"
               mask="999.999.999-99"
               maskChar=" "
-              name="cpf"
-              value={cpf}
+              defaultValue={customer.cpf}
               id="input-cpf"
-              onChange={(e) => setCpf(e.target.value)}
+              {...register('cpf', { required: 'CPF é obrigatório' })}
             />
+            {errors.cpf && typeof errors.cpf.message === 'string' && (
+              <p className="error-message">{errors.cpf.message}</p>
+            )}
           </label>
+
           <label htmlFor="input-email">
             Email:
             <input
               type="email"
-              name="email"
-              value={email}
+              defaultValue={customer.email}
               id="input-email"
-              onChange={(e) => setEmail(e.target.value)}
+              {...register('email', { required: 'E-mail é obrigatório' })}
             />
+            {errors.email && typeof errors.email.message === 'string' && (
+              <p className="error-message">{errors.email.message}</p>
+            )}
           </label>
+
           <label htmlFor="input-phone">
             Telefone:
             <InputMask
-            className='input-phone'
+              className="input-phone"
               mask="(99) 9999-9999"
               maskChar=" "
-              name="phone"
-              value={phone}
+              defaultValue={customer.phone}
               id="input-phone"
-              onChange={(e) => setPhone(e.target.value)}
+              {...register('phone', { required: 'Telefone é obrigatório' })}
             />
+            {errors.phone && typeof errors.phone.message === 'string' && (
+              <p className="error-message">{errors.phone.message}</p>
+            )}
           </label>
+
           <label htmlFor="select-status">
             Status:
             <select
-              name="status"
               id="select-status"
-              value={status}
-              onChange={(e) => setStatus(e.target.value)}
+              defaultValue={customer.status}
+              {...register('status', { required: 'Status é obrigatório' })}
             >
               <option value="Ativo">Ativo</option>
               <option value="Aguardando ativação">Aguardando ativação</option>
               <option value="Inativo">Inativo</option>
               <option value="Desativado">Desativado</option>
             </select>
+            {errors.status && typeof errors.status.message === 'string' && (
+              <p className="error-message">{errors.status.message}</p>
+            )}
           </label>
-          <button type="button" onClick={() => saveCustomer()}>
-            Salvar
+
+          <button type="submit">Salvar</button>
+          <button type="button" onClick={() => navigate('/')}>
+            Cancelar
           </button>
-          <button type="button" onClick={() => navigate('/')}>Cancelar</button>
         </form>
       )}
     </div>
