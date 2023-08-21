@@ -2,11 +2,14 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class ErrorHandlerMiddleware {
     static handle(err, _req, res, _next) {
+        console.log(err.fields);
         if (err.status) {
             return res.status(err.status).json({ message: err.message });
         }
         else if (err.name === 'SequelizeUniqueConstraintError') {
-            return res.status(409).json({ message: 'conflito de dados' });
+            return res
+                .status(409)
+                .json({ message: 'conflito de dados', conflicts: err.fields });
         }
         else {
             return res.status(500).json({ message: `${err.message}` });

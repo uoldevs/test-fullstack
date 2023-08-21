@@ -5,6 +5,7 @@ class ErrorHandler extends Error {
         super();
         this.message = message;
         this.status = status;
+        this.fields = [];
     }
 }
 exports.default = ErrorHandler;
