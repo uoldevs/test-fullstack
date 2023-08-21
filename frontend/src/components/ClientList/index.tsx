@@ -15,7 +15,7 @@ export default async function ClientList() {
           <ClientItem key={client.id} client={client} />
         ))}
       </ul>
-      <p>Exibindo {clients.length} clientes</p>
+      <p className="text-black-800">Exibindo {clients.length} clientes</p>
     </>
   );
 }

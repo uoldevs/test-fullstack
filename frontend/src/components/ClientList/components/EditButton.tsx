@@ -21,7 +21,9 @@ const EditButton = ({ client }: EditClientProps) => {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button>Editar</button>
+        <button className="w-32 border-2 rounded-md text-lg text-fire-bush-400 hover:text-black-50 hover:bg-fire-bush-400 border-fire-bush-400 active:bg-fire-bush-500 active:border-fire-bush-500">
+          Editar
+        </button>
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Overlay />
