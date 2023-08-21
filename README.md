@@ -14,14 +14,13 @@ Aplicativo fullstack que permita aos usuários visualizar e criar clientes.
 <details>
 <summary><strong>Ferramentas:</strong></summary>
 
-[Vite](https://vitejs.dev/)
-[React](https://react.dev/)
-[React Router](https://reactrouter.com/en/main)
-[React Icons](https://react-icons.github.io/react-icons/)
-[CSS](https://www.w3.org/Style/CSS/Overview.en.html)
-[TypeScript](https://www.typescriptlang.org/)
+[Vite](https://vitejs.dev/) <br>
+[React](https://react.dev/) <br>
+[React Router](https://reactrouter.com/en/main) <br>
+[React Icons](https://react-icons.github.io/react-icons/) <br>
+[CSS](https://www.w3.org/Style/CSS/Overview.en.html) <br>
+[TypeScript](https://www.typescriptlang.org/) <br>
 </details>
-<br>
 
 <h3><strong>Backend</strong></h3>
 
@@ -99,3 +98,4 @@ Vá para `http://localhost:5173/` no navegador.
 - Testes frontend
 - Máscara de CPF e telefone
 - Trazer dados do cliente no form na atualização
+- Dockerização
