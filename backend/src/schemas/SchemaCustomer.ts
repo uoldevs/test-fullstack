@@ -27,4 +27,5 @@ export default Joi.object({
     .messages({
       'string.empty': 'CPF must not be empty',
     }),
+  status: Joi.string(),
 });

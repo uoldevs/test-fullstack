@@ -7,16 +7,21 @@ const customerRouter = Router();
 const customerService = new CustomerService();
 const customerController = new CustomerController(customerService);
 
-customerRouter.get('/customers', (req: Request, res: Response) =>
+const url = '/customers';
+
+customerRouter.get(url, (req: Request, res: Response) =>
   customerController.getAll(req, res));
 
-customerRouter.post('/customers', validateCustomer, (req: Request, res: Response) =>
+customerRouter.get(`${url}/:id`, (req: Request, res: Response) =>
+  customerController.getById(req, res));
+
+customerRouter.post(url, validateCustomer, (req: Request, res: Response) =>
   customerController.create(req, res));
 
-customerRouter.put('/customers/:id', validateCustomer, (req: Request, res: Response) =>
+customerRouter.put(`${url}/:id`, validateCustomer, (req: Request, res: Response) =>
   customerController.update(req, res));
 
-customerRouter.delete('/customers/:id', (req: Request, res: Response) =>
+customerRouter.delete(`${url}/:id`, (req: Request, res: Response) =>
   customerController.delete(req, res));
 
 export default customerRouter;
