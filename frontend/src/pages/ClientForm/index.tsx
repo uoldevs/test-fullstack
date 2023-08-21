@@ -74,7 +74,6 @@ export default function ClientForm() {
 
   const onSubmit = async (dataForm: IDataForm) => {
     const data = removeMasks(dataForm);
-    console.log(params.id, data);
     params.id ? await updateClient(params.id, data) : await createClient(data);
     if (!params.id) reset();
   };

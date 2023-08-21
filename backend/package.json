@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "prebuild": "rm -rf ./dist",
-    "build": "tsc",
+    "build": "npx tsc",
     "prestart": "npm run build",
-    "start": "node dist/src/server.js",
+    "start": "node build/src/server.js",
     "test": "ts-mocha ./tests/**/*$NAME*.{test,spec}.ts -t 10000 --exit",
     "dev": "ts-node-dev src/server.ts",
     "lint": "eslint . --ext .ts"
