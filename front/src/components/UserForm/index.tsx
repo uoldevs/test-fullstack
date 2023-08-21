@@ -10,6 +10,7 @@ import { createUser } from '@/app/redux/slice/userSlice';
 import { useRouter } from 'next/router';
 import { UserType } from '@/types';
 import { AppDispatch } from '@/app/redux/store';
+import { applyMask } from '@/utils/maskHandler';
 
 const UserForm: React.FC = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -18,6 +19,7 @@ const UserForm: React.FC = () => {
     const {
         register,
         handleSubmit,
+        setValue,
         formState: { errors },
     } = useForm<UserType>({
         resolver: yupResolver(schema) as Resolver<UserType>,
@@ -31,6 +33,21 @@ const UserForm: React.FC = () => {
             // Navigate to /users after a successful update
             router.push('/users');
         });
+    };
+
+    const handleMasking = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = event.target;
+        let maskedValue;
+
+        if (name === 'cpf') {
+            maskedValue = applyMask(value, '999.999.999-99');
+        } else if (name === 'phone') {
+            maskedValue = applyMask(value, '(99) 9 9999-9999');
+        } else {
+            maskedValue = value;
+        }
+
+        setValue(name as keyof UserType, maskedValue);
     };
 
     return (
@@ -59,7 +76,14 @@ const UserForm: React.FC = () => {
                         fullWidth
                     />
                     {errors.email && <span className={styles.error}>{errors.email.message}</span>}
-                    <TextField label="CPF" margin="normal" {...register('cpf')} fullWidth error={Boolean(errors.cpf)} />
+                    <TextField
+                        label="CPF"
+                        margin="normal"
+                        {...register('cpf')}
+                        fullWidth
+                        error={Boolean(errors.cpf)}
+                        onChange={handleMasking}
+                    />
                     {errors.cpf && <span className={styles.error}>{errors.cpf.message}</span>}
                     <TextField
                         label="Telefone"
@@ -67,6 +91,7 @@ const UserForm: React.FC = () => {
                         {...register('phone')}
                         fullWidth
                         error={Boolean(errors.phone)}
+                        onChange={handleMasking}
                     />
                     {errors.phone && <span className={styles.error}>{errors.phone.message}</span>}
                     <TextField
