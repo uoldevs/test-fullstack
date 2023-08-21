@@ -5,6 +5,7 @@ import com.uol.backend.model.Customer;
 import com.uol.backend.repository.CustomerRepository;
 import com.uol.backend.service.CustomerService;
 import com.uol.backend.service.exceptions.InvalidCustomerStatusException;
+import com.uol.backend.service.exceptions.InvalidSocialSecurityNumberException;
 import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
@@ -33,7 +34,7 @@ public class CustomerController {
 
             return new ResponseEntity(HttpStatus.CREATED);
 
-        } catch(EntityExistsException | InvalidCustomerStatusException e) {
+        } catch(EntityExistsException | InvalidCustomerStatusException | InvalidSocialSecurityNumberException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
@@ -79,7 +80,7 @@ public class CustomerController {
             return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)
                     .body(e.getMessage());
-        } catch (EntityExistsException e) {
+        } catch (EntityExistsException | InvalidCustomerStatusException | InvalidSocialSecurityNumberException e) {
             return ResponseEntity
                     .status(HttpStatus.BAD_REQUEST)
                     .body(e.getMessage());
