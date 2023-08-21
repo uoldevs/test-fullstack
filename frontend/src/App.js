@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
-import ListClients from './pages/listClients';
-import AddClient from './pages/addClient';
+import ListClients from './pages/ListClients';
+import AddClient from './pages/AddClient';
 
 function App() {
   return (

@@ -23,7 +23,9 @@ function ListClients () {
       <ul>
         {loading ? <p>Loading...</p> :
           clients.map((data)=>(
-            <Client client={data} />
+            <div key={`${data.id} ${data.phone}`}>
+              <Client client={data} />
+            </div>
           ))}
       </ul>
       <p>Exibindo {clients.length} clientes</p>
