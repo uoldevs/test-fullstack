@@ -4,7 +4,8 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { registerClient, updateClient } from '../../services/clientRequests';
 import { Client, dbStatus } from '../../types';
 import './clientForm.css'
-// import InputMask from 'react-input-mask';
+import CPFInput from '../maskedInputs/CPFInput';
+import PhoneInput from '../maskedInputs/PhoneInput';
 
 function ClientForm( ) {
   const { pathname } = useLocation()
@@ -22,6 +23,7 @@ function ClientForm( ) {
   const params = useParams();
 
   const navigate = useNavigate();
+  console.log(formData.phone);
 
 
   function onSubmit(e:  React.FormEvent<HTMLFormElement>) {
@@ -42,10 +44,11 @@ function ClientForm( ) {
 
   function genericOnChangeHandler(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement >) {
     const { name, value } = e.target;
+
     setFormData({
       ...formData,
       [name]: value.toString(),
-    })
+    });
   }
 
   async function saveData() {
@@ -112,24 +115,33 @@ function ClientForm( ) {
         autoComplete="email"
       />
       {errors.email && <span>{errors.email}</span>}
-      <input
+      <CPFInput
+        value={formData.cpf}
+        onChange={genericOnChangeHandler}
+        name='cpf'
+      />
+
+      {/* <input
         name='cpf'
         placeholder='CPF'
         type='number'
         value={formData.cpf}
         onChange={genericOnChangeHandler}
         autoComplete="cpf"
-        // mask='000.000.000-00'
-      />
+      /> */}
       {errors.cpf && <span>{errors.cpf}</span>}
-      <input
+      {/* <input
         name='phone'
         placeholder='Telefone'
         type='number'
         value={formData.phone}
         onChange={genericOnChangeHandler}
         autoComplete="phone"
-        // mask='(00) 00000-0000'
+      /> */}
+      <PhoneInput
+        value={formData.phone}
+        onChange={genericOnChangeHandler}
+        name='phone'
       />
       {errors.phone && <span>{errors.phone}</span>}
       <select
