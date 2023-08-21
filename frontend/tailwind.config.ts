@@ -73,7 +73,21 @@ const config: Config = {
         '900': '#3d3d3d',
         '950': '#000000',
       },
-    }
+    },
+    keyframes: {
+      overlayShow: {
+        from: { opacity: '0' },
+        to: { opacity: '1' },
+      },
+      contentShow: {
+        from: { opacity: '0', transform: 'translate(-50%, -50%) scale(0.5)' },
+        to: { opacity: '1', transform: 'translate(-50%, -50%) scale(1)' },
+      },
+    },
+    animation: {
+      overlayShow: 'overlayShow 300ms ease-out',
+      contentShow: 'contentShow 300ms ease-out',
+    },
   },
   plugins: [],
 }
