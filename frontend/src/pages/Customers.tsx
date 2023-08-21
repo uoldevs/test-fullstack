@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteCustomer, requestData } from '../services/requests';
+
 import ICustomer from '../interfaces/ICustomer';
 import Customer from '../components/Customer';
+import '../styles/pages/customers.css';
 
 const Customers = () => {
   const [customers, setCustomers] = useState<ICustomer[]>([]);
@@ -27,21 +29,26 @@ const Customers = () => {
   }, []);
 
   return (
-    <>
-      <h2>Painel de clientes</h2>
+    <section className="main-content">
+      <div className="header-section">
+        <h2>Painel de clientes</h2>
+      </div>
 
-      <div>
-        <h3>Listagem de usuários</h3>
-        <p>Escolha um cliente para visualizar os detalhes</p>
-        <div>
-          <button type='button' onClick={() => navigate('/register')}>Novo Cliente</button>
+      <div className="new-client-container">
+        <div className="info-section">
+          <h3>Listagem de usuários</h3>
+          <p>Escolha um cliente para visualizar os detalhes</p>
+        </div>
+        <div className="button-container">
+          <button type="button" onClick={() => navigate('/register')}>
+            Novo Cliente
+          </button>
         </div>
       </div>
 
-
       {customers.length !== 0 ? (
         customers.map(({ id, name, cpf, email, phone, status }) => (
-          <div key={id}>
+          <div key={id} className="customer-container">
             <Customer
               id={id}
               name={name}
@@ -50,16 +57,20 @@ const Customers = () => {
               phone={phone}
               status={status}
             />
-            <button type="button" onClick={() => handleClick(id)}>
-              Editar
-            </button>
-            <button onClick={() => handleDelete(id)}>Excluir</button>
+            <div className="buttons-container">
+              <button type="button" onClick={() => handleClick(id)}>
+                Editar
+              </button>
+              <button type="button" onClick={() => handleDelete(id)}>
+                Excluir
+              </button>
+            </div>
           </div>
         ))
       ) : (
         <span>Nenhum cliente cadastrado.</span>
       )}
-    </>
+    </section>
   );
 };
 
