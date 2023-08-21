@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
+ENV REACT_APP_PUBLIC_API=http://localhost:3001
+
 EXPOSE 3000
 
 RUN npm install

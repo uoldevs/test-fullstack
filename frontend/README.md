@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# Aplicativo de Gerenciamento de Clientes Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Apresentação do projeto](../assets/presentation.gif)
 
-## Available Scripts
+## Executando a Aplicação
 
-In the project directory, you can run:
+A execução local pode ser dada das seguintes formas: Docker ou Node
 
-### `npm start`
+<details>
+  <summary><b>Iniciando o projeto com docker 🐳</b></summary>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  ***⚠️ Para garantir um bom funcionamento é necessário que tenha instalado o docker na versão 24.0.5 e 1.29 ou superior ⚠️***
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  1. Clone o projeto
 
-### `npm test`
+  2. Entre no diretório do projeto
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  3. No diretório raiz do frontend suba criei a imagem
 
-### `npm run build`
+  ```bash
+$ docker build . -t client-management-web -f Dockerfile.dev
+  ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  4. Ainda diretório raiz do frontend suba suba o container
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ```bash
+$ docker run --name client-management-web -p 3000:3000 client-management-web
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  5. Quando o processo do container estiver acabado acesse a aplicação usando o seguinte endereço
 
-### `npm run eject`
+  ```bash
+http://localhost:3000
+  ```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+</details>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<br />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+<details>
+  <summary><b>Iniciando o projeto com Node</b></summary>
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  ***⚠️ Para garantir um bom funcionamento é necessário que tenha instalado o node na versão 16 ⚠️***
 
-## Learn More
+  1. Clone o projeto
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+  2. Entre no diretório do projeto
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  3. No diretório raiz do frontend instale as dependências
+
+  ```bash
+$ npm install
+  ```
+
+  5. Para iniciar o projeto rode
+
+  ```bash
+$ npm start
+  ```
+
+  6. Quando o processo do container estiver acabado acesse a aplicação usando o seguinte endereço
+
+  ```bash
+http://localhost:3000
+  ```
+
+</details>
+
+<br />
