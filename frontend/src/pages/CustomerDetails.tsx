@@ -50,7 +50,6 @@ const CustomerDetails = () => {
 
   return (
     <div>
-      <h1>Customer with ID {id}</h1>
       {customer && (
         <form action="">
           <label htmlFor="input-name">
@@ -66,6 +65,7 @@ const CustomerDetails = () => {
           <label htmlFor="input-cpf">
             CPF:
             <InputMask
+              className="input-cpf"
               mask="999.999.999-99"
               maskChar=" "
               name="cpf"
@@ -87,6 +87,7 @@ const CustomerDetails = () => {
           <label htmlFor="input-phone">
             Telefone:
             <InputMask
+            className='input-phone'
               mask="(99) 9999-9999"
               maskChar=" "
               name="phone"
@@ -112,6 +113,7 @@ const CustomerDetails = () => {
           <button type="button" onClick={() => saveCustomer()}>
             Salvar
           </button>
+          <button type="button" onClick={() => navigate('/')}>Cancelar</button>
         </form>
       )}
     </div>

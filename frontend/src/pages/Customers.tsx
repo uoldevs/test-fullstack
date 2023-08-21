@@ -40,7 +40,11 @@ const Customers = () => {
           <p>Escolha um cliente para visualizar os detalhes</p>
         </div>
         <div className="button-container">
-          <button type="button" onClick={() => navigate('/register')}>
+          <button
+            className="new-client-btn"
+            type="button"
+            onClick={() => navigate('/register')}
+          >
             Novo Cliente
           </button>
         </div>
@@ -58,10 +62,18 @@ const Customers = () => {
               status={status}
             />
             <div className="buttons-container">
-              <button type="button" onClick={() => handleClick(id)}>
+              <button
+                className="edit-btn"
+                type="button"
+                onClick={() => handleClick(id)}
+              >
                 Editar
               </button>
-              <button type="button" onClick={() => handleDelete(id)}>
+              <button
+                className="delete-btn"
+                type="button"
+                onClick={() => handleDelete(id)}
+              >
                 Excluir
               </button>
             </div>

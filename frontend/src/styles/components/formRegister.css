@@ -1,0 +1,60 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+.input-phone,
+.input-cpf,
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+select:focus {
+    border-color: #E29933;
+}
+
+select {
+    cursor: pointer;
+}
+
+.create-btn, .back-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #E29933;
+    color: #fff;
+    transition: background-color 0.3s ease;
+}
+
+.create-btn:hover, .back-btn:hover {
+    background-color: #cc8a2f;
+}
+
+.create-btn[disabled] {
+    background-color: #f8c37e;
+    cursor: not-allowed;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}

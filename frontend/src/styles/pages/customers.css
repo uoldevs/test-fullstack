@@ -38,6 +38,18 @@
     gap: 10px;
 }
 
+.edit-btn:hover, .new-client-btn:hover {
+    background-color: #cc8a2f;
+}
+
+.delete-btn:last-of-type {
+    background-color: #f44336;
+}
+
+.delete-btn:last-of-type:hover {
+    background-color: #da190b;
+}
+
 h2 {
     color: #333;
     border-bottom: 2px solid #666;
@@ -54,7 +66,7 @@ p {
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: #E29933;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -62,18 +74,6 @@ button {
     cursor: pointer;
     margin-left: 10px;
     transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-button:last-of-type {
-    background-color: #f44336;
-}
-
-button:last-of-type:hover {
-    background-color: #da190b;
 }
 
 span {
