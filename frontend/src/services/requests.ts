@@ -20,4 +20,9 @@ export const updateCustomer = async (endpoint: string, customer: Partial<ICustom
   return response;
 }
 
+export const createCustomer = async (endpoint: string, customer: Partial<ICustomer>) => {
+  const response = await api.post(endpoint, customer);
+  return response;
+}
+
 export default api;
