@@ -33,6 +33,7 @@ const schema = z.object({
     .max(11, { message: "Número de telefone deve ter no máximo 11 dígitos" })
     .refine(
       (value) => {
+        if (value.length === 0) return false;
         const parsedPhone = parsePhoneNumber(value, "BR");
         return parsedPhone?.isValid();
       },
