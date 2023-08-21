@@ -1,0 +1,15 @@
+{
+  "name": "test-fullstack",
+  "version": "1.0.0",
+  "description": "## Descrição:",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-frontend": "cd frontend && npm start",
+    "start-backend": "cd backend && npm start",
+    "start": "npm run start-frontend & npm run start-backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
