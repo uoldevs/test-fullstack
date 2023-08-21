@@ -32,13 +32,13 @@ export default class UserMiddleware {
     const { id, email } = req.body;
     const userByEmail = await this.userModel.findOneBy({ email }) as User;
 
-    if (userByEmail && (!id || (id && userByEmail.id !== id))) {
+    if (userByEmail && (!id || (+id && userByEmail.id !== +id))) {
       throw new Error('Email já existe');
     }
 
     const userByCpf = await this.userModel.findOneBy({ cpf: req.body.cpf }) as User;
 
-    if (userByCpf && (!id || (id && userByCpf.id !== id))) {
+    if (userByCpf && (!id || (+id && userByCpf.id !== +id))) {
       throw new Error('CPF já existe')
     }
 
