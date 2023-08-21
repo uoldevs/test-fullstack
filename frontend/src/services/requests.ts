@@ -25,4 +25,9 @@ export const createCustomer = async (endpoint: string, customer: Partial<ICustom
   return response;
 }
 
+export const deleteCustomer = async (endpoint: string) => {
+  const response = await api.delete(endpoint);
+  return response;
+}
+
 export default api;
