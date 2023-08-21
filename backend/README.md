@@ -12,7 +12,7 @@
 ## 🌱 Pré-requisitos
 
 - Instale a última versão do [Node](https://nodejs.org/en/);
-- O gerenciador de pacotes utilizado no projeto é o [pnpm](https://pnpm.io/pt/) mas fique a vontade para usar o npm se desejar;
+- O gerenciador de pacotes utilizado no projeto é o [pnpm](https://pnpm.io/pt/) mas fique a vontade para usar npm ou yarn se desejar;
 - Para clonar o repositório instale e configure o [git](https://git-scm.com/);
 - Para testar os endpoints use uma ferramenta de requisições como [Postman](https://www.postman.com/) ou [Insomnia](https://insomnia.rest/);
 
@@ -41,6 +41,9 @@ pnpm install
 
 # npm
 npm install
+
+# yarn
+yarn
 ```
 
 #### Inicie o processo de build do projeto e aguarde até estar finalizado
@@ -51,6 +54,9 @@ pnpm build
 
 # npm
 npm run build
+
+# yarn
+yarn build
 ```
 
 #### Inicie o projeto
@@ -61,6 +67,9 @@ pnpm start
 
 # npm
 npm start
+
+# yarn
+yarn start
 ```
 
 #### Você verá algo parecido com isso no terminal
@@ -161,6 +170,9 @@ pnpm test:watch
 
 # npm
 npm run test:watch
+
+# yarn
+yarn test:watch
 ```
 #### Você verá algo parecido com isso no terminal
 <img src="./assets/tests-terminal.png" alt="Terminal test">
