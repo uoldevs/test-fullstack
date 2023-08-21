@@ -1,0 +1,40 @@
+version: "3"
+services: 
+  db:
+    image: postgres:10.17
+    hostname: postgres
+    restart: on-failure
+    environment:
+      - "POSTGRES_USER=postgres"
+      - "POSTGRES_PASSWORD=postgres"
+      - "POSTGRES_DB=UOLTEST"
+      - "POSTGRES_HOST=127.0.0.1"
+    ports: 
+      - 5432:5432
+    volumes:
+      - database_data:/var/lib/postgresql/data
+    
+  backend:
+    build:
+      "./backend"
+    restart: on-failure
+    ports:
+      - 6586:6586
+    environment:
+      WAIT_HOSTS: postgres:5432
+    depends_on:
+      - db
+    command: sh -c "/wait && npm run db:migrate && npm run db:seed:all && npm run dev"
+  frontend:
+    build:
+      "./frontend"
+    restart: on-failure
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+      - backend
+
+volumes:
+  database_data:
+    driver: local
