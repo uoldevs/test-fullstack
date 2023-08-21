@@ -1,41 +1,114 @@
 # Teste Fullstack: Aplicativo de Gerenciamento de Clientes
 
-## Descrição:
+## About project:
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+<img src="https://github.com/rtxnak/test-fullstack/assets/88905400/26e82d17-f7f3-4aef-a5e3-cefc96175410" alt="edit-page" width="300"/>
+<img src="https://github.com/rtxnak/test-fullstack/assets/88905400/3335d60e-9af9-493c-8fa9-e381749ed256" alt="new-page" width="300"/>
+<img src="https://github.com/rtxnak/test-fullstack/assets/88905400/3f105d79-beea-497b-8f1b-4cd33520ab33" alt="edit-page" width="300"/>
 
-## Requisitos do Frontend:
+This project was developed to a technical test with the [Skills](#skills).
 
-1. Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
-2. Permitir a criação de um novo cliente através de um formulário.
-3. Na tela de edição, fornecer alertas para o usuário em caso de dados inválidos.
-4. Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
-5. Comunicar-se com a API para obter os dados dos clientes cadastrados.
+It is a system that allows users to view the list of customers, create and edit customer data through a form.
 
-## Requisitos do Backend:
+In the registration/editing form, all fields must be completed, and in the case of the CPF, a valid number is required.
 
-Criar uma API que ofereça endpoints para:
+All customer data is persistently stored in a database.
 
-1. Obter a listagem de clientes cadastrados.
-2. Cadastrar um novo cliente com informações válidas.
-3. Atualizar informações de cliente existente.
-4. Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
+The Project was based on the initial instructions of the repository: https://github.com/uoldevs/test-fullstack
 
-## Requisitos de Qualidade de Código:
+## Skills 
+On FrontEnd:
+ - Functional Programming in Javascript is the base language;
+ - ReactJs/NextJs and Tailwindcss to create the pages;
+ - Axios to do the API connection;
+ - Jest/RTL to create unit tests;
 
-Escreva um código limpo, legível e bem organizado.
-Adote boas práticas de desenvolvimento e arquitetura.
+On BackEnd:
+ - OOP in Typescript is the base language;
+ - NestJs framework from Node.js;
+ - ODM library typeORM for SQLite database connection;
+ - Jest to create unit tests;
 
-## Itens Desejáveis (opcional):
+## Opening the app locally
+ 
+On terminal:
 
-- Testes unitários
-- Bibliotecas ou frameworks adicionais
+1. Please install and check the version of the following services on your system:
 
-## Telas:
+[NPM & Node](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+```bash
+  npm -v
+```
+```bash
+  node -v
+```
 
-- [Tela Inicial](https://test-frontend-uolpp.web.app/assets/images/tela-inicial.jpg)
-- [Tela de Edição](https://test-frontend-uolpp.web.app/assets/images/tela-edicao.jpg)
+[Docker](https://docs.docker.com/get-docker/)
+```bash
+  docker -v
+```
+[Docker-Compose](https://docs.docker.com/compose/install/)
+```bash
+  docker-compose -v
+```
 
-## Instruções Finais:
+2. Clone the repository in your preferred folder
+```bash
+  git clone git@github.com:rtxnak/test-fullstack.git
+```
 
-Após concluir o desafio, crie um pull request neste repositório com duas pastas separadas: uma contendo o projeto frontend e outra com o projeto backend, para que possamos avaliar seu trabalho. Boa sorte!
+3. Move to app folder
+```bash
+  cd test-fullstack/ 
+```
+4. Install the dependencies
+  * move to frontend folder:
+    ```bash
+       cd frontend/
+    ```
+  * Install dependencies:
+    ```bash
+       npm install  
+    ```
+  * move back folder:
+    ```bash
+       cd ..
+    ```
+  * move to frontend folder:
+    ```bash
+       cd backend/
+    ```
+  * Install dependencies:
+    ```bash
+       npm install  
+    ```
+  * move back folder:
+    ```bash
+       cd ..
+    ```
+
+5. Run the application with docker-compose
+```bash
+  npm run compose:up
+```
+
+6. The application can be accessed through:
+
+    http://localhost:3000/
+
+7. Finishing the application
+```bash
+  npm run compose:down
+```
+8. To run tests:
+  * move to frontend or backend folder:
+    ```bash
+       cd frontend/
+    ```
+    ```bash
+       cd backend/
+    ```
+  * Unit tests:
+    ```bash
+       npm run test
+    ```
