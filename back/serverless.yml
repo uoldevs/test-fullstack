@@ -1,0 +1,73 @@
+service: uol
+frameworkVersion: '3'
+useDotenv: true
+
+plugins:
+  - serverless-plugin-typescript # Serverless plugin for zero-config Typescript support
+  - serverless-offline # Emulates AWS λ and API Gateway on your local machine
+  - serverless-content-encoding # A serverless plugin to enable Content Encoding feature in API Gateway for lambda function response compression
+  - serverless-plugin-warmup-ts-bridge-v2 # The library resolves a warmup and typescript issue
+  - serverless-plugin-warmup # WarmUp solves cold starts
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  endpointType: regional # Endpoint type for API Gateway REST API: edge or regional (default: edge)
+  apiName: api-${self:service}-${opt:stage}
+  apiGateway:
+    binaryMediaTypes: # Optional binary media types the API might return (e.g. image/png)
+      - 'image/png'
+      - 'image/jpeg'
+      - 'image/heif'
+      - 'multipart/form-data'
+  logRetentionInDays: ${env:LOG_RETENTION_DAYS}
+  memorySize: ${env:LAMBDA_MEMORY_SIZE} # Default memory size for functions (default: 1024MB)
+  logs:
+    restApi:
+      level: INFO # Log level to use for execution logging: INFO or ERROR
+  tracing: # AWS X-Ray
+    apiGateway: true
+    lambda: true
+  environment:
+    NODE_ENV: ${opt:stage, 'dev'}
+    DB_USERNAME: ${env:DB_USERNAME}
+    DB_NAME: ${env:DB_NAME}
+    DB_HOST: ${env:DB_HOST}
+    DB_PASSWORD: ${env:DB_PASSWORD}
+    DB_PORT: 5432
+    DB_SIZE: ${env:DB_SIZE}
+    DB_STORAGE: 20
+
+custom:
+  serverlessPluginTypescript: # Typescript plugin
+    tsConfigFileLocation: './tsconfig.build.json' # Override what tsconfig.json to use with the following snippet in your severless.yaml
+  warmup: # WarmUp plugin
+    default: # Supports creating one or more warmer function
+      enabled: true # Whether to warm up functions by default or not
+      prewarm: true # Run WarmUp immediately after a deploymentlambda
+
+package:
+  individually: true
+  patterns:
+    - '!venv/**'
+    - '!env/**'
+    - '!.build/**'
+    - '!node_modules/@types/**'
+    - '!node_modules/typescript/**'
+    - '!node_modules/serverless**/**'
+
+functions:
+  main:
+    timeout: 30 # optional, in seconds, default is 6
+    handler: lambda.handler
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
+          cors: true
+
+resources:
+  - ${file(aws/lambda-role.yml)}
+  - ${file(aws/rds.yml)}
+  - ${file(aws/s3.yml)}

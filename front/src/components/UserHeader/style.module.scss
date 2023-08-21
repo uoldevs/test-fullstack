@@ -1,0 +1,7 @@
+@import '../../styles/mixins';
+
+.clientPanelHeader {
+    @include flexAlign(row, left, center);
+    color: #474747;
+    min-width: 500px;
+}

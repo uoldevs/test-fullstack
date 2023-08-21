@@ -1,0 +1,10 @@
+@import '../../../styles/mixins';
+
+.mainContainer {
+    width: 65%;
+    margin: auto;
+    margin-top: 125px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
