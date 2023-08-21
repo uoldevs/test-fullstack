@@ -7,7 +7,7 @@ import GlobalContext from './context/index.tsx'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <GlobalContext>
-      <App />
+        <App />
     </GlobalContext>
   </React.StrictMode>,
 )

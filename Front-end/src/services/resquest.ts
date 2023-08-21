@@ -1,4 +1,5 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosError, AxiosInstance, AxiosResponse } from 'axios';
+import dataRequestBody from '../interfaces/IClienteRequest';
 
 class Api {
   private api: AxiosInstance;
@@ -8,8 +9,29 @@ class Api {
     });
   }
   public async getData(endpoint: string) {
-    const { data } = await this.api.get(endpoint);
-    return data;
+    try {
+      const { data } = await this.api.get(endpoint);
+      return data;
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        return err.response;
+      }
+      return err;
+    }
+  }
+
+  public async putUpdate(
+    endpoint: string,
+    dataToUpdate: dataRequestBody
+  ): Promise<AxiosResponse> {
+    try {
+      return await this.api.put(endpoint, dataToUpdate);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        return err.response as unknown as AxiosResponse;
+      }
+      return err as unknown as AxiosResponse;
+    }
   }
 }
 

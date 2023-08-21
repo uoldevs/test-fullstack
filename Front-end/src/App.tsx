@@ -1,11 +1,20 @@
 import './App.css'
-import Table from './pages/ClientsTablePage/ShowClients'
+import ViewClients from './pages/ClientsTablePage/ViewClients'
+import EditClient from './pages/clientsEditPage/EditClient';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
 
 function App() {
 
   return (
     <div className='app'>
-      <Table/>
+      <BrowserRouter basename='/clientes'>
+        <Routes>
+          <Route path="/" element={ <ViewClients /> } />
+          <Route path="/:id" element={ <EditClient /> } />
+          {/* <Route exact path="/cliente/cadastro" element={} /> */}
+        </Routes>
+      </BrowserRouter>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ClientTable from '../../components/clientsViewTable/ClientsTable';
 import './showClients.css'
 
-class Table extends Component {
+class ViewClients extends Component {
 
   render() {
     return (
@@ -14,4 +14,4 @@ class Table extends Component {
   }
 }
 
-export default Table;
+export default ViewClients;

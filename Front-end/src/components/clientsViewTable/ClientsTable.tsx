@@ -1,13 +1,14 @@
 import React, { useContext, useEffect } from 'react';
 import AppContext from '../../context/ContextApi';
 import './clientsTable.css';
+import { useNavigate } from 'react-router-dom';
 
 const ClientTable: React.FC = () => {
   const { dataClient, fetchClients } = useContext(AppContext);
-
+  const navigate = useNavigate();
   useEffect(() => {
     fetchClients();
-  }, []);
+  });
 
   return (
     <div>
@@ -33,7 +34,7 @@ const ClientTable: React.FC = () => {
                 </div>
               </div>
               <div>
-                <button type='button'>Editar</button>
+                <button onClick={() => navigate(`/${client.id}`, {state: client})} type='button'>Editar</button>
               </div>
             </div>
           ))}
