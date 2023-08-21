@@ -4,5 +4,5 @@ export default interface ICustomer {
   email: string;
   cpf: string;
   phone: string;
-  status?: string;
+  status: string;
 }

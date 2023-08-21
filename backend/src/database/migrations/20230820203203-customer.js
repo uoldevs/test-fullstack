@@ -29,7 +29,6 @@ module.exports = {
       },
       status: {
         allowNull: false,
-        defaultValue: 'Aguardando ativação',
         type: Sequelize.STRING,
       },
     });
