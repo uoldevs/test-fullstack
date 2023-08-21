@@ -72,17 +72,29 @@ describe('UserService unit test', () => {
 
   describe('updateUser method', () => {
     test('SUCCESS on update user', async () => {
+      jest.spyOn(userRepository, 'exist').mockResolvedValueOnce(true);
+      jest.spyOn(userRepository, 'exist').mockResolvedValueOnce(false);
+
       const result = await userService.updateUser(1, updatePutUserDtoMock);
 
       expect(result).toEqual({ success: true });
     });
 
-    test('FAILURE on update user', async () => {
+    test('FAILURE on update non-existent user', async () => {
       jest.spyOn(userRepository, 'exist').mockResolvedValueOnce(false);
 
       await expect(
         userService.updateUser(1, updatePutUserDtoMock),
       ).rejects.toEqual(new NotFoundException('Usuário não encontrado'));
+    });
+
+    test('FAILURE on update user with existing CPF', async () => {
+      jest.spyOn(userRepository, 'exist').mockResolvedValueOnce(true);
+      jest.spyOn(userRepository, 'exist').mockResolvedValueOnce(true);
+
+      await expect(
+        userService.updateUser(1, updatePutUserDtoMock),
+      ).rejects.toEqual(new NotFoundException('cpf já existente'));
     });
   });
 

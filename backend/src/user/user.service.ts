@@ -54,15 +54,25 @@ export class UserService {
   }
 
   async updateUser(id: number, data: UpdatePutUserDto) {
-    if (
-      await this.usersRepository.exist({
-        where: {
-          id,
-        },
-      })
-    ) {
-      await this.usersRepository.update(id, data);
-      return { success: true };
+    const user = await this.showOneUserById(id);
+    if (user) {
+      if (user.cpf === data.cpf) {
+        await this.usersRepository.update(id, data);
+        return { success: true };
+      } else {
+        if (
+          await this.usersRepository.exist({
+            where: {
+              cpf: data.cpf,
+            },
+          })
+        ) {
+          throw new BadRequestException('cpf já existente');
+        } else {
+          await this.usersRepository.update(id, data);
+          return { success: true };
+        }
+      }
     }
     throw new NotFoundException('Usuário não encontrado');
   }
