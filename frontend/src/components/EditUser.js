@@ -30,7 +30,7 @@ function EditUser() {
     if (Validations(data)) {
       put(data, id);
     }
-    console.log(data);
+    // console.log(data);
     setData(initialFormData);
     // navigate('/');
   };

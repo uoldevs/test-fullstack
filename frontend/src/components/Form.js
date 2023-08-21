@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import './Form.css';
+import './css/Form.css';
 
 function Form({ nome, email, cpf, telefone, status, handleChange, handleSubmit, validation, btn }) {
   const navigate = useNavigate();

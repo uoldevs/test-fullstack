@@ -1,6 +1,6 @@
 import ClientPanel from '../components/ClientPanel';
 import CreateUser from '../components/CreateUser';
-import './Create.css';
+import './css/Create.css';
 
 function Create() {
   return (

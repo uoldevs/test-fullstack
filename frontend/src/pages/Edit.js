@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import ClientPanel from '../components/ClientPanel';
 import EditUser from '../components/EditUser';
-import './Edit.css';
+import './css/Edit.css';
 import { del } from '../components/Requests';
 
 function Edit() {

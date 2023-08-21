@@ -1,7 +1,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
-import './ClientPanel.css';
+import './css/ClientPanel.css';
 
 function ClientPanel() {
   return (

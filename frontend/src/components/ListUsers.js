@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ListUsers.css';
+import './css/ListUsers.css';
 
 const url = 'http://localhost:3001/';
 

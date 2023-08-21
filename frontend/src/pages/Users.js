@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import ListUsers from '../components/ListUsers';
 import ClientPanel from '../components/ClientPanel';
-import './Users.css';
+import './css/Users.css';
 
 function Users() {
   const navigate = useNavigate();
