@@ -53,12 +53,7 @@ class ClientModel {
                     if (err) {
                         return reject(err.message);
                     }
-                    if (this.changes > 0) {
-                        return resolve(client);
-                    }
-                    else {
-                        return resolve(null);
-                    }
+                    return resolve();
                 });
             });
         });

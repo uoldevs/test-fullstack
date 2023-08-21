@@ -7,7 +7,7 @@ class ClientController {
 			const clients = await new ClientService().getAll();
 			return res.status(200).json(clients);
 		} catch (err) {
-			return;
+			return err;
 		}
 	}
 
@@ -16,7 +16,7 @@ class ClientController {
 			await new ClientService().create(req.body);
 			res.status(201).json({ message: 'Client Created'});
 		} catch (err) {
-			return;
+			return err;
 		}
 	}
 
@@ -26,7 +26,7 @@ class ClientController {
 			await new ClientService().update(req.body, Number(id));
 			res.status(200).json({ message: 'Client updated'});
 		} catch (err) {
-			return;
+			return err;
 		}
 	}
 }

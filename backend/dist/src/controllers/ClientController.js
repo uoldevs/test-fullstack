@@ -21,7 +21,7 @@ class ClientController {
                 return res.status(200).json(clients);
             }
             catch (err) {
-                return;
+                return err;
             }
         });
     }
@@ -32,7 +32,7 @@ class ClientController {
                 res.status(201).json({ message: 'Client Created' });
             }
             catch (err) {
-                return;
+                return err;
             }
         });
     }
@@ -44,7 +44,7 @@ class ClientController {
                 res.status(200).json({ message: 'Client updated' });
             }
             catch (err) {
-                return;
+                return err;
             }
         });
     }

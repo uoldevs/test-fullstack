@@ -3,15 +3,27 @@ import ClientModel from '../models/ClientModel';
 
 export default class ClientService {
 	async getAll() {
-		return await new ClientModel().getAll();
+		try {
+			return await new ClientModel().getAll();
+		} catch (error) {
+			throw new Error('Erro ao buscar clientes');
+		}
 	}
 
 	async create(client: IClient) {
-		return await new ClientModel().create(client);
+		try {
+			return await new ClientModel().create(client);
+		} catch (error) {
+			throw new Error('Erro ao criar o cliente');
+		}
 	}
 
 	async update(client: IClient, id: number) {
-		return await new ClientModel().update(client, id);
+		try {
+			return await new ClientModel().update(client, id);
+		} catch (error) {
+			throw new Error('Erro ao editar o cliente');
+		}
 	}
 }
 
