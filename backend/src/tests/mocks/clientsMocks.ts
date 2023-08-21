@@ -50,10 +50,10 @@ export const clientNoIdMock = {
   status: "Desativado",
 };
 
-export const badClientNoIdMock = {
+export const badClientCPFNoIdMock = {
   name: "Bell-mère",
   email: "bell@gmail.com",
-  cpf: "212194586",
+  cpf: "",
   phone: "51998925698",
   status: "Desativado",
 };
@@ -65,4 +65,12 @@ export const updatedClientMock = {
   cpf: "21219458066",
   phone: "51998925698",
   status: "Ativo",
+};
+
+export const badClientemailNoIdMock = {
+  name: "Bell-mère",
+  email: "bell@",
+  cpf: "21219458066",
+  phone: "51998925698",
+  status: "Desativado",
 };

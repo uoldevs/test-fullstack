@@ -6,8 +6,9 @@ import {
   clientMock,
   findManyMock,
   clientNoIdMock,
-  badClientNoIdMock,
+  badClientCPFNoIdMock,
   updatedClientMock,
+  badClientemailNoIdMock,
 } from "./mocks/clientsMocks";
 import prisma from "../../prisma/prisma";
 
@@ -52,6 +53,18 @@ describe("/create", () => {
       "status",
     );
   });
+
+  it("should return status 400 and a message if there is no cpf", async () => {
+    const response = await chai
+      .request(app)
+      .post("/create")
+      .send(badClientCPFNoIdMock);
+
+    expect(response.status).to.equal(400);
+    expect(response.body).to.be.deep.equal({
+      message: "field: cpf, message: CPF inválido",
+    });
+  });
 });
 
 describe("/update", () => {
@@ -73,5 +86,17 @@ describe("/update", () => {
 
     expect(response.status).to.equal(201);
     expect(response.body).to.be.deep.equal(updatedClientMock);
+  });
+
+  it("should return status 400 and a message the email format is invalid", async () => {
+    const response = await chai
+      .request(app)
+      .post("/create")
+      .send(badClientemailNoIdMock);
+
+    expect(response.status).to.equal(400);
+    expect(response.body).to.be.deep.equal({
+      message: "field: email, message: Invalid email",
+    });
   });
 });
