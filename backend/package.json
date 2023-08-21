@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "@fastify/express": "^2.3.0",
+    "axios": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "fastify": "^4.10.2",
@@ -10,9 +11,14 @@
   "scripts": {
     "start": "node ./src/server",
     "lint": "eslint . --fix",
-    "restore": "node restore_db.js"
+    "restore": "node restore_db.js",
+    "test": "jest",
+    "test:watch": "jest --watchAll"
   },
   "devDependencies": {
-    "eslint": "^8.47.0"
+    "@types/jest": "^29.5.3",
+    "eslint": "^8.47.0",
+    "jest": "^29.6.3",
+    "ts-jest": "^29.1.1"
   }
 }

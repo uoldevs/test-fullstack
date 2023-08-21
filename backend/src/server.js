@@ -36,4 +36,3 @@ build()
 		console.log('Servidor iniciado em http://localhost:' + PORT);
 	}))
 	.catch(console.log);
-

@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este repositório contém o código-fonte de um aplicativo de gerenciamento de clientes, desenvolvido como parte de um desafio fullstack para a vaga de Pessoa Desenvolvedora na [UOL](https://www.linkedin.com/company/uol/). O aplicativo é composto por um frontend e um backend, responsáveis pela interface do usuário e pelo armazenamento de dados dos clientes.
+Este repositório contém o código de um aplicativo WEB de gerenciamento de clientes, desenvolvido como parte de um desafio fullstack para a vaga de Pessoa Desenvolvedora na [UOL](https://www.linkedin.com/company/uol/). O aplicativo é composto por um frontend e um backend, responsáveis pela interface do usuário e pelo armazenamento de dados dos clientes.
 
 ## Funcionalidades
 
@@ -32,12 +32,16 @@ O backend disponibiliza os seguintes endpoints para interação com os dados dos
 - Next.js
 - Tailwind CSS
 - Cypress (para testes automatizados e2e)
+- Jest
+- Axios
 
 ### Backend
 
 - Fastify
 - Sequelize (ORM)
 - SQLite (banco de dados)
+- Jest
+- Axios
 
 ## Rodando o Projeto
 
@@ -62,12 +66,20 @@ npm start
 
 ## Executando os Testes
 
+### Frontend
 1. Abra um novo terminal e navegue até a pasta do frontend.
 2. Execute o comando `npm install`.
 3. Execute o comando `npm test`.
 4. Selecione a opção `e2e`.
 5. Escolha um navegador.
 6. Na aba `Specs`, selecione um dos testes disponíveis.
+
+Observação: Certifique-se de que o projeto esteja rodando para que os testes funcionem corretamente.
+
+### Backend
+1. Abra um novo terminal e navegue até a pasta do backend.
+2. Execute o comando `npm install`.
+3. Execute o comando `npm test`.
 
 Observação: Certifique-se de que o projeto esteja rodando para que os testes funcionem corretamente.
 
@@ -78,10 +90,11 @@ Observação: Certifique-se de que o projeto esteja rodando para que os testes f
 
 ## Resultados dos testes
 
-<img src="./cypress01.png" alt="Descrição da Imagem" width="65%"/>
+<img src="./cypress01.png" alt="teste de criação" width="65%"/>
 
-<img src="./cypress02.png" alt="Descrição da Imagem" width="65%"/>
+<img src="./cypress02.png" alt="teste de edição" width="65%"/>
 
+<img src="./jest.png" alt="teste backend" width="50%"/>
 
 ## Resultados do Lighthouse
 
