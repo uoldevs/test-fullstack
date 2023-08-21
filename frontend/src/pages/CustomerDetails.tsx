@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ICustomer from '../interfaces/ICustomer';
 import { requestData, updateCustomer } from '../services/requests';
 
@@ -12,7 +12,7 @@ const CustomerDetails = () => {
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [status, setStatus] = useState('');
-  const [saveMsg, setSaveMsg] = useState(false);
+  const navigate = useNavigate();
 
   const saveCustomer = async () => {
     const costumer = {
@@ -26,9 +26,8 @@ const CustomerDetails = () => {
     const response = await updateCustomer(endpoint, costumer);
 
     if (response) {
-      setSaveMsg(!saveMsg)
+      navigate('/');
     }
-
   }
 
 
@@ -109,7 +108,6 @@ const CustomerDetails = () => {
             </select>
           </label>
           <button type='button' onClick={() => saveCustomer()}>Salvar</button>
-          <span>{ saveMsg && 'Cliente editado com sucesso!'}</span>
         </form>
       )}
     </div>
