@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.container > div > h3 {
+  color: #333;
+}
+
+.container > div > p {
+  color: #999;
+}
+
+@media (max-width: 700px) { 
+  .container {
+    flex-direction: column;
+  }
+}
