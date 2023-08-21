@@ -14,29 +14,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const ClientService_1 = __importDefault(require("../services/ClientService"));
 class ClientController {
-    getAll(req, res) {
+    getAll(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const clients = yield new ClientService_1.default().getAll();
                 return res.status(200).json(clients);
             }
             catch (err) {
-                return err;
+                next(err);
             }
         });
     }
-    create(req, res) {
+    create(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield new ClientService_1.default().create(req.body);
                 res.status(201).json({ message: 'Client Created' });
             }
             catch (err) {
-                return err;
+                next(err);
             }
         });
     }
-    update(req, res) {
+    update(req, res, next) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const { id } = req.params;
@@ -44,7 +44,7 @@ class ClientController {
                 res.status(200).json({ message: 'Client updated' });
             }
             catch (err) {
-                return err;
+                next(err);
             }
         });
     }

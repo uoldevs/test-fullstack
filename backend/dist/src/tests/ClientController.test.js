@@ -45,6 +45,7 @@ chai_1.default.use(sinon_chai_1.default);
 describe('ClientController', () => {
     const req = {};
     const res = {};
+    const next = sinon_1.default.stub();
     beforeEach(function () {
         res.status = sinon_1.default.stub().returns(res);
         res.json = sinon_1.default.stub().returns(res);
@@ -54,20 +55,22 @@ describe('ClientController', () => {
         it('should return all clients', () => __awaiter(void 0, void 0, void 0, function* () {
             const getAllStub = sinon_1.default.stub(ClientService_1.default.prototype, 'getAll').resolves(Client_mock_1.default.mock);
             const controller = new ClientController_1.default();
-            yield controller.getAll(req, res);
+            yield controller.getAll(req, res, next);
             (0, chai_1.expect)(getAllStub.calledOnce).to.be.true;
             (0, chai_1.expect)(res.status).to.have.been.calledWith(200);
             (0, chai_1.expect)(res.json).to.have.been.calledWith(Client_mock_1.default.mock);
+            (0, chai_1.expect)(next.notCalled).to.be.true;
         }));
     });
     describe('create', () => {
         it('should create a client', () => __awaiter(void 0, void 0, void 0, function* () {
             const createStub = sinon_1.default.stub(ClientService_1.default.prototype, 'create').resolves();
             const controller = new ClientController_1.default();
-            yield controller.create(req, res);
+            yield controller.create(req, res, next);
             (0, chai_1.expect)(createStub.calledOnce).to.be.true;
             (0, chai_1.expect)(res.status).to.have.been.calledWith(201);
             (0, chai_1.expect)(res.json).to.have.been.calledWith({ message: 'Client Created' });
+            (0, chai_1.expect)(next.notCalled).to.be.true;
         }));
     });
     describe('update', () => {
@@ -79,10 +82,24 @@ describe('ClientController', () => {
                 json: sinon_1.default.stub()
             };
             const controller = new ClientController_1.default();
-            yield controller.update(req, res);
+            yield controller.update(req, res, next);
             (0, chai_1.expect)(updateStub.calledOnceWith(req.body, 1)).to.be.true;
             (0, chai_1.expect)(res.status).to.have.been.calledWith(200);
             (0, chai_1.expect)(res.json).to.have.been.calledWith({ message: 'Client updated' });
+            (0, chai_1.expect)(next.notCalled).to.be.true;
+        }));
+    });
+    describe('test - error case', () => {
+        it('should call next with error if service throws an error', () => __awaiter(void 0, void 0, void 0, function* () {
+            const getAllStub = sinon_1.default.stub(ClientService_1.default.prototype, 'getAll').rejects(new Error());
+            const controller = new ClientController_1.default();
+            yield controller.getAll(req, res, next);
+            (0, chai_1.expect)(getAllStub.calledOnce).to.be.true;
+            (0, chai_1.expect)(res.status).to.be.not.called;
+            (0, chai_1.expect)(res.json).to.be.not.called;
+            (0, chai_1.expect)(next.calledOnce).to.be.true;
+            (0, chai_1.expect)(next.calledWith(sinon_1.default.match.instanceOf(Error))).to.be.true;
+            sinon_1.default.restore();
         }));
     });
 });

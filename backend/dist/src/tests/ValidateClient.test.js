@@ -74,7 +74,7 @@ describe('validateClient middleware', () => {
         (0, chai_1.expect)(next.notCalled).to.be.true;
     });
     it('should return 401 when phone number is invalid', () => {
-        req.body = { email: 'test@example.com', name: 'John Doe', cpf: '123.456.789-09', phone: 'invalid-phone', status: 'active' };
+        req.body = { email: 'test@example.com', name: 'John Doe', cpf: '07822832506', phone: 'invalid-phone', status: 'active' };
         (0, validateclient_1.default)(req, res, next);
         (0, chai_1.expect)(res.status).to.have.been.calledOnceWith(401);
         (0, chai_1.expect)(res.json).to.have.been.calledOnceWith({ message: 'Invalid phone number' });

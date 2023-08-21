@@ -16,32 +16,17 @@ const ClientModel_1 = __importDefault(require("../models/ClientModel"));
 class ClientService {
     getAll() {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                return yield new ClientModel_1.default().getAll();
-            }
-            catch (error) {
-                throw new Error('Erro ao buscar clientes');
-            }
+            return yield new ClientModel_1.default().getAll();
         });
     }
     create(client) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                return yield new ClientModel_1.default().create(client);
-            }
-            catch (error) {
-                throw new Error('Erro ao criar o cliente');
-            }
+            return yield new ClientModel_1.default().create(client);
         });
     }
     update(client, id) {
         return __awaiter(this, void 0, void 0, function* () {
-            try {
-                return yield new ClientModel_1.default().update(client, id);
-            }
-            catch (error) {
-                throw new Error('Erro ao editar o cliente');
-            }
+            return yield new ClientModel_1.default().update(client, id);
         });
     }
 }

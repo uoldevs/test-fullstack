@@ -5,12 +5,13 @@ import validateClient from '../middlewares/validateclient';
 const clientRoute = Router();
 const controller = new ClientController();
 
-clientRoute.get('/', controller.getAll);
+clientRoute.get('/', 
+	(req, res, next) => controller.getAll(req, res, next));
 clientRoute.post('/', 
 	(req, res, next) => validateClient(req, res, next),
-	(req, res) => controller.create(req, res)); 
+	(req, res, next) => controller.create(req, res, next)); 
 clientRoute.put('/:id', 
 	(req, res, next) => validateClient(req, res, next),
-	(req, res) => controller.update(req, res));
+	(req, res, next) => controller.update(req, res, next));
 
 export default clientRoute;

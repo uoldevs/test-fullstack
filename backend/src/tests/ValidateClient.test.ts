@@ -62,7 +62,7 @@ describe('validateClient middleware', () => {
 	});
 
 	it('should return 401 when phone number is invalid', () => {
-		req.body = { email: 'test@example.com', name: 'John Doe', cpf: '123.456.789-09', phone: 'invalid-phone', status: 'active' };
+		req.body = { email: 'test@example.com', name: 'John Doe', cpf: '07822832506', phone: 'invalid-phone', status: 'active' };
 
 		validateClient(req as Request, res as Response, next);
 

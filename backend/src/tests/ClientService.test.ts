@@ -46,7 +46,6 @@ describe('ClientService', () => {
 			const id = 1;
 			await clientService.update(client, id);
 
-			// expect(result).to.deep.equal({id: 1, ...client});
 			expect(updateStub.calledOnceWith(client, id)).to.be.true;
 
 			updateStub.restore();

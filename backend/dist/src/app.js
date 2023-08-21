@@ -15,4 +15,7 @@ app.use((0, cors_1.default)({
 app.use(express_1.default.json());
 app.get('/health', (req, res) => res.status(200).send());
 app.use('/clients', clientRoute_1.default);
+app.use((err, req, res) => {
+    return res.status(500).json({ message: 'internal server error' });
+});
 exports.default = app;

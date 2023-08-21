@@ -40,6 +40,7 @@ const sinon_1 = __importDefault(require("sinon"));
 const sqlite3_1 = require("sqlite3");
 const ClientModel_1 = __importDefault(require("../models/ClientModel"));
 const chai_as_promised_1 = __importDefault(require("chai-as-promised"));
+const Client_mock_1 = __importDefault(require("./mocks/Client.mock"));
 chai_1.default.use(chai_as_promised_1.default);
 describe('ClientModel', () => {
     beforeEach(function () {
@@ -47,11 +48,11 @@ describe('ClientModel', () => {
     });
     describe('getAll', () => {
         it('should return all clients', () => __awaiter(void 0, void 0, void 0, function* () {
-            const dbInstance = new sqlite3_1.Database(':memory:'); // Use an in-memory database for testing
-            const dbAllStub = sinon_1.default.stub(dbInstance, 'all').yields(null, []);
+            const dbInstance = new sqlite3_1.Database(':memory:');
+            const dbAllStub = sinon_1.default.stub(dbInstance, 'all').yields(null, Client_mock_1.default.mock);
             const clientModel = new ClientModel_1.default(dbInstance);
             const result = yield clientModel.getAll();
-            (0, chai_1.expect)(result).to.deep.equal([]);
+            (0, chai_1.expect)(result).to.deep.equal(Client_mock_1.default.mock);
             (0, chai_1.expect)(dbAllStub.calledOnce).to.be.true;
             dbAllStub.restore();
         }));
@@ -59,10 +60,9 @@ describe('ClientModel', () => {
     describe('create', () => {
         it('should create a client', () => __awaiter(void 0, void 0, void 0, function* () {
             const dbInstance = new sqlite3_1.Database(':memory:');
-            const client = { name: 'Test Client', email: 'test@example.com', cpf: '123456789', phone: '1234567890', status: 'ativo' };
-            const dbRunStub = sinon_1.default.stub(dbInstance, 'run').yields(null, client);
+            const dbRunStub = sinon_1.default.stub(dbInstance, 'run').yields(null, Client_mock_1.default.mockCreate);
             const clientModel = new ClientModel_1.default(dbInstance);
-            yield (0, chai_1.expect)(clientModel.create(client)).to.be.fulfilled;
+            yield (0, chai_1.expect)(clientModel.create(Client_mock_1.default.mockCreate)).to.be.fulfilled;
             (0, chai_1.expect)(dbRunStub.calledOnce).to.be.true;
             dbRunStub.restore();
         }));
@@ -70,10 +70,9 @@ describe('ClientModel', () => {
     describe('update', () => {
         it('should update a client', () => __awaiter(void 0, void 0, void 0, function* () {
             const dbInstance = new sqlite3_1.Database(':memory:');
-            const client = { name: 'Updated Client', email: 'updated@example.com', cpf: '987654321', phone: '9876543210', status: 'inativo' };
-            const dbRunStub = sinon_1.default.stub(dbInstance, 'run').yields(null, client);
+            const dbRunStub = sinon_1.default.stub(dbInstance, 'run').yields(null, Client_mock_1.default.mockCreate);
             const clientModel = new ClientModel_1.default(dbInstance);
-            yield (0, chai_1.expect)(clientModel.update(client, 1)).to.be.fulfilled;
+            yield (0, chai_1.expect)(clientModel.update(Client_mock_1.default.mockCreate, 1)).to.be.fulfilled;
             (0, chai_1.expect)(dbRunStub.calledOnce).to.be.true;
             dbRunStub.restore();
         }));

@@ -12,9 +12,12 @@ chai.use(sinonChai);
 describe('ClientController', () => {
 	const req = {} as Request;
 	const res = {} as Response;
+	const next = sinon.stub();
+
 	beforeEach(function () {
 		res.status = sinon.stub().returns(res);
 		res.json = sinon.stub().returns(res);
+		
 		sinon.restore();
 	});
 	describe('getAll', () => {
@@ -22,11 +25,12 @@ describe('ClientController', () => {
 			const getAllStub = sinon.stub(ClientService.prototype, 'getAll').resolves(mocks.mock as unknown as IClient[]);
 	
 			const controller = new ClientController();
-			await controller.getAll(req, res);
+			await controller.getAll(req, res, next);
 
 			expect(getAllStub.calledOnce).to.be.true;
 			expect(res.status).to.have.been.calledWith(200);
 			expect(res.json).to.have.been.calledWith(mocks.mock);
+			expect(next.notCalled).to.be.true;
 		});
 	});
 
@@ -35,11 +39,12 @@ describe('ClientController', () => {
 			const createStub = sinon.stub(ClientService.prototype, 'create').resolves();
       
 			const controller = new ClientController();
-			await controller.create(req, res);
+			await controller.create(req, res, next);
 
 			expect(createStub.calledOnce).to.be.true;
 			expect(res.status).to.have.been.calledWith(201);
 			expect(res.json).to.have.been.calledWith({ message: 'Client Created' });
+			expect(next.notCalled).to.be.true;
 		});
 	});
 
@@ -53,11 +58,28 @@ describe('ClientController', () => {
 			} as unknown as Response;
       
 			const controller = new ClientController();
-			await controller.update(req, res);
+			await controller.update(req, res, next);
 
 			expect(updateStub.calledOnceWith(req.body, 1)).to.be.true;
 			expect(res.status).to.have.been.calledWith(200);
 			expect(res.json).to.have.been.calledWith({ message: 'Client updated' });
+			expect(next.notCalled).to.be.true;
+		});
+	});
+	describe('test - error case', () => {
+		it('should call next with error if service throws an error', async () => {
+			const getAllStub = sinon.stub(ClientService.prototype, 'getAll').rejects(new Error());
+
+			const controller = new ClientController();
+			await controller.getAll(req, res, next);
+
+			expect(getAllStub.calledOnce).to.be.true;
+			expect(res.status).to.be.not.called;
+			expect(res.json).to.be.not.called;
+			expect(next.calledOnce).to.be.true;
+			expect(next.calledWith(sinon.match.instanceOf(Error))).to.be.true;
+
+			sinon.restore();
 		});
 	});
 });

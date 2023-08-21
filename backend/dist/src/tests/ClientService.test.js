@@ -47,7 +47,6 @@ describe('ClientService', () => {
             const clientService = new ClientService_1.default();
             const id = 1;
             yield clientService.update(client, id);
-            // expect(result).to.deep.equal({id: 1, ...client});
             (0, chai_1.expect)(updateStub.calledOnceWith(client, id)).to.be.true;
             updateStub.restore();
         }));
