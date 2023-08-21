@@ -17,6 +17,7 @@ function Home() {
     const [userList, setUserList] = useState([]);
 
     useEffect(() => {
+        document.title = 'Listagem de usuários'
         axios.get('https://uol-api.onrender.com/')
             .then((response) => {
                 setUserList(response.data)

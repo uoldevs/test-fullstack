@@ -8,7 +8,9 @@ import Button from '../components/mini/Button';
 import { useNavigate } from 'react-router-dom';
 import MiniModal from '../components/mini/MiniModal';
 import { AlertCircle } from 'lucide-react';
-import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useEffect } from 'react';
 
 function Register() {
 
@@ -54,27 +56,78 @@ function Register() {
         return status
     }
 
-
-    const registerUser = () => {
-        console.log(clientInfo)
-        axios.post('https://uol-api.onrender.com/', {
-            name: clientInfo.name,
-            email: clientInfo.email,
-            cpf: clientInfo.cpf.replace(/\D/g, ''),
-            phone: clientInfo.phone.replace(/\D/g, ''),
-            status: handleStatus(clientInfo.status),
-        })
-            .then((response) => {
-                console.log(response.data)
-                setClientInfo({
-                    name: '',
-                    email: '',
-                    cpf: '',
-                    phone: '',
-                    status: '',
-                })
-            })
+    useEffect(() => {
+        document.title = 'Novo usuário'
     }
+    )
+    
+
+
+    const registerUser = async () => {
+        try {
+          const response = await fetch('https://uol-api.onrender.com/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name: clientInfo.name,
+              email: clientInfo.email,
+              cpf: clientInfo.cpf.replace(/\D/g, ''),
+              phone: clientInfo.phone.replace(/\D/g, ''),
+              status: handleStatus(clientInfo.status),
+            }),
+          });
+      
+          const data = await response.json();
+      
+          if (response.status === 201) {
+            toast.success('Cliente cadastrado', {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          } else {
+            toast.error(data.message, {
+              position: 'top-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: false,
+              draggable: true,
+              progress: undefined,
+              theme: 'colored',
+            });
+          }
+
+          if (response.status === 201) {
+            setClientInfo({
+                name: '',
+                email: '',
+                cpf: '',
+                phone: '',
+                status: '',
+              });
+          }
+
+          if (data.message.includes('CPF')) {
+            setInputAlert({ ...inputAlert, cpf: true });
+            setClientInfo({ ...clientInfo, cpf: '' });
+          } else if (data.message.includes('Email')) {
+            setInputAlert({ ...inputAlert, email: true });
+            setClientInfo({ ...clientInfo, email: '' });
+          }
+      
+
+        } catch (error) {
+          console.log(error);
+        }
+      };
 
     const CheckClientInfo = () => {
 
@@ -109,11 +162,14 @@ function Register() {
         setInputAlert(inputStatus);
     }
 
-    const handleClick = () => {
+    const handleClick = (e) => {
+        e.preventDefault()
+
         CheckClientInfo()
         if (Object.values(inputAlert).includes(true)) {
             return;
         }
+
         registerUser()
     }
 
@@ -122,9 +178,21 @@ function Register() {
         <>
             <Header />
             <section className="mt-20 w-7/12 h-auto flex justify-center self-center flex-col pb-52">
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
                 <PanelHeader />
                 <SectionSpec title={SectionSpecInfo.title} subtitle={SectionSpecInfo.subtitle} button={SectionSpecInfo.button} />
-                <div className='flex flex-col gap-4'>
+                <form className='flex flex-col gap-4'>
                     {
                         Object.keys(clientInfo).map((key, i) => {
                             if (key !== 'status') {
@@ -145,11 +213,13 @@ function Register() {
                         })
                     }
 
-                </div>
-                <div className='flex flex-row gap-4 justify-start mt-14'>
-                    <Button name="Criar" size="big" background="orange" active={() => handleClick()} />
-                    <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
-                </div>
+                    <div className='flex flex-row gap-4 justify-start mt-10'>
+                        <Button name="Criar" size="big" background="orange" active={(e) => handleClick(e)} />
+                        <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
+                    </div>
+
+                </form>
+
 
             </section>
         </>

@@ -1,8 +1,11 @@
 import { Dot } from 'lucide-react';
 import Button from './Button';
 import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
 function ClientCard(props) {
+
+    const navigate = useNavigate();
 
 
     const status = {
@@ -62,7 +65,7 @@ const formatPhone = (phone) => {
             </div>
 
             <div className='w-1/4 flex flex-row justify-end overflow-auto'>
-            <Button name="Editar" size="big" background="white" active={() => console.log(props.id)} />
+            <Button name="Editar" size="big" background="white" active={() => navigate(`/edit/${props.id}`)} />
             </div>
         </div>
 

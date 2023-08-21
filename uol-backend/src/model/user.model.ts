@@ -14,7 +14,7 @@ export default class UserModel {
   }
 
   public async findOneBy(criteria: Partial<User>): Promise<User | null> {
-    return await this.userRepository.findOneBy(criteria)
+    return await this.userRepository.findOne({where: criteria, relations: ['status']})
   }
 
   public async updateById(user: TUserUpdate) {
