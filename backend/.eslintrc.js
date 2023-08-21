@@ -13,6 +13,6 @@ module.exports = {
     sourceType: "module",
   },
   rules: {
-    "@typescript-eslint/naming-convention": "off"
-  }
+    "@typescript-eslint/naming-convention": "off",
+  },
 };

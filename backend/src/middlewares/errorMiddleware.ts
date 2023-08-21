@@ -1,7 +1,7 @@
-import { Prisma } from '@prisma/client';
-import { NextFunction, Request, Response } from 'express';
-import HttpException from 'utils/httpException';
-import { ZodError } from 'zod';
+import { Prisma } from "@prisma/client";
+import { NextFunction, Request, Response } from "express";
+import HttpException from "utils/httpException";
+import { ZodError } from "zod";
 
 const errorMiddleware = (
   err: Error | ZodError,

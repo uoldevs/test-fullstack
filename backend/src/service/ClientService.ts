@@ -1,8 +1,6 @@
-/* eslint-disable @typescript-eslint/return-await */
 import { PrismaClient } from "@prisma/client";
 import { Client } from "types";
-// import { Prisma } from "@prisma/client";
-import prisma from '../../prisma/prisma';
+import prisma from "../../prisma/prisma";
 
 export default class ClientService {
   prisma: PrismaClient;
@@ -12,7 +10,7 @@ export default class ClientService {
   }
 
   async create(clientData: Client) {
-    return await this.prisma.client.create({
+    const response = await this.prisma.client.create({
       data: {
         name: clientData.name,
         email: clientData.email,
@@ -21,10 +19,12 @@ export default class ClientService {
         status: clientData.status,
       },
     });
+
+    return response;
   }
 
   async update(clientData: Client) {
-    return await this.prisma.client.update({
+    return this.prisma.client.update({
       where: { id: clientData.id },
       data: {
         name: clientData.name,
@@ -37,9 +37,8 @@ export default class ClientService {
   }
 
   async getAll() {
-    return await this.prisma.client.findMany();
+    return this.prisma.client.findMany();
   }
-
 }
 
 module.exports = ClientService;
