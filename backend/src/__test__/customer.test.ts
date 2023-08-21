@@ -1,5 +1,4 @@
 const axios = require('axios');
-const { exec } = require('child_process');
 
 const api = axios.create({
   baseURL: 'http://localhost:3001',
@@ -21,11 +20,12 @@ describe('Testes da rota customers', () => {
     });
     it('Deve retornar status 200 ao acessar a rota de customers GET com id', async () => {
       const response = await api.get('/customers/1');
-      const { updatedAt, createdAt, name, ...expectedData } = response.data;
+      const { updatedAt, createdAt, ...expectedData } = response.data;
   
       expect(response.status).toBe(200);
   
       expect(expectedData).toEqual({
+        "name": "John Doe",
         "cpf": "123.456.790-01",
         "email": "john_doe@test.com",
         "id": 1,
@@ -80,7 +80,7 @@ describe('Testes da rota customers', () => {
   describe('PUT', () => {
     it('Deve retornar status 400 ao acessar a rota de customers com POST e name inválido', async () => {
       try {
-        const response = await api.put('/customers/1', {...mock, name: ''});
+        const response = await api.put('/customers/1', { ...mock, name: ''});
       } catch (error) {
         expect(error.response.status).toBe(400);
       }

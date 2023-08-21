@@ -5,7 +5,7 @@ const opts = {
 		body: {
 			type: 'object',
 			properties: {
-				name: { type: 'string' },
+				name: { type: 'string', pattern: '^.+$' },
 				email: { type: 'string', format: 'email' },
 				cpf: { type: 'string', pattern: '^\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}$' },
 				telephone: { type: 'string', pattern: '^\\(\\d{2}\\) \\d{5}-\\d{4}$' },
