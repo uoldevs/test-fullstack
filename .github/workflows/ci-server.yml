@@ -1,17 +1,9 @@
 name: CI - Server
 
 on:
-  push:
-    paths:
-      - '/server/**'
+  pull_request:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize, reopened]
-    paths:
-      - '/server/**'
-    branches:
-      - '**'
 
 jobs:
   lint:
