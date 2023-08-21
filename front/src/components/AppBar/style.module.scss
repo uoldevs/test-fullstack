@@ -1,7 +1,8 @@
 .appBar {
     // position: static;
-    height: 60px;
+    height: 75px;
     display: flex;
     align-items: center;
-    background-color: black;
+    justify-content: center; // This centers items horizontally
+    background-color: #333333;
 }

@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const AppBarCustom = () => {
     return (
-        <AppBar sx={{ backgroundColor: 'black' }} className={styles.appBar}>
+        <AppBar sx={{ backgroundColor: '#333333', alignItems: 'center' }} className={styles.appBar}>
             <Image src={uol} alt="profile" height={50} />
         </AppBar>
     );
