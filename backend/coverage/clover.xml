@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1692638499162" clover="3.2.0">
-  <project timestamp="1692638499162" name="All files">
+<coverage generated="1692641531797" clover="3.2.0">
+  <project timestamp="1692641531797" name="All files">
     <metrics statements="285" coveredstatements="193" conditionals="43" coveredconditionals="31" methods="10" coveredmethods="5" elements="338" coveredelements="229" complexity="0" loc="285" ncloc="285" packages="7" files="9" classes="9"/>
     <package name="src">
       <metrics statements="38" coveredstatements="37" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
-      <file name="index.ts" path="/home/daniel/projetos/test-fullstack/backend/src/index.ts">
+      <file name="index.ts" path="/home/daniel/projetos/my/test-fullstack/backend/src/index.ts">
         <metrics statements="38" coveredstatements="37" conditionals="2" coveredconditionals="2" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -48,7 +48,7 @@
     </package>
     <package name="src.db.config">
       <metrics statements="39" coveredstatements="39" conditionals="3" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="config.js" path="/home/daniel/projetos/test-fullstack/backend/src/db/config/config.js">
+      <file name="config.js" path="/home/daniel/projetos/my/test-fullstack/backend/src/db/config/config.js">
         <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -77,7 +77,7 @@
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
       </file>
-      <file name="database.ts" path="/home/daniel/projetos/test-fullstack/backend/src/db/config/database.ts">
+      <file name="database.ts" path="/home/daniel/projetos/my/test-fullstack/backend/src/db/config/database.ts">
         <metrics statements="13" coveredstatements="13" conditionals="3" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -96,7 +96,7 @@
     </package>
     <package name="src.db.constants">
       <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="statusCodes.ts" path="/home/daniel/projetos/test-fullstack/backend/src/db/constants/statusCodes.ts">
+      <file name="statusCodes.ts" path="/home/daniel/projetos/my/test-fullstack/backend/src/db/constants/statusCodes.ts">
         <metrics statements="12" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -114,7 +114,7 @@
     </package>
     <package name="src.db.controllers">
       <metrics statements="45" coveredstatements="19" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="1"/>
-      <file name="UsersController.ts" path="/home/daniel/projetos/test-fullstack/backend/src/db/controllers/UsersController.ts">
+      <file name="UsersController.ts" path="/home/daniel/projetos/my/test-fullstack/backend/src/db/controllers/UsersController.ts">
         <metrics statements="45" coveredstatements="19" conditionals="3" coveredconditionals="1" methods="3" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -165,7 +165,7 @@
     </package>
     <package name="src.db.middlewares">
       <metrics statements="34" coveredstatements="23" conditionals="31" coveredconditionals="26" methods="2" coveredmethods="2"/>
-      <file name="UserMiddlewares.ts" path="/home/daniel/projetos/test-fullstack/backend/src/db/middlewares/UserMiddlewares.ts">
+      <file name="UserMiddlewares.ts" path="/home/daniel/projetos/my/test-fullstack/backend/src/db/middlewares/UserMiddlewares.ts">
         <metrics statements="34" coveredstatements="23" conditionals="31" coveredconditionals="26" methods="2" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -205,7 +205,7 @@
     </package>
     <package name="src.db.models">
       <metrics statements="35" coveredstatements="35" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
-      <file name="Users.ts" path="/home/daniel/projetos/test-fullstack/backend/src/db/models/Users.ts">
+      <file name="Users.ts" path="/home/daniel/projetos/my/test-fullstack/backend/src/db/models/Users.ts">
         <metrics statements="26" coveredstatements="26" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -234,7 +234,7 @@
         <line num="25" count="1" type="stmt"/>
         <line num="26" count="1" type="stmt"/>
       </file>
-      <file name="index.ts" path="/home/daniel/projetos/test-fullstack/backend/src/db/models/index.ts">
+      <file name="index.ts" path="/home/daniel/projetos/my/test-fullstack/backend/src/db/models/index.ts">
         <metrics statements="9" coveredstatements="9" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -249,7 +249,7 @@
     </package>
     <package name="src.db.services">
       <metrics statements="82" coveredstatements="28" conditionals="3" coveredconditionals="1" methods="4" coveredmethods="1"/>
-      <file name="UsersService.ts" path="/home/daniel/projetos/test-fullstack/backend/src/db/services/UsersService.ts">
+      <file name="UsersService.ts" path="/home/daniel/projetos/my/test-fullstack/backend/src/db/services/UsersService.ts">
         <metrics statements="82" coveredstatements="28" conditionals="3" coveredconditionals="1" methods="4" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
