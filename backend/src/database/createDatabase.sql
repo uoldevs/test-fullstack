@@ -9,7 +9,7 @@ CREATE TABLE
         id INT NOT NULL auto_increment,
         name VARCHAR(30) NOT NULL,
         email VARCHAR(50) NOT NULL,
-        CPF VARCHAR(30) NOT NULL UNIQUE,
+        cpf VARCHAR(30) NOT NULL UNIQUE,
         phonenumber VARCHAR(30) NOT NULL,
         status VARCHAR(30) NOT NULL,
         PRIMARY KEY(id)
@@ -19,7 +19,7 @@ INSERT INTO
     ClientManager.Clients (
         name,
         email,
-        CPF,
+        cpf,
         phonenumber,
         status
     )

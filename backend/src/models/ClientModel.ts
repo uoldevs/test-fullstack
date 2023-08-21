@@ -8,8 +8,8 @@ export default class ClientModel implements IModel<IClient> {
 
   async create(obj: IClient): Promise<void> {
     await this.connection.execute(
-      'INSERT INTO ClientManager.Clients (name, email, CPF, phonenumber, status) VALUES (?,?,?,?,?)',
-      [obj.name, obj.email, obj.CPF, obj.phonenumber, obj.status]
+      'INSERT INTO ClientManager.Clients (name, email, cpf, phonenumber, status) VALUES (?,?,?,?,?)',
+      [obj.name, obj.email, obj.cpf, obj.phonenumber, obj.status]
     );
   }
 
@@ -23,14 +23,14 @@ export default class ClientModel implements IModel<IClient> {
 
   async update(id: number, obj: IClient): Promise<void> {
     await this.connection.execute(
-      'UPDATE ClientManager.Clients SET name=?, email=?, CPF=?, phonenumber=?, status=? WHERE id = ?',
-      [obj.name, obj.email, obj.CPF, obj.phonenumber, obj.status, id]
+      'UPDATE ClientManager.Clients SET name=?, email=?, cpf=?, phonenumber=?, status=? WHERE id = ?',
+      [obj.name, obj.email, obj.cpf, obj.phonenumber, obj.status, id]
     );
   }
 
   async findByCPF(cpf: string): Promise<IClient | null> {
     const [result] = (await this.connection.execute(
-      'SELECT * FROM ClientManager.Clients WHERE CPF = ?',
+      'SELECT * FROM ClientManager.Clients WHERE cpf = ?',
       [cpf]
     )) as RowDataPacket[];
 

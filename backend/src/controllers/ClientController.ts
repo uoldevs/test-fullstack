@@ -29,6 +29,7 @@ export default class ClientController {
   }
 
   async update(req: Request, res: Response, next: NextFunction) {
+    console.log('passouuuuuuu');
     try {
       clientSchema.parse(req.body);
       const { id } = req.params;
