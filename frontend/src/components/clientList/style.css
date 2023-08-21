@@ -1,0 +1,8 @@
+.client-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.client-list-container .custom-loader {
+  align-self: center;
+}

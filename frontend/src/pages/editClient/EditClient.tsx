@@ -19,6 +19,7 @@ function EditClient() {
   const clientId = queryParams.get('clientId');
   const errorRef = useRef(false);
   const { animationActive, startAnimation } = useAnimatedElement(4000);
+  const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -53,10 +54,11 @@ function EditClient() {
 
         setApiErrorMsg('');
         startAnimation();
+        setBtnDisabled(false);
       }
     } catch (error) {
       setApiErrorMsg(handleApiErrors(error));
-
+      setBtnDisabled(false);
       console.log(error);
     }
   };
@@ -78,6 +80,8 @@ function EditClient() {
             clientValues={clientInfo}
             onChange={handleChange}
             submitForm={handleSubmit}
+            btnDisabled={btnDisabled}
+            setBtnDisabled={setBtnDisabled}
           />
           <ErrorCard message={apiErrorMsg} />
         </section>

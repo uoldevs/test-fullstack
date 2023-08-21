@@ -12,6 +12,7 @@ import useAnimatedElement from '../../hooks/useToggleAlert';
 function CreateClient() {
   const [formData, setFormData] = useState({ name: '', email: '', cpf: '', phoneNumber: '', status: '' });
   const [apiErrorMsg, setApiErrorMsg] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
   const { animationActive, startAnimation } = useAnimatedElement(4000);
   const errorRef = useRef(false);
 
@@ -34,10 +35,11 @@ function CreateClient() {
 
         setApiErrorMsg('');
         startAnimation();
+        setBtnDisabled(false);
       }
     } catch (error) {
       setApiErrorMsg(handleApiErrors(error));
-
+      setBtnDisabled(false);
       console.log(error);
     }
   };
@@ -57,6 +59,8 @@ function CreateClient() {
             onChange={handleChange}
             submitForm={subimitClient}
             clientValues={formData}
+            btnDisabled={btnDisabled}
+            setBtnDisabled={setBtnDisabled}
           />
         </div>
         <ErrorCard message={apiErrorMsg} />
