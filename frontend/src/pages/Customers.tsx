@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { deleteCustomer, requestData } from '../services/requests';
+import { FiUser } from 'react-icons/fi';
 
 import ICustomer from '../interfaces/ICustomer';
 import Customer from '../components/Customer';
@@ -31,7 +32,10 @@ const Customers = () => {
   return (
     <section className="main-content">
       <div className="header-section">
-        <h2>Painel de clientes</h2>
+        <h2>
+          <FiUser className="icon" />
+          Painel de clientes
+        </h2>
       </div>
 
       <div className="new-client-container">

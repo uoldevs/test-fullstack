@@ -34,6 +34,12 @@ select {
     cursor: pointer;
 }
 
+label {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
 .create-btn,
 .back-btn {
     padding: 10px 15px;
@@ -55,12 +61,13 @@ select {
     cursor: not-allowed;
 }
 
-label {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
 .error-message {
     color: red;
+}
+
+.info-register {
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
 }

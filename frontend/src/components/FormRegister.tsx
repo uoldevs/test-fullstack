@@ -25,6 +25,10 @@ const FormRegister = () => {
 
   return (
     <div className="form-container">
+      <div className='info-register'>
+        <h3>Novo usuário</h3>
+        <span>Informe os campos a seguir para criar o novo usuário:</span>
+      </div>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="input-name">
           <input
