@@ -12,10 +12,17 @@ export interface ICustomInput extends InputHTMLAttributes<HTMLInputElement> {
   Icon?: IconType;
 }
 
+type Status = 'Ativo' | 'Inativo' | 'Aguardando ativação' | 'Desativado';
+
 export interface IDataForm {
+  id?: number;
   name: string;
   email: string;
   cpf: string;
   phonenumber: string;
-  status: string;
+  status: Status;
+}
+
+export interface ClientProps {
+  client: IDataForm;
 }
