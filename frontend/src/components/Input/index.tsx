@@ -2,18 +2,11 @@ import {
   ChangeEvent,
   forwardRef,
   ForwardRefRenderFunction,
-  InputHTMLAttributes,
   useState,
 } from 'react';
 import { FiAlertCircle } from 'react-icons/fi';
 import styles from './styles.module.scss';
-import { FieldError } from 'react-hook-form';
-import { IconType } from 'react-icons';
-
-interface ICustomInput extends InputHTMLAttributes<HTMLInputElement> {
-  error?: FieldError;
-  Icon?: IconType;
-}
+import { ICustomInput } from '../../interfaces';
 
 const InputBase: ForwardRefRenderFunction<HTMLInputElement, ICustomInput> = (
   { placeholder, Icon, error, ...rest },

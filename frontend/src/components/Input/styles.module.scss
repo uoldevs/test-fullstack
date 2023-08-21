@@ -8,13 +8,17 @@
 
 .content {
   background-color: #fff;
-  border: 2px solid transparent;
-  height: 60px;
+  border: 1px solid #bbc0c8;
+  height: 45px;
   width: 100%;
   border-radius: 4px;
   display: flex;
   align-items: center;
   padding: 0 20px;
+
+  &:focus {
+    outline-color: black;
+  }
 
   svg {
     color: #aaa8a8;
@@ -28,13 +32,12 @@
 
 .input {
   background: transparent;
-  height: 60px;
+  height: 45px;
   width: 100%;
   border: none;
   margin-left: 20px;
   color: black;
   font-size: 1rem;
-  letter-spacing: 1px;
 
   &:focus {
     outline: none;
@@ -68,9 +71,9 @@
 }
 
 .errorInput {
-  border: 2px solid #a02626 !important;
+  border: 2px solid #ff0000 !important;
 
   svg {
-    color: #a02626;
+    color: #ff0000;
   }
 }
