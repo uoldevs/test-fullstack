@@ -39,7 +39,6 @@ const Customers = () => {
       </div>
 
 
-
       {customers.length !== 0 ? (
         customers.map(({ id, name, cpf, email, phone, status }) => (
           <div key={id}>
