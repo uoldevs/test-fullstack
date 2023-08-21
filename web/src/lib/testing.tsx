@@ -13,6 +13,6 @@ const wraperWithProvider = (children: ReactNode, mockedStore: object) => {
   return <Provider store={store}>{children}</Provider>
 }
 
-export const renderWithrovider = (component: ReactNode, mockedStore = {}) => {
+export const renderWithProvider = (component: ReactNode, mockedStore = {}) => {
   return render(wraperWithProvider(component, mockedStore))
 }

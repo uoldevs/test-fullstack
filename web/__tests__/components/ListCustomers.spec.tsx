@@ -1,12 +1,12 @@
 import React from 'react'
 import ListCustomers from '@/components/ListCustomers'
-import { renderWithrovider } from '@/lib/testing'
+import { renderWithProvider } from '@/lib/testing'
 import { returnCustomersSuccess } from '@/__tests__/store/sagas/customer.saga.spec'
 import page from '@/app/dashboard/page'
 
 describe('ListCustomers', () => {
   it('renders all customers', () => {
-    const { getByTestId } = renderWithrovider(<ListCustomers />, {
+    const { getByTestId } = renderWithProvider(<ListCustomers />, {
       customer: { ...returnCustomersSuccess.data },
     })
 
@@ -16,13 +16,13 @@ describe('ListCustomers', () => {
   })
 
   it('renders message "Nenhum cliente cadastrado!" when not have customers', () => {
-    const { getByTestId } = renderWithrovider(<ListCustomers />, {
+    const { getByTestId } = renderWithProvider(<ListCustomers />, {
       customer: { customers: [], page: 1, quantity: 10, total: 2 },
     })
   })
 
   it('render current page, next and prev button', () => {
-    const { getByTestId, getByText } = renderWithrovider(<ListCustomers />, {
+    const { getByTestId, getByText } = renderWithProvider(<ListCustomers />, {
       customer: { ...returnCustomersSuccess.data },
     })
 
@@ -32,7 +32,7 @@ describe('ListCustomers', () => {
   })
 
   it('render text info customers list', () => {
-    const { getByText } = renderWithrovider(<ListCustomers />, {
+    const { getByText } = renderWithProvider(<ListCustomers />, {
       customer: { ...returnCustomersSuccess.data },
     })
 

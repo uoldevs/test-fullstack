@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithrovider } from '@/lib/testing'
+import { renderWithProvider } from '@/lib/testing'
 import Select from '@/components/ui/Select'
 
 describe('Select Component', () => {
@@ -9,11 +9,11 @@ describe('Select Component', () => {
   ]
 
   it('renders without crashing', () => {
-    renderWithrovider(<Select options={options} />)
+    renderWithProvider(<Select options={options} />)
   })
 
   it('renders all options', () => {
-    const { getByTestId } = renderWithrovider(<Select options={options} />)
+    const { getByTestId } = renderWithProvider(<Select options={options} />)
     options.forEach((option) => {
       expect(getByTestId(`option-${option.key}`)).toBeInTheDocument()
     })

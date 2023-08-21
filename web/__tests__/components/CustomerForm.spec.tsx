@@ -1,5 +1,5 @@
 import React from 'react'
-import { renderWithrovider } from '@/lib/testing'
+import { renderWithProvider } from '@/lib/testing'
 import CustomerForm from '@/components/CustomerForm'
 
 jest.mock('react-hot-toast', () => ({
@@ -9,7 +9,7 @@ jest.mock('react-hot-toast', () => ({
 
 describe('CustomerForm', () => {
   it('renders form inputs and buttons correctly', () => {
-    const { getByPlaceholderText, getByText } = renderWithrovider(
+    const { getByPlaceholderText, getByText } = renderWithProvider(
       <CustomerForm id="1" />,
     )
 
