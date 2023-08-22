@@ -8,7 +8,7 @@ const headers = {
 }
 
 export async function listClients(): Promise<Client[] | ApiError>{
-  const response = await fetch(`${API_URL}/clients`);
+  const response = await fetch(`${API_URL}/clients`, { cache: 'no-cache'});
   return response.json();
 }
 
