@@ -1,0 +1,53 @@
+version: '3'
+
+services:
+  frontend:
+    build: ./frontend
+    container_name: front-uol
+    command: sh
+    ports:
+      - 3000:3000
+    working_dir: /app-frontend
+    depends_on:
+      api:
+        condition: service_healthy
+    # Os `healthcheck` devem garantir que a aplicação
+    # está operacional, antes de liberar o container
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]
+      timeout: 10s
+      retries: 5
+  api:
+    build: ./backend
+    container_name: back-api
+    tty: true 
+    command: sh
+    working_dir: /app/backend
+    volumes: 
+      - ./:/app
+    ports:
+        - 3001:3001
+    env_file: 
+        - .env
+    depends_on: 
+      - database
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3001"]
+      timeout: 10s
+      retries: 5
+
+  database:
+    container_name: app-database
+    ports: 
+    - 3306:3306
+    image: mysql:8.0.32
+    env_file:
+      - .env 
+    environment: 
+      - MYSQL_ROOT_PASSWORD=${MYSQLPASSWORD}
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      timeout: 10s
+      retries: 5
+    cap_add:
+      - SYS_NICE
