@@ -12,7 +12,7 @@ const RegisterClient = () => {
   const [email, setEmail] = useState('');
   const [cpf, setCpf] = useState('');
   const [phone, setPhone] = useState('');
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState('status');
   const navigate = useNavigate();
 
   const registerHandle = async () => {

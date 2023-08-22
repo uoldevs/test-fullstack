@@ -39,67 +39,69 @@ const InputClients = (props: propTypeInput) => {
   } = props;
   return (
     <div className='input-main'>
-      <div className='input-container'>
-        <input
-          placeholder='Nome'
-          className='input-field'
-          type='text'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div className='input-container'>
-        <input
-          placeholder='Sobrenome'
-          className='input-field'
-          type='text'
-          value={sobrenome}
-          onChange={(e) => setSobrenome(e.target.value)}
-        />
-      </div>
-      <div className='input-container'>
-        <input
-          placeholder='Email'
-          className='input-field'
-          type='email'
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div className='input-container'>
-        <input
-          placeholder='CPF'
-          className='input-field'
-          type='text'
-          value={cpf}
-          onChange={(e) => setCpf(e.target.value)}
-        />
-      </div>
-      <div className='input-container'>
-        <input
-          placeholder='Celular'
-          className='input-field'
-          type='text'
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-      </div>
-      <div className='input-container'>
-        <select
-          placeholder='Status'
-          value={status}
-          className='select-field'
-          onChange={(e) => {
-            setStatus(e.target.value);
-          }}>
-          <option value='' disabled selected>
-            Status
-          </option>
-          <option value='ativo'>Ativo</option>
-          <option value='inativo'>Inativo</option>
-          <option value='desativado'>Desativado</option>
-          <option value='ativação_pendente'>Aguardando ativaçao</option>
-        </select>
+      <div className='inputs-div'>
+        <div className='input-container'>
+          <input
+            placeholder='Nome'
+            className='input-field'
+            type='text'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div className='input-container'>
+          <input
+            placeholder='Sobrenome'
+            className='input-field'
+            type='text'
+            value={sobrenome}
+            onChange={(e) => setSobrenome(e.target.value)}
+          />
+        </div>
+        <div className='input-container'>
+          <input
+            placeholder='Email'
+            className='input-field'
+            type='email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <div className='input-container'>
+          <input
+            placeholder='CPF'
+            className='input-field'
+            type='text'
+            value={cpf}
+            onChange={(e) => setCpf(e.target.value)}
+          />
+        </div>
+        <div className='input-container'>
+          <input
+            placeholder='Celular'
+            className='input-field'
+            type='text'
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </div>
+        <div className='input-container'>
+          <select
+            placeholder='Status'
+            value={status}
+            className='select-field'
+            onChange={(e) => {
+              setStatus(e.target.value);
+            }}>
+            <option value='status' disabled>
+              Status
+            </option>
+            <option value='ativo'>Ativo</option>
+            <option value='inativo'>Inativo</option>
+            <option value='desativado'>Desativado</option>
+            <option value='ativação_pendente'>Aguardando ativaçao</option>
+          </select>
+        </div>
       </div>
       <div className='button-container'>
         <button type='button' className='button-style-1' onClick={updateHandle}>

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class ErrorHandlerMiddleware {
     static handle(err, _req, res, _next) {
-        console.log(err.fields);
         if (err.status) {
             return res.status(err.status).json({ message: err.message });
         }

@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 8vh;
+  background-color: #333333;
+  box-shadow: 0px 5px 10px 1px rgba(0, 0, 0, 0.75);
+}
+
+img {
+  width: 70px;
+  aspect-ratio: 1;
+}
