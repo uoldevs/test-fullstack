@@ -11,6 +11,7 @@ import { clientStatusContext } from "@/contexts/clientStatus";
 import { createClient, updateClient } from "@/services/clients";
 import { validate } from "gerador-validador-cpf";
 import { parsePhoneNumber } from "libphonenumber-js/min";
+import Select from "./components/Select";
 
 type FormProps = {
   client?: Client;
@@ -20,7 +21,7 @@ type FormProps = {
 const schema = z.object({
   name: z.string().min(3, "Nome Deve ter pelo menos 3 caractere"),
   email: z.string().email("Email inválido"),
-  status: z.string(),
+  status: z.string().min(1, "Escolha um status"),
 
   cpf: z
     .string()
@@ -137,13 +138,17 @@ export default function Form({ client, backButton }: FormProps) {
         placeholder="Telefone"
       />
 
-      <select {...register("status")}>
+      <Select
+        {...register("status")}
+        label="Status"
+        helperText={errors.status?.message}
+      >
         {allStatus.map((status) => (
           <option key={status.id} value={status.name}>
             {status.name}
           </option>
         ))}
-      </select>
+      </Select>
 
       {errors.root?.serverError.message && (
         <p role="alert">{errors.root?.serverError.message}</p>
