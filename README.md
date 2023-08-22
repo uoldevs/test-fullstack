@@ -136,7 +136,7 @@ cd test-fullstack/frontend
 pnpm install
 
 # npm
-npm install
+npm install --legacy-peer-deps
 
 # yarn
 yarn
