@@ -9,6 +9,7 @@
 - [Redux](https://redux.js.org/)
 - [ReduxSaga](https://redux-saga.js.org/)
 - [Cypress](https://www.cypress.io/)
+- [Storybook](https://storybook.js.org/)
 
 ## Como executar
 
