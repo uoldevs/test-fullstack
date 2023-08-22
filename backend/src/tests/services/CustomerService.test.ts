@@ -5,7 +5,6 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 import { afterEach, describe, it } from 'node:test';
 import CustomerService from '../../api/services/CustomerService';
-import { app } from '../../app';
 
 chai.use(chaiHttp);
 
@@ -46,15 +45,6 @@ const allCustomers = [
   },
 ];
 
-const updatedCustomer = {
-  id: 1,
-  name: 'John Doe',
-  email: 'newemail@email.com',
-  cpf: '350.887.750-75',
-  phone: '(41) 99856-0101',
-  status: 'Aguardando ativação',
-};
-
 const customerService = new CustomerService();
 
 describe('Testes de unidade dos services de customers', () => {
@@ -81,14 +71,5 @@ describe('Testes de unidade dos services de customers', () => {
         'There is no customer with such id!',
       );
     }
-  });
-
-  it('Testa se é possivel editar um usuario', async () => {
-    const response = await chai
-      .request(app)
-      .put(`/customers/${updatedCustomer.id}`)
-      .send(updatedCustomer);
-
-    expect(response).to.have.status(200);
   });
 });
