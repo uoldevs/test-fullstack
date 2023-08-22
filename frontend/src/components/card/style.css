@@ -1,0 +1,100 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+    border: 2px solid #eeeeee;
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+@media (max-width: 850px) {
+    .card-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 650px) {
+    .card-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card-name-email {
+    margin-left: 8px;
+}
+
+.card-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.highlighted-text {
+    color: #8e8e8e;
+    font-weight: 500;
+}
+
+.simple-text {
+    color: #bdbdbd;
+}
+
+.card-cpf-telefone {
+    /* margin-left: 80px; */
+}
+
+.card-status {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* margin-left: 80px; */
+}
+
+.status-ativo,
+.status-inativo,
+.status-aguardando-ativação,
+.status-desativado {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
+.status-ativo {
+    background-color: #4aad5b;
+}
+
+.status-inativo {
+    background-color: #d73240;
+}
+
+.status-aguardando-ativação {
+    background-color: #d3a710;
+}
+
+.status-desativado {
+    background-color: #d2d2d2;
+}
+
+.btn-edit {
+    border-style: none;
+    border: 2px solid #f0c992;
+    border-radius: 5px;
+    color: #d3aa72;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    width: 140px;
+    padding: 10px 10px;
+    margin-right: 8px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.btn-edit:hover {
+    background-color: #e29933;
+    color: #ffffff;
+}

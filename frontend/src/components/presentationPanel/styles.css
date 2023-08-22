@@ -1,0 +1,29 @@
+.presentation-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-home {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.btn-new-client {
+    color: #ffffff;
+    background-color: #e29933;
+    border-radius: 5px;
+    padding: 9px 18px;
+    border-style: none;
+    font-size: 14px;
+    font-weight: 200;
+    margin-right: 30px;
+    cursor: pointer;
+}
+
+@media (max-width: 650px) {
+    .btn-new-client{
+        margin-right: 0;
+    }
+}
