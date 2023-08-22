@@ -48,6 +48,7 @@ Criar uma API que ofereça endpoints para:
 - [x] Teste e2e frontend
 - [x] workflow
 - [x] container docker com web e server
+- [x] Documentação front-end com storybook
 
 ### Telas:
 
