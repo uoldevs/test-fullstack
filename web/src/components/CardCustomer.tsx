@@ -24,7 +24,7 @@ function CardCustomer({ customer }: CardCustomerProps) {
 
         <div className="flex flex-col justify-between">
           <p className="text-xs md:text-sm lg:text-base text-neutral-500">
-            {cpfToView(customer.document)}
+            {customer.document}
           </p>
           <p className="text-xs md:text-sm lg:text-base text-neutral-500">
             {phoneDomainToView(customer.phone)}

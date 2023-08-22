@@ -15,7 +15,7 @@ describe('CustomerStatus Component', () => {
     expect(getByTestId(`card-customer-${costumer.id}`)).toBeInTheDocument()
     expect(getByText(costumer.name)).toBeInTheDocument()
     expect(getByText(costumer.email)).toBeInTheDocument()
-    expect(getByText(cpfToView(costumer.document))).toBeInTheDocument()
+    expect(getByText(costumer.document)).toBeInTheDocument()
     expect(getByText('(11) 99999-9999')).toBeInTheDocument()
     expect(getByText(costumer.status)).toBeInTheDocument()
     expect(getByRole('link', { name: 'Editar' })).toBeInTheDocument()
