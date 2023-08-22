@@ -10,6 +10,7 @@ const config: Config = {
     './src/@types/',
     './src/lib/testing.tsx',
     './src/store/index.ts',
+    './src/stories/',
   ],
   moduleNameMapper: {
     '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
