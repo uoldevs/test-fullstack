@@ -28,7 +28,7 @@ const statusOptions = [
   { key: '4', name: CustomerStatus.Disabled },
 ]
 
-interface CustomerFormProps {
+export interface CustomerFormProps {
   id?: string
 }
 

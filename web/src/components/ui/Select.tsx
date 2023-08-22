@@ -7,7 +7,7 @@ type Option = {
   name: string
 }
 
-interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
+export interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   options: Option[]
   error?: string
 }

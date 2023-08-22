@@ -2,7 +2,7 @@ import { cn } from '@/lib/utils'
 import React, { InputHTMLAttributes } from 'react'
 import InputMask from 'react-input-mask'
 
-interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   error?: string
   mask?: string | (string | RegExp)[]
 }

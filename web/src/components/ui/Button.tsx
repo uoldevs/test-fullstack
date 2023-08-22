@@ -3,7 +3,7 @@ import { VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '@/styles/variants/button'
 
-interface ButtonProps
+export interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 

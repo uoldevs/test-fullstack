@@ -10,7 +10,7 @@ const Header = () => {
       <Link href={'/dashboard'}>
         <Image
           src={'/logo.png'}
-          alt="Picture of the author"
+          alt="logo"
           width={120}
           height={120}
           aria-label="logo"

@@ -1,11 +1,11 @@
 import { User } from 'lucide-react'
 import { ReactNode } from 'react'
 
-interface HeaderProps {
+export interface FindingHeaderProps {
   title: string
 }
 
-function FindingHeader({ title }: HeaderProps) {
+function FindingHeader({ title }: FindingHeaderProps) {
   return (
     <div data-testid="finding-header">
       <div className="flex flex-row items-center">
@@ -23,13 +23,13 @@ function FindingHeader({ title }: HeaderProps) {
   )
 }
 
-interface MainProps {
+export interface FindingMainProps {
   heading: string
   subheading: string
   children?: ReactNode
 }
 
-function FindingMain({ children, heading, subheading }: MainProps) {
+function FindingMain({ children, heading, subheading }: FindingMainProps) {
   return (
     <div
       data-testid="finding-main"

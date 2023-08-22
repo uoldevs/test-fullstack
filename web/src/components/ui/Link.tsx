@@ -4,7 +4,7 @@ import { buttonVariants } from '@/styles/variants/button'
 import { VariantProps } from 'class-variance-authority'
 import LinkNext from 'next/link'
 
-interface LinkProps
+export interface LinkProps
   extends AnchorHTMLAttributes<HTMLAnchorElement>,
     VariantProps<typeof buttonVariants> {
   href: string
