@@ -1,41 +1,115 @@
 # Teste Fullstack: Aplicativo de Gerenciamento de Clientes
 
-## Descrição:
+## Descrição
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+Este repositório contém o código de um aplicativo WEB de gerenciamento de clientes, desenvolvido como desafio técnico fullstack para a vaga de Pessoa Desenvolvedora na [UOL](https://www.linkedin.com/company/uol/). O aplicativo possui ênfase em responsividade e acessibilidade. É composto por um frontend e um backend, responsáveis, respectivamente, pela interface do usuário e pelo armazenamento de dados dos clientes.
 
-## Requisitos do Frontend:
+## Funcionalidades
 
-1. Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
-2. Permitir a criação de um novo cliente através de um formulário.
-3. Na tela de edição, fornecer alertas para o usuário em caso de dados inválidos.
-4. Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
-5. Comunicar-se com a API para obter os dados dos clientes cadastrados.
+### Frontend
 
-## Requisitos do Backend:
+O frontend possui as seguintes funcionalidades:
 
-Criar uma API que ofereça endpoints para:
+- Exibição da listagem de clientes com informações de acordo com o layout fornecido.
+- Criação de novos clientes através de um formulário.
+- Alertas de validação ao editar dados inválidos.
+- Validação de CPF e telefone durante a edição.
+- Comunicação com a API para obtenção de dados dos clientes.
 
-1. Obter a listagem de clientes cadastrados.
-2. Cadastrar um novo cliente com informações válidas.
-3. Atualizar informações de cliente existente.
-4. Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
+### Backend
 
-## Requisitos de Qualidade de Código:
+O backend disponibiliza os seguintes endpoints para interação com os dados dos clientes:
 
-Escreva um código limpo, legível e bem organizado.
-Adote boas práticas de desenvolvimento e arquitetura.
+- `GET /customer`: Obtém a lista de clientes cadastrados.
+- `GET /customer/:id`: Obtém informações de um cliente específico.
+- `POST /customer`: Cadastra um novo cliente com informações válidas.
+- `PUT /customer/:id`: Atualiza informações de um cliente existente.
 
-## Itens Desejáveis (opcional):
+## Tecnologias Utilizadas
 
-- Testes unitários
-- Bibliotecas ou frameworks adicionais
+### Frontend
 
-## Telas:
+- Next.js
+- Tailwind CSS
+- Cypress (para testes automatizados e2e)
+- Axios
 
-- [Tela Inicial](https://test-frontend-uolpp.web.app/assets/images/tela-inicial.jpg)
-- [Tela de Edição](https://test-frontend-uolpp.web.app/assets/images/tela-edicao.jpg)
+### Backend
 
-## Instruções Finais:
+- Fastify
+- Sequelize (ORM)
+- SQLite (banco de dados)
+- Jest (para testes automatizados e2e)
+- Axios (para testes automatizados e2e)
 
-Após concluir o desafio, crie um pull request neste repositório com duas pastas separadas: uma contendo o projeto frontend e outra com o projeto backend, para que possamos avaliar seu trabalho. Boa sorte!
+## Rodando o Projeto
+
+### Com docker:
+
+1. Abra um terminal na raiz do projeto.
+2. Execute o comando `docker compose up -d`
+3. Abra [http://localhost:3000](http://localhost:3000)
+
+OBS: Eu testei o projeto apenas no Windows, mas de vez em quando me deparei com erros estranhos nos testes do frontend, parece que o servidor não compartilha os dados corretamente ou o cypress não funciona como deveria, mas usando no navegador tudo funciona normal. Revisei as configurações do Docker, criei volumes e revisei o cypress, mas não achei erro algum, quando rodo sem o docker tudo funciona corretamente. Acho que pode ter alguma coisa a ver com a rede do meu computador. De qualquer forma, caso queira testar o frontend, sugiro rodar o projeto sem usar o Docker.
+
+### Sem docker:
+
+1. Abra dois terminais, um para o frontend e outro para o backend.
+2. No terminal do backend, navegue até a pasta e execute os comandos:
+```bash
+npm install
+```
+```bash
+npm start
+```
+3. No terminal do frontend, navegue até a pasta e execute os comandos:
+```bash
+npm install
+```
+```bash
+npm run build
+```
+```bash
+npm start
+```
+4. Abra [http://localhost:3000](http://localhost:3000)
+
+## Executando os Testes
+
+### Frontend
+
+1. Abra um novo terminal e navegue até a pasta do frontend.
+2. Execute o comando `npm install`.
+3. Execute o comando `npm test`.
+4. Selecione a opção `e2e`.
+5. Escolha um navegador.
+6. Na aba `Specs`, selecione um dos testes disponíveis.
+
+Observação: Certifique-se que o projeto esteja rodando para que os testes funcionem corretamente.
+
+### Backend
+
+1. Abra um novo terminal e navegue até a pasta do backend.
+2. Execute o comando `npm install`.
+3. Execute o comando `npm test`.
+
+Observação: Certifique-se que o projeto esteja rodando para que os testes funcionem corretamente.
+
+## Restaurando o BD
+
+1. Abra um novo terminal e navegue até a pasta do backend.
+2. Execute o comando `npm run restore`.
+
+## Resultados dos testes
+
+<img src="./cypress01.png" alt="teste de criação" width="65%"/>
+
+<img src="./cypress02.png" alt="teste de edição" width="65%"/>
+
+<img src="./jest.png" alt="teste backend" width="50%"/>
+
+## Resultados do Lighthouse
+
+No Lighthouse, o projeto apresentou métricas positivas, porém não atingiu 100 pontos em acessibilidade devido ao esquema de cores dos botões do layout.
+
+![Resultados do Lighthouse](lighthouse.png)
