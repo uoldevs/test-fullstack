@@ -45,6 +45,16 @@ O backend disponibiliza os seguintes endpoints para interação com os dados dos
 
 ## Rodando o Projeto
 
+### Com docker:
+
+1. Abra um terminal na raiz do projeto.
+2. Execute o comando `docker compose up -d`
+3. Abra [http://localhost:3000](http://localhost:3000)
+
+OBS: Eu testei o projeto apenas no Windows, mas de vez em quando me deparei com erros estranhos nos testes do frontend, parece que o servidor não compartilha os dados corretamente ou o cypress não funciona como deveria, mas usando no navegador tudo funciona normal. Revisei as configurações do Docker, criei volumes e revisei o cypress, mas não achei erro algum, quando rodo sem o docker tudo funciona corretamente. Acho que pode ter alguma coisa a ver com a rede do meu computador. De qualquer forma, caso queira testar o frontend, sugiro rodar o projeto sem usar o Docker.
+
+### Sem docker:
+
 1. Abra dois terminais, um para o frontend e outro para o backend.
 2. No terminal do backend, navegue até a pasta e execute os comandos:
 ```bash
@@ -63,6 +73,7 @@ npm run build
 ```bash
 npm start
 ```
+4. Abra [http://localhost:3000](http://localhost:3000)
 
 ## Executando os Testes
 
