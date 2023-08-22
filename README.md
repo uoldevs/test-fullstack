@@ -2,7 +2,7 @@
 
 ## Descrição
 
-Este repositório contém o código de um aplicativo WEB de gerenciamento de clientes, desenvolvido como parte de um desafio fullstack para a vaga de Pessoa Desenvolvedora na [UOL](https://www.linkedin.com/company/uol/). O aplicativo é composto por um frontend e um backend, responsáveis pela interface do usuário e pelo armazenamento de dados dos clientes.
+Este repositório contém o código de um aplicativo WEB de gerenciamento de clientes, desenvolvido como desafio técnico fullstack para a vaga de Pessoa Desenvolvedora na [UOL](https://www.linkedin.com/company/uol/). O aplicativo possui ênfase em responsividade e acessibilidade. É composto por um frontend e um backend, responsáveis, respectivamente, pela interface do usuário e pelo armazenamento de dados dos clientes.
 
 ## Funcionalidades
 
@@ -78,6 +78,7 @@ npm start
 ## Executando os Testes
 
 ### Frontend
+
 1. Abra um novo terminal e navegue até a pasta do frontend.
 2. Execute o comando `npm install`.
 3. Execute o comando `npm test`.
@@ -88,6 +89,7 @@ npm start
 Observação: Certifique-se de que o projeto esteja rodando para que os testes funcionem corretamente.
 
 ### Backend
+
 1. Abra um novo terminal e navegue até a pasta do backend.
 2. Execute o comando `npm install`.
 3. Execute o comando `npm test`.
