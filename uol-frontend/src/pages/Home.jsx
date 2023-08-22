@@ -61,9 +61,11 @@ function Home() {
                                 }
                                 )
                             }
+                            <p className="text-gray-500 font-normal text-xl mt-6">Exibindo {userList.length} clientes.</p>
                         </div>
                         </motion.div>
                     }
+
             </section>
         </>
     )
