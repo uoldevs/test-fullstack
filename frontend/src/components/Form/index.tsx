@@ -112,7 +112,7 @@ export default function Form({ client, backButton }: FormProps) {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleSubmitForm)}>
+    <form onSubmit={handleSubmit(handleSubmitForm)} className="max-w-xl my-10">
       <Input
         {...register("name")}
         label="Nome"
@@ -154,10 +154,12 @@ export default function Form({ client, backButton }: FormProps) {
         <p role="alert">{errors.root?.serverError.message}</p>
       )}
 
-      <Button type="submit" disabled={isSubmitting}>
-        {isSubmitting ? "Salvando..." : "Salvar"}
-      </Button>
-      {backButton}
+      <div className="flex justify-center gap-3">
+        <Button type="submit" disabled={isSubmitting}>
+          {isSubmitting ? "Salvando..." : "Salvar"}
+        </Button>
+        {backButton}
+      </div>
     </form>
   );
 }
