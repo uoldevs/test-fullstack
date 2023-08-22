@@ -12,7 +12,9 @@
     "test:e2e": "start-server-and-test dev http://localhost:3000 \"cypress open --e2e\"",
     "test:e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\"",
     "test:component": "cypress open --component",
-    "test:component:headless": "cypress run --component"
+    "test:component:headless": "cypress run --component",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@cypress/webpack-preprocessor": "^5.17.1",
@@ -40,6 +42,7 @@
     "redux-saga": "^1.2.3",
     "sharp": "^0.32.5",
     "start-server-and-test": "^2.0.0",
+    "storybook-formik": "^2.4.2",
     "tailwind-merge": "^1.14.0",
     "tailwindcss": "3.3.3",
     "ts-jest": "^29.1.1",
@@ -48,15 +51,25 @@
   },
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.1.0",
+    "@storybook/addon-essentials": "^7.3.2",
+    "@storybook/addon-interactions": "^7.3.2",
+    "@storybook/addon-links": "^7.3.2",
+    "@storybook/addon-onboarding": "^1.0.8",
+    "@storybook/blocks": "^7.3.2",
+    "@storybook/nextjs": "^7.3.2",
+    "@storybook/react": "^7.3.2",
+    "@storybook/testing-library": "^0.2.0",
     "@testing-library/jest-dom": "^6.0.1",
     "@testing-library/react": "^14.0.0",
     "@types/jest": "^29.5.3",
     "@types/react-input-mask": "^3.0.2",
     "cypress": "^12.17.4",
     "eslint": "^8.47.0",
+    "eslint-plugin-storybook": "^0.6.13",
     "jest": "^29.6.2",
     "jest-environment-jsdom": "^29.6.2",
     "jest-transform-stub": "^2.0.0",
+    "storybook": "^7.3.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
