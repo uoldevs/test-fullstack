@@ -1,0 +1,18 @@
+.home-container {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+@media (max-width: 950px) {
+    .home-container {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}
+
+@media (max-width: 650px) {
+    .home-container {
+        margin-left: 50px;
+        margin-right: 50px;
+    }
+}

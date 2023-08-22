@@ -1,0 +1,13 @@
+.panel-clients {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.line {
+    width: 100%;
+    height: 2px;
+    background-color: #f3f3f3;
+    margin-top: 20px;
+}
