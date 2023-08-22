@@ -34,7 +34,6 @@ const Input = (
           htmlFor={id}
           className="absolute text-xl text-black-500 duration-300 transform -translate-y-5 scale-75 top-2 z-10 origin-[0] bg-black-50 mx-2 px-1 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-5 left-1"
         >
-          {" "}
           {label}
         </label>
       </div>
