@@ -1,0 +1,23 @@
+version: '3.9'
+services:
+  server:
+    build: ./server
+    environment:
+      - PORT=3001
+      - DATABASE_URL="file:./dev.db"
+    ports:
+      - "3001:3001"
+    networks:
+      - mynetwork
+  web:
+    build: ./web
+    depends_on:
+      - "server"
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
