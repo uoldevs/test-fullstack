@@ -1,0 +1,53 @@
+.client-form {
+  width: 250px;
+  margin-top: 30px;
+}
+
+.client-form .input-container {
+  margin-bottom: 15px;
+}
+
+.client-form-select-status {
+  padding: 12px;
+  width: 100%;
+  border: 1px solid #999;
+  border-radius: 5px;
+  background-color: white;
+  color: #888888;
+}
+
+.client-form-btn-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+}
+
+.client-form-submit-btn {
+  padding: 10px 30px;
+  border-radius: 3px;
+  background-color: #E29934;
+  color: #fff;
+  cursor: pointer;
+  border: 1px solid #E29934;
+  margin-right: 20px;
+}
+
+.client-form-submit-btn:disabled {
+  cursor: wait;
+  background-color: #e29934b7;
+  border: 1px solid #e29934b7;
+}
+
+.client-form-back-btn {
+  background-color: #fff;
+  color: #E29934;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid #E29934;
+}
+
+.client-form-back-btn:hover {
+  background-color: #E29934;
+  color: #fff;
+}

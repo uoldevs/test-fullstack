@@ -1,0 +1,75 @@
+.client-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 20px;
+  padding: 15px;
+  border: 1px solid #dfdfdf;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.client-card-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.client-card-name-email-container,
+.client-card-cpf-phoneNumber-container {
+  display: grid;
+  gap: 5px;
+}
+
+.client-card-name-email-container p {
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+}
+
+.client-card-name-email-container > *:first-child,
+.client-card-cpf-phoneNumber-container> *:first-child {
+  color: #898686;
+}
+
+.client-card-name-email-container > *:last-child,
+.client-card-cpf-phoneNumber-container> *:last-child {
+  color: #afaeae;
+}
+
+.client-card-edit-btn-pencil {
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid #E29934;
+  background-color: #fff;
+  color: #E29934;
+  display: none;
+}
+
+.client-card-edit-btn-icon-pencil {
+  font-size: 1.2em;
+}
+
+.client-card-edit-btn {
+  background-color: #fff;
+  color: #E29934;
+  padding: 10px 30px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid #E29934;
+}
+
+.client-card-edit-btn:hover {
+  background-color: #E29934;
+  color: #fff;
+}
+
+@media (max-width: 585px) {
+  .client-card-edit-btn-pencil {
+    display: block;
+  }
+
+  .client-card-edit-btn {
+    display: none;
+  }
+}

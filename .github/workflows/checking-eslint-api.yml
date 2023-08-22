@@ -1,0 +1,25 @@
+name: Rodando o eslint para encontrar erros no backend
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  checking-eslint-api:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Verifica o repositório do Git
+        uses: actions/checkout@v3
+
+      - name: Instalando node na versão 16
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Instalando as dependencias
+        run: cd backend && npm install
+
+      - name: Rodando o eslint para buscar erros
+        run: cd backend && npm run lint:check

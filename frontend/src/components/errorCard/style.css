@@ -1,0 +1,9 @@
+.error-message-container {
+  height: fit-content;
+  display: block;
+}
+
+.error-message-text {
+  font-size: 0.95em;
+  color: #ff1d1d;
+}

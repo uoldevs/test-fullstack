@@ -1,0 +1,31 @@
+.edit-client-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.edit-client-form-header-container {
+  width: 80%;
+}
+
+.edit-client-listing-header {
+  margin-bottom: 20px;
+}
+
+.edit-client-listing-infos-form-container div h3 {
+  font-weight: 400;
+  color: #6B747D;
+  margin-bottom: 8px;
+}
+
+.edit-client-listing-infos-form-container div > p {
+  font-weight: 300;
+  color: #ACACAC;
+}
+
+.edit-client-listing-infos-form-container {
+  border-top: 1px #dfdfdf solid;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-top: 20px;
+}
