@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  background-color: #f7f7f7;
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 7px;
+}
+
+/* Handle */
+*::-webkit-scrollbar-thumb {
+  background: #8f8f8f;
+  border-radius: 1rem;
+}
+
+/* Handle on hover */
+*::-webkit-scrollbar-thumb:hover {
+  background: #585858;
+}
