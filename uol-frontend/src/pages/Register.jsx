@@ -17,6 +17,7 @@ function Register() {
     const navigate = useNavigate();
 
     const alertIcon = <AlertCircle size={20} color="#d93a3a" />
+    const [isLoading, setIsLoading] = useState(false);
 
     const SectionSpecInfo = {
         title: 'Novo usuário',
@@ -64,8 +65,9 @@ function Register() {
 
 
     const registerUser = async () => {
+        setIsLoading(true);
         try {
-          const response = await fetch('https://uol-api.onrender.com/', {
+          const response = await fetch(import.meta.env.VITE_API_URL, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -127,6 +129,7 @@ function Register() {
         } catch (error) {
           console.log(error);
         }
+        setIsLoading(false);
       };
 
     const CheckClientInfo = () => {
@@ -216,7 +219,7 @@ function Register() {
                     }
 
                     <div className='flex flex-row gap-4 justify-start mt-10'>
-                        <Button name="Criar" size="big" background="orange" active={(e) => handleClick(e)} />
+                        <Button name="Criar" size="big" background="orange" active={(e) => handleClick(e)} loading={isLoading}/>
                         <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
                     </div>
 

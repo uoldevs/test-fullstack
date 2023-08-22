@@ -31,7 +31,7 @@ function ClientCard(props) {
 
     const deleteClient = async (clientId) => {
         Swal.fire({
-            title: 'Você tem certeza?',
+            title: 'Você tem certeza que deseja deletar este cliente?',
             text: "Você não será capaz de reverter essa ação!",
             icon: 'warning',
             showCancelButton: true,
@@ -39,33 +39,30 @@ function ClientCard(props) {
             cancelButtonColor: '#d33',
             confirmButtonText: 'Sim, deletar cliente.',
             cancelButtonText: 'Cancelar'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://uol-api.onrender.com/${clientId}`, {
+                fetch(`${import.meta.env.VITE_API_URL}/${clientId}`, {
                     method: 'DELETE',
-                  }).then(() => handleDelete())
-              Swal.fire(
-                'Cliente deletado!',
-              )
+                }).then(() => handleDelete())
+                Swal.fire(
+                    'Cliente deletado!',
+                )
             }
-          })
-      };
+        })
+    };
 
-      const handleDelete = () => {
-        props.loading(true)
+    const handleDelete = () => {
         props.apiCall()
-      }
+    }
 
 
-const formatCPF = (cpf) => {
-    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
-}
+    const formatCPF = (cpf) => {
+        return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    }
 
-const formatPhone = (phone) => {
-    return phone.replace(/(\d{2})(\d?)(\d{4,5})(\d{4})/, '($1) $2$3-$4');
-}
-
-
+    const formatPhone = (phone) => {
+        return phone.replace(/(\d{2})(\d?)(\d{4,5})(\d{4})/, '($1) $2$3-$4');
+    }
 
     return (
         <div className="w-full h-28 p-6 justify-between items-center flex flex-row border-2 border-gray-100 gap-4">
@@ -92,13 +89,10 @@ const formatPhone = (phone) => {
             </div>
 
             <div className='w-1/4 h-auto flex flex-row justify-center overflow-auto content-center gap-8'>
-            <Button name="Editar" size="big" background="white" active={() => navigate(`/edit/${props.id}`)} />
-            <div onClick={() => deleteClient(props.id)} className='self-center cursor-pointer'><Trash2 size={32} color="#000000" strokeWidth={1}/></div>
+                <Button name="Editar" size="big" background="white" active={() => navigate(`/edit/${props.id}`)} />
+                <div onClick={() => deleteClient(props.id)} className='self-center cursor-pointer'><Trash2 size={32} color="#000000" strokeWidth={1} /></div>
             </div>
         </div>
-
-
-
     )
 }
 

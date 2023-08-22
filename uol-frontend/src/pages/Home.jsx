@@ -24,9 +24,8 @@ function Home() {
 
 
 const fetchUsers = () => {
-    console.log('teste')
     setLoading(true);
-    fetch('https://uol-api.onrender.com/')
+    fetch(import.meta.env.VITE_API_URL)
         .then((response) => response.json())
         .then((data) => {
             setUserList(data);
@@ -53,7 +52,7 @@ const fetchUsers = () => {
                         {
                             userList.map((user) => {
                                 return (
-                                    <ClientCard key={user.id} id={user.id} name={user.name} email={user.email} cpf={user.cpf} phone={user.phone} status={user.status.name} apiCall={fetchUsers} loading={(param) => setLoading(param)}/>
+                                    <ClientCard key={user.id} id={user.id} name={user.name} email={user.email} cpf={user.cpf} phone={user.phone} status={user.status.name} apiCall={fetchUsers} loading={setLoading}/>
                                 )
                             }
                             )

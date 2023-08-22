@@ -28,6 +28,7 @@ function Edit() {
     })
 
     const [loading, setLoading] = useState(true);
+    const [buttonLoading, setButtonLoading] = useState(false);
 
     const modalAlertPhrases = {
         name: 'Insira um nome válido!',
@@ -60,12 +61,9 @@ function Edit() {
     }
 
     const registerUser = async () => {
+        setButtonLoading(true);
         try {
-
-            console.log(clientInfo)
-            console.log(JSON.stringify(clientInfo))
-
-            const response = await fetch('https://uol-api.onrender.com/', {
+            const response = await fetch(import.meta.env.VITE_API_URL, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -119,6 +117,7 @@ function Edit() {
         } catch (error) {
             console.log(error, "este é o erro");
         }
+        setButtonLoading(false);
     };
 
     const CheckClientInfo = () => {
@@ -172,7 +171,8 @@ function Edit() {
 
     useEffect(() => {
         const getUserById = (id) => {
-            fetch(`https://uol-api.onrender.com/${id}`)
+            console.log(import.meta.env.VITE_API_URL, id)
+            fetch(`${import.meta.env.VITE_API_URL}/${id}`)
                 .then((response) => response.json())
                 .then((data) => {
                     let user = {
@@ -243,7 +243,7 @@ function Edit() {
                             }
 
                             <div className='flex flex-row gap-4 justify-start mt-10'>
-                                <Button name="Salvar" size="big" background="orange" active={(e) => handleClick(e)} />
+                                <Button name="Salvar" size="big" background="orange" active={(e) => handleClick(e)} loading={buttonLoading} />
                                 <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
                             </div>
 
