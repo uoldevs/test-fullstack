@@ -63,7 +63,7 @@ function Edit() {
     const registerUser = async () => {
         setButtonLoading(true);
         try {
-            const response = await fetch(import.meta.env.VITE_API_URL, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -171,7 +171,6 @@ function Edit() {
 
     useEffect(() => {
         const getUserById = (id) => {
-            console.log(import.meta.env.VITE_API_URL, id)
             fetch(`${import.meta.env.VITE_API_URL}/${id}`)
                 .then((response) => response.json())
                 .then((data) => {
