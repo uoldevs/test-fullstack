@@ -32,7 +32,6 @@ O backend disponibiliza os seguintes endpoints para interação com os dados dos
 - Next.js
 - Tailwind CSS
 - Cypress (para testes automatizados e2e)
-- Jest
 - Axios
 
 ### Backend
@@ -40,8 +39,8 @@ O backend disponibiliza os seguintes endpoints para interação com os dados dos
 - Fastify
 - Sequelize (ORM)
 - SQLite (banco de dados)
-- Jest
-- Axios
+- Jest (para testes automatizados e2e)
+- Axios (para testes automatizados e2e)
 
 ## Rodando o Projeto
 
@@ -86,7 +85,7 @@ npm start
 5. Escolha um navegador.
 6. Na aba `Specs`, selecione um dos testes disponíveis.
 
-Observação: Certifique-se de que o projeto esteja rodando para que os testes funcionem corretamente.
+Observação: Certifique-se que o projeto esteja rodando para que os testes funcionem corretamente.
 
 ### Backend
 
@@ -94,7 +93,7 @@ Observação: Certifique-se de que o projeto esteja rodando para que os testes f
 2. Execute o comando `npm install`.
 3. Execute o comando `npm test`.
 
-Observação: Certifique-se de que o projeto esteja rodando para que os testes funcionem corretamente.
+Observação: Certifique-se que o projeto esteja rodando para que os testes funcionem corretamente.
 
 ## Restaurando o BD
 
