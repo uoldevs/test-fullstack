@@ -3,7 +3,12 @@ import { useNavigate } from 'react-router-dom';
 
 import './subHeader.css';
 
-const SubHeader = () => {
+type propTypeHeader = {
+  description: string[];
+  activateButton?: boolean;
+};
+
+const SubHeader = ({ description, activateButton = false }: propTypeHeader) => {
   const navigate = useNavigate();
   return (
     <div className='sub-header-main'>
@@ -14,17 +19,19 @@ const SubHeader = () => {
           </div>
           <div className='sub-header-description'>
             <div>
-              <h2>Listagem de usuários</h2>
-              <h4>Escolha um cliente para visualizar os detalhes</h4>
+              <h2>{description[0]}</h2>
+              <h4>{description[1]}</h4>
             </div>
-            <div>
-              <button
-                type='button'
-                className='button-style-1'
-                onClick={() => navigate('/cadastro')}>
-                Novo Cliente
-              </button>
-            </div>
+            {activateButton && (
+              <div>
+                <button
+                  type='button'
+                  className='button-style-1'
+                  onClick={() => navigate('/cadastro')}>
+                  Novo Cliente
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
