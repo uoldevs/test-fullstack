@@ -1,0 +1,44 @@
+.customer-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+
+.customer-name-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.customer-details {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.customer-status-section {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.customer-cpf,
+.customer-phone,
+.customer-status {
+    padding: 0 10px;
+    text-align: center;
+}
+
+.customer-cpf,
+.customer-name {
+    font-weight: bold;
+    color: #333;
+}

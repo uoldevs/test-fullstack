@@ -1,0 +1,14 @@
+.container {
+    margin: 0 auto;
+    padding: 1.5rem;
+}
+
+.main-header-container {
+    background: #333333;
+    display: flex;
+}
+
+.main-logo {
+    height: 2rem;
+    color: white;
+}
