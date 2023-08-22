@@ -1,8 +1,8 @@
 import { Customer } from '@/store/slices/customer.slice'
-import { cn, phoneDomainToView } from '@/lib/utils'
+import { cn, cpfToView, phoneDomainToView } from '@/lib/utils'
 import Link from './ui/Link'
 
-interface CardCustomerProps {
+export interface CardCustomerProps {
   customer: Customer
 }
 
@@ -24,7 +24,7 @@ function CardCustomer({ customer }: CardCustomerProps) {
 
         <div className="flex flex-col justify-between">
           <p className="text-xs md:text-sm lg:text-base text-neutral-500">
-            {customer.document}
+            {cpfToView(customer.document)}
           </p>
           <p className="text-xs md:text-sm lg:text-base text-neutral-500">
             {phoneDomainToView(customer.phone)}
