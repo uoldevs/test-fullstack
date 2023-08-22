@@ -22,6 +22,8 @@ public class CustomerService {
     @Autowired
     private SocialSecurityNumberValidationService socialSecurityNumberValidationService;
 
+    @Autowired StatusValidationService statusValidationService;
+
     public void createCostumer(CustomerPayload customerPayload) throws EntityExistsException, InvalidCustomerStatusException, InvalidSocialSecurityNumberException{
         Optional<Customer> customer = customerRepository
                 .findBySocialSecurityNumber(customerPayload.getSocialSecurityNumber());
@@ -38,7 +40,7 @@ public class CustomerService {
             throw new InvalidSocialSecurityNumberException("Numero de CPF inválido");
         }
 
-        Optional isValidStatus = StatusValidationService.isValidStatus(
+        Optional isValidStatus = statusValidationService.isValidStatus(
                 customerPayload.getStatus(), Status.class
         );
 
@@ -92,7 +94,7 @@ public class CustomerService {
             throw new InvalidSocialSecurityNumberException("Numero de CPF inválido");
         }
 
-        Optional isValidStatus = StatusValidationService.isValidStatus(
+        Optional isValidStatus = statusValidationService.isValidStatus(
                 customerPayload.getStatus(), Status.class
         );
 
