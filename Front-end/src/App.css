@@ -1,10 +1,32 @@
-.app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
+.button-style-1{
+  background-color: #d39c4c;
+  color: white;
+  border: 2px solid #d39c4c;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.app div{
-  width: 100%;
+.button-style-1:hover {
+  background-color: white;
+  color: #d39c4c;
+}
+
+.button-style-2 {
+  margin: 5px;
+  background-color: white;
+  color: #d39c4c;
+  border: 2px solid #d39c4c;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.button-style-2:hover {
+  background-color: #d39c4c;
+  color: white;
 }

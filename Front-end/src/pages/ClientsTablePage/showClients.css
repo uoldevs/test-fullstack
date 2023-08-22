@@ -1,6 +1,4 @@
 .clients-view-main {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    max-width: 60%;
+    margin-left: 10vw;
+    margin-right: 10vw;
 }

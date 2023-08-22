@@ -1,0 +1,39 @@
+.sub-header-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sub-header {
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin:0px;
+  width: 80%;
+}
+
+.sub-header-name h1 {
+  margin: 5px;
+}
+
+
+.sub-header-name {
+  font-size: 20px;
+}
+
+.sub-header-name::after {
+  content: "";
+  display: flex;
+  align-self: center;
+  width: 62.22vw;
+  height: 1px;
+  margin: 0px;
+  background-color: #33333371;
+}
+
+.sub-header-description{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}

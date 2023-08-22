@@ -33,6 +33,20 @@ class Api {
       return err as unknown as AxiosResponse;
     }
   }
+
+  public async postCreate(
+    endpoint: string,
+    dataToCreate: dataRequestBody
+  ): Promise<AxiosResponse> {
+    try {
+      return await this.api.post(endpoint, dataToCreate);
+    } catch (err: unknown) {
+      if (err instanceof AxiosError) {
+        return err.response as unknown as AxiosResponse;
+      }
+      return err as unknown as AxiosResponse;
+    }
+  }
 }
 
 export default new Api();

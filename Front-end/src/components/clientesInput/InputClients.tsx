@@ -15,6 +15,7 @@ type propTypeInput = {
   setPhone: (value: string) => void;
   setStatus: (value: string) => void;
   updateHandle: () => void;
+  buttonName: string;
 };
 
 const InputClients = (props: propTypeInput) => {
@@ -33,6 +34,7 @@ const InputClients = (props: propTypeInput) => {
     status,
     setStatus,
     updateHandle,
+    buttonName,
   } = props;
   return (
     <div>
@@ -90,10 +92,13 @@ const InputClients = (props: propTypeInput) => {
         </select>
       </div>
       <div>
-        <button type='button' onClick={updateHandle}>
-          Salvar
+        <button type='button' className='button-style-1' onClick={updateHandle}>
+          {buttonName}
         </button>
-        <button type='button' onClick={() => navigate('/')}>
+        <button
+          type='button'
+          className='button-style-2'
+          onClick={() => navigate('/')}>
           Cancelar
         </button>
       </div>

@@ -1,26 +1,22 @@
 import React, { useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AxiosResponse } from 'axios';
 
 import Api from '../../services/resquest';
 import InputClients from '../../components/clientesInput/InputClients';
-import './EditClient.css'
 
-const EditClient = () => {
-    const location = useLocation();
-    const [name, setName] = useState(location.state.firstName);
-    const [sobrenome, setSobrenome]= useState(location.state.lastName);
-    const [email, setEmail] = useState(location.state.email);
-    const [cpf, setCpf] = useState(location.state.cpf);
-    const [phone, setPhone] = useState(location.state.cellphone);
-    const [status, setStatus] = useState(location.state.status);
-    const { id } = useParams();
+const RegisterClient = () => {
+    const [name, setName] = useState('');
+    const [sobrenome, setSobrenome]= useState('');
+    const [email, setEmail] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [phone, setPhone] = useState('');
+    const [status, setStatus] = useState('ativação_pendente');
     const navigate = useNavigate();
 
-    const updateHandle = async () => {
+    const registerHandle = async () => {
 
-        const updatedClient = {
-            id: Number(id),
+        const createClient = {
             firstName: name,
             lastName: sobrenome,
             email,
@@ -28,7 +24,7 @@ const EditClient = () => {
             cellphone: phone,
             status: status,
         }
-        const response: AxiosResponse = await Api.putUpdate('/', updatedClient);
+        const response: AxiosResponse = await Api.postCreate('/', createClient);
         if (response.status === 200) {
             navigate('/');
         }
@@ -48,11 +44,11 @@ const EditClient = () => {
          setCpf={setCpf}
          setPhone={setPhone}
          setStatus={setStatus}
-         updateHandle={updateHandle}
-         buttonName= 'Salvar'
+         updateHandle={registerHandle}
+         buttonName='Criar'
         />
       </div>
     )
 }
 
-export default EditClient;
+export default RegisterClient;
