@@ -11,6 +11,7 @@ import { AlertCircle } from 'lucide-react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useEffect } from 'react';
+import { motion } from "framer-motion"
 
 function Register() {
 
@@ -67,70 +68,70 @@ function Register() {
     const registerUser = async () => {
         setIsLoading(true);
         try {
-          const response = await fetch(`${import.meta.env.VITE_API_URL}`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              name: clientInfo.name,
-              email: clientInfo.email,
-              cpf: clientInfo.cpf.replace(/\D/g, ''),
-              phone: clientInfo.phone.replace(/\D/g, ''),
-              status: handleStatus(clientInfo.status),
-            }),
-          });
-      
-          const data = await response.json();
-      
-          if (response.status === 201) {
-            toast.success('Cliente cadastrado', {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
+            const response = await fetch(`${import.meta.env.VITE_API_URL}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: clientInfo.name,
+                    email: clientInfo.email,
+                    cpf: clientInfo.cpf.replace(/\D/g, ''),
+                    phone: clientInfo.phone.replace(/\D/g, ''),
+                    status: handleStatus(clientInfo.status),
+                }),
             });
-          } else {
-            toast.error(data.message, {
-              position: 'top-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: false,
-              draggable: true,
-              progress: undefined,
-              theme: 'colored',
-            });
-          }
 
-          if (response.status === 201) {
-            setClientInfo({
-                name: '',
-                email: '',
-                cpf: '',
-                phone: '',
-                status: '',
-              });
-          }
+            const data = await response.json();
 
-          if (data.message.includes('CPF')) {
-            setInputAlert({ ...inputAlert, cpf: true });
-            setClientInfo({ ...clientInfo, cpf: '' });
-          } else if (data.message.includes('Email')) {
-            setInputAlert({ ...inputAlert, email: true });
-            setClientInfo({ ...clientInfo, email: '' });
-          }
-      
+            if (response.status === 201) {
+                toast.success('Cliente cadastrado', {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
+                });
+            } else {
+                toast.error(data.message, {
+                    position: 'top-right',
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: false,
+                    draggable: true,
+                    progress: undefined,
+                    theme: 'colored',
+                });
+            }
+
+            if (response.status === 201) {
+                setClientInfo({
+                    name: '',
+                    email: '',
+                    cpf: '',
+                    phone: '',
+                    status: '',
+                });
+            }
+
+            if (data.message.includes('CPF')) {
+                setInputAlert({ ...inputAlert, cpf: true });
+                setClientInfo({ ...clientInfo, cpf: '' });
+            } else if (data.message.includes('Email')) {
+                setInputAlert({ ...inputAlert, email: true });
+                setClientInfo({ ...clientInfo, email: '' });
+            }
+
 
         } catch (error) {
-          console.log(error);
+            console.log(error);
         }
         setIsLoading(false);
-      };
+    };
 
     const CheckClientInfo = () => {
 
@@ -172,10 +173,10 @@ function Register() {
 
         if (Object.values(permitRegister).includes(true)) {
             console.log('There are invalid inputs');
-          } else {
+        } else {
             console.log('All inputs are valid');
             registerUser();
-          }
+        }
     }
 
 
@@ -197,33 +198,41 @@ function Register() {
                     pauseOnHover
                     theme="colored"
                 />
-                <form className='flex flex-col gap-4'>
-                    {
-                        Object.keys(clientInfo).map((key, i) => {
-                            if (key !== 'status') {
+
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.6 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5 }}>
+                    <form className='flex flex-col gap-4'>
+
+
+                        {
+                            Object.keys(clientInfo).map((key, i) => {
+                                if (key !== 'status') {
+                                    return (
+                                        <div key={i} className='flex flex-row gap-4'>
+                                            <Input key={i} mode={key} props={{ clientInfo, setClientInfo, setInputAlert, inputAlert }}
+                                            />
+                                            {inputAlert[key] && <MiniModal icon={alertIcon} content={modalAlertPhrases[key]} />}
+                                        </div>
+
+                                    )
+                                }
                                 return (
                                     <div key={i} className='flex flex-row gap-4'>
-                                        <Input key={i} mode={key} props={{ clientInfo, setClientInfo, setInputAlert, inputAlert }}
-                                        />
+                                        <DropdownSelect key={i} props={{ clientInfo, setClientInfo, setInputAlert, inputAlert }} />
                                         {inputAlert[key] && <MiniModal icon={alertIcon} content={modalAlertPhrases[key]} />}
-                                    </div>
+                                    </div>)
+                            })
+                        }
 
-                                )
-                            }
-                            return (
-                                <div key={i} className='flex flex-row gap-4'>
-                                    <DropdownSelect key={i} props={{ clientInfo, setClientInfo, setInputAlert, inputAlert }} />
-                                    {inputAlert[key] && <MiniModal icon={alertIcon} content={modalAlertPhrases[key]} />}
-                                </div>)
-                        })
-                    }
+                        <div className='flex flex-row gap-4 justify-start mt-10'>
+                            <Button name="Criar" size="big" background="orange" active={(e) => handleClick(e)} loading={isLoading} />
+                            <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
+                        </div>
 
-                    <div className='flex flex-row gap-4 justify-start mt-10'>
-                        <Button name="Criar" size="big" background="orange" active={(e) => handleClick(e)} loading={isLoading}/>
-                        <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
-                    </div>
-
-                </form>
+                    </form>
+                </motion.div>
 
 
             </section>

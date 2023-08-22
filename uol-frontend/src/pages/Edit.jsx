@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from 'react-loading-components';
+import { motion } from "framer-motion"
 
 
 function Edit() {
@@ -220,33 +221,38 @@ function Edit() {
                             <Loading type='spinning_circles' width={100} height={100} fill='#000000' />
                         </div> :
 
-                        <form className='flex flex-col gap-4'>
-                            {
-                                Object.keys(clientInfo).map((key, i) => {
-                                    if (key !== 'status') {
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.6 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.5 }}>
+                            <form className='flex flex-col gap-4'>
+                                {
+                                    Object.keys(clientInfo).map((key, i) => {
+                                        if (key !== 'status') {
+                                            return (
+                                                <div key={i} className='flex flex-row gap-4'>
+                                                    <Input key={i} mode={key} props={{ clientInfo, setClientInfo, setInputAlert, inputAlert }}
+                                                    />
+                                                    {inputAlert[key] && <MiniModal icon={alertIcon} content={modalAlertPhrases[key]} />}
+                                                </div>
+
+                                            )
+                                        }
                                         return (
                                             <div key={i} className='flex flex-row gap-4'>
-                                                <Input key={i} mode={key} props={{ clientInfo, setClientInfo, setInputAlert, inputAlert }}
-                                                />
+                                                <DropdownSelect key={i} props={{ clientInfo, setClientInfo, setInputAlert, inputAlert }} />
                                                 {inputAlert[key] && <MiniModal icon={alertIcon} content={modalAlertPhrases[key]} />}
-                                            </div>
+                                            </div>)
+                                    })
+                                }
 
-                                        )
-                                    }
-                                    return (
-                                        <div key={i} className='flex flex-row gap-4'>
-                                            <DropdownSelect key={i} props={{ clientInfo, setClientInfo, setInputAlert, inputAlert }} />
-                                            {inputAlert[key] && <MiniModal icon={alertIcon} content={modalAlertPhrases[key]} />}
-                                        </div>)
-                                })
-                            }
+                                <div className='flex flex-row gap-4 justify-start mt-10'>
+                                    <Button name="Salvar" size="big" background="orange" active={(e) => handleClick(e)} loading={buttonLoading} />
+                                    <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
+                                </div>
 
-                            <div className='flex flex-row gap-4 justify-start mt-10'>
-                                <Button name="Salvar" size="big" background="orange" active={(e) => handleClick(e)} loading={buttonLoading} />
-                                <Button name="Voltar" size="big" background="white" active={() => navigate("/")} />
-                            </div>
-
-                        </form>
+                            </form>
+                        </motion.div>
                 }
             </section>
         </>
