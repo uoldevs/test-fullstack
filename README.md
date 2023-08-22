@@ -10,7 +10,7 @@ Testes:
 > Jest
 
 DevOps:
-> Docker
+> Docker, GitHub Actions
 
 DataBase:
 > SqLite
@@ -37,7 +37,7 @@ DataBase:
   3. No diretório principal suba os containers
 
   ```bash
-docker-compose -f docker-compose.dev.yml up --build -d
+$ docker-compose -f docker-compose.dev.yml up --build -d
   ```
 
   5. Quando o processo dos containers estiver acabado acesse a aplicação usando o seguinte endereço
@@ -49,7 +49,7 @@ http://localhost:3000
   6. Para derrubar os containers
 
   ```bash
-docker-compose -f docker-compose.dev.yml down --rmi all --volumes --remove-orphans
+$ docker-compose -f docker-compose.dev.yml down --rmi all --volumes --remove-orphans
   ```
 
 </details>
@@ -57,3 +57,35 @@ docker-compose -f docker-compose.dev.yml down --rmi all --volumes --remove-orpha
 <br />
 
 Para executar as aplicações com node entre nas pasta do projeto (backend e frontend) para mais informações
+
+## Rodando os testes E2E
+
+  1. Garanta que já tenha iniciado e configurado o projeto
+
+  2. A url do frontend por padrão é http://localhost:3000 para altera-lá basta adicionar um aquivo .env dentro do diretorio `__tests__`
+
+  ```bash
+$ echo "BASE_URL_CYPRESS=<SUA_URL>" > .env
+  ```
+
+ 5. Inicie o frontend
+
+  ```bash
+$ npm start
+  ```
+
+  3. Para um bom funcinamento dos testes para inciar rode o seguinte comando no backend
+
+  ```bash
+$ npm run start:test
+  ```
+
+  6. Dentro do diretorio `__tests__` basta rodar o seguinte comando para iniciar os testes
+
+  ```bash
+$ npx cypress run # Para rodar no terminal
+  # Ou
+  npx cypress open # Para ver de forma visual os testes rodando
+  ```
+
+  Obs: Os testes e2e só funcionam com a aplicação rodando fora do docker
