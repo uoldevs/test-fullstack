@@ -23,8 +23,6 @@ const Input = (
           {...props}
           ref={ref}
           id={id}
-          aria-invalid={helperText ? "true" : "false"}
-          aria-describedby="standard_error_help"
           className={`block peer rounded-md px-3 pb-2.5 pt-4 w-full bg-black-50 text-base text-black-800 border-2 appearance-none focus:outline-none focus:ring-0focus:border-fire-bush-400 ${
             helperText ? "border-valencia-600" : "border-black-200"
           }`}
