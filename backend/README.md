@@ -50,7 +50,7 @@ Siga os passos abaixo executando os comandos no terminal.
 5. Execute o comando `npm run prisma:migrate` para criar o banco de dados e as tabelas.
 
    ```
-   npm run prisma:migrate
+   npm run prisma:migrate:dev
    ```
 
    > Ao executar esse comando a tabela `status` será populada com os valores necessários para o funcionamento da API.
