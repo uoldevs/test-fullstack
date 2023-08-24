@@ -117,25 +117,21 @@ export default function Form({ client, backButton }: FormProps) {
         {...register("name")}
         label="Nome"
         helperText={errors.name?.message}
-        placeholder="Nome"
       />
       <Input
         {...register("email")}
         label="E-mail"
         helperText={errors.email?.message}
-        placeholder="E-mail"
       />
       <Input
         {...register("cpf")}
         label="CPF"
         helperText={errors.cpf?.message}
-        placeholder="CPF"
       />
       <Input
         {...register("phoneNumber")}
         label="Telefone"
         helperText={errors.phoneNumber?.message}
-        placeholder="Telefone"
       />
 
       <Select
