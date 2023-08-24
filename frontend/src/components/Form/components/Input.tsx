@@ -35,9 +35,11 @@ const Input = (
           {label}
         </label>
       </div>
-      <p className="mt-2 mb-4 ml-1 text-sm text-valencia-600" role="alert">
-        {helperText}
-      </p>
+      {helperText && (
+        <p className="mt-2 mb-4 ml-1 text-sm text-valencia-600" role="alert">
+          {helperText}
+        </p>
+      )}
     </div>
   );
 };
