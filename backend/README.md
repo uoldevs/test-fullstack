@@ -47,7 +47,7 @@ Siga os passos abaixo executando os comandos no terminal.
    cp .env.example .env
    ```
 
-5. Execute o comando `npm run prisma:migrate` para criar o banco de dados e as tabelas.
+5. Crie o banco de dados e as tabelas.
 
    ```
    npm run prisma:migrate:dev
