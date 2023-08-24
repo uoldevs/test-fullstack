@@ -10,7 +10,7 @@ import Button from "./components/Button";
 import { clientStatusContext } from "@/contexts/clientStatus";
 import { createClient, updateClient } from "@/services/clients";
 import { validate } from "gerador-validador-cpf";
-import { parsePhoneNumber } from "libphonenumber-js/min";
+import { isValidPhoneNumber } from "libphonenumber-js/min";
 import Select from "./components/Select";
 
 type FormProps = {
@@ -25,21 +25,16 @@ const schema = z.object({
 
   cpf: z
     .string()
-    .length(11, { message: "CPF deve ter 11 dígitos" })
+    .nonempty({ message: "Informe o CPF" })
     .refine((value) => validate(value), { message: "CPF inválido" }),
 
   phoneNumber: z
     .string()
+    .nonempty({ message: "Informe o número de telefone" })
     .min(10, { message: "Número de telefone deve ter pelo menos 10 dígitos" })
-    .max(11, { message: "Número de telefone deve ter no máximo 11 dígitos" })
-    .refine(
-      (value) => {
-        if (value.length === 0) return false;
-        const parsedPhone = parsePhoneNumber(value, "BR");
-        return parsedPhone?.isValid();
-      },
-      { message: "Número de telefone inválido" }
-    ),
+    .refine((value) => isValidPhoneNumber(value, "BR"), {
+      message: "Número de telefone inválido",
+    }),
 });
 
 type FormValues = z.infer<typeof schema> & {
@@ -124,12 +119,18 @@ export default function Form({ client, backButton }: FormProps) {
         helperText={errors.email?.message}
       />
       <Input
-        {...register("cpf")}
+        {...register("cpf", {
+          setValueAs: (value) => value.replace(/\D/g, ""),
+        })}
+        mask="000.000.000-00"
         label="CPF"
         helperText={errors.cpf?.message}
       />
       <Input
-        {...register("phoneNumber")}
+        {...register("phoneNumber", {
+          setValueAs: (value) => value.replace(/\D/g, ""),
+        })}
+        mask={["(00) 0000-0000", "(00) 00000-0000"]}
         label="Telefone"
         helperText={errors.phoneNumber?.message}
       />
