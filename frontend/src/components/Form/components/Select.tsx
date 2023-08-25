@@ -35,15 +35,17 @@ const Select = (
           id={id}
           data-selected={defaultValue ? "true" : "false"}
           onChange={handleOnChange}
-          className={`block rounded-md px-3 pb-2.5 pt-4 w-full bg-black-50 text-base text-black-800 border-2 appearance-none focus:outline-none focus:ring-0focus:border-fire-bush-400 ${
-            helperText ? "border-valencia-600" : "border-black-200"
+          className={`block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 focus:outline-none focus:ring-0 focus:border-fire-bush-400 ${
+            helperText ? "border-valencia-600" : "border-black-300"
           }`}
         >
           {children}
         </select>
         <label
           htmlFor={id}
-          className="absolute text-xl text-black-500 duration-300 transform -translate-y-5 scale-75 top-2 z-10 origin-[0] bg-black-50 mx-2 px-1 left-1"
+          className={`absolute rounded-md text-xl text-black-500 duration-300 transform -translate-y-6 scale-75 top-2 z-10 origin-[0] bg-white-50 mx-2 px-1 peer-data-[selected=false]:scale-100 peer-data-[selected=false]:-translate-y-1/2 peer-data-[selected=false]:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-6 left-1 pointer-events-none ${
+            helperText ? "text-valencia-600" : "text-black-300"
+          }`}
         >
           {label}
         </label>
