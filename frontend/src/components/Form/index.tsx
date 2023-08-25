@@ -139,6 +139,7 @@ export default function Form({ client, backButton }: FormProps) {
         {...register("status")}
         label="Status"
         helperText={errors.status?.message}
+        defaultValue={client?.status?.name}
       >
         {allStatus.map((status) => (
           <option key={status.id} value={status.name}>
