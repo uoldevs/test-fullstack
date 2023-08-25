@@ -6,8 +6,8 @@ import React, {
 } from "react";
 
 type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
-  children?: React.ReactNode;
-  label?: string;
+  children: React.ReactNode[];
+  label: string;
   helperText?: string;
   defaultValue?: string;
 };
