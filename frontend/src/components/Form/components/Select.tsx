@@ -9,13 +9,22 @@ type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
   children?: React.ReactNode;
   label?: string;
   helperText?: string;
+  defaultValue?: string;
 };
 
 const Select = (
-  { children, label, helperText, ...props }: SelectProps,
+  { children, label, helperText, defaultValue, ...props }: SelectProps,
   ref: ForwardedRef<HTMLSelectElement>
 ) => {
   const id = useId();
+
+  const handleOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    event.target.setAttribute(
+      "data-selected",
+      event.target.value ? "true" : "false"
+    );
+    if (props.onChange) props.onChange(event);
+  };
 
   return (
     <div className="my-2.5">
@@ -24,6 +33,8 @@ const Select = (
           {...props}
           ref={ref}
           id={id}
+          data-selected={defaultValue ? "true" : "false"}
+          onChange={handleOnChange}
           className={`block rounded-md px-3 pb-2.5 pt-4 w-full bg-black-50 text-base text-black-800 border-2 appearance-none focus:outline-none focus:ring-0focus:border-fire-bush-400 ${
             helperText ? "border-valencia-600" : "border-black-200"
           }`}
