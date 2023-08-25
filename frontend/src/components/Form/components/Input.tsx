@@ -27,7 +27,7 @@ const Input = (
         />
         <label
           htmlFor={id}
-          className={`absolute rounded-md text-xl text-black-500 duration-300 transform -translate-y-6 scale-75 top-2 z-10 origin-[0] bg-white-50 mx-2 px-1 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-6 left-1 pointer-events-none ${
+          className={`absolute rounded-md text-xl text-black-500 duration-300 transform scale-75 top-0 -translate-y-1/2 peer-focus:scale-75 peer-focus:top-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:top-1/2 z-10 origin-[0] bg-white-50 mx-2 px-1 left-1 pointer-events-none ${
             helperText ? "text-valencia-600" : "text-black-300"
           }`}
         >

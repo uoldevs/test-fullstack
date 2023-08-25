@@ -44,7 +44,7 @@ const Select = (
         </select>
         <label
           htmlFor={id}
-          className={`absolute rounded-md text-xl text-black-500 duration-300 transform -translate-y-6 scale-75 top-2 z-10 origin-[0] bg-white-50 mx-2 px-1 peer-data-[selected=false]:scale-100 peer-data-[selected=false]:-translate-y-1/2 peer-data-[selected=false]:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-6 left-1 pointer-events-none ${
+          className={`absolute rounded-md text-xl text-black-500 duration-300 transform scale-100 top-1/2 -translate-y-1/2 peer-focus:scale-75 peer-focus:top-0 peer-data-[selected=true]:scale-75 peer-data-[selected=true]:top-0 z-10 origin-[0] bg-white-50 mx-2 px-1 left-1 pointer-events-none ${
             helperText ? "text-valencia-600" : "text-black-300"
           }`}
         >
