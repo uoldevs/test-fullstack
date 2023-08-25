@@ -33,6 +33,7 @@ const Select = (
           {...props}
           ref={ref}
           id={id}
+          aria-invalid={helperText ? "true" : "false"}
           data-selected={defaultValue ? "true" : "false"}
           onChange={handleOnChange}
           className={`block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 focus:outline-none focus:ring-0 focus:border-fire-bush-400 ${
