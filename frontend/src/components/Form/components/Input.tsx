@@ -20,7 +20,7 @@ const Input = (
           inputRef={ref}
           id={id}
           aria-invalid={helperText ? "true" : "false"}
-          className={`block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 outline-none border-2 focus:ring-4 focus:ring-fire-bush-400 ${
+          className={`block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 focus:outline-none focus:ring-0 focus:border-fire-bush-400 ${
             helperText ? "border-valencia-600" : "border-black-300"
           }`}
           placeholder=" "
