@@ -1,41 +1,120 @@
-# Teste Fullstack: Aplicativo de Gerenciamento de Clientes
+# Aplicativo de Gerenciamento de Clientes
 
 ## Descrição:
 
-Neste desafio, você deverá desenvolver um aplicativo fullstack que permita aos usuários visualizar e criar clientes. O aplicativo consiste em duas partes: o frontend e o backend. O frontend será responsável pela interface do usuário e a comunicação com a API. O backend será responsável pelo armazenamento e gerenciamento dos dados dos clientes.
+Aplicativo fullstack que permita aos usuários visualizar e criar clientes.
 
-## Requisitos do Frontend:
+<h3><strong>Frontend</strong></h3>
 
-1. Exibir uma listagem de clientes contendo todas as informações conforme o layout fornecido.
-2. Permitir a criação de um novo cliente através de um formulário.
-3. Na tela de edição, fornecer alertas para o usuário em caso de dados inválidos.
-4. Realizar validação de CPF e telefone na tela de edição para garantir dados corretos e consistentes.
-5. Comunicar-se com a API para obter os dados dos clientes cadastrados.
+- Exibi listagem de clientes.
+- Permite criação de um novo cliente.
+- Permite atualização dos dados de um cliente.
+- Fornece alertas para o usuário em caso de dados inválidos.
 
-## Requisitos do Backend:
+<details>
+<summary><strong>Ferramentas:</strong></summary>
 
-Criar uma API que ofereça endpoints para:
+[Vite](https://vitejs.dev/) <br>
+[React](https://react.dev/) <br>
+[React Router](https://reactrouter.com/en/main) <br>
+[React Icons](https://react-icons.github.io/react-icons/) <br>
+[CSS](https://www.w3.org/Style/CSS/Overview.en.html) <br>
+[TypeScript](https://www.typescriptlang.org/) <br>
+</details>
 
-1. Obter a listagem de clientes cadastrados.
-2. Cadastrar um novo cliente com informações válidas.
-3. Atualizar informações de cliente existente.
-4. Armazenar os dados do cliente de forma persistente, com sugestão de uso do SQLite para essa finalidade.
+<br>
+<h3><strong>Backend</strong></h3>
 
-## Requisitos de Qualidade de Código:
+**Endpoits:**
+- Listar cliente - `/clients`
+- Cadastrar um novo cliente com informações válidas - `/create`
+- Atualizar informações de cliente existente - `/update`
 
-Escreva um código limpo, legível e bem organizado.
-Adote boas práticas de desenvolvimento e arquitetura.
+<details>
+<summary><strong>Ferramentas:</strong></summary>
 
-## Itens Desejáveis (opcional):
+Banco: [SQLite](https://www.sqlite.org/index.html), [Prisma](https://www.prisma.io/) <br>
+Linguagem: [Nodejs](https://nodejs.org/it), [TypeScript](https://www.typescriptlang.org/) <br>
+Framework web: [Express](https://expressjs.com/pt-br/) <br>
+Validação: [Zod](https://zod.dev/), [cpf-cnpj-validator](https://www.npmjs.com/package/cpf-cnpj-validator) <br>
+Tratamento erros assíncronos: [Express-async-errors](https://www.npmjs.com/package/express-async-errors)<br>
+</details>
+<br>
 
-- Testes unitários
-- Bibliotecas ou frameworks adicionais
+<h3><strong>Testes</strong></h3>
 
-## Telas:
+**Backend**
 
-- [Tela Inicial](https://test-frontend-uolpp.web.app/assets/images/tela-inicial.jpg)
-- [Tela de Edição](https://test-frontend-uolpp.web.app/assets/images/tela-edicao.jpg)
+Entre na pasta backend: ```cd backend``` <br>
+Para rodar testes com cobertura: ```npm coverage```<br>
+Para rodar apenas os testes: ```npm run``` <br>
 
-## Instruções Finais:
+<details>
+<summary><strong>Ferramentas:</strong></summary>
 
-Após concluir o desafio, crie um pull request neste repositório com duas pastas separadas: uma contendo o projeto frontend e outra com o projeto backend, para que possamos avaliar seu trabalho. Boa sorte!
+[Mocha](https://mochajs.org/) <br>
+[Chai](https://www.chaijs.com/) <br>
+[Sinon](https://sinonjs.org/) <br>
+[nyc](https://www.npmjs.com/package/nyc) <br>
+</details>
+<br>
+
+<h2>Como rodar a aplicação ⚙️</h2>
+
+<details>
+<summary>Backend:</summary>
+
+Entre na pasta backend:
+```
+cd backend
+```
+Instale as depenências:
+```
+npm install
+```
+Rode a aplicação:
+```
+npm run dev
+```
+URL base: `localhost:3001`
+
+Body rotas POST e PUT:
+```
+{
+    "name": "Bell-mère",
+    "email": "bell@gmail.com",
+    "cpf": "21219458066",
+    "status": "Desativado"
+}
+```
+</details>
+
+<details>
+<summary>Frontend:</summary>
+
+Entre na pasta frontend:
+```
+cd frontend
+```
+Instale as depenências:
+```
+npm install
+```
+Rode a aplicação:
+```
+npm run dev
+```
+
+Vá para `http://localhost:5173/` no navegador.
+
+<br>
+</details>
+<br>
+
+## Próximos passos 👣
+- Testes frontend
+- Máscara de CPF e telefone
+- Trazer dados do cliente no form na atualização
+- Melhorar tratamento de erros
+- Dockerização
+- Melhorar testes backend

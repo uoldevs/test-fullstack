@@ -1,0 +1,42 @@
+.card-container {
+  display: grid;
+  border: 1px solid rgb(179, 177, 177);
+  box-sizing: border-box;
+  margin: .5rem 0;
+  grid-template-columns: repeat(4, 1fr);
+  padding: .5rem;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.cpf-phone, .name-email  p {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-container button {
+  background-color: #fff;
+  border-color: var(--emphasis-color);
+  border-radius: .3rem;
+  color: var(--emphasis-color);
+  padding: .8rem 0;
+  margin: 0 .3rem 0 2rem;
+  font-size: 1rem;
+}
+
+.card-container button:hover {
+  background-color: var(--emphasis-color);
+  color: #fff;
+}
+
+.name, .cpf {
+  font-weight: 600;
+}
+
+.status {
+  display: flex;
+}
+
+.status p {
+  margin-left: 0.3rem;
+}

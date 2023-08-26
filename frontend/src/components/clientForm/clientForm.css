@@ -1,0 +1,48 @@
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container input, select {
+  padding: .8rem;
+  margin: .4rem;
+  border-radius: 0.3rem;
+  border-color: rgb(165, 162, 162);
+  max-width: 30%;
+}
+
+.form-container span {
+  margin-left: .5rem;
+  color: red;
+  font-size: .8rem;
+}
+
+.buttons-container {
+  display: flex;
+  margin: .5rem;
+  max-width: 30%;
+  justify-content:space-around;
+}
+
+.form-container button {
+  padding: .4rem 1.8rem;
+  margin: 0 .6rem;
+  border-radius: 0.3rem;
+
+}
+
+.create-edit-button {
+  background-color: var(--emphasis-color);
+  border-color: var(--emphasis-color) ;
+  color: #fff;
+}
+
+.return-button {
+  background-color: #fff;
+  border-color: var(--emphasis-color) ;
+  color:var(--emphasis-color) ;
+}

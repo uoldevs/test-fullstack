@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.info-container {
+  display: flex;
+  margin: .5rem;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-color);
+}
+
+.info-container p {
+  padding: .2rem;
+}
+
+.info-container button {
+  background-color: var(--emphasis-color);
+  border-color: var(--emphasis-color);
+  border-radius: .3rem;
+  color: #fff;
+  padding: .4rem 0.2rem;
+  font-size: 1rem;
+}
+
+.info-title {
+  font-weight: 600;
+}
