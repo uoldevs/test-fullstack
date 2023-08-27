@@ -4,20 +4,13 @@ import React from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
 import { Client } from "@/services/clients/types";
-import Button from "@/components/Form/components/Button";
-import Form from "@/components/Form";
+import ClientForm from "@/components/ClientForm";
 
 interface EditClientProps {
   client: Client;
 }
 
 const EditButton = ({ client }: EditClientProps) => {
-  const formBackButton = (
-    <Dialog.Close asChild>
-      <Button type="button">Voltar</Button>
-    </Dialog.Close>
-  );
-
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
@@ -32,10 +25,20 @@ const EditButton = ({ client }: EditClientProps) => {
             Edite as informações de {client.name}
           </Dialog.Title>
           <Dialog.Description className="text-black-800">
-            Faça as alterações necessárias. Clique em salvar quando terminar.
+            Faça as alterações necessárias. Clique em editar quando terminar.
           </Dialog.Description>
 
-          <Form client={client} backButton={formBackButton} />
+          <ClientForm client={client}>
+            <Dialog.Close asChild>
+              <button
+                type="button"
+                className="flex justify-center items-center w-36 border-2 p-2 rounded-md text-lg text-fire-bush-400 hover:text-black-50 hover:bg-fire-bush-400 border-fire-bush-400 active:bg-fire-bush-500 active:border-fire-bush-500"
+                aria-label="Close"
+              >
+                Cancelar
+              </button>
+            </Dialog.Close>
+          </ClientForm>
 
           <Dialog.Close asChild>
             <button
