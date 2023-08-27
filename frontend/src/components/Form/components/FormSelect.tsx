@@ -37,9 +37,7 @@ export default function FormSelect<TFieldValues extends FieldValues>({
           id={id}
           aria-invalid={helperText ? "true" : "false"}
           data-selected={valueSelected ? "true" : "false"}
-          className={`block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 focus:outline-none focus:ring-0 focus:border-fire-bush-400 ${
-            helperText ? "border-valencia-600" : "border-black-300"
-          }`}
+          className="block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 border-black-300 aria-[invalid=true]:border-valencia-600 focus:outline-none focus:ring-2 ring-fire-bush-400 ring-offset-1"
         >
           {options.map((option) => (
             <option key={option} value={option}>
@@ -49,9 +47,7 @@ export default function FormSelect<TFieldValues extends FieldValues>({
         </select>
         <label
           htmlFor={id}
-          className={`absolute rounded-md text-xl text-black-500 duration-300 transform scale-100 top-1/2 -translate-y-1/2 peer-focus:scale-75 peer-focus:top-0 peer-data-[selected=true]:scale-75 peer-data-[selected=true]:top-0 z-10 origin-[0] bg-white-50 mx-2 px-1 left-1 pointer-events-none ${
-            helperText ? "text-valencia-600" : "text-black-300"
-          }`}
+          className="absolute rounded-md text-xl text-black-400 duration-300 transform scale-100 top-1/2 -translate-y-1/2 peer-focus:scale-75 peer-focus:top-0 peer-data-[selected=true]:scale-75 peer-data-[selected=true]:top-0 z-10 origin-left bg-white-50 mx-2 px-1 left-1 pointer-events-none peer-aria-[invalid=true]:text-valencia-600"
         >
           {label}
         </label>
