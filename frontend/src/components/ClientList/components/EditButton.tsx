@@ -42,7 +42,8 @@ const EditButton = ({ client }: EditClientProps) => {
 
           <Dialog.Close asChild>
             <button
-              className="text-valencia-700 hover:bg-valencia-200 absolute top-[10px] right-[10px] h-6 w-6 appearance-none items-center justify-center rounded-md focus:shadow-[0_0_0_2px]focus:shadow-valencia-500 focus:outline-none"
+              type="button"
+              className="text-valencia-600 hover:bg-valencia-200 active:bg-valencia-300 absolute top-[10px] right-[10px] p-1 appearance-none rounded-md focus:outline-none focus:ring-2 focus:ring-valencia-600"
               aria-label="Close"
             >
               <X />
