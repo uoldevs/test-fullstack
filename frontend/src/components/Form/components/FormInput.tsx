@@ -1,24 +1,42 @@
-import React, { ForwardedRef, forwardRef, useId } from "react";
+import { useId } from "react";
+import { FieldValues, Path, useFormContext } from "react-hook-form";
 import { IMaskInput, IMaskInputProps } from "react-imask";
 
-type InputProps = IMaskInputProps<HTMLInputElement> & {
-  label: string;
-  helperText?: string;
-};
+type FormInputProps<TFieldValues extends FieldValues> =
+  IMaskInputProps<HTMLInputElement> & {
+    name: Path<TFieldValues>;
+    label: string;
+  };
 
-const Input = (
-  { label, helperText, ...props }: InputProps,
-  ref: ForwardedRef<HTMLInputElement>
-) => {
+export default function FormInput<TFieldValues extends FieldValues>({
+  name,
+  label,
+  ...props
+}: FormInputProps<TFieldValues>) {
   const id = useId();
+
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext<TFieldValues>();
+
+  const { onBlur, onChange, ref, disabled } =
+    register<Path<TFieldValues>>(name);
+
+  const error = errors[name]?.message;
+  const helperText = typeof error === "string" ? error : undefined;
 
   return (
     <div className="my-6">
       <div className="relative">
         <IMaskInput
           {...props}
-          inputRef={ref}
           id={id}
+          name={name}
+          inputRef={ref}
+          onBlur={onBlur}
+          onChange={onChange}
+          disabled={disabled}
           aria-invalid={helperText ? "true" : "false"}
           className={`block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 focus:outline-none focus:ring-0 focus:border-fire-bush-400 ${
             helperText ? "border-valencia-600" : "border-black-300"
@@ -41,6 +59,4 @@ const Input = (
       )}
     </div>
   );
-};
-
-export default forwardRef(Input);
+}

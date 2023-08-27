@@ -1,46 +1,51 @@
-import React, {
-  SelectHTMLAttributes,
-  ForwardedRef,
-  forwardRef,
-  useId,
-} from "react";
+import { SelectHTMLAttributes, useId } from "react";
+import { FieldValues, Path, useFormContext } from "react-hook-form";
 
-type SelectProps = SelectHTMLAttributes<HTMLSelectElement> & {
-  children: React.ReactNode[];
-  label: string;
-  helperText?: string;
-  defaultValue?: string;
-};
+type FormSelectProps<TFieldValues extends FieldValues> =
+  SelectHTMLAttributes<HTMLSelectElement> & {
+    name: Path<TFieldValues>;
+    label: string;
+    options: string[];
+  };
 
-const Select = (
-  { children, label, helperText, defaultValue, ...props }: SelectProps,
-  ref: ForwardedRef<HTMLSelectElement>
-) => {
+export default function FormSelect<TFieldValues extends FieldValues>({
+  children,
+  name,
+  label,
+  options,
+  ...props
+}: FormSelectProps<TFieldValues>) {
   const id = useId();
 
-  const handleOnChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    event.target.setAttribute(
-      "data-selected",
-      event.target.value ? "true" : "false"
-    );
-    if (props.onChange) props.onChange(event);
-  };
+  const {
+    register,
+    watch,
+    formState: { errors },
+  } = useFormContext<TFieldValues>();
+
+  const valueSelected = watch(name);
+
+  const error = errors[name]?.message;
+  const helperText = typeof error === "string" ? error : undefined;
 
   return (
     <div className="my-2.5">
       <div className="relative">
         <select
           {...props}
-          ref={ref}
+          {...register<Path<TFieldValues>>(name)}
           id={id}
           aria-invalid={helperText ? "true" : "false"}
-          data-selected={defaultValue ? "true" : "false"}
-          onChange={handleOnChange}
+          data-selected={valueSelected ? "true" : "false"}
           className={`block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 focus:outline-none focus:ring-0 focus:border-fire-bush-400 ${
             helperText ? "border-valencia-600" : "border-black-300"
           }`}
         >
-          {children}
+          {options.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
         </select>
         <label
           htmlFor={id}
@@ -58,6 +63,4 @@ const Select = (
       )}
     </div>
   );
-};
-
-export default forwardRef(Select);
+}

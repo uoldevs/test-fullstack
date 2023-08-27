@@ -1,10 +1,8 @@
 import React from "react";
 
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  children: React.ReactNode;
-};
+type FormActionProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
 
-export default function Button({ children, ...props }: ButtonProps) {
+export default function FormAction({ children, ...props }: FormActionProps) {
   return (
     <button
       {...props}
