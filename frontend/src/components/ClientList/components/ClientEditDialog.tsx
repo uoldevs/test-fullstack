@@ -1,12 +1,17 @@
 import { Dialog } from "./Dialog";
 import { Client } from "@/services/clients/types";
 import ClientForm from "@/components/ClientForm";
+import { ClientSchema } from "@/components/ClientForm/schema";
 
 interface ClientEditDialogProps {
   client: Client;
+  onSucess?: (data: ClientSchema) => void;
 }
 
-export default function ClientEditDialog({ client }: ClientEditDialogProps) {
+export default function ClientEditDialog({
+  client,
+  onSucess,
+}: ClientEditDialogProps) {
   return (
     <Dialog.Content>
       <Dialog.Title className="text-lg">
@@ -16,7 +21,7 @@ export default function ClientEditDialog({ client }: ClientEditDialogProps) {
         Faça as alterações necessárias. Clique em editar quando terminar.
       </Dialog.Description>
 
-      <ClientForm client={client}>
+      <ClientForm client={client} onSucess={onSucess}>
         <Dialog.Close asChild>
           <button
             type="button"
