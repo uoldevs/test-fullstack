@@ -18,7 +18,7 @@ export default function Register() {
           Informe os campos a seguir para criar novo usuário
         </p>
       </div>
-      <ClientForm>
+      <ClientForm className="max-w-sm my-10">
         <Link
           href="/"
           className="flex justify-center items-center w-36 border-2 p-2 rounded-md text-lg text-fire-bush-400 hover:text-black-50 hover:bg-fire-bush-400 border-fire-bush-400 active:bg-fire-bush-500 active:border-fire-bush-500"
