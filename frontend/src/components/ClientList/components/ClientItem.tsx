@@ -1,5 +1,8 @@
+"use client";
+
 import { Client } from "../../../services/clients/types";
-import EditButton from "./EditButton";
+import { Dialog } from "./Dialog";
+import ClientEditDialog from "./ClientEditDialog";
 
 interface ClientItemProps {
   client: Client;
@@ -32,7 +35,17 @@ export function ClientItem({ client }: ClientItemProps) {
         <span className={`w-3 h-3 mr-1.5 rounded-full ${clientStatusColor}`} />
         {client.status?.name}
       </span>
-      <EditButton client={client} />
+      <Dialog.Root>
+        <Dialog.Trigger asChild>
+          <button
+            type="button"
+            className="w-32 border-2 rounded-md text-lg text-fire-bush-400 hover:text-black-50 hover:bg-fire-bush-400 border-fire-bush-400 active:bg-fire-bush-500 active:border-fire-bush-500"
+          >
+            Editar
+          </button>
+        </Dialog.Trigger>
+        <ClientEditDialog client={client} />
+      </Dialog.Root>
     </li>
   );
 }
