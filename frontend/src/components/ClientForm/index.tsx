@@ -13,7 +13,7 @@ type ClientFormProps = Omit<
   "onInvalid"
 > & {
   client?: Client;
-  onSucess?: () => void;
+  onSucess?: (data: ClientSchema) => void;
 };
 
 export default function ClientForm({
@@ -50,7 +50,7 @@ export default function ClientForm({
       );
     } else {
       setServerError("");
-      onSucess && onSucess();
+      onSucess && onSucess(data);
     }
   };
 
