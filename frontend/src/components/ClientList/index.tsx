@@ -1,4 +1,4 @@
-import { listClients } from "../../services/clients";
+import { listClients } from "../../services/clientsAPI/clients";
 import { ClientItem } from "@/components/ClientList/components/ClientItem";
 
 export default async function ClientList() {

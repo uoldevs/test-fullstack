@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Client } from "../../../services/clients/types";
+import { Client } from "../../../services/clientsAPI/clients/types";
 import { Dialog } from "./Dialog";
 import ClientEditDialog from "./ClientEditDialog";
 import { ClientSchema } from "@/components/ClientForm/schema";
-import { Status } from "@/services/status/types";
+import { Status } from "@/services/clientsAPI/status/types";
 import PrimaryButton from "@/components/Buttons/PrimaryButton";
 
 interface ClientItemProps {
