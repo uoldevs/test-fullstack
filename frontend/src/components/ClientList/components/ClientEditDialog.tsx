@@ -2,6 +2,7 @@ import { Dialog } from "./Dialog";
 import { Client } from "@/services/clients/types";
 import ClientForm from "@/components/ClientForm";
 import { ClientSchema } from "@/components/ClientForm/schema";
+import PrimaryButton from "@/components/Buttons/PrimaryButton";
 
 interface ClientEditDialogProps {
   client: Client;
@@ -23,13 +24,9 @@ export default function ClientEditDialog({
 
       <ClientForm client={client} onSucess={onSucess}>
         <Dialog.Close asChild>
-          <button
-            type="button"
-            className="flex justify-center items-center w-36 border-2 p-2 rounded-md text-lg text-fire-bush-400 hover:text-black-50 hover:bg-fire-bush-400 border-fire-bush-400 active:bg-fire-bush-500 active:border-fire-bush-500"
-            aria-label="Close"
-          >
+          <PrimaryButton bgColor="white" aria-label="Close">
             Cancelar
-          </button>
+          </PrimaryButton>
         </Dialog.Close>
       </ClientForm>
     </Dialog.Content>

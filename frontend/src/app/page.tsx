@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import ClientList from "@/components/ClientList";
+import LinkAsButton from "@/components/Buttons/LinkAsButton";
 
 export const metadata: Metadata = {
   title: "Lista de Clientes",
@@ -19,14 +19,9 @@ export default function Home() {
             Escolha um cliente para visualizar os detalhes
           </p>
         </div>
-        <Link href="/clients/register">
-          <button
-            type="button"
-            className="mx-3 w-32 p-1 rounded-md text-lg text-black-50 bg-fire-bush-400 hover:bg-fire-bush-500 active:bg-fire-bush-600"
-          >
-            Novo cliente
-          </button>
-        </Link>
+        <LinkAsButton href="/clients/register" size="sm" className="mx-3">
+          Novo cliente
+        </LinkAsButton>
       </div>
       <ClientList />
     </main>

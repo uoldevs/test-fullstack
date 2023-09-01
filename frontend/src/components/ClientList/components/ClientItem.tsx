@@ -6,6 +6,7 @@ import { Dialog } from "./Dialog";
 import ClientEditDialog from "./ClientEditDialog";
 import { ClientSchema } from "@/components/ClientForm/schema";
 import { Status } from "@/services/status/types";
+import PrimaryButton from "@/components/Buttons/PrimaryButton";
 
 interface ClientItemProps {
   client: Client;
@@ -51,12 +52,7 @@ export function ClientItem({ client }: ClientItemProps) {
       </span>
       <Dialog.Root>
         <Dialog.Trigger asChild>
-          <button
-            type="button"
-            className="w-32 border-2 rounded-md text-lg text-fire-bush-400 hover:text-black-50 hover:bg-fire-bush-400 border-fire-bush-400 active:bg-fire-bush-500 active:border-fire-bush-500"
-          >
-            Editar
-          </button>
+          <PrimaryButton bgColor="white">Editar</PrimaryButton>
         </Dialog.Trigger>
         <ClientEditDialog
           client={clientData}

@@ -1,6 +1,6 @@
+import LinkAsButton from "@/components/Buttons/LinkAsButton";
 import ClientForm from "@/components/ClientForm";
 import type { Metadata } from "next";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Cadastro de Cliente",
@@ -19,12 +19,9 @@ export default function Register() {
         </p>
       </div>
       <ClientForm className="max-w-sm my-10">
-        <Link
-          href="/"
-          className="flex justify-center items-center w-36 border-2 p-2 rounded-md text-lg text-fire-bush-400 hover:text-black-50 hover:bg-fire-bush-400 border-fire-bush-400 active:bg-fire-bush-500 active:border-fire-bush-500"
-        >
+        <LinkAsButton href="/" bgColor="white">
           Voltar
-        </Link>
+        </LinkAsButton>
       </ClientForm>
     </main>
   );
