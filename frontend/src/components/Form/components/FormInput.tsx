@@ -38,7 +38,7 @@ export default function FormInput<TFieldValues extends FieldValues>({
           onChange={onChange}
           disabled={disabled}
           aria-invalid={helperText ? "true" : "false"}
-          className="block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 border-black-300 aria-[invalid=true]:border-valencia-600 focus:outline-none focus:ring-2 ring-fire-bush-400 ring-offset-1"
+          className="block peer appearance-non bg-white-50 rounded-md px-3 pb-2.5 pt-4 w-full text-base text-black-800 border-2 border-black-300 aria-[invalid=true]:border-valencia-600 focus:outline-none focus:ring-2 ring-fire-bush-700 ring-offset-1"
           placeholder=" "
         />
         <label
