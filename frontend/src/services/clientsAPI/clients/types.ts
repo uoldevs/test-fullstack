@@ -1,13 +1,13 @@
-import { Status } from '../status/types'
+import { Status } from "../status/types";
 
 export interface Client {
-  id: number,
-  name: string,
-  email: string,
-  cpf: string,
-  phoneNumber: string,
-  statusId: number,
-  status: Status,
+  id: number;
+  name: string;
+  email: string;
+  cpf: string;
+  phoneNumber: string;
+  statusId: number;
+  status: Status;
 }
 
 export interface ClientCreationData extends Omit<Client, "id" | "status"> {}

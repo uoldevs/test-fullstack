@@ -1,35 +1,40 @@
-import { ApiError } from '../types';
+import { ApiError } from "../types";
 import {
   ClientCreationData,
   ClientWithStatus,
-  ClientWithStatusId
-} from './types';
+  ClientWithStatusId,
+} from "./types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const headers = {
-  'Content-Type': 'application/json'
-}
+  "Content-Type": "application/json",
+};
 
-export async function listClients(): Promise<ClientWithStatus[] | ApiError>{
-  const response = await fetch(`${API_URL}/clients`, { cache: 'no-cache'});
+export async function listClients(): Promise<ClientWithStatus[] | ApiError> {
+  const response = await fetch(`${API_URL}/clients`, { cache: "no-cache" });
   return response.json();
 }
 
-export async function createClient(client: ClientCreationData): Promise<ClientWithStatusId | ApiError>{
+export async function createClient(
+  client: ClientCreationData
+): Promise<ClientWithStatusId | ApiError> {
   const response = await fetch(`${API_URL}/clients`, {
-    method: 'POST',
+    method: "POST",
     headers,
-    body: JSON.stringify(client)
+    body: JSON.stringify(client),
   });
   return response.json();
 }
 
-export async function updateClient(id: number, client: ClientCreationData): Promise<ClientWithStatusId | ApiError>{
+export async function updateClient(
+  id: number,
+  client: ClientCreationData
+): Promise<ClientWithStatusId | ApiError> {
   const response = await fetch(`${API_URL}/clients/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers,
-    body: JSON.stringify(client)
+    body: JSON.stringify(client),
   });
   return response.json();
 }
