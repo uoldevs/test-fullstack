@@ -9,7 +9,7 @@ import {
   ClientWithStatusId,
 } from "./types";
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/clients`;
+const API_URL = `${process.env.NEXT_PUBLIC_CLIENT_API_URL}/clients`;
 
 const headers = {
   "Content-Type": "application/json",

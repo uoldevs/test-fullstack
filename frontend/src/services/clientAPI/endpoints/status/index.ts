@@ -5,7 +5,7 @@ import {
 } from "../../utils/handleAPIResponse";
 import { Status } from "./types";
 
-const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/status`;
+const API_URL = `${process.env.NEXT_PUBLIC_CLIENT_API_URL}/status`;
 
 export async function listStatus(): Promise<ClientAPIResponse<Status[]>> {
   let status, data;
