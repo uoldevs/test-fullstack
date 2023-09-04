@@ -1,9 +1,20 @@
-import { ApiError } from "../../types";
+import {
+  ClientAPIResponse,
+  handleAPIResponse,
+  handleThrownError,
+} from "../../utils/handleAPIResponse";
 import { Status } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/status`;
 
-export async function listStatus(): Promise<Status[] | ApiError> {
-  const response = await fetch(`${API_URL}/status`);
-  return response.json() as Promise<Status[] | ApiError>;
+export async function listStatus(): Promise<ClientAPIResponse<Status[]>> {
+  let status, data;
+  try {
+    const response = await fetch(API_URL);
+    status = response.status;
+    data = await response.json();
+  } catch (error) {
+    data = handleThrownError(error);
+  }
+  return handleAPIResponse(status, data);
 }

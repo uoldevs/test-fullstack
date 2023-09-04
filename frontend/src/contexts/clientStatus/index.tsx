@@ -1,37 +1,29 @@
 "use client";
 
+import React, { createContext, useEffect, useState } from "react";
 import { listStatus } from "@/services/clientAPI/endpoints/status";
 import { Status } from "@/services/clientAPI/endpoints/status/types";
-import { ApiError } from "@/services/clientAPI/types";
-import React, { createContext, useState } from "react";
+import { ClientAPIResponse } from "@/services/clientAPI/utils/handleAPIResponse";
 
 interface ClientStatusContextData {
-  clientStatus: Status[] | null;
-  listClientStatus: () => Promise<Status[] | ApiError>;
+  clientStatus: ClientAPIResponse<Status[]> | null;
 }
 
-const clientStatusContext = createContext<ClientStatusContextData>(
-  {} as ClientStatusContextData
-);
+const clientStatusContext = createContext<ClientStatusContextData>({
+  clientStatus: null,
+});
 
 const ClientStatusProvider = ({ children }: { children: React.ReactNode }) => {
-  const [status, setStatus] = useState<Status[] | null>(null);
+  const [status, setStatus] = useState<ClientAPIResponse<Status[]> | null>(
+    null
+  );
 
-  const listClientStatus = async () => {
-    if (status !== null) return status;
-    const data = await listStatus();
-
-    if (Array.isArray(data)) {
-      setStatus(data);
-    }
-
-    return data;
-  };
+  useEffect(() => {
+    listStatus().then((response) => setStatus(response));
+  }, []);
 
   return (
-    <clientStatusContext.Provider
-      value={{ clientStatus: status, listClientStatus }}
-    >
+    <clientStatusContext.Provider value={{ clientStatus: status }}>
       {children}
     </clientStatusContext.Provider>
   );

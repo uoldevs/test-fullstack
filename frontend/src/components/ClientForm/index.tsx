@@ -6,7 +6,10 @@ import { ClientWithStatus } from "@/services/clientAPI/endpoints/clients/types";
 import schema, { ClientSchema } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { clientStatusContext } from "@/contexts/clientStatus";
-import { createClient, updateClient } from "@/services/clientAPI/endpoints/clients";
+import {
+  createClient,
+  updateClient,
+} from "@/services/clientAPI/endpoints/clients";
 
 type ClientFormProps = Omit<
   React.FormHTMLAttributes<HTMLFormElement>,
@@ -22,13 +25,16 @@ export default function ClientForm({
   children,
   ...props
 }: ClientFormProps) {
-  const { clientStatus, listClientStatus } = useContext(clientStatusContext);
+  const { clientStatus } = useContext(clientStatusContext);
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [serverError, setServerError] = React.useState("");
 
   const handleSubmitForm = async (data: ClientSchema) => {
-    const status = clientStatus?.find((status) => status.name === data.status);
-    if (!status) {
+    let status;
+    if (clientStatus && "data" in clientStatus) {
+      status = clientStatus.data.find((status) => status.name === data.status);
+    }
+    if (status === undefined) {
       setServerError("O status informado não existe.");
       return;
     }
@@ -71,8 +77,11 @@ export default function ClientForm({
   else buttonText = client ? "Editar" : "Criar";
 
   if (clientStatus === null) {
-    listClientStatus();
     return <h3>Carregando...</h3>;
+  }
+
+  if ("error" in clientStatus) {
+    return <h3>Erro ao carregar os status dos clientes.</h3>;
   }
 
   return (
@@ -93,7 +102,7 @@ export default function ClientForm({
       <Form.Select<ClientSchema>
         name="status"
         label="Status"
-        options={["", ...clientStatus.map((status) => status.name)]}
+        options={["", ...clientStatus.data.map((status) => status.name)]}
       />
 
       {serverError && <p role="alert">{serverError}</p>}
