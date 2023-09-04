@@ -1,40 +1,69 @@
-import { ApiError } from "../../types";
+import {
+  ClientAPIResponse,
+  handleAPIResponse,
+  handleThrownError,
+} from "../../utils/handleAPIResponse";
 import {
   ClientCreationData,
   ClientWithStatus,
   ClientWithStatusId,
 } from "./types";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/clients`;
 
 const headers = {
   "Content-Type": "application/json",
 };
 
-export async function listClients(): Promise<ClientWithStatus[] | ApiError> {
-  const response = await fetch(`${API_URL}/clients`, { cache: "no-cache" });
-  return response.json();
+export async function listClients(): Promise<
+  ClientAPIResponse<ClientWithStatus[]>
+> {
+  let status, data;
+  try {
+    const response = await fetch(API_URL, { cache: "no-cache" });
+    status = response.status;
+    data = await response.json();
+  } catch (error) {
+    data = handleThrownError(error);
+  }
+  return handleAPIResponse(status, data);
 }
 
 export async function createClient(
   client: ClientCreationData
-): Promise<ClientWithStatusId | ApiError> {
-  const response = await fetch(`${API_URL}/clients`, {
+): Promise<ClientAPIResponse<ClientWithStatusId>> {
+  let status, data;
+  const init = {
     method: "POST",
     headers,
     body: JSON.stringify(client),
-  });
-  return response.json();
+  };
+  try {
+    const response = await fetch(API_URL, init);
+    status = response.status;
+    data = await response.json();
+  } catch (error: any) {
+    data = handleThrownError(error);
+  }
+  return handleAPIResponse(status, data);
 }
 
 export async function updateClient(
   id: number,
   client: ClientCreationData
-): Promise<ClientWithStatusId | ApiError> {
-  const response = await fetch(`${API_URL}/clients/${id}`, {
+): Promise<ClientAPIResponse<ClientWithStatusId>> {
+  let status, data;
+  const init = {
     method: "PUT",
     headers,
     body: JSON.stringify(client),
-  });
-  return response.json();
+  };
+  try {
+    const response = await fetch(`${API_URL}/${id}`, init);
+    status = response.status;
+    data = await response.json();
+  } catch (error: any) {
+    data = handleThrownError(error);
+  }
+  return handleAPIResponse(status, data);
 }

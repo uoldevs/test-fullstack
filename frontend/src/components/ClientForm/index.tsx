@@ -55,9 +55,16 @@ export default function ClientForm({
     setIsSubmitting(false);
 
     if ("error" in response) {
-      setServerError(
-        "O servidor retornou um erro, verifique os dados e tente novamente."
-      );
+      switch (response.error.status) {
+        case 409:
+          setServerError("Cliente já cadastrado.");
+          break;
+        default:
+          setServerError(
+            "Ocorreu um erro inesperado. Por favor, tente novamente mais tarde."
+          );
+          break;
+      }
     } else {
       setServerError("");
       onSucess && onSucess(data);

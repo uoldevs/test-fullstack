@@ -11,11 +11,11 @@ export default async function ClientList() {
   return (
     <>
       <ul>
-        {clients.map((client) => (
+        {clients.data.map((client) => (
           <ClientItem key={client.id} client={client} />
         ))}
       </ul>
-      <p className="text-black-800">Exibindo {clients.length} clientes</p>
+      <p className="text-black-800">Exibindo {clients.data.length} clientes</p>
     </>
   );
 }
