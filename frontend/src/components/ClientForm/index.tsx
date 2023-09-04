@@ -2,7 +2,7 @@
 
 import React, { useContext } from "react";
 import { Form } from "../Form";
-import { Client } from "@/services/clientsAPI/clients/types";
+import { ClientWithStatus } from "@/services/clientsAPI/clients/types";
 import schema, { ClientSchema } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { clientStatusContext } from "@/contexts/clientStatus";
@@ -12,7 +12,7 @@ type ClientFormProps = Omit<
   React.FormHTMLAttributes<HTMLFormElement>,
   "onInvalid"
 > & {
-  client?: Client;
+  client?: ClientWithStatus;
   onSucess?: (data: ClientSchema) => void;
 };
 
@@ -27,19 +27,23 @@ export default function ClientForm({
   const [serverError, setServerError] = React.useState("");
 
   const handleSubmitForm = async (data: ClientSchema) => {
+    const status = clientStatus?.find((status) => status.name === data.status);
+    if (!status) {
+      setServerError("O status informado não existe.");
+      return;
+    }
     const clientData = {
-      id: client?.id,
       name: data.name,
       email: data.email,
       cpf: data.cpf.replace(/\D/g, ""),
       phoneNumber: data.phoneNumber.replace(/\D/g, ""),
-      statusId: clientStatus?.find((status) => status.name === data.status)?.id,
+      statusId: status.id,
     };
 
     setIsSubmitting(true);
 
     const response = client
-      ? await updateClient(Number(clientData.id), clientData)
+      ? await updateClient(Number(client.id), clientData)
       : await createClient(clientData);
 
     setIsSubmitting(false);
@@ -59,7 +63,7 @@ export default function ClientForm({
     email: client.email,
     cpf: client.cpf,
     phoneNumber: client.phoneNumber,
-    status: client.status?.name,
+    status: client.status.name,
   };
 
   let buttonText;
