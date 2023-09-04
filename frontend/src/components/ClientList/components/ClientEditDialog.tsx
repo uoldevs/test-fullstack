@@ -1,5 +1,5 @@
 import { Dialog } from "./Dialog";
-import { ClientWithStatus } from "@/services/clientsAPI/clients/types";
+import { ClientWithStatus } from "@/services/clientAPI/endpoints/clients/types";
 import ClientForm from "@/components/ClientForm";
 import { ClientSchema } from "@/components/ClientForm/schema";
 import PrimaryButton from "@/components/Buttons/PrimaryButton";

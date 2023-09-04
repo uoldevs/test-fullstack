@@ -2,11 +2,11 @@
 
 import React, { useContext } from "react";
 import { Form } from "../Form";
-import { ClientWithStatus } from "@/services/clientsAPI/clients/types";
+import { ClientWithStatus } from "@/services/clientAPI/endpoints/clients/types";
 import schema, { ClientSchema } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { clientStatusContext } from "@/contexts/clientStatus";
-import { createClient, updateClient } from "@/services/clientsAPI/clients";
+import { createClient, updateClient } from "@/services/clientAPI/endpoints/clients";
 
 type ClientFormProps = Omit<
   React.FormHTMLAttributes<HTMLFormElement>,

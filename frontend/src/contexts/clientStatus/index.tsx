@@ -1,8 +1,8 @@
 "use client";
 
-import { listStatus } from "@/services/clientsAPI/status";
-import { Status } from "@/services/clientsAPI/status/types";
-import { ApiError } from "@/services/clientsAPI/types";
+import { listStatus } from "@/services/clientAPI/endpoints/status";
+import { Status } from "@/services/clientAPI/endpoints/status/types";
+import { ApiError } from "@/services/clientAPI/types";
 import React, { createContext, useState } from "react";
 
 interface ClientStatusContextData {
