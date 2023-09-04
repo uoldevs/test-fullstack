@@ -8,6 +8,7 @@ import { ClientSchema } from "@/components/ClientForm/schema";
 import { Status } from "@/services/clientAPI/endpoints/status/types";
 import PrimaryButton from "@/components/Buttons/PrimaryButton";
 import StatusColors from "@/components/StatusColors";
+import parsePhoneNumber from "libphonenumber-js";
 
 interface ClientItemProps {
   client: ClientWithStatus;
@@ -27,6 +28,15 @@ export function ClientItem({ client }: ClientItemProps) {
     });
   };
 
+  const phoneNumber =
+    parsePhoneNumber(clientData.phoneNumber, "BR")?.formatNational() ||
+    clientData.phoneNumber;
+
+  const cpf = clientData.cpf.replace(
+    /(\d{3})(\d{3})(\d{3})(\d{2})/,
+    "$1.$2.$3-$4"
+  );
+
   return (
     <li className="flex justify-between flex-wrap border border-black-100 my-5 p-3">
       <div className="flex-1">
@@ -35,9 +45,9 @@ export function ClientItem({ client }: ClientItemProps) {
         <span className="text-black-800">{clientData.email}</span>
       </div>
       <div className="flex-1">
-        <span>{clientData.cpf}</span>
+        <span>{cpf}</span>
         <br />
-        <span className="text-black-800">{clientData.phoneNumber}</span>
+        <span className="text-black-800">{phoneNumber}</span>
       </div>
       <span className="flex-1 flex items-center">
         <StatusColors status={clientData.status.name} />
